@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginPageComponent } from './login-page.component';
 import { FooterComponent } from './../footer/footer.component';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -13,9 +14,12 @@ import { FooterComponent } from './../footer/footer.component';
     ButtonsComponent
   ],
   imports: [
-    CommonModule
-
+    CommonModule,
+    MatButtonModule,
   ],
-  exports:[LoginPageComponent]
+  exports:[
+    LoginPageComponent,
+    MatButtonModule,
+  ]
 })
 export class LoginPageModule { }

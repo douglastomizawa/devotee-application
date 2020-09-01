@@ -6,8 +6,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  {path:'login',component: LoginPageComponent, children:[
-    {path:'', component: ButtonsComponent}]}
+  {
+    path: 'login', component: LoginPageComponent, children: [
+      { path: '', component: ButtonsComponent }]
+  }
 ];
 
 @NgModule({
