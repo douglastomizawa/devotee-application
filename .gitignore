@@ -1,1 +1,3 @@
-node_module/
+# Arquivos gerador com a instalação do projeto
+node_modules
+package-lock.json
