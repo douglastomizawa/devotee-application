@@ -12,30 +12,30 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$Devotee-App-primary: mat-palette($mat-indigo);
-$Devotee-App-accent: mat-palette($mat-pink, A200, A100, A400);
+$devotee-app-primary: mat-palette($mat-indigo);
+$devotee-app-accent: mat-palette($mat-pink, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$Devotee-App-warn: mat-palette($mat-red);
+$devotee-app-warn: mat-palette($mat-red);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$Devotee-App-theme: mat-light-theme((
+$devotee-app-theme: mat-light-theme((
   color: (
-    primary: $Devotee-App-primary,
-    accent: $Devotee-App-accent,
-    warn: $Devotee-App-warn,
+    primary: $devotee-app-primary,
+    accent: $devotee-app-accent,
+    warn: $devotee-app-warn,
   )
 ));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($Devotee-App-theme);
+@include angular-material-theme($devotee-app-theme);
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100vh; width: 100vw; }
+html, body { height: 100%; width: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 *{
   padding: 0;

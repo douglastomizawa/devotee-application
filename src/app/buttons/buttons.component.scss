@@ -1,0 +1,54 @@
+$primary: #ffffff;
+$secundary:#EC1200;
+.buttons{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+  "create-account login"
+  "login-fb login-fb"
+  "or or"
+  "login-qr login-qr"
+  ;
+  a{
+    margin: 10px;
+  }
+  .create-account{
+    grid-area: create-account;
+    background-color: $primary;
+    color: $secundary;
+  }
+  .login{
+    grid-area: login;
+    background-color: $secundary;
+    color: $primary;
+  }
+  .login-fb{
+    grid-area: login-fb;
+    background-color: #1977F5;
+    color: $primary;
+    img{
+      max-width: 37px;
+    }
+  }
+  .or{
+    grid-area: or;
+    text-align: center;
+  }
+  .login-qr{
+    grid-area: login-qr;
+    background-color: $primary;
+    color: #505050;
+  }
+
+}
+@media  only screen and (min-width: 700px) {
+    .buttons{
+      grid-area: buttons;
+      grid-template-columns: 1fr 1fr ;
+      grid-template-areas:
+      "create-account login"
+      "login-fb login-fb"
+      "or or"
+      "login-qr login-qr";
+    }
+}
