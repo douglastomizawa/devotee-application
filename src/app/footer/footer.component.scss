@@ -1,0 +1,90 @@
+$opacity-70: 70%;
+$pattern-text: #fff;
+
+footer{
+  p{
+    margin: 0;
+    color: #fff;
+  }
+  background-color: #3F51B5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 1.5rem;
+  .logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    a{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+    }
+    .logo-text{
+      color: $pattern-text;
+      font-size:28px;
+      font-weight: normal;
+      margin-left: 8px;
+  }
+  }
+  .terms-policy{
+      display: flex;
+      justify-content: center;
+      font-size: 1rem;
+      .policy{
+          opacity: $opacity-70;
+          margin-right: 10px;
+      }
+      .policy-privacy{
+          opacity: $opacity-70
+      }
+      .terms{
+          opacity: $opacity-70;
+      }
+      .policy:hover{
+          opacity: 100%;
+          cursor: pointer;
+      }
+      .terms:hover{
+          opacity: 100%;
+          cursor: pointer;
+      }
+  }
+  .tablinks{
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .download-app{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 30px;
+      p{
+          color: $pattern-text;
+          font-size:600;
+      }
+      :first-child{
+          margin-right: 10px;
+      }
+  }
+  .logo{
+      padding: 2rem 0 1rem;
+  }
+  .buttons-download{
+      margin-top: 5px;
+      img{
+          width: auto;
+          height: 30px;
+      }
+  }
+  #copyright{
+      opacity: $opacity-70;
+      margin-top: 1rem;
+      font-size: 0.8rem;
+  }
+}
