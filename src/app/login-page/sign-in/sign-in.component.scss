@@ -1,0 +1,40 @@
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+.container-signin{
+  background-color: #ffffff;
+  padding: 1rem 1.5rem 1.5rem;
+  max-width: 380px;
+  width: 100%;
+  border-radius: 20px;
+}
+.example-full-width {
+  width: 100%;
+}
+.container-password  {
+
+  margin-top: 10px;
+
+  .mat-form-field + .mat-form-field{
+    margin-left: 8px;
+  }
+}
+.btn-visibility{
+  input{
+    color: black;
+  }
+
+}
+@media  only screen and (min-width: 700px) {
+
+}
+
+@media  only screen and (min-width: 1250px) {
+  .container-signin{
+    max-width: 380px;
+    width: 380px;
+  }
+}

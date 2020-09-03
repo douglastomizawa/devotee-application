@@ -9,25 +9,37 @@
           </div>
           <div class="terms-policy">
               <div class="content-terms policy-privacy">
-                  <p class="tablinks click-policy-privacy policy my-btn-terms" data-click="click-policy-privacy"  color="#2E2C8A" id="footpolicy">Políticas de Privacidade</p>
+                  <p (click)="openDialog()" class="tablinks click-policy-privacy policy my-btn-terms"color="#2E2C8A" >{{textFooter.policyPrivacy}}</p>
               </div>
               <div class="content-terms terms">
-                  <p class="tablinks click-terms terms my-btn-terms" data-click="click-terms"  color="#2E2C8A" id="footterms">Termos de uso</p>
+                  <p (click)="openDialog()" class="tablinks click-terms terms my-btn-terms" color="#2E2C8A" >{{textFooter.terms}}</p>
               </div>
           </div>
       </div>
       <div class="download-copyright">
           <div class="download-app">
-              <p>Baixe o aplicativo!</p>
+              <p>{{textFooter.getApp}}</p>
               <div class="buttons-download">
                   <a href="https://play.google.com/store/apps/details?id=com.phurshell.devotee&hl=pt_BR" target="_blank" rel="noopener noreferrer">
-                  <img src="./assets/playstore.svg" alt="Botão play store"  ></a>
+                  <img src={{textFooter.btnPlayStore}} alt="Botão play store"  ></a>
                   <a href="https://apps.apple.com/br/app/devotee/id1331331692" target="_blank" rel="noopener noreferrer">
-                  <img src="./assets/appstore.svg" alt="Botão Apple store" ></a>
+                  <img src={{textFooter.btnAppStore}} alt="Botão Apple store" ></a>
               </div>
           </div>
 
       </div>
-      <div id="copyright" class="copyright">Copyright</div>
+      <div id="copyright" class="copyright">{{copyright}}</div>
   </div>
+
+
+      <!-- <button mat-raised-button (click)="openDialog()">Pick one</button> -->
+
+      <!-- <mat-tab-group>
+        <mat-tab label="First"> Content 1 </mat-tab>
+        <mat-tab label="Second"> Content 2 </mat-tab>
+        <mat-tab label="Third"> Content 3 </mat-tab>
+      </mat-tab-group> -->
+
 </footer>
+
+

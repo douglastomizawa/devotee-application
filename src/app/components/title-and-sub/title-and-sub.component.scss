@@ -1,0 +1,24 @@
+@media  only screen and (min-width: 1024px) {
+  .title{
+    font-size: 32px;
+  }
+  .sub-title{
+    font-size: 20px;
+    padding-right: 2rem;
+  }
+}
+@media  only screen and (min-width: 1250px) {
+  .sub-title{
+    padding-right: 15rem;
+  }
+}
+@media  only screen and (min-width: 1550px) {
+  .title{
+    font-size: 45px;
+  }
+  .sub-title{
+    padding-right: 15rem;
+    font-size: 30px;
+    line-height: 30px;
+  }
+}

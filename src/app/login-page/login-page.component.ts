@@ -1,4 +1,4 @@
-import { LoginPageService } from './login-page.service';
+import { TranslateService } from '../shared/translate.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -8,19 +8,14 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./login-page.component.scss','../app.component.scss']
 })
 export class LoginPageComponent implements OnInit {
-  sub;
-  constructor(private loginPageService: LoginPageService, private route: ActivatedRoute) { }
-  veriyLanguage(){
-    console.log(this.loginPageService.getDataTranslate());
-  }
+
+  constructor(private translatePage: TranslateService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.veriyLanguage();
-    this.sub = this.route
-    .data
-    .subscribe(v => console.log(v));
+    this.translatePage.veriyLanguage();
+
   }
   ngOnDestroy() {
-    this.sub.unsubscribe();
+
   }
 }

@@ -1,3 +1,4 @@
+import { TranslateService } from '../shared/translate.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./buttons.component.scss']
 })
 export class ButtonsComponent implements OnInit {
-
-  constructor() { }
+  text;
+  constructor(private translatePage: TranslateService) { }
 
   ngOnInit(): void {
+    this.text = this.translatePage.textTranslate;
   }
 
 }

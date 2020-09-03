@@ -7,122 +7,83 @@ $secundary:#EC1200;
   background-position: center top;
   background-size: auto 100vh;
   overflow-x:hidden;
-  color: $primary;
+
 box-sizing: border-box;
 }
-p{
-  margin-bottom: 0;
+
+
+.main{
+  height: 100vh;
+  display: grid;
+  padding: 2rem;
+  max-width: 1800px;
+  grid-template-rows: 1fr 1fr 1fr;
 }
 .container{
   width: 100vw;
   height: 100vh;
-  // display: grid;
-  // grid-template-rows: 4fr 1fr;
+  background-color: #00000080;
 }
-.main{
-  display: grid;
-  background-color: rgba(0,0,0,0.5);
-  width: 100vw;
-  padding: 4rem;
-  height: 100vh;
-  align-items: flex-start;
+app-title-and-sub{
+  color: $primary;
 }
-header {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  .logo-text{
-    font-size:2rem;
+app-header{
+  color: $primary;
+}
+@media  only screen and (min-width: 430px) {
+  .route-flx{
+    display: flex;
+    justify-content: center;
   }
-
 }
-
 @media  only screen and (min-width: 700px) {
   .main{
+    display: grid;
     grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr 1fr 2fr;
+    padding: 3rem;
     grid-template-areas:
       "header header header"
-      "text-login text-login buttons";
-    .text{
-      grid-area:text-login;
-    }
-    header{
-      grid-area: header;
-    }
-
+      "text-login text-login router";
   }
-}
-@media only screen and (min-width:800px) {
-  footer{
-    flex-direction: row;
-    .logo-terms{
-        display: flex;
-        flex-direction: column;
-        align-items: baseline;
-        padding-left: 20px;
-    }
+  .route-flx{
+    grid-area: router;
+    display: flex;
+    justify-content: flex-end;
+    max-width: 380px;
+    width: 380px;
+  }
+  app-title-and-sub{
+    grid-area:text-login;
+    margin-right: 20px;
+  }
+  app-header{
+    grid-area: header;
+  }
 }
 
-  .logo-terms{
-      grid-area: logo-terms;
-  }
-  .download-copyright{
-      grid-area: download-copyright;
-  }
-  .copyright{
-      text-align: center;
-      grid-area: copyright;
-  }
-  .container-footer{
-      max-width: 700px;
-      width: 600px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-areas:
-  "logo-terms download-copyright"
-  "copyright copyright"
-  ;
-  }
-  footer .logo {
-      padding: 2rem 0 0.3rem 0rem;
-  }
-}
-  @media  only screen and (min-width: 1024px) {
-    .title{
-      font-size: 32px;
-    }
-    .sub-title{
-      font-size: 20px;
-      padding-right: 2rem;
-    }
-  }
+
   @media  only screen and (min-width: 1250px) {
-
     .main{
-      grid-template-columns: 2fr 3fr 1fr 2fr;
+      padding: 4rem;
+      grid-template-columns: 2fr 1fr 1fr;
       grid-template-areas:
-      "header header header header "
-      "text-login text-login buttons buttons";
+      "header header header"
+      "text-login text-login router";
     }
-    app-buttons{
+    .container-signin{
       grid-area: buttons;
-    }
-    .sub-title{
-      padding-right: 15rem;
+      display: flex;
+      justify-content: flex-end;
     }
   }
   @media  only screen and (min-width: 1550px) {
     .main{
-      grid-template-columns: 2fr 3fr 1fr 1fr;
+      margin-right: auto;
+      margin-left: auto;
     }
-    .title{
-      font-size: 45px;
-    }
-    .sub-title{
-      padding-right: 36rem;
-      font-size: 30px;
-      line-height: 30px;
+    .container-route-flx{
+      display: flex;
+      justify-content: flex-end;
     }
   }
 

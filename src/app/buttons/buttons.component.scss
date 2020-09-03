@@ -11,6 +11,9 @@ $secundary:#EC1200;
   ;
   button{
     margin: 10px;
+    span{
+      margin: 1rem;
+    }
   }
   .create-account{
     grid-area: create-account;
@@ -50,5 +53,14 @@ $secundary:#EC1200;
       "login-fb login-fb"
       "or or"
       "login-qr login-qr";
+      max-width: 100%;
+      width: 380px;
     }
+}
+
+@media  only screen and (min-width: 1250px) {
+  .buttons{
+    max-width: 395px;
+    width: 395px;
+  }
 }
