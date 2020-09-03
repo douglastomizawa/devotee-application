@@ -1,0 +1,21 @@
+<div class="buttons-login">
+  <button href="" [routerLink]="['/createaccount']" mat-raised-button class="btn-sm create-account">
+    <div>
+      {{ text.btnCreateAccout }}
+    </div>
+  </button>
+  <button  mat-raised-button [routerLink]="['/signin']" class="btn-sm login">
+    <div>
+      {{ text.btnLogin }}
+    </div>
+  </button>
+  <button href="" mat-raised-button class="btn-lg login-fb">
+    <img src="../../assets/facebook-logo.svg" alt="">
+    <span>{{ text.btnFb }}</span>
+  </button>
+  <p class="or">ou</p>
+  <button  mat-raised-button [routerLink]="['/signinqr']" class="btn-lg login-qr">
+    <span>{{ text.btnQr }}</span>
+    <img src="../../assets/qa-code.svg" alt="">
+  </button>
+</div>

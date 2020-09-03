@@ -1,4 +1,4 @@
-import { TranslateService } from '../shared/translate.service';
+import { TranslateService } from '../../shared/translate.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

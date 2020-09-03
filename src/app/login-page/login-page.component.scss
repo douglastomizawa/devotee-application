@@ -1,5 +1,4 @@
-$primary: #ffffff;
-$secundary:#EC1200;
+@import "../app.component.scss";
 .body{
   background: url(../../assets/back-login.png);
 
@@ -11,7 +10,9 @@ $secundary:#EC1200;
 box-sizing: border-box;
 }
 
-
+.mat-dialog-container {
+  border-radius: 30px;
+}
 .main{
   height: 100vh;
   display: grid;
@@ -25,10 +26,10 @@ box-sizing: border-box;
   background-color: #00000080;
 }
 app-title-and-sub{
-  color: $primary;
+  color: $btn-login-primary;
 }
 app-header{
-  color: $primary;
+  color: $btn-login-primary;
 }
 @media  only screen and (min-width: 430px) {
   .route-flx{
@@ -65,10 +66,20 @@ app-header{
   @media  only screen and (min-width: 1250px) {
     .main{
       padding: 4rem;
+      grid-template-rows: 1fr 3fr 1fr;
       grid-template-columns: 2fr 1fr 1fr;
+
       grid-template-areas:
       "header header header"
       "text-login text-login router";
+    }
+    app-title-and-sub{
+      display: flex;
+      align-items: center;
+    }
+    .container-route-flx{
+      display: flex;
+      align-items: center;
     }
     .container-signin{
       grid-area: buttons;
@@ -80,7 +91,9 @@ app-header{
     .main{
       margin-right: auto;
       margin-left: auto;
+
     }
+
     .container-route-flx{
       display: flex;
       justify-content: flex-end;

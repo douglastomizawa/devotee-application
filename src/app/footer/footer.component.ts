@@ -34,17 +34,22 @@ export class FooterComponent implements OnInit {
 
 }
 @Component({
-  selector: 'footer-modal',
+  selector: 'app-footer-modal',
   templateUrl: 'footer-modal.component.html',
+  styleUrls: ['./footer-modal.component.scss', '../login-page/login-page.component.scss']
 })
-export class FooterModalComponent {
+export class FooterModalComponent implements OnInit {
+textFooter;
 
   constructor(
     public dialogRef: MatDialogRef<FooterModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-
+    @Inject(MAT_DIALOG_DATA) public data: DialogData, private translatePage: TranslateService) {}
+    ngOnInit(): void {
+      this.textFooter = this.translatePage.textTranslate;
+    }
   onNoClick(): void {
     this.dialogRef.close();
+
   }
 
 }

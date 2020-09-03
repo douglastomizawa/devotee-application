@@ -17,22 +17,24 @@ export class TranslateService {
   selectLanguage(language){
     let data = this.getDataTranslate();
     console.log(Object.entries(data));
+    console.log(data[0][1][0].us);
     switch (language) {
 
       case 'pt-BR':
         this.traductionLanguage(data[0][1][0].pt);
         break;
       case 'en-US':
-        this.traductionLanguage([0][1][1].us);
+        this.traductionLanguage(data[0][1][0].us);
         break;
 
       default:
-        this.traductionLanguage(data[0][1][1].us);
+        this.traductionLanguage(data[0][1][0].us);
         break;
     }
   }
-  traductionLanguage(data){
-    this.textTranslate = data
+  traductionLanguage(dataLanguage){
+    console.log(dataLanguage);
+    this.textTranslate = dataLanguage
 }
 
 }

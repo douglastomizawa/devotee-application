@@ -1,0 +1,40 @@
+<div class="container-create-account">
+  <div class="example-container">
+    <mat-form-field >
+      <mat-label>Name</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input matInput [errorStateMatcher]="matcher"
+             placeholder="Ex. pat@example.com">
+      <mat-hint></mat-hint>
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        {{ text.msgErrorEmailInvalid }}
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        {{ text.emailIs }} <strong>{{ text.required }}</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field >
+      <mat-label> {{text.inputPassword}} </mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field >
+      <mat-label> {{text.inputRepeatPassword}} </mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-slide-toggle>{{text.checkTermuse}} <a>{{text.textCheckTerms}}</a> </mat-slide-toggle>
+
+    <div class="buttons-create-account">
+      <button mat-raised-button color="primary" class="btn btn-create-account"> text.btnLogin </button>
+      <button mat-raised-button  class="btn btn-rollback"> {{ text.btnRollback }} </button>
+    </div>
+  </div>
+</div>
