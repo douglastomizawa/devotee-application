@@ -1,3 +1,4 @@
+import { TermsOfUseComponent } from './footer/terms-of-use/terms-of-use.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -7,8 +8,7 @@ const routes: Routes = [
     redirectTo: '/login',
     pathMatch: 'full'
     },
-  {path:'', loadChildren: () => import('src/app/login-page/login-page.module').then(m => m.LoginPageModule)},
-
+  {path:'', loadChildren: () => import('src/app/login-page/login-page.module').then(m => m.LoginPageModule)}
 
   //= {path: 'signin', component: SignInPageComponent}
 

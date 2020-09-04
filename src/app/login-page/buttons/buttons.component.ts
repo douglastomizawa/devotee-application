@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ButtonsComponent implements OnInit {
   text;
-  constructor(private translatePage: TranslateService) { }
+  constructor(private translatePage: TranslateService ) { }
 
   ngOnInit(): void {
     this.text = this.translatePage.textTranslate;

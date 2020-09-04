@@ -1,11 +1,14 @@
 import { TranslateService } from './../shared/translate.service';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Injectable } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 export interface DialogData {
 
 }
-
+@Injectable({
+  providedIn:"root"
+})
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -43,13 +46,13 @@ textFooter;
 
   constructor(
     public dialogRef: MatDialogRef<FooterModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData, private translatePage: TranslateService) {}
+    @Inject(MAT_DIALOG_DATA) public data: DialogData, private translatePage: TranslateService, private router: Router) {}
     ngOnInit(): void {
       this.textFooter = this.translatePage.textTranslate;
     }
+
   onNoClick(): void {
     this.dialogRef.close();
-
   }
 
 }
