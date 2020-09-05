@@ -23,8 +23,12 @@
           },
           "inputPassword":{
             "msgErrorMinCharacters":"Senha precisa de do mínimo 6 caracteres",
-            "labelInputPassword":"Senha",
-            "inputRepeatPassword":"Repetir senha"
+            "labelInputPassword":"Senha"
+          },
+          "inputRepeatPassword":{
+            "labelInputRepeatPassword":"Repetir senha",
+            "msgErrorMinCharacters":"Senha precisa de do mínimo 6 caracteres",
+            "msgErrorNotEqual":"Senhas não são iguais"
           }
         },
         "entryPassword":"Entre com sua senha",
@@ -82,7 +86,7 @@
           "inputRepeatPassword":{
             "labelInputRepeatPassword":"Repeat Password",
             "msgErrorMinCharacters":"Password needs at least 6 characters",
-            "msgErrorNotEqual":"Senhas não são iguais"
+            "msgErrorNotEqual":"Passwords are not the same"
           }
         },
         "entryPassword":"Enter your password",
