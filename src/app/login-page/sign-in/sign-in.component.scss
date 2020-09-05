@@ -33,15 +33,32 @@
 
 }
 .buttons-signin{
+  display: grid;
+  text-align: center;
   .btn {
+    cursor: pointer;
+  }
+  .btn-signin{
     width: 100%;
-    margin-top: 20px;
     border-radius: 10px;
     color: $btn-login-primary;
-
   }
-  .btn-remember{
-    background-color: $btn-signin-secundary;
+  .container-btn-return{
+    margin-top: 10px;
+    .btn-return{
+      cursor: pointer;
+      text-decoration: none;
+      color: $text-button-color-blue-primary;
+    }
+  }
+  .container-btn-remember{
+    margin-top: 30px;
+    .btn-remember{
+      cursor: pointer;
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: $text-button-color-blue-primary;
+    }
   }
 }
 
@@ -56,8 +73,13 @@
   }
   .buttons-signin{
     .btn {
-      height: 45px;
       font-size: 1.1rem;
+    }
+    .btn-signin{
+      height: 45px;
+    }
+    .btn-remember{
+      font-size: 0.9rem;
     }
   }
 }

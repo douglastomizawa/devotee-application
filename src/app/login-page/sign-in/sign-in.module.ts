@@ -10,6 +10,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { SignInComponent } from './sign-in.component';
 
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -22,6 +23,7 @@ import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/materi
     MatFormFieldModule,
     MatButtonModule,
     SignInRountingModule,
+    ReactiveFormsModule,
   ],
   exports:[
     SignInComponent,
@@ -30,6 +32,7 @@ import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/materi
     MatFormFieldModule,
     MatButtonModule,
     SignInRountingModule,
+    ReactiveFormsModule,
   ],
   providers:[
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}

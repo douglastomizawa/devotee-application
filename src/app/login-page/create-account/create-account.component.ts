@@ -35,9 +35,11 @@ export class CreateAccountComponent implements OnInit {
     Validators.required,
     Validators.minLength(6),
   ])
-  constructor(private translatePage: TranslateService,  private dialog: FooterComponent) { }
+  constructor(private translatePage: TranslateService,  private dialog: FooterComponent, private formBuilder: FormBuilder) { }
 
+  createForm(){
 
+  }
   matcher = new MyErrorStateMatcher();
 
   openDialogRegister(){

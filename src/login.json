@@ -69,6 +69,13 @@
         "getApp":"Get the app",
         "btnPlayStore":"./assets/playstore-en.svg",
         "btnAppStore":"./assets/appstore-en.svg",
+        "signin":{
+          "msgErrorEmailInvalid":"Please enter a valid email address",
+          "emailIs":"E-mail is ",
+          "required":"required",
+          "btnRollback":"Return",
+          "btnRemember":"Forgot password?"
+        },
         "createAccount":{
           "btnCreateAccout":"Create account ",
           "btnRollback":"Return",
@@ -90,7 +97,6 @@
           }
         },
         "entryPassword":"Enter your password",
-        "btnRemember":"Forgot password?",
         "checkTermuse":"I agree to the ",
         "textCheckTerms":"Terms of Use",
         "btnRegister":"Register",
