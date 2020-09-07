@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { LoginInterface, ResponseLoginInterface } from './../interfaces/login.interface'
 import { tap } from 'rxjs/operators';
-import { ConsoleReporter } from 'jasmine';
 
 @Injectable({
   providedIn: 'root'
