@@ -8,14 +8,14 @@ import { ResponseMedicinesInterface } from './../interfaces/medicines.interface'
 })
 export class MedicinesService {
 
-  private readonly MedicinesURL = 'http://34.223.220.245/api/V1/listMedicationtypes'
+  private readonly medicinesURL = 'http://34.223.220.245/api/V1/listMedicationtypes'
 
   constructor(
     private http: HttpClient,
   ) { }
 
   get() {
-    return this.http.get<ResponseMedicinesInterface>(this.MedicinesURL)
+    return this.http.get<ResponseMedicinesInterface>(this.medicinesURL)
     .pipe(
       tap(console.log)
     )

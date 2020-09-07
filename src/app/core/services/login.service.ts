@@ -8,14 +8,14 @@ import { LoginInterface, ResponseLoginInterface } from './../interfaces/login.in
 })
 export class LoginService {
 
-  private readonly LoginURL = 'http://34.223.220.245/api/V1/login'
+  private readonly loginURL = 'http://34.223.220.245/api/V1/login'
 
   constructor(
     private http: HttpClient,
   ) { }
 
   post(payload: LoginInterface) {
-    return this.http.post<ResponseLoginInterface>(this.LoginURL, payload)
+    return this.http.post<ResponseLoginInterface>(this.loginURL, payload)
       .pipe(
         tap(console.log));
   }
