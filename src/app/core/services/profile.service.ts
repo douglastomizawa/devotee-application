@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { tap } from 'rxjs/operators';
 import { ResponseProfileInterface } from './../interfaces/profile.interface'
 
@@ -15,7 +15,12 @@ export class ProfileService {
   ) { }
 
   get(userId) {
-    return this.http.get<ResponseProfileInterface>(`${this.profileURL}?user_id=${userId}`)
+    return this.http.get<ResponseProfileInterface>(`${this.profileURL}?user_id=${userId}`,
+      {
+        headers: new HttpHeaders()
+          .set('Content-Type', 'application/json')
+          .set('X-API-KEY', 'guEFSkAEITO4ZmFxIN76WmdpOqcnG35BgKRgkvO5')
+      })
       .pipe(
         tap(console.log));
   }

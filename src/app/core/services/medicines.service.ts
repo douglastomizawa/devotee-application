@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { tap } from 'rxjs/operators';
 import { ResponseMedicinesInterface } from './../interfaces/medicines.interface'
 
@@ -15,9 +15,14 @@ export class MedicinesService {
   ) { }
 
   get() {
-    return this.http.get<ResponseMedicinesInterface>(this.medicinesURL)
-    .pipe(
-      tap(console.log)
-    )
+    return this.http.get<ResponseMedicinesInterface>(this.medicinesURL,
+      {
+        headers: new HttpHeaders()
+          .set('Content-Type', 'application/json')
+          .set('X-API-KEY', 'guEFSkAEITO4ZmFxIN76WmdpOqcnG35BgKRgkvO5')
+      })
+      .pipe(
+        tap(console.log)
+      )
   }
 }

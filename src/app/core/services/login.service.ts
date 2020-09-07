@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { tap } from 'rxjs/operators';
 import { LoginInterface, ResponseLoginInterface } from './../interfaces/login.interface'
 
@@ -15,7 +15,12 @@ export class LoginService {
   ) { }
 
   post(payload: LoginInterface) {
-    return this.http.post<ResponseLoginInterface>(this.loginURL, payload)
+    return this.http.post<ResponseLoginInterface>(this.loginURL, payload,
+      {
+        headers: new HttpHeaders()
+          .set('Content-Type', 'application/json')
+          .set('X-API-KEY', 'guEFSkAEITO4ZmFxIN76WmdpOqcnG35BgKRgkvO5')
+      })
       .pipe(
         tap(console.log));
   }

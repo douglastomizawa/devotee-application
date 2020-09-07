@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { tap } from 'rxjs/operators';
 import { ResponseRecommendationsInterface } from './../interfaces/recommendations.interface'
 
@@ -13,9 +13,14 @@ export class RecommendationsService {
   constructor(
     private http: HttpClient,
   ) { }
-  
+
   get(userId) {
-    return this.http.get<ResponseRecommendationsInterface>(`${this.recommendationsURL}?user_id=${userId}`)
+    return this.http.get<ResponseRecommendationsInterface>(`${this.recommendationsURL}?user_id=${userId}`,
+      {
+        headers: new HttpHeaders()
+          .set('Content-Type', 'application/json')
+          .set('X-API-KEY', 'guEFSkAEITO4ZmFxIN76WmdpOqcnG35BgKRgkvO5')
+      })
       .pipe(
         tap(console.log));
   }
