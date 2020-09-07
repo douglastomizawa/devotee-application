@@ -33,18 +33,28 @@
     }
   }
   .or{
-    grid-area: or;
-    text-align: center;
-    color: $btn-login-primary;
+    display: none;
   }
   .login-qr{
-    grid-area: login-qr;
-    background-color: $btn-login-primary;
-    color: #505050;
+    display: none;
   }
 
 }
 @media  only screen and (min-width: 700px) {
+  .buttons-login{
+    .login-qr{
+      display: block;
+      grid-area: login-qr;
+      background-color: $btn-login-primary;
+      color: #505050;
+    }
+    .or{
+      display: block;
+      grid-area: or;
+      text-align: center;
+      color: $btn-login-primary;
+    }
+  }
     .buttons-login{
       grid-area: buttons;
       grid-template-columns: 1fr 1fr ;

@@ -1,0 +1,80 @@
+@import "../../app.component.scss";
+.container-modal-qr{
+  display: grid;
+  grid-template-rows: 1fr 8fr;
+  height: 100%;
+  color: $text-button-color-blue-primary;
+  .close-terms{
+    cursor: pointer;
+  }
+  .content-close{
+      display: flex;
+      justify-content: flex-end;
+  }
+  .container-itens-qr{
+    display: grid;
+    grid-template-columns: 1fr;
+    .container-img-qr{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+      img{
+        max-width: 220px;
+      }
+
+    }
+  }
+}
+.close {
+  display: flex;
+  top: 15px;
+  left: 346px;
+  width: 30px;
+  height: 30px;
+  transform: matrix(0, 1, -1, 0, 0, 0);
+  color: $text-button-color-blue-primary;
+  font-size: 28px;
+  font-weight: bold;
+  :hover,
+  :focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+  }
+  ::after{
+      content: 'asa';
+      width: 20px;
+      height: 20px;
+      background-color: #000;
+  }
+}
+@media only screen and (min-width:700px) {
+  .qr-title{
+    font-size: 2rem;
+    margin: 10px 0 ;
+  }
+  .qr-subtitle{
+    margin: 10px 0;
+    font-size: 1.5rem;
+  }
+}
+@media only screen and (min-width:1250px) {
+  .container-modal-qr{
+    .container-itens-qr{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      .container-img-qr{
+
+        img{
+          max-width: 220px;
+        }
+
+      }
+    }
+    .create-account{
+      display: flex;
+      text-align: center;
+    }
+  }
+}

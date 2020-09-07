@@ -1,13 +1,120 @@
+@import "../app.component.scss";
+
 .tilte {
   font-weight: bold;
   color: green;
 }
-#teste  {
-  padding: 1.5rem 1.7rem;
-  color: #2E2C8A;
-    .tablinks{
-      text-decoration: none;
+#modal-terms{
+  .tabcontent{
+    p{
+      color: $text-button-color-blue-primary;
     }
+  }
+}
+.tablinks{
+  text-decoration: none;
+}
 
- }
 
+ .close-terms{
+  cursor: pointer;
+}
+.content-close{
+    display: flex;
+    justify-content: flex-end;
+}
+.modal-terms {
+  font-style: italic;
+  text-decoration: underline;
+}
+.modal-terms-remove {
+  font-style: none;
+  text-decoration: none;
+}
+.tab{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(46, 44, 138, 0.5);
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  a{
+      color: $text-button-color-blue-primary;
+      font-size: 15px;
+  }
+  .content-terms{
+      margin-top: 10px;
+      width: 50%;
+  }
+}
+/* Modal Content */
+.modal-content {
+  border-radius: 30px;
+  background-color: #fefefe;
+  color: $text-button-color-blue-primary;
+  p{
+      color: $text-button-color-blue-primary;
+  }
+  h3{
+      color: $text-button-color-blue-primary;
+  }
+}
+
+/* The Close Button */
+.close {
+  display: flex;
+  top: 15px;
+  left: 346px;
+  width: 30px;
+  height: 30px;
+  transform: matrix(0, 1, -1, 0, 0, 0);
+  color: $text-button-color-blue-primary;
+  font-size: 28px;
+  font-weight: bold;
+  :hover,
+  :focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+  }
+  ::after{
+      content: 'asa';
+      width: 20px;
+      height: 20px;
+      background-color: #000;
+  }
+}
+
+@media  only screen and (min-width: 1250px) {
+  .content-close{
+    display: flex;
+    justify-content: flex-end;
+}
+.tablinks{
+    cursor: pointer;
+}
+.tab{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(46, 44, 138, 0.5);
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  a{
+      color: $text-button-color-blue-primary;
+      font-size: 15px;
+  }
+  .content-terms{
+      margin-top: 10px;
+      width: 100%;
+  }
+}
+/* Modal Content */
+.modal-content {
+  padding:  1rem 3rem;
+
+}
+}

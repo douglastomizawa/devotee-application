@@ -1,4 +1,3 @@
-import { TermsOfUseComponent } from './footer/terms-of-use/terms-of-use.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 

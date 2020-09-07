@@ -6,6 +6,7 @@ export default data;
 })
 export class TranslateService {
   textTranslate;
+  dataFormatation;
   constructor() { }
   veriyLanguage(){
     let userLang = navigator.language;
@@ -22,13 +23,16 @@ export class TranslateService {
 
       case 'pt-BR':
         this.traductionLanguage(data[0][1][0].pt);
+        this.dataFormatation = 'pt';
         break;
       case 'en-US':
         this.traductionLanguage(data[0][1][0].us);
+        this.dataFormatation = 'us';
         break;
 
       default:
         this.traductionLanguage(data[0][1][0].us);
+        this.dataFormatation = 'us';
         break;
     }
   }
