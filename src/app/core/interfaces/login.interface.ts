@@ -28,9 +28,9 @@ export interface ResponseLoginInterface {
     date_created:         string;
     lat:                  string;
     lon:                  string;
-    interesthomo:         boolean;
-    interestbi:           boolean;
-    interesthetero:       boolean;
+    interesthomo:         string;
+    interestbi:           string;
+    interesthetero:       string;
     sexualorientation:    string;
     genderborn:           string;
     tiic:                 string;
