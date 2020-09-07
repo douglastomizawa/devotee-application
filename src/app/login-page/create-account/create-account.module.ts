@@ -10,6 +10,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [CreateAccountComponent],
@@ -22,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CreateAccountRountingModule,
     MatSlideToggleModule,
     ReactiveFormsModule,
+    MatDatepickerModule,
   ],
   exports:[
     CreateAccountComponent,
@@ -31,6 +33,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     MatSlideToggleModule,
     ReactiveFormsModule,
+    MatDatepickerModule,
   ],
   providers:[
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
