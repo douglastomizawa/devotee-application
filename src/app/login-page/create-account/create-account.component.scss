@@ -1,0 +1,58 @@
+@import "../../app.component.scss";
+.container-create-account{
+  background-color: rgba(255, 255 , 255, 0.8);
+  box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.23);
+  padding: 1rem 1.5rem 1.5rem;
+  max-width: 380px;
+  width: 100%;
+  border-radius: 20px;
+  mat-form-field{
+    background-color: transparent;
+    margin-left: 0;
+    width: 100%;
+    .mat-form-fiel-flex{
+      background-color: transparent;
+    }
+  }
+}
+.create-account-terms{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  mat-slide-toggle{
+    margin-right: 10px;
+  }
+  span{
+    margin-right: 5px;
+  }
+  a{
+    cursor: pointer;
+    font-style: italic;
+    color: $text-button-color-blue-primary;
+  }
+
+}
+.buttons-create-account{
+  .btn {
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 10px;
+    color: $btn-login-primary;
+  }
+  .btn-rollback{
+    background-color: $btn-signin-secundary;
+  }
+}
+@media  only screen and (min-width: 1250px) {
+  .container-create-account{
+    max-width: 380px;
+    width: 380px;
+  }
+  .buttons-signin{
+    .btn {
+      height: 45px;
+      font-size: 1.1rem;
+    }
+  }
+}

@@ -1,26 +1,17 @@
 <!-- <div class="container"> -->
 <div class="body">
-  <div class="main">
-    <header>
-      <img src="../../assets/logo-branco.svg" alt="" srcset="">
-      <p class="logo-text">Devotee</p>
-    </header>
-    <div class="text">
-      <h1 class="title">
-        <!-- {{ title }} -->
-        Seja bem-vindo!
-      </h1>
-      <p class="sub-title">
-
-        <!-- {{ subTitle }} -->
-        Agora ficou mais fácil conhecer sua cara metade. Crie uma conta para continuar
-      </p>
+  <div class="container-login-page">
+    <div class="main">
+      <app-header></app-header>
+      <app-title-and-sub></app-title-and-sub>
+      <div class="container-route-flx">
+        <div class="route-flx">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
     </div>
-
-    <app-buttons></app-buttons>
   </div>
-
-
 </div>
 <app-footer></app-footer>
+
 <!-- </div> -->

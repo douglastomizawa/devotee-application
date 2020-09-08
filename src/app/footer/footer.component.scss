@@ -1,6 +1,10 @@
 $opacity-70: 70%;
 $pattern-text: #fff;
-
+.cdk-global-overlay-wrapper{
+  .cdk-overlay-pane{
+    max-width: 100vw!important;
+  }
+}
 footer{
   p{
     margin: 0;
@@ -89,6 +93,10 @@ footer{
       color: $pattern-text;
   }
 }
+.mat-h1, .mat-headline, .mat-typography .tilte {
+  font-weight: bold;
+}
+
 @media only screen and (min-width:280px) {
   footer{
     .terms-policy{
@@ -167,7 +175,6 @@ footer{
     #copyright{
       opacity: $opacity-70;
       margin-top: 1rem;
-      font-size: 1.1rem;
       padding-bottom: 10px;
   }
   }

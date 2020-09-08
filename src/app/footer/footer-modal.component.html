@@ -1,0 +1,35 @@
+<div id="modal-terms">
+  <div class="modal-content">
+    <div class="content-close">
+        <div class="close close-terms" (click)='onNoClick()' >&times;</div>
+    </div>
+  </div>
+    <div class="tab">
+        <div class="content-terms terms"><a (click)="execClickTabsShow('click-terms')" class="tablinks click-terms" data-click="click-terms"  >{{ textFooter.tabs.termsuse.titleTabs }}</a></div>
+        <div class="content-terms policy-privacy"><a (click)='execClickTabsShow("click-policy-privacy")' class="tablinks click-policy-privacy" data-click="click-policy-privacy" >{{ textFooter.tabs.privacypolicy.titleTabs }}</a></div>
+        <div class="content-terms policy-cookies" ><a (click)='execClickTabsShow("click-policy-cookies")' class="tablinks click-policy-cookies" data-click="click-policy-cookies" >{{ textFooter.tabs.cookiespolicy.titleTabs }}</a></div>
+        <div class="content-terms procedures"><a (click)='execClickTabsShow("click-procedures")' class="tablinks click-procedures" data-click="click-procedures">{{ textFooter.tabs.procedures.titleTabs }}</a></div>
+        <div class="content-terms security"><a (click)='execClickTabsShow("click-security")' class="tablinks click-security" data-click="click-security" >{{ textFooter.tabs.security.titleTabs }}</a></div>
+      </div>
+
+    <div id="click-terms" class="tabcontent">
+      <p [innerHTML]=textFooter.tabs.termsuse.text ></p>
+    </div>
+
+    <div id="click-policy-privacy" class="tabcontent">
+      <p [innerHTML]=textFooter.tabs.privacypolicy.text ></p>
+    </div>
+
+    <div id="click-policy-cookies" class="tabcontent">
+      <p [innerHTML]=textFooter.tabs.cookiespolicy.text ></p>
+    </div>
+    <div id="click-procedures" class="tabcontent">
+      <p [innerHTML]=textFooter.tabs.procedures.text ></p>
+    </div>
+    <div id="click-security" class="tabcontent">
+      <p [innerHTML]=textFooter.tabs.security.text ></p>
+
+    </div>
+
+  </div>
+<!-- </div> -->

@@ -1,0 +1,77 @@
+<div class="container-create-account">
+  <div class="example-container" >
+    <form [formGroup]='registerForm' (submit)='onSubmit()'>
+    <mat-form-field >
+      <mat-label>{{text.createAccount.labelInputName}}</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>{{text.createAccount.inputDate.labelInputDate}}</mat-label>
+      <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" formControlName="birthdate" >
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+             placeholder="Ex. pat@example.com" formControlName="email">
+      <mat-hint></mat-hint>
+
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        {{ text.createAccount.inputEmail.msgErrorEmailInvalid }}
+      </mat-error>
+
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        {{ text.createAccount.inputEmail.emailIs }} <strong>{{ text.createAccount.inputEmail.required }}</strong>
+      </mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field >
+      <mat-label> {{text.createAccount.inputPassword.labelInputPassword}} </mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" [formControl]="passwordFormControl" [errorStateMatcher]="matcher" formControlName="password">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" >
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      <mat-hint></mat-hint>
+
+      <mat-error *ngIf="passwordFormControl.value.length < 6 && !passwordFormControl.hasError('required')">
+        {{text.createAccount.inputPassword.msgErrorMinCharacters}}
+      </mat-error>
+
+      <mat-error *ngIf="passwordFormControl.hasError('required')">
+        {{ text.createAccount.inputPassword.passwordIs }} <strong>{{ text.createAccount.inputPassword.required }}</strong>
+      </mat-error>
+
+    </mat-form-field>
+
+
+    <mat-form-field >
+      <mat-label> {{text.createAccount.inputRepeatPassword.labelInputRepeatPassword}} </mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'"[formControl]="repeatPasswordFormControl" [errorStateMatcher]="matcher" formControlName="repeatPassword">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+
+      <mat-error *ngIf="repeatPasswordFormControl.hasError('required')">
+        {{ text.createAccount.inputPassword.emailIs }} <strong>{{ text.createAccount.inputPassword.required }}</strong>
+      </mat-error>
+
+      <mat-error *ngIf="repeatPasswordFormControl.value != passwordFormControl.value">
+        {{ text.createAccount.inputRepeatPassword.msgErrorNotEqual }}
+      </mat-error>
+    </mat-form-field>
+
+    <div class="create-account-terms">
+      <mat-slide-toggle color='accent' formControlName="check">  </mat-slide-toggle> <span>{{text.signin.checkTermuse}}</span>
+      <a (click)=(openDialogRegister()) (click)='execClickTabsShow("click-terms")'>{{text.signin.textCheckTerms}}</a>
+    </div>
+    <div class="buttons-create-account">
+      <button mat-raised-button color="primary" class="btn btn-create-account" type="submit" > {{text.createAccount.btnCreateAccout}} </button>
+      <button mat-raised-button [routerLink]="['/login']"  class="btn btn-rollback"> {{ text.createAccount.btnRollback }} </button>
+    </div>
+  </form>
+  </div>
+</div>

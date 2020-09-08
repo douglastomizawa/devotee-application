@@ -1,0 +1,85 @@
+@import "../../app.component.scss";
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+.container-signin{
+  background-color: rgba(255, 255 , 255, 0.8);
+  box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.23);
+  padding: 1rem 1.5rem 1.5rem;
+  max-width: 380px;
+  width: 100%;
+  border-radius: 20px;
+}
+.example-full-width {
+  width: 100%;
+}
+.container-password  {
+  margin-top: 20px;
+  mat-form-field{
+    background-color: transparent;
+    margin-left: 0;
+    width: 100%;
+    .mat-form-fiel-flex{
+      background-color: transparent;
+    }
+  }
+}
+.btn-visibility{
+  input{
+    color: black;
+  }
+
+}
+.buttons-signin{
+  display: grid;
+  text-align: center;
+  .btn {
+    cursor: pointer;
+  }
+  .btn-signin{
+    width: 100%;
+    border-radius: 10px;
+    color: $btn-login-primary;
+  }
+  .container-btn-return{
+    margin-top: 10px;
+    .btn-return{
+      cursor: pointer;
+      text-decoration: none;
+      color: $text-button-color-blue-primary;
+    }
+  }
+  .container-btn-remember{
+    margin-top: 30px;
+    .btn-remember{
+      cursor: pointer;
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: $text-button-color-blue-primary;
+    }
+  }
+}
+
+@media  only screen and (min-width: 700px) {
+
+}
+
+@media  only screen and (min-width: 1250px) {
+  .container-signin{
+    max-width: 380px;
+    width: 380px;
+  }
+  .buttons-signin{
+    .btn {
+      font-size: 1.1rem;
+    }
+    .btn-signin{
+      height: 45px;
+    }
+    .btn-remember{
+      font-size: 0.9rem;
+    }
+  }
+}
