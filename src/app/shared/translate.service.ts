@@ -17,8 +17,6 @@ export class TranslateService {
    }
   selectLanguage(language){
     let data = this.getDataTranslate();
-    console.log(Object.entries(data));
-    console.log(data[0][1][0].us);
     switch (language) {
 
       case 'pt-BR':
@@ -37,7 +35,6 @@ export class TranslateService {
     }
   }
   traductionLanguage(dataLanguage){
-    console.log(dataLanguage);
     this.textTranslate = dataLanguage
 }
 
