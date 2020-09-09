@@ -1,7 +1,7 @@
-import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatNativeDateModule, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CreateAccountComponent } from './create-account.component';
+import { CreateAccountComponent, AppDateAdapter, APP_DATE_FORMATS } from './create-account.component';
 import { CreateAccountRountingModule } from './create-account.rounting.module';
 
 import {MatInputModule} from '@angular/material/input';
@@ -24,6 +24,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatSlideToggleModule,
     ReactiveFormsModule,
     MatDatepickerModule,
+    MatNativeDateModule,
   ],
   exports:[
     CreateAccountComponent,
@@ -34,9 +35,11 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatSlideToggleModule,
     ReactiveFormsModule,
     MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers:[
-    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
+
   ]
 })
 export class CreateAccountModule { }
