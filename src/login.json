@@ -76,6 +76,14 @@
             "msgErrorNotEqual":"Senhas não são iguais"
           }
         },
+        "createAccountContinue":{
+          "whoAreYou":"Quem é você?",
+          "iAmDevoteeTitle":"Sou um Devotee",
+          "iAmDevoteeSubTitle":"Não tenho deficiência. Com interesse em pessoas especiais.",
+          "iAmEspecialTitle":"Sou uma pessoa especial",
+          "iAmEspecialSubTitle":"Tenho deficiência. Com interesse em pessoas especiais ou devotees.",
+          "btnReturn":"Voltar"
+        },
         "entryPassword":"Entre com sua senha",
         "btnRegister":"Criar conta",
 
@@ -175,6 +183,14 @@
             "msgErrorMinCharacters":"Password needs at least 6 characters",
             "msgErrorNotEqual":"Passwords are not the same"
           }
+        },
+        "createAccountContinue":{
+          "whoAreYou":"Who are you?",
+          "iAmDevoteeTitle":"I'am a Devotee",
+          "iAmDevoteeSubTitle":"I am not disabled. With an interest in special people.",
+          "iAmEspecialTitle":"I'm a special person",
+          "iAmEspecialSubTitle":"I have a disability. With an interest in special people or devotees.",
+          "btnReturn":"Return"
         },
         "entryPassword":"Enter your password",
         "btnRegister":"Register",

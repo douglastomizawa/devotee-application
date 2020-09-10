@@ -5,7 +5,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
-import {MatCardModule} from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { ForgotPasswordComponent } from './forgot-password.component';
@@ -21,7 +20,6 @@ import { ForgotPasswordComponent } from './forgot-password.component';
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatCardModule,
     ReactiveFormsModule,
   ],
   exports:[
@@ -29,7 +27,6 @@ import { ForgotPasswordComponent } from './forgot-password.component';
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatCardModule,
     ReactiveFormsModule,
   ],
   providers: [

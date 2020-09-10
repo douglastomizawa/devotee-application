@@ -14,11 +14,12 @@ export class ButtonsComponent implements OnInit {
   text;
   isExtraSmall: Observable<BreakpointState> = this.breakpointObserver.observe(
     Breakpoints.XSmall
-
   );
   isMedium: Observable<BreakpointState> = this.breakpointObserver.observe(
     Breakpoints.Medium
-
+  );
+  isLarge: Observable<BreakpointState> = this.breakpointObserver.observe(
+    Breakpoints.Large
   );
   constructor(private translatePage: TranslateService, public dialog: MatDialog,private readonly breakpointObserver: BreakpointObserver ) { }
   openDialog(): void {
@@ -27,14 +28,20 @@ export class ButtonsComponent implements OnInit {
       maxWidth: '100vw'
     });
     const smallDialogSubscription = this.isExtraSmall.subscribe(size => {
-      size.matches ? d.updateSize('100vw', '100vh') : d.updateSize('70%', '70%');
+      size.matches ? d.updateSize('100vw', '100vh'): undefined ;
     });
+
     const mediumDialogSubscription = this.isMedium.subscribe(size => {
-      size.matches ? d.updateSize('70%', '50%') : d.updateSize('70%', '70%');
+       size.matches ? d.updateSize('70%', '50%') : undefined;
+    });
+    const largeDialogSubscription = this.isLarge.subscribe(size => {
+      size.matches ? d.updateSize('70%', '70%'): undefined ;
+
     });
     d.afterClosed().subscribe(() => {
       smallDialogSubscription.unsubscribe();
       mediumDialogSubscription.unsubscribe();
+      largeDialogSubscription.unsubscribe();
     });
 
   }

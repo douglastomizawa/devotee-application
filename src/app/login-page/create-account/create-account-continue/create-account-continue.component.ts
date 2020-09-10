@@ -9,10 +9,12 @@ import { TranslateService } from './../../../shared/translate.service';
 export class CreateAccountContinueComponent implements OnInit {
   constructor(private translatePage: TranslateService) { }
   text;
+  whoareyou;
+  click(valor){
+    console.log(valor);
+  }
   ngOnInit(): void {
     this.translatePage.veriyLanguage();
     this.text = this.translatePage.textTranslate;
-
   }
-
 }

@@ -1,0 +1,126 @@
+@import "../../../app.component.scss";
+.container-create-continue {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr 4fr 2fr;
+  background-color: $backgroud-color-after-login;
+}
+.container-footer {
+  align-self: flex-end;
+}
+.checks {
+  display: none;
+}
+.container-cards {
+  margin: 20px 0;
+  .cards {
+    margin: 20px 30px;
+    border-radius: 20px;
+    mat-card {
+      border-radius: 15px;
+      padding: 20px 30px;
+    }
+    mat-card-title {
+      font-size: 20px;
+    }
+    mat-card-content {
+      font-size: 18px;
+    }
+
+  }
+  .btn-return{
+    max-width: 100px;
+    margin:10px 20px;
+    border: 1px solid $text-button-color-blue-primary;
+    background-color: #fff;
+  }
+  .i-am-devotee{
+    opacity: 0.8;
+    :hover{
+      cursor: pointer;
+      background-color: #fffff9;
+    }
+  }
+  .i-am-especial{
+    opacity: 0.8;
+    :hover{
+      cursor: pointer;
+      background-color: #fffff9;
+    }
+  }
+  .sub-cards {
+    box-shadow: 0px 5px 5px #00000029;
+
+    mat-card {
+      padding: 40px 30px;
+      color: $text-button-color-blue-primary;
+    }
+    mat-card-title {
+      margin-bottom: 30px;
+    }
+  }
+  .who-are-you {
+    mat-card {
+      color: $btn-login-primary;
+      background-color: $background-footer-header;
+    }
+  }
+}
+header {
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+  background-color: $background-footer-header;
+  img {
+    width: 30px;
+    margin-right: 10px;
+  }
+  span {
+    font-size: 1.8rem;
+    color: $btn-login-primary;
+  }
+}
+@media only screen and(min-width:700px) {
+  .container-cards {
+    display: grid;
+    grid-template-rows: 1fr 5fr;
+    grid-template-areas:
+    "who-are-you who-are-you"
+    "i-am-devotee i-am-especial";
+    .cards {
+      margin: 10px 20px;
+    }
+    .who-are-you{
+      margin: 10px 20px;
+      grid-area: who-are-you;
+    }
+    .i-am-devotee{
+      grid-area: i-am-devotee;
+    }
+    .i-am-especial{
+      grid-area: i-am-especial;
+    }
+  }
+}
+@media only screen and(min-width:800px) {
+  .container-cards {
+    margin: 0 auto;
+    max-width: 800px;
+    align-self: center;
+    grid-template-rows: 1fr 1fr;
+    .who-are-you{
+      align-self: flex-end;
+    }
+  }
+  header {
+    img {
+      width: 40px;
+      margin-right: 10px;
+    }
+    span {
+      font-size: 2rem;
+    }
+  }
+}

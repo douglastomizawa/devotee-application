@@ -1,5 +1,6 @@
 $opacity-70: 70%;
 $pattern-text: #fff;
+@import "../app.component.scss";
 .cdk-global-overlay-wrapper{
   .cdk-overlay-pane{
     max-width: 100vw!important;
@@ -8,9 +9,10 @@ $pattern-text: #fff;
 footer{
   p{
     margin: 0;
-    color: #fff;
+    color: $pattern-text;
   }
-  background-color: #3F51B5;
+  background-color: $background-footer-header;
+  ;
   display: flex;
   flex-direction: column;
   justify-content: center;
