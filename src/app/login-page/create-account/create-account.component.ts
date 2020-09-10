@@ -1,12 +1,13 @@
+import { RedirectCreateContinueService } from './../../core/services/redirect-create-continue.service';
 import { Router } from '@angular/router';
 import { TabsFooterTermsComponent } from './../../footer/footer-modal.component';
-import { FooterComponent, DialogData } from './../../footer/footer.component';
+import { FooterComponent } from './../../footer/footer.component';
 import { TranslateService } from './../../shared/translate.service';
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder} from '@angular/forms';
-import {ErrorStateMatcher, ThemePalette, NativeDateAdapter} from '@angular/material/core';
+import {ErrorStateMatcher, ThemePalette } from '@angular/material/core';
 
-import { Client } from './../../shared/client';
+import { Client } from '../../core/model/client.model';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -31,8 +32,8 @@ export class CreateAccountComponent implements OnInit {
   minDate: Date;
   maxDate: Date;
   color: ThemePalette = 'primary';
-
-  constructor(private translatePage: TranslateService, private dialog: FooterComponent, private formBuilder: FormBuilder, public footerTabs: TabsFooterTermsComponent, private router: Router ) {
+// tslint:disable-next-line:max-line-length
+  constructor(private translatePage: TranslateService, private dialog: FooterComponent, private formBuilder: FormBuilder, public footerTabs: TabsFooterTermsComponent, private router: Router, private redirectCreateContinueService: RedirectCreateContinueService ) {
     const currentYear = new Date().getFullYear();
     this.minDate = new Date(currentYear - 100);
     this.maxDate = new Date(currentYear - 18, new Date().getMonth() , new Date().getDate());
@@ -40,6 +41,7 @@ export class CreateAccountComponent implements OnInit {
   //  dataFomatation(data){
   //  };
   ngOnInit(): void {
+    this.translatePage.veriyLanguage();
     this.text = this.translatePage.textTranslate;
     this.createForm();
   }
@@ -65,9 +67,9 @@ export class CreateAccountComponent implements OnInit {
 
   onSubmit(): void{
     if ( !this.registerForm.invalid){
+      this.redirectCreateContinueService.createAccountContinueRedirect(this.client);
       console.log(this.client);
-      // this.location.replaceState('/')
-      // this.router.navigate(['create2'])
+      this.router.navigate(['create-continue'])
     }
   }
   matcher = new MyErrorStateMatcher();

@@ -1,9 +1,9 @@
-import { TranslateService } from './../shared/translate.service';
+import { TranslateService } from '../shared/translate.service';
 import { Component, OnInit, Inject, Injectable } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
-import { Observable, from } from 'rxjs';
+import { Observable } from 'rxjs';
 import { TabsFooterTermsComponent } from './footer-modal.component';
 export interface DialogData {
 

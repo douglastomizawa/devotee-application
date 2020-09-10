@@ -51,7 +51,7 @@
     </mat-form-field>
 
 
-    <mat-form-field >
+    <mat-form-field class="last">
       <mat-label> {{text.createAccount.inputRepeatPassword.labelInputRepeatPassword}} </mat-label>
       <input [(ngModel)]="client.repeatPassword" matInput [type]="hide ? 'password' : 'text'" formControlName="repeatPassword"  [errorStateMatcher]="matcher" >
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
@@ -73,7 +73,9 @@
     </div>
     <div class="buttons-create-account">
       <button [disabled]='registerForm.invalid' mat-raised-button color="primary"  class="btn btn-create-account" type="submit" > {{text.createAccount.btnCreateAccout}} </button>
-      <button mat-raised-button [routerLink]="['/login']"  class="btn btn-rollback"> {{ text.createAccount.btnRollback }} </button>
+      <div class="container-btn-return">
+        <a  [routerLink]="['/login']"  class="btn btn-return"> {{ text.createAccount.btnRollback }} </a>
+      </div>
     </div>
   </form>
   </div>

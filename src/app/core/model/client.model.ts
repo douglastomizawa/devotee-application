@@ -5,4 +5,5 @@ export class Client {
   password: string;
   repeatPassword: string ;
   check:boolean;
+
 }

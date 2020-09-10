@@ -1,3 +1,4 @@
+import { TranslateService } from './shared/translate.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -24,7 +25,9 @@ import { MatNativeDateModule } from '@angular/material/core';
   exports: [
     MatButtonModule
   ],
-  providers: [],
+  providers: [
+    TranslateService
+  ],
   bootstrap: [
     AppComponent
   ]

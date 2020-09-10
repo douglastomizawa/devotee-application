@@ -6,10 +6,15 @@
   max-width: 380px;
   width: 100%;
   border-radius: 20px;
+  .last{
+    margin-bottom: 15px;
+  }
   mat-form-field{
     background-color: transparent;
     margin-left: 0;
     width: 100%;
+
+
     .mat-form-fiel-flex{
       background-color: transparent;
     }
@@ -34,15 +39,35 @@
 
 }
 .buttons-create-account{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   .btn {
     width: 100%;
     margin-top: 20px;
     border-radius: 10px;
+    font-size: 1rem;
     color: $btn-login-primary;
   }
-  .btn-rollback{
-    background-color: $btn-signin-secundary;
+  .container-btn-return{
+    margin-top: 10px;
+    .btn-return{
+      cursor: pointer;
+      text-decoration: none;
+      color: $text-button-color-blue-primary;
+    }
   }
+  .container-btn-return{
+    margin-top: 10px;
+    .btn-return{
+      cursor: pointer;
+
+      text-decoration: none;
+      color: $text-button-color-blue-primary;
+    }
+  }
+
 }
 @media  only screen and (min-width: 1250px) {
   .container-create-account{

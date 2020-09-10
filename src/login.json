@@ -14,6 +14,16 @@
         "btnAppStore":"/assets/appstore.svg",
         "altPlaySotre":"Botão Play Store",
         "altAppStore":"Botão Apple Store",
+        "forgotPassword":{
+          "alertEmail":"Insira seu e-mail abaixo para enviarmos uma solicitação de senha.",
+          "inputEmail":{
+            "msgErrorEmailInvalid":"Por favor insira um endereço de e-mail válido",
+            "emailIs":"E-mail é ",
+            "required":"obritório"
+          },
+          "btnRecover":"Recuperar",
+          "btnReturn":"Voltar"
+        },
         "qrSignIn": {
           "qrTitle":"Para fazer o Login com QR Code:",
           "qrSubTitleFirst":"Abra o Devotee no seu celular",
@@ -99,10 +109,20 @@
         "terms":"Terms of use",
         "copyright":"Devotee. All rights reserved.",
         "getApp":"Get the app",
-        "btnPlayStore":"./assets/playstore-en.svg",
-        "btnAppStore":"./assets/appstore-en.svg",
+        "btnPlayStore":"/assets/playstore-en.svg",
+        "btnAppStore":"/assets/appstore-en.svg",
         "altPlaySotre":"Button Play Store",
         "altAppStore":"Button Apple Store",
+        "forgotPassword":{
+          "alertEmail":"Enter your email address below to send us a password request.",
+          "inputEmail":{
+            "msgErrorEmailInvalid":"Please enter a valid email address",
+            "emailIs":"E-mail is ",
+            "required":"required"
+          },
+          "btnRecover":"To Recover",
+          "btnReturn":"Return"
+        },
         "qrSignIn": {
           "qrTitle":"To Login with QR Code:",
           "qrSubTitleFirst":"Open Devotee on your phone",
