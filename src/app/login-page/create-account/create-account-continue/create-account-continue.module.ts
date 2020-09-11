@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { CreateAccountContinueComponent } from './create-account-continue.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 import { CreateAccountContinueRountingModule } from './create-account-continue.rounting.module';
 
@@ -14,11 +15,12 @@ import { CreateAccountContinueRountingModule } from './create-account-continue.r
 @NgModule({
   declarations: [CreateAccountContinueComponent],
   imports: [
+    RouterModule,
     CommonModule,
     FooterModule,
     MatCardModule,
     MatButtonModule,
-    RouterModule,
+    MatAutocompleteModule,
     CreateAccountContinueRountingModule,
 
 
@@ -26,6 +28,7 @@ import { CreateAccountContinueRountingModule } from './create-account-continue.r
   exports: [
     MatCardModule,
     MatButtonModule,
+    MatAutocompleteModule,
     CreateAccountContinueComponent,
   ],
   providers : [

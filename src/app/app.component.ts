@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RedirectCreateContinueService } from './core/services/redirect-create-continue.service';
 
 @Component({
   selector: 'app-root',

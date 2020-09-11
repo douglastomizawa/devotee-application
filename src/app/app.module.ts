@@ -1,3 +1,4 @@
+import { AuthGuardService } from './core/guards/auth.guard.service';
 import { TranslateService } from './shared/translate.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserModule } from '@angular/platform-browser';
@@ -9,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatNativeDateModule } from '@angular/material/core';
+import { RedirectCreateContinueService } from './core/services/redirect-create-continue.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatButtonModule
   ],
   providers: [
-    TranslateService
+    TranslateService,
+    RedirectCreateContinueService,
+    AuthGuardService
   ],
   bootstrap: [
     AppComponent

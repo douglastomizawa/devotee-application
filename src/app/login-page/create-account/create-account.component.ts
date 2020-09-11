@@ -67,9 +67,7 @@ export class CreateAccountComponent implements OnInit {
 
   onSubmit(): void{
     if ( !this.registerForm.invalid){
-      this.redirectCreateContinueService.createAccountContinueRedirect(this.client);
-      console.log(this.client);
-      this.router.navigate(['create-continue'])
+      this.redirectCreateContinueService.createAccountContinueRedirect(this.client, this.registerForm.invalid);
     }
   }
   matcher = new MyErrorStateMatcher();
