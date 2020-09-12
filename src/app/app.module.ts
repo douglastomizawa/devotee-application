@@ -30,7 +30,7 @@ import { RedirectCreateContinueService } from './core/services/redirect-create-c
   providers: [
     TranslateService,
     RedirectCreateContinueService,
-    AuthGuardService
+    AuthGuardService,
   ],
   bootstrap: [
     AppComponent
