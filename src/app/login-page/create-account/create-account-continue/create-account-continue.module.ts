@@ -7,6 +7,7 @@ import { CreateAccountContinueComponent } from './create-account-continue.compon
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { User } from '../../../core/model/client.model';
 
 import { CreateAccountContinueRountingModule } from './create-account-continue.rounting.module';
 
@@ -32,7 +33,8 @@ import { CreateAccountContinueRountingModule } from './create-account-continue.r
     CreateAccountContinueComponent,
   ],
   providers : [
-    TranslateService
+    TranslateService,
+    User
   ]
 })
 export class CreateAccountContinueModule { }

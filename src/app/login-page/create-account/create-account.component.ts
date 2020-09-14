@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder} from '@angular/forms';
 import {ErrorStateMatcher, ThemePalette } from '@angular/material/core';
 
-import { Client } from '../../core/model/client.model';
+import { User } from '../../core/model/client.model';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -26,14 +26,20 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class CreateAccountComponent implements OnInit {
   hide = true;
   text;
-  client: Client = new Client();
+  user: User = new User();
   registerForm: FormGroup;
   submitted = false;
   minDate: Date;
   maxDate: Date;
   color: ThemePalette = 'primary';
 // tslint:disable-next-line:max-line-length
-  constructor(private translatePage: TranslateService, private dialog: FooterComponent, private formBuilder: FormBuilder, public footerTabs: TabsFooterTermsComponent, private router: Router, private redirectCreateContinueService: RedirectCreateContinueService ) {
+  constructor(
+    private translatePage: TranslateService,
+    private dialog: FooterComponent,
+    private formBuilder: FormBuilder,
+    public footerTabs: TabsFooterTermsComponent,
+    private redirectCreateContinueService: RedirectCreateContinueService
+    ) {
     const currentYear = new Date().getFullYear();
     this.minDate = new Date(currentYear - 100);
     this.maxDate = new Date(currentYear - 18, new Date().getMonth() , new Date().getDate());
@@ -63,11 +69,12 @@ export class CreateAccountComponent implements OnInit {
     const confirmPass: any = input.value.repeatPassword;
     return pass === confirmPass ? null : { notSame: true };
   }
-  get f() { return this.registerForm.controls; };
+  get f() { return this.registerForm.controls; }
 
   onSubmit(): void{
     if ( !this.registerForm.invalid){
-      this.redirectCreateContinueService.createAccountContinueRedirect(this.client, this.registerForm.invalid);
+      this.redirectCreateContinueService.createAccountContinueRedirect( this.registerForm.invalid);
+      console.log(this.user);
     }
   }
   matcher = new MyErrorStateMatcher();

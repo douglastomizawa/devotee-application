@@ -3,13 +3,13 @@
     <form [formGroup]='registerForm' (submit)='onSubmit()'>
     <mat-form-field >
       <mat-label>{{text.createAccount.labelInputName}}</mat-label>
-      <input matInput formControlName="name" [(ngModel)]="client.name" >
+      <input matInput formControlName="name" [(ngModel)]="user.name" >
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
 
       <mat-label>{{text.createAccount.inputDate.labelInputDate}}</mat-label>
-      <input [(ngModel)]="client.birthdate" matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" formControlName="birthdate"  >
+      <input [(ngModel)]="user.birthdate" matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" formControlName="birthdate"  >
       <!-- ngModel  required -->
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
@@ -18,7 +18,7 @@
 
     <mat-form-field class="example-full-width">
       <mat-label>Email</mat-label>
-      <input [(ngModel)]="client.email" matInput  [errorStateMatcher]="matcher"
+      <input [(ngModel)]="user.email" matInput  [errorStateMatcher]="matcher"
              placeholder="Ex. pat@example.com" formControlName="email">
       <mat-hint></mat-hint>
 
@@ -34,7 +34,7 @@
 
     <mat-form-field >
       <mat-label> {{text.createAccount.inputPassword.labelInputPassword}} </mat-label>
-      <input [(ngModel)]="client.password" matInput [type]="hide ? 'password' : 'text'"  [errorStateMatcher]="matcher" formControlName="password">
+      <input [(ngModel)]="user.password" matInput [type]="hide ? 'password' : 'text'"  [errorStateMatcher]="matcher" formControlName="password">
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" >
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
@@ -53,13 +53,13 @@
 
     <mat-form-field class="last">
       <mat-label> {{text.createAccount.inputRepeatPassword.labelInputRepeatPassword}} </mat-label>
-      <input [(ngModel)]="client.repeatPassword" matInput [type]="hide ? 'password' : 'text'" formControlName="repeatPassword"  [errorStateMatcher]="matcher" >
+      <input [(ngModel)]="user.repeatPassword" matInput [type]="hide ? 'password' : 'text'" formControlName="repeatPassword"  [errorStateMatcher]="matcher" >
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
 
       <mat-error *ngIf="f.repeatPassword.hasError('required')">
-        {{ text.createAccount.inputPassword.emailIs }} <strong>{{ text.createAccount.inputPassword.required }}</strong>
+        {{ text.createAccount.inputPassword.passwordIs }} <strong>{{ text.createAccount.inputPassword.required }}</strong>
       </mat-error>
 
       <mat-error *ngIf="registerForm.hasError('notSame') ">
@@ -68,7 +68,7 @@
     </mat-form-field>
 
     <div class="create-account-terms">
-      <mat-slide-toggle [(ngModel)]="client.check" formControlName="check" [color]="color">  </mat-slide-toggle> <span>{{text.signin.checkTermuse}}</span>
+      <mat-slide-toggle [(ngModel)]="user.check" formControlName="check" [color]="color">  </mat-slide-toggle> <span>{{text.signin.checkTermuse}}</span>
       <a (click)=(openDialogRegister()) (click)='execClickTabsShow("click-terms")'>{{text.signin.textCheckTerms}}</a>
     </div>
     <div class="buttons-create-account">

@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { EventEmitter, Injectable } from '@angular/core';
-import { Client } from '../model/client.model';
+import { User } from '../model/client.model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +8,7 @@ import { Client } from '../model/client.model';
 export class RedirectCreateContinueService {
   private formAuthenticated: boolean = false;
   constructor(private router: Router) { }
-  createAccountContinueRedirect(user: Client, formInvalid): void {
-    console.log(user, !formInvalid);
+  createAccountContinueRedirect(formInvalid): void {
     if (!formInvalid) {
       this.formAuthenticated = true;
       this.router.navigate(['/create-continue']);
