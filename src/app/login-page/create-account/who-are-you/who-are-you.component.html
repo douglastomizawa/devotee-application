@@ -1,0 +1,54 @@
+<div class="container-cards">
+  <div class="cards who-are-you">
+    <mat-card>
+      <mat-card-title>
+       {{ text.createAccountContinue.whoAreYou }}
+      </mat-card-title>
+    </mat-card>
+  </div>
+  <div class="checks">
+    <div>
+      <input
+      type="radio"
+      id="devotee"
+      name="who-are-you"
+      value="devotee"
+      (change)="click($event.target.value)">
+    </div>
+
+    <div>
+      <input
+      type="radio"
+      id="especial"
+      name="who-are-you"
+      value="especial"
+      (change)="click($event.target.value)">
+    </div>
+  </div>
+
+  <label for="devotee" class="i-am-devotee">
+    <div class="cards sub-cards">
+      <mat-card>
+        <mat-card-title>
+          {{ text.createAccountContinue.iAmDevoteeTitle }}
+        </mat-card-title>
+        <mat-card-content>
+          {{ text.createAccountContinue.iAmDevoteeSubTitle }}
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </label>
+  <label for="especial" class="i-am-especial">
+    <div class="cards sub-cards ">
+      <mat-card>
+        <mat-card-title>
+          {{ text.createAccountContinue.iAmEspecialTitle }}
+        </mat-card-title>
+        <mat-card-content>
+          {{ text.createAccountContinue.iAmEspecialSubTitle }}
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </label>
+  <button [routerLink]="['/createaccount']" mat-stroked-button class="btn-return-background-2" color="primary">{{ text.createAccountContinue.btnReturn }}</button>
+</div>

@@ -12,7 +12,7 @@ const routes: Routes = [
     },
   {path: '', loadChildren: () => import('src/app/login-page/login-page.module').then(m => m.LoginPageModule)},
   // tslint:disable-next-line:max-line-length
-  {path: 'create-continue',
+  {path: '',
   // tslint:disable-next-line:max-line-length
     loadChildren: () => import('src/app/login-page/create-account/create-account-continue/create-account-continue.module').then(m => m.CreateAccountContinueModule),
     canActivate: [AuthGuardService]

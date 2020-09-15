@@ -5,4 +5,12 @@ $text-button-color-blue-primary:#2E2C8A;
 $background-button-color-blue-primary:#36469C;
 $background-footer-header:#3F51B5;
 $backgroud-color-after-login:#F1F1F1;
+$background-color-insert-photos: #D9D9D9;
+$border-color-insert-photos: #C9C9C9;
 
+.btn-return-background-2{
+  max-width: 100px;
+  margin:10px 20px;
+  border: 1px solid $text-button-color-blue-primary;
+  background-color: #fff;
+}

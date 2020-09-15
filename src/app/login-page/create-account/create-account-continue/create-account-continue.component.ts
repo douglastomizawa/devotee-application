@@ -1,5 +1,7 @@
+import { User } from './../../../core/model/client.model';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from './../../../shared/translate.service';
+import { UserFactory } from 'src/app/core/factory/user.factory.service';
 
 @Component({
   selector: 'app-create-account-continue',
@@ -7,13 +9,13 @@ import { TranslateService } from './../../../shared/translate.service';
   styleUrls: ['./create-account-continue.component.scss']
 })
 export class CreateAccountContinueComponent implements OnInit {
-  constructor(private translatePage: TranslateService) { }
+  constructor(private translatePage: TranslateService, private user: UserFactory) { }
   text;
-  whoareyou;
   click(valor){
     console.log(valor);
   }
   ngOnInit(): void {
+    this.user.teste();
     this.translatePage.veriyLanguage();
     this.text = this.translatePage.textTranslate;
   }

@@ -1,0 +1,88 @@
+@import "../../../app.component.scss";
+.checks {
+  display: none;
+}
+.container-cards {
+  margin: 20px 0;
+  .cards {
+    margin: 20px 30px;
+    border-radius: 20px;
+    mat-card {
+      border-radius: 15px;
+      padding: 20px 30px;
+    }
+    mat-card-title {
+      font-size: 20px;
+    }
+    mat-card-content {
+      font-size: 18px;
+    }
+
+  }
+
+  .i-am-devotee{
+    opacity: 0.8;
+  }
+  .i-am-especial{
+    opacity: 0.8;
+
+  }
+  .sub-cards {
+    box-shadow: 0px 5px 5px #00000029;
+    :hover{
+      cursor: pointer;
+      background-color: #ffffff;
+      box-shadow: 0px 8px 8px #00000029;
+    }
+    mat-card {
+      padding: 40px 30px;
+      color: $text-button-color-blue-primary;
+      :hover{
+        box-shadow: 0px 0px 0px #00000029;
+      }
+    }
+    mat-card-title {
+      margin-bottom: 30px;
+    }
+  }
+  .who-are-you {
+    mat-card {
+      color: $btn-login-primary;
+      background-color: $background-footer-header;
+    }
+  }
+}
+@media only screen and(min-width:700px) {
+  .container-cards {
+    display: grid;
+    grid-template-rows: 1fr 5fr;
+    grid-template-areas:
+    "who-are-you who-are-you"
+    "i-am-devotee i-am-especial";
+    .cards {
+      margin: 10px 20px;
+    }
+    .who-are-you{
+      margin: 10px 20px;
+      grid-area: who-are-you;
+    }
+    .i-am-devotee{
+      grid-area: i-am-devotee;
+    }
+    .i-am-especial{
+      grid-area: i-am-especial;
+    }
+  }
+}
+@media only screen and(min-width:800px) {
+  .container-cards {
+    margin: 0 auto;
+    max-width: 800px;
+    align-self: center;
+    grid-template-rows: 1fr 1fr;
+    .who-are-you{
+      align-self: flex-end;
+    }
+  }
+
+}

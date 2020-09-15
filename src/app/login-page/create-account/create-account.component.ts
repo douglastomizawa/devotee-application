@@ -1,3 +1,4 @@
+import { UserFactory } from './../../core/factory/user.factory.service';
 import { RedirectCreateContinueService } from './../../core/services/redirect-create-continue.service';
 import { Router } from '@angular/router';
 import { TabsFooterTermsComponent } from './../../footer/footer-modal.component';
@@ -38,19 +39,20 @@ export class CreateAccountComponent implements OnInit {
     private dialog: FooterComponent,
     private formBuilder: FormBuilder,
     public footerTabs: TabsFooterTermsComponent,
-    private redirectCreateContinueService: RedirectCreateContinueService
+    private redirectCreateContinueService: RedirectCreateContinueService,
+    private userfactory: UserFactory
     ) {
     const currentYear = new Date().getFullYear();
     this.minDate = new Date(currentYear - 100);
     this.maxDate = new Date(currentYear - 18, new Date().getMonth() , new Date().getDate());
    }
-  //  dataFomatation(data){
-  //  };
   ngOnInit(): void {
     this.translatePage.veriyLanguage();
     this.text = this.translatePage.textTranslate;
     this.createForm();
+
   }
+
   execClickTabsShow(name: any): void{
     this.footerTabs.execClickTabs(name);
   }
@@ -70,11 +72,11 @@ export class CreateAccountComponent implements OnInit {
     return pass === confirmPass ? null : { notSame: true };
   }
   get f() { return this.registerForm.controls; }
-
   onSubmit(): void{
     if ( !this.registerForm.invalid){
+
+      this.userfactory.userSessionFirst(this.user);
       this.redirectCreateContinueService.createAccountContinueRedirect( this.registerForm.invalid);
-      console.log(this.user);
     }
   }
   matcher = new MyErrorStateMatcher();
