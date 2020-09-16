@@ -12,16 +12,16 @@ export class WhoAreYouComponent implements OnInit {
 
   constructor(private translatePage: TranslateService, private user: UserFactory, private router: Router) { }
   text;
-  click(valor){
-    if (valor == 'devotee'){
-
+  click(valor: string): void{
+    if (valor === 'devotee') {
+      this.router.navigate(['/devotee-person']);
     }else {
       this.router.navigate(['/especial-person']);
     }
     console.log(valor);
   }
   ngOnInit(): void {
-    this.user.teste();
+
     this.translatePage.veriyLanguage();
     this.text = this.translatePage.textTranslate;
   }

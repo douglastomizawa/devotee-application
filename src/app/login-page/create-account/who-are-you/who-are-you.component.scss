@@ -55,7 +55,7 @@
 @media only screen and(min-width:700px) {
   .container-cards {
     display: grid;
-    grid-template-rows: 1fr 5fr;
+    grid-template-rows: 1fr 2fr;
     grid-template-areas:
     "who-are-you who-are-you"
     "i-am-devotee i-am-especial";

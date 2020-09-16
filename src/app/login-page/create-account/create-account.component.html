@@ -68,7 +68,7 @@
     </mat-form-field>
 
     <div class="create-account-terms">
-      <mat-slide-toggle [(ngModel)]="user.check" formControlName="check" [color]="color">  </mat-slide-toggle> <span>{{text.signin.checkTermuse}}</span>
+      <mat-slide-toggle [(ngModel)]="user.checkTerms" formControlName="check" [color]="color">  </mat-slide-toggle> <span>{{text.signin.checkTermuse}}</span>
       <a (click)=(openDialogRegister()) (click)='execClickTabsShow("click-terms")'>{{text.signin.textCheckTerms}}</a>
     </div>
     <div class="buttons-create-account">

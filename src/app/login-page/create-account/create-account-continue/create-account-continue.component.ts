@@ -9,13 +9,12 @@ import { UserFactory } from 'src/app/core/factory/user.factory.service';
   styleUrls: ['./create-account-continue.component.scss']
 })
 export class CreateAccountContinueComponent implements OnInit {
-  constructor(private translatePage: TranslateService, private user: UserFactory) { }
+  constructor(private translatePage: TranslateService) { }
   text;
   click(valor){
     console.log(valor);
   }
   ngOnInit(): void {
-    this.user.teste();
     this.translatePage.veriyLanguage();
     this.text = this.translatePage.textTranslate;
   }

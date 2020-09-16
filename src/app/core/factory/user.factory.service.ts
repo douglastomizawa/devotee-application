@@ -9,7 +9,7 @@ import { Injectable, OnInit } from '@angular/core';
 })
 export class UserFactory {
   // private _userSession: newUser;
-  private newUser: object;
+  newUser: object = new Object();
   constructor() { }
   userSessionFirst(objectValue): void {
     this.newUser = objectValue;

@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatNativeDateModule } from '@angular/material/core';
 import { RedirectCreateContinueService } from './core/services/redirect-create-continue.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,9 +24,10 @@ import { RedirectCreateContinueService } from './core/services/redirect-create-c
     MatButtonModule,
     MatFormFieldModule,
     MatNativeDateModule,
+    HttpClientModule,
   ],
   exports: [
-    MatButtonModule
+    MatButtonModule,
   ],
   providers: [
     TranslateService,

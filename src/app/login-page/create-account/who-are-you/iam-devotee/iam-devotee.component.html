@@ -1,1 +1,129 @@
-<p>iam-devotee works!</p>
+<div class="container-cards">
+  <div class="cards who-are-you">
+    <mat-card>
+      <mat-card-title class="first-card">
+      {{ text.iamEspecialAndDevotee.headerYourProfile }}
+      </mat-card-title>
+    </mat-card>
+  </div>
+  <div class="block-cards container-card-info-perfil">
+    <mat-card>
+      <div class="container-perfil-photo">
+        <mat-card-title>
+          {{ text.iamEspecialAndDevotee.principalPhotoPerfil }}
+        </mat-card-title>
+        <div class="photo-principal">
+          <label for="avatar" class="avatar">
+            <img  src="../../../../../assets/facebook-logo.svg" alt="">
+          </label>
+
+          <input type="file"
+                id="avatar" name="avatar"
+                accept="image/png, image/jpeg" class="input-file input-photo-principal">
+        </div>
+      </div>
+      <div class="block-cards container-more-photos">
+        <mat-card-title>
+          {{ text.iamEspecialAndDevotee.addMorePhotos }}
+        </mat-card-title>
+        <div class="more-pictures">
+          <div class="more-photos more-photos-1">
+            <label for="more-photos-1" class="more-photos-1">
+              <img  src="../../../../../assets/facebook-logo.svg" alt="">
+            </label>
+
+            <input type="file"
+                  id="more-photos-1" name="more-photos-1"
+                  accept="image/png, image/jpeg" class="input-file input-photo-principal">
+          </div>
+          <div class="more-photos more-photos-2">
+            <label for="more-photos-2" class="more-photos-2">
+              <img  src="../../../../../assets/facebook-logo.svg" alt="">
+            </label>
+
+            <input type="file"
+                  id="more-photos-2" name="more-photos-2"
+                  accept="image/png, image/jpeg" class="input-file input-photo-principal">
+          </div>
+          <div class="more-photos more-photos-3" >
+            <label for="more-photos-3" class="more-photos-3">
+              <img  src="../../../../../assets/facebook-logo.svg" alt="">
+            </label>
+            <input type="file"
+                  id="more-photos-3" name="more-photos-3"
+                  accept="image/png, image/jpeg" class="input-file input-photo-principal">
+          </div>
+        </div>
+      </div>
+      <div class="block-cards container-form">
+        <mat-card-title>
+          {{ text.iamEspecialAndDevotee.aboutYou.aboutYouTitle }}
+        </mat-card-title>
+        <form [formGroup]="dataUser">
+          <div class="infos-person display-grid-data-person">
+            <mat-form-field class="input-name">
+              <mat-label>{{ text.iamEspecialAndDevotee.aboutYou.inputName }}</mat-label>
+              <input matInput formControlName="name" autocomplete="off" >
+            </mat-form-field>
+            <mat-form-field class="example-full-width input-email">
+              <mat-label>Email</mat-label>
+              <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                     placeholder="Ex. pat@example.com" formControlName="email" autocomplete="off" >
+              <mat-hint></mat-hint>
+              <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                {{ text.iamEspecialAndDevotee.aboutYou.inputEmail.errorInvalidEmail }}
+              </mat-error>
+              <mat-error *ngIf="emailFormControl.hasError('required')">
+                {{ text.iamEspecialAndDevotee.aboutYou.inputEmail.emailIs }} <strong>{{ text.iamEspecialAndDevotee.aboutYou.inputEmail.emailRequired }} </strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="input-phone">
+              <mat-label>{{ text.iamEspecialAndDevotee.aboutYou.inputPhone }} </mat-label>
+              <input matInput formControlName="phone" autocomplete="off" >
+            </mat-form-field>
+
+            <mat-form-field class="input-profession">
+              <mat-label>{{ text.iamEspecialAndDevotee.aboutYou.inputProfession}}</mat-label>
+              <input matInput formControlName="profession" autocomplete="off" >
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width input-gender">
+              <input type="text"
+                     placeholder="{{ text.iamEspecialAndDevotee.aboutYou.inputGenre}}"
+                     aria-label="Number"
+                     matInput
+                     formControlName="gender"
+                     [matAutocomplete]="auto" (click)="filterOption('gender')">
+              <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width input-orientation">
+              <input type="text"
+                     placeholder="{{ text.iamEspecialAndDevotee.aboutYou.inputOrientation}}"
+                     aria-label="Number"
+                     matInput
+                     formControlName="orientation"
+                     [matAutocomplete]="auto" (click)="filterOption('orientation')">
+              <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field class="example-full-width input-text-area">
+              <mat-label>{{ text.iamEspecialAndDevotee.aboutYou.inputMoreAboutYou}}</mat-label>
+              <textarea matInput placeholder="Vamos conversar que te conto"></textarea>
+            </mat-form-field>
+          </div>
+        </form>
+      </div>
+    </mat-card>
+    <button [routerLink]="['/create-continue']" mat-stroked-button class="btn-return-background-2" color="primary">{{ text.createAccountContinue.btnReturn }}</button>
+    <button mat-raised-button color="primary" class="btn btn-next">Proximo</button>
+  </div>
+</div>

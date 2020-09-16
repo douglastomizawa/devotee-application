@@ -84,6 +84,39 @@
           "iAmEspecialSubTitle":"Tenho deficiência. Com interesse em pessoas especiais ou devotees.",
           "btnReturn":"Voltar"
         },
+        "iamEspecialAndDevotee":{
+          "headerYourProfile":"Seu Perfil",
+          "principalPhotoPerfil":"Foto de perfil",
+          "addMorePhotos":"Adicione mais fotos suas",
+          "aboutYou":{
+            "aboutYouTitle":"Sobre você",
+            "inputName":"Name",
+            "inputEmail":{
+              "errorInvalidEmail":"Insira um email valido",
+              "emailIs":"E-mail é",
+              "emailRequired":"Obrigatório"
+            },
+            "inputPhone":"Telefone",
+            "inputProfession":"Profissão",
+            "inputGenre":"Gênero",
+            "inputOrientation":"Orientação sexual",
+            "inputMoreAboutYou":"Conte mais sobre você"
+          },
+          "aboutYourDisability":{
+            "aboutYourDisabilityTitle":"Sobre sua deficiência",
+            "inputSelectCID":"Selecione o CID",
+            "inputSurgery":"Cirurgias",
+            "inputHosptals":"Hosptáis",
+            "inputMedicines":"Remédios"
+          },
+          "aboutYouChecks":{
+            "checkBirthDisability":"Deficiência desde nascença",
+            "checkHaveTIIC":"Tenho TIIC",
+            "checkImpairedFertility":"Comprometimento da fertilidade",
+            "checkOvercomingExample":"Sou um exemplo de superação"
+          },
+          "btnNext":"Proximo"
+        },
         "entryPassword":"Entre com sua senha",
         "btnRegister":"Criar conta",
 
@@ -184,6 +217,7 @@
             "msgErrorNotEqual":"Passwords are not the same"
           }
         },
+
         "createAccountContinue":{
           "whoAreYou":"Who are you?",
           "iAmDevoteeTitle":"I'am a Devotee",
@@ -191,6 +225,39 @@
           "iAmEspecialTitle":"I'm a special person",
           "iAmEspecialSubTitle":"I have a disability. With an interest in special people or devotees.",
           "btnReturn":"Return"
+        },
+        "iamEspecialAndDevotee":{
+          "headerYourProfile":"Your Profile",
+          "principalPhotoPerfil":"Profile Picture",
+          "addMorePhotos":"Add more photos of you",
+          "aboutYou":{
+            "aboutYouTitle":"About You",
+            "inputName":"Name",
+            "inputEmail":{
+              "errorInvalidEmail":"Please enter a valid email adress",
+              "emailIs":"E-mail is",
+              "emailRequired":"required"
+            },
+            "inputPhone":"Phone",
+            "inputProfession":"Profession",
+            "inputGenre":"Genre",
+            "inputOrientation":"Sexual orientation",
+            "inputMoreAboutYou":"Tell more about yourself"
+          },
+          "aboutYourDisability":{
+            "aboutYourDisabilityTitle":"About your disability",
+            "inputSelectCID":"Select the CID",
+            "inputSurgery":"Surgery",
+            "inputHosptals":"Hosptals",
+            "inputMedicines":"Medicines"
+          },
+          "aboutYouChecks":{
+            "checkBirthDisability":"Disability since birth",
+            "checkHaveTIIC":"Have TIIC",
+            "checkImpairedFertility":"Impaired fertility",
+            "checkOvercomingExample":"I'm an example of overcoming"
+          },
+          "btnNext":"Next"
         },
         "entryPassword":"Enter your password",
         "btnRegister":"Register",

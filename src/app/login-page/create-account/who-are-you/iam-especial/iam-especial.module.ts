@@ -1,3 +1,4 @@
+import { MatSelectSearchModule } from './../../../mat-select-search/mat-select-search.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IamEspecialRountingModule } from './iam-especial.rounting.module';
@@ -15,6 +16,7 @@ import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/materi
 import { IamEspecialComponent } from './iam-especial.component';
 
 import {  ReactiveFormsModule } from '@angular/forms';
+import { MedicinesService } from 'src/app/core/services/medicines.service';
 
 @NgModule({
   declarations: [IamEspecialComponent],
@@ -29,7 +31,9 @@ import {  ReactiveFormsModule } from '@angular/forms';
     MatAutocompleteModule,
     MatSlideToggleModule,
     MatButtonModule,
-    IamEspecialRountingModule
+    MatSelectModule,
+    IamEspecialRountingModule,
+    MatSelectSearchModule,
   ],
   exports: [
     MatCardModule,
@@ -37,7 +41,8 @@ import {  ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
   ],
   providers: [
-    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
+    MedicinesService
   ]
 })
 export class IamEspecialModule { }

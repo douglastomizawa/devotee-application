@@ -15,25 +15,6 @@
     }
     border-radius: 20px;
   }
-  .block-cards{
-    margin-top: 10px;
-  }
-  .input-file{
-    display: none;
-  }
-  .container-checks{
-    margin-top: 10px;
-    padding: 0 1rem;
-  }
-  mat-form-field{
-    padding: 0 1rem;
-  }
-  .container-card-info-perfil{
-    margin: 1rem 0;
-    mat-card {
-      padding: 1rem 1.5rem;
-    }
-  }
   .who-are-you {
     mat-card {
       padding: 1rem 1.5rem;
@@ -68,6 +49,30 @@
     flex-direction: column;
     grid-template-columns: 1fr 1fr 1fr ;
   }
+  .block-cards{
+    margin-top: 10px;
+  }
+  .input-file{
+    display: none;
+  }
+  .container-checks{
+    margin-top: 10px;
+    padding: 0 1rem;
+  }
+  mat-form-field{
+    padding: 0 1rem;
+  }
+  .btn-return-background-2{
+    margin-left: 0;
+  }
+  .container-card-info-perfil{
+    margin: 1rem 0;
+    mat-card {
+      padding: 1rem 1.5rem;
+    }
+  }
+
+
   .container-form{
     mat-form-field{
       display: block;
@@ -76,14 +81,68 @@
 }
 @media only screen and(min-width:700px){
   .container-cards{
+    margin: 2rem 3rem;
+    .btn-next{
+      padding: 0 25px;
+    }
+    .photo-principal{
+      .avatar{
+        img{
+          display: flex;
+          margin: 0 auto;
+          max-width: 200px;
+          border-radius: 8px;
+        }
+      }
+    }
+    .more-photos{
+      max-width: 200px;
+    }
+    .container-checks{
+
+        :nth-child(2), :nth-child(4){
+          padding-left: 20px;
+        }
+
+
+    }
     .display-grid-data-person{
       display: grid;
       grid-template-columns: 1fr 1fr;
     }
+    .infos-person{
+      grid-template-areas:
+      "input-name input-email"
+      "input-phone input-profession"
+      "input-gender input-orientation"
+      "input-text-area input-text-area"
+      ;
+    }
+    .input-name{
+      grid-area: input-name;
+    }
+    .input-email{
+      grid-area: input-email;
+    }
+    .input-phone{
+      grid-area: input-phone;
+    }
+    .input-profession{
+      grid-area: input-profession;
+    }
+    .input-gender{
+      grid-area: input-gender;
+    }
+    .input-orientation{
+      grid-area: input-orientation;
+    }
+    .input-text-area{
+      grid-area: input-text-area;
+    }
   }
 }
 
-@media only screen and(min-width:700px){
+@media only screen and(min-width:800px){
   .container-cards{
     margin: 2rem auto;
   }
