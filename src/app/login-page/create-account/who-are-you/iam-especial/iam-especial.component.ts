@@ -1,14 +1,11 @@
 import { InjectSelectAndFilterService } from './../../../../core/services/inject-select-and-filter.service';
-import { Component, ElementRef, HostListener, OnInit, VERSION, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { TranslateService } from './../../../../shared/translate.service';
-import { MedicinesService } from './../../../../core/services/medicines.service';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import {ErrorStateMatcher, ThemePalette} from '@angular/material/core';
-import {Observable, ReplaySubject, Subject} from 'rxjs';
-import { map, startWith, take, takeUntil } from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import { UserFactory } from 'src/app/core/factory/user.factory.service';
-import { MatSelect } from '@angular/material/select';
-/** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
@@ -19,7 +16,7 @@ interface Med {
   id: string;
   name: string;
  }
-
+/* tslint:disable:no-string-literal */
 @Component({
   selector: 'app-iam-especial',
   templateUrl: './iam-especial.component.html',
@@ -46,7 +43,6 @@ export class IamEspecialComponent implements OnInit {
     private formBuilder: FormBuilder,
     private user: UserFactory,
     private injectSelect: InjectSelectAndFilterService,
-    private elRef: ElementRef,
 
     ) { }
   matcher = new MyErrorStateMatcher();
@@ -55,23 +51,25 @@ export class IamEspecialComponent implements OnInit {
     this.text = this.translatePage.textTranslate;
     this.createForm();
     this.getValuePopulateCreateAccount();
-    this.injectSelect.getMedicinesApi();
+    this.injectSelect.getAllAPIToSelectDiv();
   }
   private selectIsReady(): Promise<void> {
     return new Promise ((resolve: any, reject: any) => {
       setInterval((): void => {
-        let t: Element = document.querySelector('#mat-select-1-panel');
-        t !== null ? resolve(true) : reject(false);
+        const selectDivElement: any = document.querySelectorAll('div[id^="mat-select-"]');
+        const resolvePromise: object = {promiseResolve: true, elementSelect: selectDivElement[0]};
+        selectDivElement[0] !== null ? resolve(resolvePromise) : reject(false);
      }, 2000);
     });
   }
+
   getFinalScrollSelect(inputControl: string): void  {
-    this.selectIsReady().then((res: any) =>{
-      if (res){
-        const selectScroll = document.querySelector('#mat-select-1-panel');
+    this.selectIsReady().then((res: any) => {
+      if (res['promiseResolve']){
+        const selectScroll = res['elementSelect'];
         selectScroll.addEventListener('scroll', e => {
           if (Math.trunc(selectScroll.scrollTop + selectScroll.clientHeight) === selectScroll.scrollHeight) {
-            this.injectSelect.loadMoreMedicines();
+            this.injectSelect.loadMoreOptionSelects(inputControl);
             this.injectSelect.filterOptionSelect(inputControl, this.dataUser);
           }
         });
@@ -91,7 +89,6 @@ export class IamEspecialComponent implements OnInit {
   );
   }
   getValuePopulateCreateAccount(): void{
-    /* tslint:disable:no-string-literal */
     this.name =  this.user.newUser[ 'name' ];
     this.email =  this.user.newUser[ 'email' ];
   }

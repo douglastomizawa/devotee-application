@@ -52,9 +52,20 @@ export class InjectSelectAndFilterService {
   private _onDestroy = new Subject<void>();
   constructor(
     private medicineAPI: MedicinesService) {}
+  private getMedicinesApi(): void {
+    this.medicineAPI.get().toPromise().then(res => {
+      this.allMedicines = res.value;
+      for (let i of res.slice(0, 50)) {
+        this.medicines = res.slice(0, 50);
+        this.allMedicines = res;
+      }
+      console.log(res.slice(0, 50).length);
+    });
+  }
+  getAllAPIToSelectDiv(){
+    this.getMedicinesApi();
+  }
   howSelectClicked(inputControl: string): void{
-    console.log(inputControl);
-
     switch (inputControl) {
       case 'selectMedicines':
         this.filteredBanksMulti.next(this.medicines);
@@ -79,20 +90,36 @@ export class InjectSelectAndFilterService {
     }
 
   }
-  getMedicinesApi(): void {
-    this.medicineAPI.get().toPromise().then(res => {
-      this.allMedicines = res.value;
-      for (let i of res.slice(0, 50)) {
-        this.medicines = res.slice(0, 50);
-        this.allMedicines = res;
-      }
-      console.log(res.slice(0, 50).length);
-    });
-  }
-  loadMoreMedicines(): void {
-    this.medicineAPI.get().toPromise().then(res => {
-      this.medicines = res.slice(0, this.medicines.length + 50);
-    });
+
+
+  loadMoreOptionSelects(inputControl: string): void {
+    switch (inputControl) {
+      case 'selectMedicines':
+        this.medicineAPI.get().toPromise().then(res => {
+          this.medicines = res.slice(0, this.medicines.length + 50);
+        });
+        break;
+      case 'selectHosptals':
+        // this.filteredHosptals.next(
+        //   this.hosptals.filter(hosptals => hosptals.value.toLowerCase().indexOf(control.value.toLowerCase()) > -1)
+        // );
+        break;
+      // case 'surgery':
+      //   inputOptions =  this.surgery.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+      //   break;
+      // case 'cids':
+      //   inputOptions =  this.cids.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+      //   break;
+      // case 'gender':
+      //   inputOptions =  this.gender.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+      //   break;
+      // case 'orientation':
+      //     inputOptions =  this.orientation.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+      //     break;
+      default:
+        break;
+
+    }
   }
   whichAPIToGet(nameAPI: string): void {
 

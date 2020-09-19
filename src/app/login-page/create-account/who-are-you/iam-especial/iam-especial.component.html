@@ -162,52 +162,25 @@
                 </mat-autocomplete>
               </mat-form-field>
 
-              <mat-form-field (focus)="filterOption('selectHosptals')">
-                <mat-select #fff id="focus" formControlName="hosptals" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputMedicines}}" [multiple]="true">
+              <mat-form-field >
+                <mat-select (focus)="filterOption('selectHosptals')" formControlName="hosptals" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputMedicines}}" [multiple]="true">
                   <mat-select-search formControlName="selectHosptals" ></mat-select-search>
                   <mat-option *ngFor="let selectHosptals of filteredHosptals | async" [value]="selectHosptals">
                     {{selectHosptals.value}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
-              <!-- <mat-form-field class="example-full-width input-hosptals">
-                <input type="text"
-                       placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputHosptals}}"
-                       aria-label="Number"
-                       matInput
-                       formControlName="hosptals"
-                       [matAutocomplete]="auto" (click)="filterOption('hosptals')">
-                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                  <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                    {{option}}
-                  </mat-option>
-                </mat-autocomplete>
-              </mat-form-field> -->
 
 
 
               <mat-form-field id="medicinesSelect" >
-                <mat-select (focus)="filterOption('selectMedicines')"  formControlName="medicines" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputMedicines}}" [multiple]="true" >
+                <mat-select  (focus)="filterOption('selectMedicines')"  formControlName="medicines" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputMedicines}}" [multiple]="true" >
                   <mat-select-search id="mat-select-true" formControlName="selectMedicines" ></mat-select-search>
                   <mat-option  *ngFor="let selectMedicines of filteredMedicine | async" [value]="selectMedicines">
                     {{selectMedicines.value}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
-
-              <!-- <mat-form-field class="example-full-width input-medicines">
-                <input type="text"
-                       placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputMedicines}}"
-                       aria-label="Number"
-                       matInput
-                       formControlName="medicines"
-                       [matAutocomplete]="auto" (click)="filterOption('medicines')" >
-                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                  <mat-option *ngFor="let option of filteredOptions | async" [value]="medicines">
-                    {{option}}
-                  </mat-option>
-                </mat-autocomplete>
-              </mat-form-field> -->
           </div>
 
             <div class="container-checks display-grid-data-person">
