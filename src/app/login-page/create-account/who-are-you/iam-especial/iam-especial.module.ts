@@ -10,6 +10,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatButtonModule} from '@angular/material/button';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 
@@ -34,6 +35,7 @@ import { MedicinesService } from 'src/app/core/services/medicines.service';
     MatSelectModule,
     IamEspecialRountingModule,
     MatSelectSearchModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     MatCardModule,
@@ -42,7 +44,8 @@ import { MedicinesService } from 'src/app/core/services/medicines.service';
   ],
   providers: [
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
-    MedicinesService
+    MedicinesService,
+
   ]
 })
 export class IamEspecialModule { }
