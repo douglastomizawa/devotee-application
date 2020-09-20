@@ -1,9 +1,9 @@
 import { ResponseMedicinesInterface } from './../interfaces/medicines.interface';
-import { takeUntil, startWith, map } from 'rxjs/operators';
-import { MatSelect } from '@angular/material/select';
-import { Injectable, ViewChild, VERSION } from '@angular/core';
-import { ReplaySubject, Subject, Observable } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { Injectable, VERSION, EventEmitter } from '@angular/core';
+import { ReplaySubject, Subject } from 'rxjs';
 import { MedicinesService } from './medicines.service';
+import { TranslateService } from 'src/app/shared/translate.service';
 
 
 // interface Med {
@@ -29,9 +29,11 @@ interface Hosp {
   providedIn: 'root'
 })
 export class InjectSelectAndFilterService {
+  /* tslint:disable:no-string-literal */
+  version = VERSION;
+  emitLoadMoreOptions = new EventEmitter();
   private gender: string[] = ['Masculino', 'Feminino', 'outros'];
   private orientation: string[] = ['Hetero', 'Homo', 'Muitos outros'];
-
   private surgery: string[] = ['surgery-One', 'surgery-Two', 'surgery-Three'];
   private hosptals: Hosp[] = [
     {value: 'hosp-One'},
@@ -44,17 +46,18 @@ export class InjectSelectAndFilterService {
   private medicines: ResponseMedicinesInterface[];
   private allMedicines: ResponseMedicinesInterface[];
   public filteredBanksMulti: ReplaySubject<ResponseMedicinesInterface[]> = new ReplaySubject<ResponseMedicinesInterface[]>(1);
-
   public filteredHosptals: ReplaySubject<Hosp[]> = new ReplaySubject<Hosp[]>(1);
-  version = VERSION;
+
 
     /** Subject that emits when the component has been destroyed. */
   private _onDestroy = new Subject<void>();
   constructor(
-    private medicineAPI: MedicinesService) {}
+    private medicineAPI: MedicinesService,
+    private translatePage: TranslateService,
+  ) {}
+
   private getMedicinesApi(): void {
     this.medicineAPI.get().toPromise().then(res => {
-      this.allMedicines = res.value;
       for (let i of res.slice(0, 50)) {
         this.medicines = res.slice(0, 50);
         this.allMedicines = res;
@@ -62,10 +65,11 @@ export class InjectSelectAndFilterService {
       console.log(res.slice(0, 50).length);
     });
   }
-  getAllAPIToSelectDiv(){
+  getAllAPIToSelectDiv(): void {
+    this.translatePage.veriyLanguage();
     this.getMedicinesApi();
   }
-  howSelectClicked(inputControl: string): void{
+  howSelectClicked(inputControl: string): void {
     switch (inputControl) {
       case 'selectMedicines':
         this.filteredBanksMulti.next(this.medicines);
@@ -95,8 +99,10 @@ export class InjectSelectAndFilterService {
   loadMoreOptionSelects(inputControl: string): void {
     switch (inputControl) {
       case 'selectMedicines':
+        const lastItem = this.medicines.length + 50;
         this.medicineAPI.get().toPromise().then(res => {
           this.medicines = res.slice(0, this.medicines.length + 50);
+          this.emitLoadMoreOptions.emit(this.medicines);
         });
         break;
       case 'selectHosptals':

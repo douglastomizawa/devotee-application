@@ -1,6 +1,6 @@
 import { InjectSelectAndFilterService } from './../../../../core/services/inject-select-and-filter.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { TranslateService } from './../../../../shared/translate.service';
+import data, { TranslateService } from './../../../../shared/translate.service';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import {ErrorStateMatcher, ThemePalette} from '@angular/material/core';
 import {Observable} from 'rxjs';
@@ -12,10 +12,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
 }
-interface Med {
-  id: string;
-  name: string;
- }
 /* tslint:disable:no-string-literal */
 @Component({
   selector: 'app-iam-especial',
@@ -31,6 +27,7 @@ export class IamEspecialComponent implements OnInit {
   color: ThemePalette = 'primary';
   name: string;
   email: string;
+  language: string;
   dataUser: FormGroup;
   orientation: string[] = ['Hetero', 'Homo', 'Muitos outros'];
   cids: string[] = ['cid-One', 'cid-Two', 'cid-Three'];
@@ -49,6 +46,7 @@ export class IamEspecialComponent implements OnInit {
   ngOnInit(): void {
     this.translatePage.veriyLanguage();
     this.text = this.translatePage.textTranslate;
+    this.language = this.translatePage.dataFormatation;
     this.createForm();
     this.getValuePopulateCreateAccount();
     this.injectSelect.getAllAPIToSelectDiv();
@@ -62,7 +60,15 @@ export class IamEspecialComponent implements OnInit {
      }, 2000);
     });
   }
-
+  loadMore() {
+   return new Promise((resolve: any, reject: any) => {
+    this.injectSelect.emitLoadMoreOptions.subscribe(
+      loadMore => {
+        loadMore ? resolve(true) : reject(false);
+      }
+    );
+   });
+  }
   getFinalScrollSelect(inputControl: string): void  {
     this.selectIsReady().then((res: any) => {
       if (res['promiseResolve']){
@@ -70,7 +76,11 @@ export class IamEspecialComponent implements OnInit {
         selectScroll.addEventListener('scroll', e => {
           if (Math.trunc(selectScroll.scrollTop + selectScroll.clientHeight) === selectScroll.scrollHeight) {
             this.injectSelect.loadMoreOptionSelects(inputControl);
-            this.injectSelect.filterOptionSelect(inputControl, this.dataUser);
+            this.loadMore().then(( resload: any) => {
+              if (resload) {
+                this.injectSelect.filterOptionSelect(inputControl, this.dataUser);
+              }
+            });
           }
         });
       }

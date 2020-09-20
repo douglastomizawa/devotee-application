@@ -176,7 +176,7 @@
               <mat-form-field id="medicinesSelect" >
                 <mat-select  (focus)="filterOption('selectMedicines')"  formControlName="medicines" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputMedicines}}" [multiple]="true" >
                   <mat-select-search id="mat-select-true" formControlName="selectMedicines" ></mat-select-search>
-                  <mat-option  *ngFor="let selectMedicines of filteredMedicine | async" [value]="selectMedicines">
+                  <mat-option  *ngFor="let selectMedicines of filteredMedicine | async"  [value]="selectMedicines">
                     {{selectMedicines.value}}
                   </mat-option>
                 </mat-select>
