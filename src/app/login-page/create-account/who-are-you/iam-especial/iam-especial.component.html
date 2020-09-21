@@ -64,11 +64,11 @@
           <div class="infos-person display-grid-data-person">
             <mat-form-field class="input-name">
               <mat-label>{{ text.iamEspecialAndDevotee.aboutYou.inputName }}</mat-label>
-              <input matInput formControlName="name" autocomplete="off" [(ngModel)]='name'>
+              <input matInput formControlName="name" autocomplete="off" [(ngModel)]='userEspecial.name'>
             </mat-form-field>
             <mat-form-field class="example-full-width input-email">
               <mat-label>Email</mat-label>
-              <input matInput [formControl]="emailFormControl" [(ngModel)]='email' [errorStateMatcher]="matcher"
+              <input matInput [formControl]="emailFormControl" [(ngModel)]='userEspecial.email' [errorStateMatcher]="matcher"
                      placeholder="Ex. pat@example.com" formControlName="email" autocomplete="off" >
               <mat-hint></mat-hint>
               <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
@@ -81,12 +81,12 @@
 
             <mat-form-field class="input-phone">
               <mat-label>{{ text.iamEspecialAndDevotee.aboutYou.inputPhone }} </mat-label>
-              <input matInput formControlName="phone" autocomplete="off" >
+              <input matInput formControlName="phone" autocomplete="off" [(ngModel)]='userEspecial.phone'>
             </mat-form-field>
 
             <mat-form-field class="input-profession">
               <mat-label>{{ text.iamEspecialAndDevotee.aboutYou.inputProfession}}</mat-label>
-              <input matInput formControlName="profession" autocomplete="off" >
+              <input matInput formControlName="profession" autocomplete="off" [(ngModel)]='userEspecial.profession'>
             </mat-form-field>
 
 
@@ -99,7 +99,7 @@
                      aria-label="Number"
                      matInput
                      formControlName="gender"
-                     [matAutocomplete]="auto" (focus)="filterOptionInput('gender')">
+                     [matAutocomplete]="auto" (focus)="filterOptionInput('gender')"  [(ngModel)]='userEspecial.genre'>
               <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                 <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                   {{option}}
@@ -113,7 +113,7 @@
                      aria-label="Number"
                      matInput
                      formControlName="orientation"
-                     [matAutocomplete]="auto" (focus)="filterOptionInput('orientation')">
+                     [matAutocomplete]="auto" (focus)="filterOptionInput('orientation')"  [(ngModel)]='userEspecial.orientation'>
               <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                 <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                   {{option}}
@@ -134,19 +134,18 @@
             <div class="container-about-disability display-grid-data-person">
 
 
-              <mat-form-field class="example-full-width input-CID">
-                <input type="text"
-                       placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputSelectCID}}"
-                       aria-label="Number"
-                       matInput
-                       formControlName="cids"
-                       [matAutocomplete]="auto" (focus)="filterOption('cids')">
-                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                  <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                    {{option}}
+              <mat-form-field >
+                <mat-select (focus)="filterOption('selectCids')"  [(ngModel)]='userEspecial.cid' formControlName="cids" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputSelectCID}}" [multiple]="true">
+                  <mat-select-search formControlName="selectCids" ></mat-select-search>
+                  <mat-option *ngFor="let selectCids of filteredCids" [value]="selectCids">
+                    {{selectCids}}
                   </mat-option>
-                </mat-autocomplete>
+                </mat-select>
               </mat-form-field>
+
+
+
+
               <mat-form-field class="example-full-width input-surgery">
                 <input type="text"
                        placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputSurgery}}"
@@ -154,7 +153,7 @@
                        matInput
                        formControlName="surgery"
                        [matAutocomplete]="auto" >
-                       <!--(focus)="filterOption('surgery')"  -->
+                       <!-- (focus)="filterOption('surgery')" -->
                 <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                   <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                     {{option}}
@@ -162,11 +161,13 @@
                 </mat-autocomplete>
               </mat-form-field>
 
+
+
               <mat-form-field >
-                <mat-select (focus)="filterOption('selectHosptals')" formControlName="hosptals" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputMedicines}}" [multiple]="true">
+                <mat-select (focus)="filterOption('selectHosptals')" formControlName="hosptals" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputHosptals}}" [multiple]="true"  [(ngModel)]='userEspecial.hospitals'>
                   <mat-select-search formControlName="selectHosptals" ></mat-select-search>
-                  <mat-option *ngFor="let selectHosptals of filteredHosptals | async" [value]="selectHosptals">
-                    {{selectHosptals.value}}
+                  <mat-option *ngFor="let selectHosptals of filteredHosptals" [value]="selectHosptals">
+                    {{selectHosptals}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
@@ -174,27 +175,27 @@
 
 
               <mat-form-field id="medicinesSelect" >
-                <mat-select  (focus)="filterOption('selectMedicines')"  formControlName="medicines" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputMedicines}}" [multiple]="true" >
+                <mat-select  (focus)="filterOption('selectMedicines')"  formControlName="medicines" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputMedicines}}" [multiple]="true"  [(ngModel)]='userEspecial.medicines'>
                   <mat-select-search id="mat-select-true" formControlName="selectMedicines" ></mat-select-search>
-                  <mat-option  *ngFor="let selectMedicines of filteredMedicine | async"  [value]="selectMedicines">
-                    {{selectMedicines.value}}
+                  <mat-option  *ngFor="let selectMedicines of filteredMedicine"  [value]="selectMedicines">
+                    {{selectMedicines}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
           </div>
 
             <div class="container-checks display-grid-data-person">
-              <mat-slide-toggle  formControlName="checkBirthDeficiency" [color]="color"> {{ text.iamEspecialAndDevotee.aboutYouChecks.checkBirthDisability}} </mat-slide-toggle>
-              <mat-slide-toggle  formControlName="checkHaveTIIC" [color]="color"> {{ text.iamEspecialAndDevotee.aboutYouChecks.checkHaveTIIC}} </mat-slide-toggle>
-              <mat-slide-toggle  formControlName="checkImpairedFertility" [color]="color"> {{ text.iamEspecialAndDevotee.aboutYouChecks.checkImpairedFertility}} </mat-slide-toggle>
-              <mat-slide-toggle  formControlName="checkOvercomingExample" [color]="color"> {{ text.iamEspecialAndDevotee.aboutYouChecks.checkOvercomingExample}} </mat-slide-toggle>
+              <mat-slide-toggle  formControlName="checkBirthDeficiency" [color]="color" [(ngModel)]='userEspecial.checkBirthDisability'> {{ text.iamEspecialAndDevotee.aboutYouChecks.checkBirthDisability}} </mat-slide-toggle>
+              <mat-slide-toggle  formControlName="checkHaveTIIC" [color]="color" [(ngModel)]='userEspecial.checkHaveTIIc'> {{ text.iamEspecialAndDevotee.aboutYouChecks.checkHaveTIIC}} </mat-slide-toggle>
+              <mat-slide-toggle  formControlName="checkImpairedFertility" [color]="color" [(ngModel)]='userEspecial.checkImpairedFertility'> {{ text.iamEspecialAndDevotee.aboutYouChecks.checkImpairedFertility}} </mat-slide-toggle>
+              <mat-slide-toggle  formControlName="checkOvercomingExample" [color]="color" [(ngModel)]='userEspecial.checkOvercomingExample'> {{ text.iamEspecialAndDevotee.aboutYouChecks.checkOvercomingExample}} </mat-slide-toggle>
             </div>
           </div>
         </form>
       </div>
     </mat-card>
     <button [routerLink]="['/create-continue']" mat-stroked-button class="btn-return-background-2" color="primary">{{ text.createAccountContinue.btnReturn }}</button>
-    <button mat-raised-button color="primary" class="btn btn-next">Proximo</button>
+    <button [routerLink]="['/preferences']" mat-raised-button color="primary" class="btn btn-next" (click)="nextPage()" >Proximo</button>
   </div>
 </div>
 

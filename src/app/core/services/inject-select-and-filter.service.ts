@@ -25,6 +25,9 @@ import { TranslateService } from 'src/app/shared/translate.service';
 interface Hosp {
   value: string;
  }
+interface Cids {
+  value: string;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -35,6 +38,10 @@ export class InjectSelectAndFilterService {
   private gender: string[] = ['Masculino', 'Feminino', 'outros'];
   private orientation: string[] = ['Hetero', 'Homo', 'Muitos outros'];
   private surgery: string[] = ['surgery-One', 'surgery-Two', 'surgery-Three'];
+  private cids: Cids[] = [
+    {value: 'Cid-One'},
+    {value: 'Cid-Two'},
+    {value: 'Cid-Three'}];
   private hosptals: Hosp[] = [
     {value: 'hosp-One'},
     {value: 'hosp-Two'},
@@ -47,6 +54,7 @@ export class InjectSelectAndFilterService {
   private allMedicines: ResponseMedicinesInterface[];
   public filteredBanksMulti: ReplaySubject<ResponseMedicinesInterface[]> = new ReplaySubject<ResponseMedicinesInterface[]>(1);
   public filteredHosptals: ReplaySubject<Hosp[]> = new ReplaySubject<Hosp[]>(1);
+  public filteredCids: ReplaySubject<Cids[]> = new ReplaySubject<Cids[]>(1);
 
 
     /** Subject that emits when the component has been destroyed. */
@@ -77,12 +85,13 @@ export class InjectSelectAndFilterService {
       case 'selectHosptals':
         this.filteredHosptals.next(this.hosptals);
         break;
+      case 'selectCids':
+        this.filteredCids.next(this.cids);
+        break;
       // case 'selectSurgery':
-      //   this.filteredSurgery.next(this.surgery);=== 0);
+      //   this.filteredSurgery.next(this.surgery);
       //   break;
-      // case 'cids':
-      //   inputOptions =  this.cids.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
-      //   break;
+
       // case 'gender':
       //   inputOptions =  this.gender.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
       //   break;
@@ -173,12 +182,15 @@ export class InjectSelectAndFilterService {
           this.hosptals.filter(hosptals => hosptals.value.toLowerCase().indexOf(control.value.toLowerCase()) > -1)
         );
         break;
+      case 'cids':
+        this.filteredCids.next(
+          this.cids.filter(cids => cids.value.toLowerCase().indexOf(control.value.toLowerCase()) > -1)
+        );
+        break;
       // case 'surgery':
       //   inputOptions =  this.surgery.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
       //   break;
-      // case 'cids':
-      //   inputOptions =  this.cids.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
-      //   break;
+
       // case 'gender':
       //   inputOptions =  this.gender.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
       //   break;

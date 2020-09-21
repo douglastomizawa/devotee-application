@@ -55,24 +55,12 @@
   .input-file{
     display: none;
   }
-  .container-checks{
-    margin-top: 10px;
-    padding: 0 1rem;
-  }
   mat-form-field{
     padding: 0 1rem;
   }
   .btn-return-background-2{
     margin-left: 0;
   }
-  .container-card-info-perfil{
-    margin: 1rem 0;
-    mat-card {
-      padding: 1rem 1.5rem;
-    }
-  }
-
-
   .container-form{
     mat-form-field{
       display: block;
@@ -98,14 +86,7 @@
     .more-photos{
       max-width: 200px;
     }
-    .container-checks{
 
-        :nth-child(2), :nth-child(4){
-          padding-left: 20px;
-        }
-
-
-    }
     .display-grid-data-person{
       display: grid;
       grid-template-columns: 1fr 1fr;

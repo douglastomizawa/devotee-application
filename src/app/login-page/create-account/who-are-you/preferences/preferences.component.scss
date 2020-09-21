@@ -1,0 +1,49 @@
+@import "../../../../app.component.scss";
+
+.container-cards{
+  max-width: 800px;
+  margin: 1.5rem 1.5rem 1rem;
+  display: grid;
+  flex-direction: column;
+  mat-card {
+    .first-card{
+      color: $btn-login-primary;
+    }
+    mat-card-title{
+      color: $text-button-color-blue-primary;
+      font-size: 1.2rem;
+    }
+    border-radius: 20px;
+  }
+  .who-are-you {
+    mat-card {
+      padding: 1rem 1.5rem;
+      color: $btn-login-primary;
+      background-color: $background-footer-header;
+    }
+  }
+  .block-cards{
+    margin-top: 10px;
+  }
+  .input-file{
+    display: none;
+  }
+  .btn-return-background-2{
+    margin-left: 0;
+  }
+
+}
+@media only screen and(min-width:700px){
+  .container-cards{
+    margin: 2rem 3rem;
+    .btn-next{
+      padding: 0 25px;
+    }
+  }
+}
+
+@media only screen and(min-width:800px){
+  .container-cards{
+    margin: 2rem auto;
+  }
+}

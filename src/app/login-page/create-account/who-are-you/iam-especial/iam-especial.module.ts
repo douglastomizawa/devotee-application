@@ -1,3 +1,4 @@
+import { GetValuesApisPtUsService } from './../../../../core/services/get-values-apis-pt-us.service';
 import { MatSelectSearchModule } from './../../../mat-select-search/mat-select-search.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -45,6 +46,7 @@ import { MedicinesService } from 'src/app/core/services/medicines.service';
   providers: [
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
     MedicinesService,
+    GetValuesApisPtUsService,
 
   ]
 })

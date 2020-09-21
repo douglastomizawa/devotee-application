@@ -14,17 +14,4 @@ export class UserFactory {
   userSessionFirst(objectValue): void {
     this.newUser = objectValue;
   }
-  teste(){
-    console.log(this.newUser);
-  }
-  // OnInit(){
-  //   console.log(this.userSessionFirst);
-  // }
-  // set userSessionFirst(value) {
-  //   this._userSession = value;
-  // }
-
-  // get userSessionFirst() {
-  //     return this._userSession;
-  // }
 }

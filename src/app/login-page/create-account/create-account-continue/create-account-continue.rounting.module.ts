@@ -22,6 +22,11 @@ const loginRoutes = [{
     path: 'especial-person',
     // tslint:disable-next-line:max-line-length
     loadChildren: () => import('src/app/login-page/create-account/who-are-you/iam-especial/iam-especial.module').then(m => m.IamEspecialModule)
+  },
+  {
+    path: 'preferences',
+    // tslint:disable-next-line:max-line-length
+    loadChildren: () => import('src/app/login-page/create-account/who-are-you/preferences/preferences.module').then(m => m.PreferencesModule)
   }
   ]}];
 

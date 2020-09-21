@@ -1,3 +1,5 @@
+import { UserEspecial } from './../../../../core/model/user-especial.model';
+import { GetValuesApisPtUsService } from './../../../../core/services/get-values-apis-pt-us.service';
 import { InjectSelectAndFilterService } from './../../../../core/services/inject-select-and-filter.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import data, { TranslateService } from './../../../../shared/translate.service';
@@ -29,18 +31,19 @@ export class IamEspecialComponent implements OnInit {
   email: string;
   language: string;
   dataUser: FormGroup;
+  userEspecial: UserEspecial = new UserEspecial();
   orientation: string[] = ['Hetero', 'Homo', 'Muitos outros'];
-  cids: string[] = ['cid-One', 'cid-Two', 'cid-Three'];
   surgery: string[] = ['surgery-One', 'surgery-Two', 'surgery-Three'];
   filteredOptions: Observable<string[]>;
-  filteredMedicine: any;
-  filteredHosptals: any;
+  filteredMedicine: string[] = [];
+  filteredCids: string[] = [];
+  filteredHosptals: string[] = [];
   constructor(
     private translatePage: TranslateService,
     private formBuilder: FormBuilder,
     private user: UserFactory,
     private injectSelect: InjectSelectAndFilterService,
-
+    private getValueApis: GetValuesApisPtUsService,
     ) { }
   matcher = new MyErrorStateMatcher();
   ngOnInit(): void {
@@ -50,13 +53,29 @@ export class IamEspecialComponent implements OnInit {
     this.createForm();
     this.getValuePopulateCreateAccount();
     this.injectSelect.getAllAPIToSelectDiv();
+    this.filterValueToPushInArrayToOptions();
   }
+  setOptionValues(): void {
+    this.filteredMedicine = this.getValueApis.filteredMedicine;
+    this.filteredHosptals = this.getValueApis.filteredHosptals;
+    this.filteredCids = this.getValueApis.filteredCids;
+  }
+  filterValueToPushInArrayToOptions(): void {
+    if (this.translatePage.dataFormatation === 'pt') {
+      this.getValueApis.getApisValuePt();
+      this.setOptionValues();
+    }else{
+      this.getValueApis.getApisValueUs();
+      this.setOptionValues();
+    }
+  }
+
   private selectIsReady(): Promise<void> {
     return new Promise ((resolve: any, reject: any) => {
       setInterval((): void => {
         const selectDivElement: any = document.querySelectorAll('div[id^="mat-select-"]');
         const resolvePromise: object = {promiseResolve: true, elementSelect: selectDivElement[0]};
-        selectDivElement[0] !== null ? resolve(resolvePromise) : reject(false);
+        selectDivElement[0] !== undefined ? resolve(resolvePromise) : reject(false);
      }, 2000);
     });
   }
@@ -79,6 +98,7 @@ export class IamEspecialComponent implements OnInit {
             this.loadMore().then(( resload: any) => {
               if (resload) {
                 this.injectSelect.filterOptionSelect(inputControl, this.dataUser);
+                // console.log(this.filteredMedicine);
               }
             });
           }
@@ -87,8 +107,6 @@ export class IamEspecialComponent implements OnInit {
     });
   }
   filterOption(inputControl: string): void {
-    this.filteredMedicine = this.injectSelect.filteredBanksMulti;
-    this.filteredHosptals = this.injectSelect.filteredHosptals;
     this.injectSelect.filterOptionSelect(inputControl, this.dataUser);
     this.getFinalScrollSelect(inputControl);
   }
@@ -97,6 +115,9 @@ export class IamEspecialComponent implements OnInit {
       startWith(''),
       map(value => this.injectSelect.filterGenderAndOrientation(value, inputControl))
   );
+  }
+  nextPage(){
+    console.log(this.dataUser.controls, this.userEspecial);
   }
   getValuePopulateCreateAccount(): void{
     this.name =  this.user.newUser[ 'name' ];
