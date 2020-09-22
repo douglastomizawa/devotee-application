@@ -3,6 +3,7 @@ import { TranslateService } from './shared/translate.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MatButtonModule } from '@angular/material/button';
@@ -25,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatFormFieldModule,
     MatNativeDateModule,
     HttpClientModule,
+    MatIconModule,
   ],
   exports: [
     MatButtonModule,

@@ -8,6 +8,7 @@ export class GetValuesApisPtUsService {
   filteredMedicine: string[] = [];
   filteredHosptals: string[] = [];
   filteredCids: string[] = [];
+  filteredUserType: string[] = [];
   constructor(private injectSelect: InjectSelectAndFilterService) { }
 
   getApisValuePt(): void{
@@ -32,6 +33,15 @@ export class GetValuesApisPtUsService {
         }
       }
     });
+    this.injectSelect.filteredUserType.subscribe(data => {
+
+      for (let i of data) {
+
+        if (this.filteredUserType.indexOf(i.value) === -1){
+          this.filteredUserType.push(i.value);
+        }
+      }
+    });
   }
   getApisValueUs(): void{
     this.injectSelect.filteredBanksMulti.subscribe(data => {
@@ -53,6 +63,13 @@ export class GetValuesApisPtUsService {
       for (let i of data) {
         if (this.filteredCids.indexOf(i.value) === -1){
           this.filteredCids.push(i.value);
+        }
+      }
+    });
+    this.injectSelect.filteredUserType.subscribe(data => {
+      for (let i of data) {
+        if (this.filteredUserType.indexOf(i.value) === -1){
+          this.filteredUserType.push(i.value);
         }
       }
     });

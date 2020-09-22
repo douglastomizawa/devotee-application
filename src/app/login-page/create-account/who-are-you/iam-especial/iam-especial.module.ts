@@ -12,12 +12,13 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatButtonModule} from '@angular/material/button';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {  ReactiveFormsModule } from '@angular/forms';
 
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 
 import { IamEspecialComponent } from './iam-especial.component';
 
-import {  ReactiveFormsModule } from '@angular/forms';
+
 import { MedicinesService } from 'src/app/core/services/medicines.service';
 
 @NgModule({
@@ -42,6 +43,7 @@ import { MedicinesService } from 'src/app/core/services/medicines.service';
     MatCardModule,
     MatInputModule,
     MatIconModule,
+
   ],
   providers: [
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},

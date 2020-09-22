@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PreferencesComponent } from './preferences.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSliderModule} from '@angular/material/slider';
-
+import {MatSelectModule} from '@angular/material/select';
 import { PreferencesRountingModule } from './preferences.rounting.module';
+import { MatSelectSearchModule } from './../../../mat-select-search/mat-select-search.module';
+import {  ReactiveFormsModule } from '@angular/forms';
+
+import { PreferencesComponent } from './preferences.component';
 
 
 
@@ -18,6 +21,9 @@ import { PreferencesRountingModule } from './preferences.rounting.module';
     MatInputModule,
     MatButtonModule,
     MatSliderModule,
+    MatSelectModule,
+    MatSelectSearchModule,
+    ReactiveFormsModule,
     PreferencesRountingModule,
 
   ]

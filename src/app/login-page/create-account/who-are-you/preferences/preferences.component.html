@@ -1,38 +1,104 @@
 <div class="container-cards">
-  <div class="cards who-are-you">
+  <div class="cards preferences">
+
     <mat-card>
       <mat-card-title class="first-card">
-      qqqq
+        Preferências
       </mat-card-title>
     </mat-card>
   </div>
   <div class="block-cards container-card-info-perfil">
-    <mat-card>
-      <div class="container-perfil-photo">
-        <mat-card-title>
-        qqqqq
-        </mat-card-title>
-        <!-- [displayWith]="formatLabel" -->
-        <mat-slider
-        thumbLabel
-        [displayWith]="formatLabel"
-        tickInterval="1"
-        min="1"
-        max="5000"></mat-slider>
-      </div>
-      <div class="block-cards container-more-photos">
-        <mat-card-title>
-         qqqq
-        </mat-card-title>
-      </div>
-      <div class="block-cards container-form">
-        <mat-card-title>
-         qqqq
-        </mat-card-title>
+    <form [formGroup]="userPreference">
+      <!-- <input type="text"  formControlName="localization"> -->
+      <mat-card>
+        <div class="container-preference-grid  select-preferences">
+         <div class="localiztion-preference" >
+          <mat-card-title>
+            Localização
+          </mat-card-title>
+          <!-- thumbLabel -->
 
-      </div>
-    </mat-card>
-    <button [routerLink]="['/create-continue']" mat-stroked-button class="btn-return-background-2" color="primary">btn</button>
-    <button mat-raised-button color="primary" class="btn btn-next">Proximo</button>
+          <mat-slider
+          [displayWith]="formatLabel"
+          tickInterval="1000"
+          min="1"
+          max="5000" [color]="color" ></mat-slider>
+          <p>Raio de busca: 5.000km</p>
+         </div>
+        </div>
+
+        <div class="block-cards container-preferences-selects">
+          <mat-card-title>
+            Preferências de usuário
+          </mat-card-title>
+          <div class="container-preference-grid  select-preferences">
+            <mat-form-field >
+              <mat-select (focus)="filterOption('selectUserType')" formControlName="userType" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputHosptals}}" [multiple]="true">
+                <mat-select-search formControlName="selectUserType" ></mat-select-search>
+                <mat-option *ngFor="let optionUserType of filteredUserType" [value]="optionUserType">
+                  {{optionUserType}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+
+            <mat-form-field >
+              <mat-select (focus)="filterOption('selectUserType')" formControlName="genre" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputHosptals}}" [multiple]="true">
+                <mat-select-search formControlName="selectGenre" ></mat-select-search>
+                <mat-option *ngFor="let optionUserType of filteredUserType" [value]="optionUserType">
+                  {{optionUserType}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+
+            <mat-form-field >
+              <mat-select (focus)="filterOption('selectUserType')" formControlName="orientation" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputHosptals}}" [multiple]="true">
+                <mat-select-search formControlName="selectOrientation" ></mat-select-search>
+                <mat-option *ngFor="let optionUserType of filteredUserType" [value]="optionUserType">
+                  {{optionUserType}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+
+            <mat-form-field >
+              <mat-select (focus)="filterOption('selectUserType')" formControlName="interesseType" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputHosptals}}" [multiple]="true">
+                <mat-select-search formControlName="selectIntertingType" ></mat-select-search>
+                <mat-option *ngFor="let optionUserType of filteredUserType" [value]="optionUserType">
+                  {{optionUserType}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+        </div>
+        <div class="block-cards container-form">
+          <mat-card-title>
+           Idade
+          </mat-card-title>
+          <div class="container-preference-grid  select-preferences">
+            <div class="min-birth">
+              <mat-slider
+              [displayWith]="formatLabel"
+              tickInterval="100"
+              min="1"
+              max="100" [color]="color" ></mat-slider>
+              <p>Idade mínima: 18 anos</p>
+            </div>
+            <div class="max-bith">
+              <mat-slider
+              [displayWith]="formatLabel"
+              tickInterval="100"
+              min="18"
+              max="100" [color]="color" ></mat-slider>
+              <p>Idade máxima: 100 anos</p>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+  </form>
+    <button [routerLink]="['/create-continue']" mat-stroked-button class="btn-return-background-2  btn-width" color="primary">Return</button>
+    <button mat-raised-button color="primary" class="btn btn-next btn-width">Proximo</button>
   </div>
 </div>

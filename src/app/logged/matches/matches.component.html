@@ -1,0 +1,37 @@
+  <div class="container-matches">
+    <div class="container-filter-and-matches">
+      <div class="matches">
+        <mat-icon class="circle-matches-filter">favorite</mat-icon>
+      </div>
+      <div class="filter">
+        <mat-icon class="circle-matches-filter">filter_alt</mat-icon>
+      </div>
+    </div>
+    <div class="container-matches-sugestion">
+      <!-- *ngFor="let teste of matchUser"  -->
+      <mat-card *ngFor="let teste of matchUser">
+        <div class="container-sugestion-perfil">
+          <!-- <mat-icon class="circle-matches-person">person</mat-icon> -->
+          <mat-icon class="circle-matches-person"><img src="http://34.223.220.245/{{teste.photo}}" alt=""></mat-icon>
+          <span><b>{{teste.first_name}}, {{teste.usercurrentage}}</b>
+          <p>{{teste.user_type}}</p>
+          </span>
+        </div>
+        <div class="container-perfil-picture" >
+          <img src="http://34.223.220.245/{{teste.photo}}" alt="">
+        </div>
+      </mat-card>
+
+      </div>
+      <div class="aling-buttons">
+        <div class="container-buttons-matches">
+          <div class="deslike">
+            <mat-icon class="matches-buttons">thumb_down</mat-icon>
+          </div>
+          <div class="like">
+            <mat-icon class="matches-buttons">thumb_up</mat-icon>
+          </div>
+      </div>
+      </div>
+
+  </div>

@@ -28,6 +28,10 @@ interface Hosp {
 interface Cids {
   value: string;
 }
+
+interface UserType {
+  value: string;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -46,6 +50,10 @@ export class InjectSelectAndFilterService {
     {value: 'hosp-One'},
     {value: 'hosp-Two'},
     {value: 'hosp-Three'}];
+  private preferenceUserType: UserType[] = [
+    {value: 'hosp-One'},
+    {value: 'hosp-Two'},
+    {value: 'hosp-Three'}];
   // private cids: Cids[] = [
   //   {value: 'Remedio-One', id: 'A', value_en: 's', country: 'br', codeiso2: 'sd', codeiso3: 'ds'},
   //   {value: 'Remedio-Two', id: 'B', value_en: 's', country: 'br', codeiso2: 'sd', codeiso3: 'ds'},
@@ -55,6 +63,7 @@ export class InjectSelectAndFilterService {
   public filteredBanksMulti: ReplaySubject<ResponseMedicinesInterface[]> = new ReplaySubject<ResponseMedicinesInterface[]>(1);
   public filteredHosptals: ReplaySubject<Hosp[]> = new ReplaySubject<Hosp[]>(1);
   public filteredCids: ReplaySubject<Cids[]> = new ReplaySubject<Cids[]>(1);
+  public filteredUserType: ReplaySubject<UserType[]> = new ReplaySubject<UserType[]>(1);
 
 
     /** Subject that emits when the component has been destroyed. */
@@ -88,6 +97,9 @@ export class InjectSelectAndFilterService {
       case 'selectCids':
         this.filteredCids.next(this.cids);
         break;
+      case 'selectUserType':
+        this.filteredUserType.next(this.preferenceUserType);
+        break;
       // case 'selectSurgery':
       //   this.filteredSurgery.next(this.surgery);
       //   break;
@@ -98,6 +110,7 @@ export class InjectSelectAndFilterService {
       // case 'orientation':
       //     inputOptions =  this.orientation.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
       //     break;
+
       default:
         break;
     }
@@ -185,6 +198,11 @@ export class InjectSelectAndFilterService {
       case 'cids':
         this.filteredCids.next(
           this.cids.filter(cids => cids.value.toLowerCase().indexOf(control.value.toLowerCase()) > -1)
+        );
+        break;
+      case 'selectUserType':
+        this.filteredUserType.next(
+          this.preferenceUserType.filter(userType => userType.value.toLowerCase().indexOf(control.value.toLowerCase()) > -1)
         );
         break;
       // case 'surgery':

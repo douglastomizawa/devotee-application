@@ -2,7 +2,7 @@ import { UserEspecial } from './../../../../core/model/user-especial.model';
 import { GetValuesApisPtUsService } from './../../../../core/services/get-values-apis-pt-us.service';
 import { InjectSelectAndFilterService } from './../../../../core/services/inject-select-and-filter.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import data, { TranslateService } from './../../../../shared/translate.service';
+import  { TranslateService } from './../../../../shared/translate.service';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import {ErrorStateMatcher, ThemePalette} from '@angular/material/core';
 import {Observable} from 'rxjs';

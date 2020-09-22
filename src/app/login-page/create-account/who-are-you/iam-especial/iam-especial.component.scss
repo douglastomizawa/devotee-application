@@ -1,7 +1,7 @@
 @import "../../../../app.component.scss";
 
 .container-cards{
-  max-width: 800px;
+  max-width: 720px;
   margin: 1.5rem 1.5rem 1rem;
   display: grid;
   flex-direction: column;
@@ -22,15 +22,53 @@
       background-color: $background-footer-header;
     }
   }
+  .profile-img{
+    display: flex;
+    margin: 0 auto;
+    position: relative;
+    width:80px;
+    height: 68px;
+    background-color: $background-color-insert-photos;
+    border: 1px solid $border-color-insert-photos;
+    border-radius: 8px;
+    color: #909090;
+    font-size: 80px;
+
+  }
   .photo-principal{
     .avatar{
-      img{
-        display: flex;
-        margin: 0 auto;
-        max-width: 100px;
-        border-radius: 8px;
+      .profile-img::after{
+        content:"add_a_photo";
+        transform: scale(.2);
+        // background-size: 20px 20px;
+        display: block;
+        position: absolute;
+        bottom: -2px;
+        right: -2px;
+        width:20px;
+        height:20px;
+        border-radius: 100%;
+        z-index: 3;
+      }
+      .profile-img::before{
+        content:"";
+        display: block;
+        position: absolute;
+        bottom: -10px;
+        right: -10px;
+        width:25px;
+        height:25px;
+        border-radius: 100%;
+        background: $background-color-insert-photos;
+        z-index: 1;
       }
     }
+  }
+  .container-checks{
+    mat-slide-toggle{
+      padding: 0 1rem;
+    }
+
   }
   .more-photos{
     justify-self: center;
@@ -39,10 +77,6 @@
     margin: 5px;
     max-width: 150px;
     border-radius: 8px;
-    img{
-      width: 100%;
-      max-height: 100px;
-    }
   }
   .more-pictures{
     display: grid;
@@ -75,16 +109,37 @@
     }
     .photo-principal{
       .avatar{
-        img{
-          display: flex;
-          margin: 0 auto;
+        .profile-img{
           max-width: 200px;
-          border-radius: 8px;
+          width:100px;
+          height: 80px;
+          font-size: 95px;
+        }
+        .profile-img::after{
+          transform: scale(.2);
+          bottom: 5px;
+          right: 5px;
+          width:20px;
+          height:20px;
+        }
+        .profile-img::before{
+          bottom: -10px;
+          right: -10px;
+          width:35px;
+          height:35px;
         }
       }
     }
     .more-photos{
       max-width: 200px;
+      .profile-img{
+        display: flex;
+        justify-content: center;
+        align-content: flex-end;
+        width:150px;
+        height: 90px;
+        font-size: 110px;
+      }
     }
 
     .display-grid-data-person{
