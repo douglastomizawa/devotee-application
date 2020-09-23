@@ -11,8 +11,25 @@ body{
   width: 100vw;
   .container-matches-sugestion{
     margin: 1rem 1rem 0;
-    max-height: 400px;
+    max-height: 430px;
     overflow: hidden;
+    position: relative;
+    justify-items: center;
+    align-items: center;
+    mat-card:nth-child(1){
+      z-index: 5;
+      top: 10px;
+    }
+    mat-card:nth-child(2){
+      z-index: 4;
+      position: absolute;
+      top: 22px;
+    }
+    mat-card:nth-child(3){
+      position: absolute;
+      top: 31px;
+      z-index: 3;
+    }
 
   }
   mat-card{
@@ -23,7 +40,7 @@ body{
     color: $text-button-color-blue-primary;
     border-radius: 10px;
     box-shadow: 0px 5px 5px #00000029;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
   }
   .container-filter-and-matches{
     display: flex;
@@ -121,9 +138,6 @@ body{
     "filter-and-matches filter-buttons"
     ;
 
-    mat-card{
-      margin: 0 auto;
-    }
     .aling-buttons{
       grid-area: filter-buttons;
     }
@@ -133,6 +147,29 @@ body{
     .container-matches-sugestion{
       margin: 4rem 1rem 1rem;
       grid-area: filter-sugestion;
+      position: relative;
+      margin: 0 auto;
+      max-height: 485px;
+      height: 485px;
+      justify-items: center;
+      align-items: center;
+      mat-card:nth-child(1){
+        z-index: 5;
+        top: 10px;
+        width: 100%;
+      }
+      mat-card:nth-child(2){
+        z-index: 4;
+        position: absolute;
+        top: 22px;
+        width: 100%;
+      }
+      mat-card:nth-child(3){
+        position: absolute;
+        top: 31px;
+        z-index: 3;
+        width: 100%;
+      }
     }
     .container-buttons-matches{
       margin: 0 auto;

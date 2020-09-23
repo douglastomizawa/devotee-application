@@ -4,6 +4,7 @@ import { MatchesComponent } from './matches.component';
 import { MatchesRountingModule } from './matches.rounting.module';
 import { MatIconModule } from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 
@@ -14,6 +15,7 @@ import {MatCardModule} from '@angular/material/card';
     MatchesRountingModule,
     MatIconModule,
     MatCardModule,
+    DragDropModule,
   ]
 })
 export class MatchesModule { }

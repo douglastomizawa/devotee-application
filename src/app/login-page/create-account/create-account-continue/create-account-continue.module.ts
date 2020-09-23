@@ -8,6 +8,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { User } from '../../../core/model/client.model';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { CreateAccountContinueRountingModule } from './create-account-continue.rounting.module';
 
@@ -22,6 +23,7 @@ import { CreateAccountContinueRountingModule } from './create-account-continue.r
     MatCardModule,
     MatButtonModule,
     MatAutocompleteModule,
+    MatProgressSpinnerModule,
     CreateAccountContinueRountingModule,
 
 

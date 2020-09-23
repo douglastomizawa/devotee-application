@@ -1,3 +1,7 @@
+
+<div class="container-sppiner" *ngIf="ShowLoading" >
+  <mat-spinner class="spinner"></mat-spinner>
+</div>
 <div class="container-cards">
   <div class="cards preferences">
 
@@ -99,6 +103,6 @@
       </mat-card>
   </form>
     <button [routerLink]="['/create-continue']" mat-stroked-button class="btn-return-background-2  btn-width" color="primary">Return</button>
-    <button mat-raised-button color="primary" class="btn btn-next btn-width">Proximo</button>
+    <button mat-raised-button color="primary" class="btn btn-next btn-width" (click)="loadingSpinner()">Proximo</button>
   </div>
 </div>

@@ -11,7 +11,7 @@ export class GetValuesApisPtUsService {
   filteredUserType: string[] = [];
   constructor(private injectSelect: InjectSelectAndFilterService) { }
 
-  getApisValuePt(): void{
+  getApisValuePt(): void {
     this.injectSelect.filteredBanksMulti.subscribe(data => {
       for (let i of data) {
         if (this.filteredMedicine.indexOf(i.value) === -1){

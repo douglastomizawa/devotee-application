@@ -9,7 +9,7 @@
     </div>
     <div class="container-matches-sugestion">
       <!-- *ngFor="let teste of matchUser"  -->
-      <mat-card *ngFor="let teste of matchUser">
+      <mat-card *ngFor="let teste of matchUser" cdkDrag>
         <div class="container-sugestion-perfil">
           <!-- <mat-icon class="circle-matches-person">person</mat-icon> -->
           <mat-icon class="circle-matches-person"><img src="http://34.223.220.245/{{teste.photo}}" alt=""></mat-icon>
@@ -26,10 +26,10 @@
       <div class="aling-buttons">
         <div class="container-buttons-matches">
           <div class="deslike">
-            <mat-icon class="matches-buttons">thumb_down</mat-icon>
+            <mat-icon class="matches-buttons" (click)="addMoreMatch()">thumb_down</mat-icon>
           </div>
           <div class="like">
-            <mat-icon class="matches-buttons">thumb_up</mat-icon>
+            <mat-icon class="matches-buttons" (click)="addMoreMatch()" >thumb_up</mat-icon>
           </div>
       </div>
       </div>
