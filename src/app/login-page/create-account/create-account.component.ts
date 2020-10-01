@@ -1,5 +1,5 @@
 import { UserFactory } from './../../core/factory/user.factory.service';
-import { RedirectCreateContinueService } from './../../core/services/redirect-create-continue.service';
+import { RedirectCreateContinueService } from './../../core/services-redirect/redirect-create-continue.service';
 import { Router } from '@angular/router';
 import { TabsFooterTermsComponent } from './../../footer/footer-modal.component';
 import { FooterComponent } from './../../footer/footer.component';
@@ -50,9 +50,7 @@ export class CreateAccountComponent implements OnInit {
     this.translatePage.veriyLanguage();
     this.text = this.translatePage.textTranslate;
     this.createForm();
-
   }
-
   execClickTabsShow(name: any): void{
     this.footerTabs.execClickTabs(name);
   }
@@ -74,13 +72,11 @@ export class CreateAccountComponent implements OnInit {
   get f() { return this.registerForm.controls; }
   onSubmit(): void{
     if ( !this.registerForm.invalid){
-
       this.userfactory.userSessionFirst(this.user);
       this.redirectCreateContinueService.createAccountContinueRedirect( this.registerForm.invalid);
     }
   }
   matcher = new MyErrorStateMatcher();
-
   openDialogRegister(): void{
     this.dialog.openDialog();
   }

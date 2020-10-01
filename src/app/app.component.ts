@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RedirectCreateContinueService } from './core/services/redirect-create-continue.service';
+import { RedirectCreateContinueService } from './core/services-redirect/redirect-create-continue.service';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +7,5 @@ import { RedirectCreateContinueService } from './core/services/redirect-create-c
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'devotee-app';
+  title = 'Devotee';
 }

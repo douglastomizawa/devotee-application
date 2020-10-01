@@ -1,7 +1,12 @@
+import { RedirectLoggedService } from './../../core/services-redirect/redirect-logged.service';
+import { LoadingSpinnerService } from './../../core/loading-spinner.service';
+import { LoginService } from './../../core/services/login.service';
 import { TranslateService } from './../../shared/translate.service';
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
+import { SplitMatchesService } from 'src/app/core/services/split-matches.service';
+import { Router } from '@angular/router';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -19,17 +24,54 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
+  /* tslint:disable:no-string-literal */
+
   hide = true;
   text;
-  constructor(private translatePage: TranslateService) { }
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+  loginGroup: FormGroup;
+  loginUser: Login = new Login();
+  resError = false;
+  constructor(
+    private translatePage: TranslateService,
+    private login: LoginService,
+    private formBuilder: FormBuilder,
+    private loadingSpinnerC: LoadingSpinnerService,
+    private splitMatches: SplitMatchesService,
+    private redirectLogged: RedirectLoggedService,
 
+    ) {}
   matcher = new MyErrorStateMatcher();
-
+  get f() { return this.loginGroup.controls;}
   ngOnInit(): void {
     this.text = this.translatePage.textTranslate;
+    this.createForm();
   }
+  loginLoad(): void {
+    this.loadingSpinnerC.loadingSpinner('/matches').then((res: any) => {
+      if (res) {
+        this.redirectLogged.loggedRedirect(res);
+      }
+    });
+  }
+  createForm( ): void {
+      this.loginGroup = this.formBuilder.group({
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required]]
+      });
+  }
+  onSubmit(): void {
+    console.log(this.loginUser);
+    this.login.post(this.loginUser).toPromise().then((res) => {
+      if (!res['status']) {
+        this.resError = true;
+      }else{
+        this.splitMatches.returnIdUser(res['id']);
+        this.loginLoad();
+      }
+    })
+  }
+}
+export class Login {
+  email: string;
+  password: string;
 }

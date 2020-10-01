@@ -1,7 +1,5 @@
-import { User } from './../../../core/model/client.model';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from './../../../shared/translate.service';
-import { UserFactory } from 'src/app/core/factory/user.factory.service';
 
 @Component({
   selector: 'app-create-account-continue',

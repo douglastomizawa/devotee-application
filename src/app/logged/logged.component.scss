@@ -11,6 +11,7 @@
 router-outlet{
   display: none;
 }
+
 header {
   padding: 20px;
   background-color: $background-footer-header;
@@ -45,16 +46,43 @@ header {
       max-height: 30px;
     }
     mat-icon{
-      color: #fff;
-      opacity: 0.7;
+      cursor: pointer;
     }
   }
 }
+.icon-menu-logged{
+  color: #fff;
+  opacity: 0.7;
 
+}
+.icon-route-is-active{
+  opacity: 1;
+
+}
 @media only screen and(min-width:800px) {
 
+  .icon-menu-logged{
+    color: #fff;
+    opacity: 0.7;
+    font-size: 35px;
+  }
+  .icon-route-is-active{
+    opacity: 1;
+    :hover{
+      cursor: pointer;
+    }
+    :active{
+      outline: 0;
+    }
+  }
+
   header {
-    padding: 30px 40px;
+    padding: 25px 40px;
+    .container-menu-logged{
+      :nth-child(1),:nth-child(2){
+        margin-right: 25px;
+      }
+    }
     img {
       width: 40px;
       margin-right: 10px;

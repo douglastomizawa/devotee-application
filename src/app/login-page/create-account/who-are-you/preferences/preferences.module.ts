@@ -1,3 +1,4 @@
+import { ComponentsModule } from './../../../../components/components.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatCardModule} from '@angular/material/card';
@@ -27,6 +28,7 @@ import { PreferencesComponent } from './preferences.component';
     ReactiveFormsModule,
     MatProgressSpinnerModule,
     PreferencesRountingModule,
+    ComponentsModule,
 
   ]
 })

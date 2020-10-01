@@ -8,19 +8,20 @@
   </div>
   <div class="block-cards container-card-info-perfil">
     <mat-card>
+      <form [formGroup]="dataUser">
       <div class="container-perfil-photo">
         <mat-card-title>
           {{ text.iamEspecialAndDevotee.principalPhotoPerfil }}
         </mat-card-title>
         <div class="photo-principal">
           <label for="avatar" class="avatar">
-            <mat-icon class="profile-img"><img  class="profile-img" src="../../../../../assets/back-login.png" alt=""></mat-icon>
+            <mat-icon class="profile-img"><img class="" src={{url}} alt="">person</mat-icon>
             <!-- <mat-icon class="profile-img">person</mat-icon> -->
           </label>
 
           <input type="file"
                 id="avatar" name="avatar"
-                accept="image/png, image/jpeg" class="input-file input-photo-principal">
+                accept="image/png, image/jpeg" (change)='onSelectFile($event)'  class="input-file input-photo-principal">
         </div>
       </div>
       <div class="block-cards container-more-photos">
@@ -35,9 +36,10 @@
               <!--<mat-icon class="profile-img"><img class="profile-img" src="../../../../../assets/facebook-logo.svg" alt=""></mat-icon>  -->
             </label>
 
-            <input type="file"
-                  id="more-photos-1" name="more-photos-1"
-                  accept="image/png, image/jpeg" class="input-file input-photo-principal">
+            <input
+              type="file"
+              id="more-photos-1" name="more-photos-1"
+              accept="image/png, image/jpeg" class="input-file input-photo-principal">
           </div>
           <div class="more-photos more-photos-2">
             <label for="more-photos-2" class="more-photos-2">
@@ -45,18 +47,20 @@
               <!--<mat-icon class="profile-img"><img class="profile-img" src="../../../../../assets/facebook-logo.svg" alt=""></mat-icon>  -->
             </label>
 
-            <input type="file"
-                  id="more-photos-2" name="more-photos-2"
-                  accept="image/png, image/jpeg" class="input-file input-photo-principal">
+            <input
+              type="file"
+              id="more-photos-2" name="more-photos-2"
+              accept="image/png, image/jpeg" class="input-file input-photo-principal">
           </div>
           <div class="more-photos more-photos-3" >
             <label for="more-photos-3" class="more-photos-3">
               <mat-icon class="profile-img">person</mat-icon>
               <!-- <mat-icon class="profile-img"><img class="profile-img" src="../../../../../assets/facebook-logo.svg" alt=""></mat-icon> -->
             </label>
-            <input type="file"
-                  id="more-photos-3" name="more-photos-3"
-                  accept="image/png, image/jpeg" class="input-file input-photo-principal">
+            <input
+              type="file"
+              id="more-photos-3" name="more-photos-3"
+              accept="image/png, image/jpeg" class="input-file input-photo-principal">
           </div>
         </div>
       </div>
@@ -65,11 +69,11 @@
         <mat-card-title>
           {{ text.iamEspecialAndDevotee.aboutYou.aboutYouTitle }}
         </mat-card-title>
-        <form [formGroup]="dataUser">
+
           <div class="infos-person display-grid-data-person">
             <mat-form-field class="input-name">
               <mat-label>{{ text.iamEspecialAndDevotee.aboutYou.inputName }}</mat-label>
-              <input matInput formControlName="name" autocomplete="off" [(ngModel)]='userEspecial.name'>
+              <input matInput formControlName="name" autocomplete="off" [value]="name" [(ngModel)]='userEspecial.name'>
             </mat-form-field>
             <mat-form-field class="example-full-width input-email">
               <mat-label>Email</mat-label>
@@ -196,13 +200,12 @@
               <mat-slide-toggle  formControlName="checkOvercomingExample" [color]="color" [(ngModel)]='userEspecial.checkOvercomingExample'> {{ text.iamEspecialAndDevotee.aboutYouChecks.checkOvercomingExample}} </mat-slide-toggle>
             </div>
           </div>
-        </form>
+
       </div>
+      </form>
     </mat-card>
     <button [routerLink]="['/create-continue']" mat-stroked-button class="btn-return-background-2" color="primary">{{ text.createAccountContinue.btnReturn }}</button>
     <button [routerLink]="['/preferences']" mat-raised-button color="primary" class="btn btn-next" (click)="nextPage()" >Proximo</button>
   </div>
 </div>
-<div class="container-sppiner">
-  <mat-spinner class="spinner"></mat-spinner>
-</div>
+

@@ -1,12 +1,11 @@
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { User } from '../model/client.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RedirectCreateContinueService {
-  private formAuthenticated: boolean = false;
+  private formAuthenticated = false;
   constructor(private router: Router) { }
   createAccountContinueRedirect(formInvalid): void {
     if (!formInvalid) {
@@ -17,7 +16,7 @@ export class RedirectCreateContinueService {
     }
 
   }
-  formIsAuthenticated() {
+  formIsAuthenticated(): boolean {
     return this.formAuthenticated;
   }
 }

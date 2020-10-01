@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { GetValuesApisPtUsService } from 'src/app/core/services/get-values-apis-pt-us.service';
 import { SplitMatchesService } from 'src/app/core/services/split-matches.service';
+import { LoadingSpinnerService } from 'src/app/core/loading-spinner.service';
 
 @Component({
   selector: 'app-preferences',
@@ -18,7 +19,6 @@ export class PreferencesComponent implements OnInit {
   color: ThemePalette = 'primary';
   userPreference: FormGroup;
   filteredUserType: string[] = [];
-  ShowLoading = false;
   teste = false;
   constructor(
     private translatePage: TranslateService,
@@ -27,10 +27,12 @@ export class PreferencesComponent implements OnInit {
     private getValueApis: GetValuesApisPtUsService,
     private splitMatches: SplitMatchesService,
     private router: Router,
+    private loadingSpinnerC: LoadingSpinnerService,
+
     ) { }
   formatLabel(value: number) {
     if (value ) {
-      return Math.round(value / 1000) + 'K';
+      return Math.round(value / 100) + 'K';
     }
     return value;
   }
@@ -56,22 +58,9 @@ export class PreferencesComponent implements OnInit {
     this.translatePage.veriyLanguage();
     this.text = this.translatePage.textTranslate;
   }
-  private selectIsReady(): Promise<void> {
-    return new Promise ((resolve: any, reject: any) => {
-      setInterval((): void => {
-        const resolvePromise = this.splitMatches.matchUser['finishPromise'];
-        resolvePromise !== undefined ? resolve(resolvePromise) : reject(false);
-     }, 200);
-    });
-  }
   loadingSpinner(): void{
-    this.ShowLoading = true;
-    this.splitMatches.getMatches();
-    this.selectIsReady().then( (ressponse: void)  => {
-      if (ressponse !== null) {
-        this.router.navigate(['/matches']);
-      }
-    });
+    this.splitMatches.returnIdUser(19);
+    this.loadingSpinnerC.loadingSpinner('/matches');
   }
   createForm( ): void {
     this.userPreference = this.formBuilder.group({

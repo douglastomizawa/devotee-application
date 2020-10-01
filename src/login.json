@@ -44,6 +44,7 @@
           }
         },
         "signin":{
+          "errorEmailAndPassword":"E-mail ou senha incorretos",
           "msgErrorEmailInvalid":"Por favor insira um endereço de e-mail válido",
           "emailIs":"E-mail é ",
           "required":"obritório",
@@ -107,7 +108,7 @@
             "inputSelectCID":"Selecione o CID",
             "inputSurgery":"Cirurgias",
             "inputHosptals":"Hosptáis",
-            "inputMedicines":"Remédios"
+            "inputMedicines":"Procedimentos médicos"
           },
           "aboutYouChecks":{
             "checkBirthDisability":"Deficiência desde nascença",
@@ -184,6 +185,7 @@
           }
         },
         "signin":{
+          "errorEmailAndPassword":"Incorrect e-mail or password",
           "msgErrorEmailInvalid":"Please enter a valid email address",
           "emailIs":"E-mail is ",
           "required":"required",
@@ -248,8 +250,8 @@
             "aboutYourDisabilityTitle":"About your disability",
             "inputSelectCID":"Select the CID",
             "inputSurgery":"Surgery",
-            "inputHosptals":"Hosptals",
-            "inputMedicines":"Medicines"
+            "inputHosptals":"Clinics, Hosptals and Dialysis centers",
+            "inputMedicines":"Medical procedure"
           },
           "aboutYouChecks":{
             "checkBirthDisability":"Disability since birth",

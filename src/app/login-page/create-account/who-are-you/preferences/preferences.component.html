@@ -1,7 +1,4 @@
-
-<div class="container-sppiner" *ngIf="ShowLoading" >
-  <mat-spinner class="spinner"></mat-spinner>
-</div>
+<app-loading-spinner></app-loading-spinner>
 <div class="container-cards">
   <div class="cards preferences">
 
@@ -23,6 +20,7 @@
           <!-- thumbLabel -->
 
           <mat-slider
+          thumbLabel
           [displayWith]="formatLabel"
           tickInterval="1000"
           min="1"

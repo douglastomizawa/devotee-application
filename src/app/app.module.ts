@@ -11,8 +11,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatNativeDateModule } from '@angular/material/core';
-import { RedirectCreateContinueService } from './core/services/redirect-create-continue.service';
+import { RedirectCreateContinueService } from './core/services-redirect/redirect-create-continue.service';
 import { HttpClientModule } from '@angular/common/http';
+import { RedirectLoggedService } from './core/services-redirect/redirect-logged.service';
+import { LoggedGuardService } from './core/guards/logged.guard.service';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { HttpClientModule } from '@angular/common/http';
     TranslateService,
     RedirectCreateContinueService,
     AuthGuardService,
+    LoggedGuardService,
+    RedirectLoggedService,
   ],
   bootstrap: [
     AppComponent

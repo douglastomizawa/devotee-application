@@ -1,8 +1,8 @@
 import { UserEspecial } from './../../../../core/model/user-especial.model';
 import { GetValuesApisPtUsService } from './../../../../core/services/get-values-apis-pt-us.service';
 import { InjectSelectAndFilterService } from './../../../../core/services/inject-select-and-filter.service';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import  { TranslateService } from './../../../../shared/translate.service';
+import { Component, OnInit } from '@angular/core';
+import { TranslateService } from './../../../../shared/translate.service';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import {ErrorStateMatcher, ThemePalette} from '@angular/material/core';
 import {Observable} from 'rxjs';
@@ -22,6 +22,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class IamEspecialComponent implements OnInit {
   text;
+  url;
+
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
@@ -98,7 +100,6 @@ export class IamEspecialComponent implements OnInit {
             this.loadMore().then(( resload: any) => {
               if (resload) {
                 this.injectSelect.filterOptionSelect(inputControl, this.dataUser);
-                // console.log(this.filteredMedicine);
               }
             });
           }
@@ -116,13 +117,24 @@ export class IamEspecialComponent implements OnInit {
       map(value => this.injectSelect.filterGenderAndOrientation(value, inputControl))
   );
   }
-  nextPage(){
+  nextPage(): void{
     console.log(this.dataUser.controls, this.userEspecial);
   }
   getValuePopulateCreateAccount(): void{
-    this.name =  this.user.newUser[ 'name' ];
-    this.email =  this.user.newUser[ 'email' ];
+    this.userEspecial['name'] =  this.user.newUser['name'];
+    this.userEspecial['email'] =  this.user.newUser['email'];
   }
+  onSelectFile(event): void {
+    console.log(event.target.files);
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (evt) => {
+        this.url = evt.target.result;
+        console.log(evt.target.result);
+      }
+    }
+}
   createForm( ): void {
     this.dataUser = this.formBuilder.group({
           name: ['', [Validators.required]],
