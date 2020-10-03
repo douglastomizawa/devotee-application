@@ -7,6 +7,7 @@ import { ThemePalette } from '@angular/material/core';
 import { GetValuesApisPtUsService } from 'src/app/core/services/get-values-apis-pt-us.service';
 import { SplitMatchesService } from 'src/app/core/services/split-matches.service';
 import { LoadingSpinnerService } from 'src/app/core/loading-spinner.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-preferences',
@@ -26,31 +27,28 @@ export class PreferencesComponent implements OnInit {
     private formBuilder: FormBuilder,
     private getValueApis: GetValuesApisPtUsService,
     private splitMatches: SplitMatchesService,
-    private router: Router,
     private loadingSpinnerC: LoadingSpinnerService,
+    private location: Location,
 
     ) { }
-  formatLabel(value: number) {
+  return(): void {
+    this.location.back();
+  }
+  formatLabel(value: number): string {
     if (value ) {
       return Math.round(value / 100) + 'K';
     }
-    return value;
+    // return value;
   }
   setOptionValues(): void {
     this.filteredUserType = this.getValueApis.filteredUserType;
   }
   filterOption(inputControl: string): void {
     this.injectSelect.filterOptionSelect(inputControl, this.userPreference);
-
   }
   filterValueToPushInArrayToOptions(): void {
-    if (this.translatePage.dataFormatation === 'pt') {
-      this.getValueApis.getApisValuePt();
-      this.setOptionValues();
-    }else{
-      this.getValueApis.getApisValueUs();
-      this.setOptionValues();
-    }
+    this.translatePage.dataFormatation === 'pt' ? this.getValueApis.getApisValuePt() : this.getValueApis.getApisValueUs();
+    this.setOptionValues();
   }
   ngOnInit(): void {
     this.createForm();
@@ -60,7 +58,7 @@ export class PreferencesComponent implements OnInit {
   }
   loadingSpinner(): void{
     this.splitMatches.returnIdUser(19);
-    this.loadingSpinnerC.loadingSpinner('/matches');
+    this.loadingSpinnerC.loadingSpinner();
   }
   createForm( ): void {
     this.userPreference = this.formBuilder.group({

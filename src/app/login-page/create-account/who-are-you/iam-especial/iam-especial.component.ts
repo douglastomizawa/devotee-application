@@ -81,7 +81,7 @@ export class IamEspecialComponent implements OnInit {
      }, 2000);
     });
   }
-  loadMore() {
+  loadMore(): Promise<void> {
    return new Promise((resolve: any, reject: any) => {
     this.injectSelect.emitLoadMoreOptions.subscribe(
       loadMore => {
@@ -134,7 +134,7 @@ export class IamEspecialComponent implements OnInit {
         console.log(evt.target.result);
       }
     }
-}
+  }
   createForm( ): void {
     this.dataUser = this.formBuilder.group({
           name: ['', [Validators.required]],

@@ -11,7 +11,11 @@
 router-outlet{
   display: none;
 }
-
+app-user-settings{
+  display: grid;
+  align-items: center;
+  align-content: center;
+}
 header {
   padding: 20px;
   background-color: $background-footer-header;

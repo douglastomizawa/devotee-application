@@ -47,7 +47,7 @@ export class SignInComponent implements OnInit {
     this.createForm();
   }
   loginLoad(): void {
-    this.loadingSpinnerC.loadingSpinner('/matches').then((res: any) => {
+    this.loadingSpinnerC.loadingSpinner().then((res: any) => {
       if (res) {
         this.redirectLogged.loggedRedirect(res);
       }

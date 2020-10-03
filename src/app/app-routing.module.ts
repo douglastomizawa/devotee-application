@@ -1,3 +1,4 @@
+import { BlockInitialPageService } from './core/guards/block-initial-page.guard.service';
 import { LoggedGuardService } from './core/guards/logged.guard.service';
 
 import { NgModule } from '@angular/core';
@@ -11,7 +12,8 @@ const routes: Routes = [
     redirectTo: '/login',
     pathMatch: 'full'
     },
-  {path: '', loadChildren: () => import('src/app/login-page/login-page.module').then(m => m.LoginPageModule)},
+  {path: '', loadChildren: () => import('src/app/login-page/login-page.module').then(m => m.LoginPageModule),
+  canActivate: [BlockInitialPageService]},
   // tslint:disable-next-line:max-line-length
   {path: '',
   // tslint:disable-next-line:max-line-length

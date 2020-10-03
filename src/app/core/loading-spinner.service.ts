@@ -21,7 +21,7 @@ export class LoadingSpinnerService {
      }, 200);
     });
   }
-  loadingSpinner(url): Promise<void>{
+  loadingSpinner(): Promise<void>{
     return new Promise ((resolve: any, reject: any) => {
       this.ShowLoading = true;
       this.splitMatches.getMatches();

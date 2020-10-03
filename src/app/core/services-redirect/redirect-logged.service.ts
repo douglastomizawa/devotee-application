@@ -17,6 +17,8 @@ export class RedirectLoggedService {
       this.router.navigate(['/matches']);
       this.loadingSpinner.ShowLoading = false;
     }else {
+      console.log(loggedInvalid);
+      this.router.navigate(['/login']);
       this.loginAutenticated = false;
     }
   }

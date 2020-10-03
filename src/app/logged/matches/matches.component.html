@@ -7,22 +7,22 @@
         <mat-icon class="circle-matches-filter">filter_alt</mat-icon>
       </div>
     </div>
-    <div class="container-matches-sugestion">
+    <div class="container-matches-sugestion"  (dragover)='dragCard($event)'>
       <!-- *ngFor="let teste of matchUser" cdkDrag(dragover)='dragCard($event)' -->
-      <mat-card *ngFor="let teste of matchUser"  (dragover)='dragCard($event)'>
+      <mat-card *ngFor="let user of matchUser" >
         <div class="container-sugestion-perfil">
           <!-- <mat-icon class="circle-matches-person">person</mat-icon> -->
-          <mat-icon class="circle-matches-person"><img src="http://34.223.220.245/{{teste.photo}}" alt=""></mat-icon>
-          <span><b>{{teste.first_name}}, {{teste.usercurrentage}}</b>
-          <p>{{teste.user_type}}</p>
+          <mat-icon class="circle-matches-person"><img src="http://34.223.220.245/{{user.photo}}" alt=""></mat-icon>
+          <span><b>{{user.first_name}}, {{user.usercurrentage}}</b>
+          <p>{{user.user_type}}</p>
           </span>
         </div>
         <div class="container-perfil-picture" >
-          <img src="http://34.223.220.245/{{teste.photo}}" alt="">
+          <img src="http://34.223.220.245/{{user.photo}}" alt="">
         </div>
       </mat-card>
 
-      </div>
+    </div>
       <div class="aling-buttons">
         <div class="container-buttons-matches">
           <button class="matches-buttons" (click)="addMoreMatch('deslike')">

@@ -15,6 +15,12 @@ body {
     position: relative;
     justify-items: center;
     align-items: center;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+   user-select: none;
     .like-animation {
       transform: rotate(45deg) translate3d(600px,200px,20px);
       transition: 1.5s;

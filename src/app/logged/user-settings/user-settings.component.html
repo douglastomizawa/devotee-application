@@ -1,0 +1,36 @@
+<div class="app-user-settings">
+  <div class="container-user-settings">
+    <div class="container-first-card">
+      <mat-card>
+        <mat-card-title>Configurações</mat-card-title>
+      </mat-card>
+    </div>
+    <div class="container-card-settins">
+      <mat-card class="card-settings">
+        <mat-icon>person</mat-icon>
+        <mat-card-title>Meu perfil</mat-card-title>
+      </mat-card>
+      <mat-card class="card-settings">
+        <mat-icon>edit</mat-icon>
+        <mat-card-title>Editar perfil</mat-card-title>
+      </mat-card>
+      <mat-card class="card-settings" [routerLink]="['/preferences']">
+        <mat-icon>filter_alt</mat-icon>
+        <mat-card-title>Preferências</mat-card-title>
+      </mat-card>
+      <mat-card class="card-settings"  >>
+        <mat-icon>security</mat-icon>
+        <mat-card-title>Alterar senha</mat-card-title>
+      </mat-card>
+      <mat-card class="card-settings">
+        <mat-icon>delete</mat-icon>
+        <mat-card-title>Deletar perfil</mat-card-title>
+      </mat-card>
+      <mat-card class="card-settings" (click)="logout()" >
+        <mat-icon>power_settings_new</mat-icon>
+        <mat-card-title>Sair</mat-card-title>
+      </mat-card>
+    </div>
+    <button mat-stroked-button class="btn-return-background-2  btn-width" color="primary" (click)="return()" >Return</button>
+  </div>
+</div>
