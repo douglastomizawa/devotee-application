@@ -2,7 +2,7 @@ import { UserEspecial } from './../../../../core/model/user-especial.model';
 import { GetValuesApisPtUsService } from './../../../../core/services/get-values-apis-pt-us.service';
 import { InjectSelectAndFilterService } from './../../../../core/services/inject-select-and-filter.service';
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from './../../../../shared/translate.service';
+import data, { TranslateService } from './../../../../shared/translate.service';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import {ErrorStateMatcher, ThemePalette} from '@angular/material/core';
 import {Observable} from 'rxjs';
@@ -35,7 +35,7 @@ export class IamEspecialComponent implements OnInit {
   orientation: string[] = ['Hetero', 'Homo', 'Muitos outros'];
   surgery: string[] = ['surgery-One', 'surgery-Two', 'surgery-Three'];
   filteredOptions: Observable<string[]>;
-  filteredMedicine: string[] = [];
+  filteredMedicine;
   filteredCids: string[] = [];
   filteredHosptals: string[] = [];
   constructor(
@@ -56,7 +56,7 @@ export class IamEspecialComponent implements OnInit {
     this.filterValueToPushInArrayToOptions();
   }
   setOptionValues(): void {
-    this.filteredMedicine = this.getValueApis.filteredMedicine;
+    this.filteredMedicine = this.injectSelect.filteredBanksMulti;
     this.filteredHosptals = this.getValueApis.filteredHosptals;
     this.filteredCids = this.getValueApis.filteredCids;
   }

@@ -59,6 +59,8 @@ export class InjectSelectAndFilterService {
   //   {value: 'Remedio-Two', id: 'B', value_en: 's', country: 'br', codeiso2: 'sd', codeiso3: 'ds'},
   //   {value: 'Remedio-Three', id: 'C', value_en: 's', country: 'br', codeiso2: 'sd', codeiso3: 'ds'}];
   private medicines: ResponseMedicinesInterface[];
+  private medicinesPT: ResponseMedicinesInterface[];
+  private medicinesUS: ResponseMedicinesInterface[];
   private allMedicines: ResponseMedicinesInterface[];
   public filteredBanksMulti: ReplaySubject<ResponseMedicinesInterface[]> = new ReplaySubject<ResponseMedicinesInterface[]>(1);
   public filteredHosptals: ReplaySubject<Hosp[]> = new ReplaySubject<Hosp[]>(1);
@@ -75,11 +77,33 @@ export class InjectSelectAndFilterService {
 
   private getMedicinesApi(): void {
     this.medicineAPI.get().toPromise().then(res => {
-      for (let i of res.slice(0, 50)) {
-        this.medicines = res.slice(0, 50);
-        this.allMedicines = res;
+      const medicinePT: any[] = [];
+      const medicineUS: any[] = [];
+      for (let i of res) {
+        switch (i.codeiso2) {
+          case 'BR':
+            medicinePT.push(i);
+            break;
+          case 'US':
+            medicineUS.push(i);
+            break;
+          default:
+            medicinePT.push(i);
+            break;
+        }
       }
-      console.log(res.slice(0, 50).length);
+      switch (this.translatePage.dataFormatation) {
+        case 'pt':
+          this.medicines = medicinePT.slice(0, 50);
+          this.allMedicines = medicinePT;
+          break;
+        case 'us':
+          this.medicines = medicineUS.slice(0, 50);
+          this.allMedicines = medicineUS;
+          break;
+        default:
+          break;
+      }
     });
   }
   getAllAPIToSelectDiv(): void {
