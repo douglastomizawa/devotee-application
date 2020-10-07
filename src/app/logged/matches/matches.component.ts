@@ -1,5 +1,6 @@
 import { SplitMatchesService } from './../../core/services/split-matches.service';
 import { Component, OnInit } from '@angular/core';
+
 @Component({
   selector: 'app-matches',
   templateUrl: './matches.component.html',

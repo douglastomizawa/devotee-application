@@ -4,7 +4,7 @@
 
     <mat-card>
       <mat-card-title class="first-card">
-        Preferências
+        {{text.prefences.title}}
       </mat-card-title>
     </mat-card>
   </div>
@@ -15,27 +15,26 @@
         <div class="container-preference-grid  select-preferences">
          <div class="localiztion-preference" >
           <mat-card-title>
-            Localização
+            {{text.prefences.localization}}
           </mat-card-title>
           <!-- thumbLabel -->
 
           <mat-slider
-          thumbLabel
           [displayWith]="formatLabel"
           tickInterval="1000"
           min="1"
-          max="5000" [color]="color" ></mat-slider>
-          <p>Raio de busca: 5.000km</p>
+          max="5000" [color]="color" #searchRadius></mat-slider>
+          <p>{{text.prefences.searchRadius}} {{searchRadius.value}}km</p>
          </div>
         </div>
 
         <div class="block-cards container-preferences-selects">
           <mat-card-title>
-            Preferências de usuário
+            {{text.prefences.userPreferences}}
           </mat-card-title>
           <div class="container-preference-grid  select-preferences">
             <mat-form-field >
-              <mat-select (focus)="filterOption('selectUserType')" formControlName="userType" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputHosptals}}" [multiple]="true">
+              <mat-select (focus)="filterOption('selectUserType')" formControlName="userType" placeholder="{{ text.prefences.userType}}" [multiple]="true">
                 <mat-select-search formControlName="selectUserType" ></mat-select-search>
                 <mat-option *ngFor="let optionUserType of filteredUserType" [value]="optionUserType">
                   {{optionUserType}}
@@ -45,7 +44,7 @@
 
 
             <mat-form-field >
-              <mat-select (focus)="filterOption('selectUserType')" formControlName="genre" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputHosptals}}" [multiple]="true">
+              <mat-select (focus)="filterOption('selectUserType')" formControlName="genre" placeholder="{{text.prefences.genre}}" [multiple]="true">
                 <mat-select-search formControlName="selectGenre" ></mat-select-search>
                 <mat-option *ngFor="let optionUserType of filteredUserType" [value]="optionUserType">
                   {{optionUserType}}
@@ -55,7 +54,7 @@
 
 
             <mat-form-field >
-              <mat-select (focus)="filterOption('selectUserType')" formControlName="orientation" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputHosptals}}" [multiple]="true">
+              <mat-select (focus)="filterOption('selectUserType')" formControlName="orientation" placeholder="{{ text.prefences.orientation}}" [multiple]="true">
                 <mat-select-search formControlName="selectOrientation" ></mat-select-search>
                 <mat-option *ngFor="let optionUserType of filteredUserType" [value]="optionUserType">
                   {{optionUserType}}
@@ -65,7 +64,7 @@
 
 
             <mat-form-field >
-              <mat-select (focus)="filterOption('selectUserType')" formControlName="interesseType" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputHosptals}}" [multiple]="true">
+              <mat-select (focus)="filterOption('selectUserType')" formControlName="interesseType" placeholder="{{ text.prefences.interestType}}" [multiple]="true">
                 <mat-select-search formControlName="selectIntertingType" ></mat-select-search>
                 <mat-option *ngFor="let optionUserType of filteredUserType" [value]="optionUserType">
                   {{optionUserType}}
@@ -77,30 +76,30 @@
         </div>
         <div class="block-cards container-form">
           <mat-card-title>
-           Idade
+            {{text.prefences.age}}
           </mat-card-title>
           <div class="container-preference-grid  select-preferences">
             <div class="min-birth">
               <mat-slider
               [displayWith]="formatLabel"
               tickInterval="100"
-              min="1"
-              max="100" [color]="color" ></mat-slider>
-              <p>Idade mínima: 18 anos</p>
+              min="18"
+              max="100" [color]="color" #minimumAge></mat-slider>
+              <p>{{text.prefences.minimunAge}} {{minimumAge.value}} {{text.prefences.years}}</p>
             </div>
             <div class="max-bith">
               <mat-slider
               [displayWith]="formatLabel"
               tickInterval="100"
               min="18"
-              max="100" [color]="color" ></mat-slider>
-              <p>Idade máxima: 100 anos</p>
+              max="100" [color]="color" #maximumAge></mat-slider>
+              <p>{{text.prefences.maximumAge}} {{maximumAge.value}} {{text.prefences.years}}</p>
             </div>
           </div>
         </div>
       </mat-card>
   </form>
-    <button (click)="return()"  mat-stroked-button class="btn-return-background-2  btn-width" color="primary">Return</button>
+    <button (click)="return()"  mat-stroked-button class="btn-return-background-2  btn-width" color="primary">{{text.btnRollback}}</button>
     <button mat-raised-button color="primary" class="btn btn-next btn-width" (click)="loadingSpinner()">Proximo</button>
   </div>
 </div>

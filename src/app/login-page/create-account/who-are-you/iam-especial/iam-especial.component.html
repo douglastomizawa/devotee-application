@@ -13,15 +13,14 @@
         <mat-card-title>
           {{ text.iamEspecialAndDevotee.principalPhotoPerfil }}
         </mat-card-title>
-        <div class="photo-principal">
+        <div class="photo-principal cursor-pointer">
           <label for="avatar" class="avatar">
-            <mat-icon class="profile-img"><img class="" src={{url}} alt="">person</mat-icon>
-            <!-- <mat-icon class="profile-img">person</mat-icon> -->
+            <mat-icon *ngIf="urlProfile === undefined" class="profile-img">person</mat-icon>
+            <mat-icon *ngIf="urlProfile !== undefined" class="profile-img user-img"><img class="" src={{urlProfile}} alt=""></mat-icon>
           </label>
-
           <input type="file"
                 id="avatar" name="avatar"
-                accept="image/png, image/jpeg" (change)='onSelectFile($event)'  class="input-file input-photo-principal">
+                accept="image/png, image/jpeg" (change)='onSelectFile($event, "urlProfile")'  class="input-file input-photo-principal">
         </div>
       </div>
       <div class="block-cards container-more-photos">
@@ -30,37 +29,36 @@
         </mat-card-title>
         <div class="more-pictures">
           <div class="more-photos more-photos-1">
-            <label for="more-photos-1" class="more-photos-1">
-              <mat-icon class="profile-img">person</mat-icon>
-
-              <!--<mat-icon class="profile-img"><img class="profile-img" src="../../../../../assets/facebook-logo.svg" alt=""></mat-icon>  -->
+            <label for="more-photos-1" class="more-photos-1 cursor-pointer">
+              <mat-icon *ngIf="urlMore1 === undefined" class="profile-img">person</mat-icon>
+              <mat-icon *ngIf="urlMore1 !== undefined" class="profile-img"><img class="" src={{urlMore1}} alt=""></mat-icon>
             </label>
 
             <input
               type="file"
               id="more-photos-1" name="more-photos-1"
-              accept="image/png, image/jpeg" class="input-file input-photo-principal">
+              accept="image/png, image/jpeg" (change)='onSelectFile($event, "urlMore1")' class="input-file input-photo-principal">
           </div>
           <div class="more-photos more-photos-2">
-            <label for="more-photos-2" class="more-photos-2">
-              <mat-icon class="profile-img">person</mat-icon>
-              <!--<mat-icon class="profile-img"><img class="profile-img" src="../../../../../assets/facebook-logo.svg" alt=""></mat-icon>  -->
+            <label for="more-photos-2" class="more-photos-2 cursor-pointer">
+              <mat-icon *ngIf="urlMore2 === undefined" class="profile-img">person</mat-icon>
+              <mat-icon *ngIf="urlMore2 !== undefined" class="profile-img "><img class="" src={{urlMore2}} alt=""></mat-icon>
             </label>
 
             <input
               type="file"
               id="more-photos-2" name="more-photos-2"
-              accept="image/png, image/jpeg" class="input-file input-photo-principal">
+              accept="image/png, image/jpeg" (change)='onSelectFile($event, "urlMore2")' class="input-file input-photo-principal">
           </div>
           <div class="more-photos more-photos-3" >
-            <label for="more-photos-3" class="more-photos-3">
-              <mat-icon class="profile-img">person</mat-icon>
-              <!-- <mat-icon class="profile-img"><img class="profile-img" src="../../../../../assets/facebook-logo.svg" alt=""></mat-icon> -->
+            <label for="more-photos-3" class="more-photos-3 cursor-pointer">
+              <mat-icon *ngIf="urlMore3 === undefined" class="profile-img">person</mat-icon>
+              <mat-icon *ngIf="urlMore3 !== undefined" class="profile-img"><img class="" src={{urlMore3}} alt=""></mat-icon>
             </label>
             <input
               type="file"
               id="more-photos-3" name="more-photos-3"
-              accept="image/png, image/jpeg" class="input-file input-photo-principal">
+              accept="image/png, image/jpeg" (change)='onSelectFile($event, "urlMore3")' class="input-file input-photo-principal">
           </div>
         </div>
       </div>
@@ -77,13 +75,13 @@
             </mat-form-field>
             <mat-form-field class="example-full-width input-email">
               <mat-label>Email</mat-label>
-              <input matInput [formControl]="emailFormControl" [(ngModel)]='userEspecial.email' [errorStateMatcher]="matcher"
+              <input matInput [(ngModel)]='userEspecial.email' [errorStateMatcher]="matcher"
                      placeholder="Ex. pat@example.com" formControlName="email" autocomplete="off" >
               <mat-hint></mat-hint>
-              <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+              <mat-error *ngIf="f.email.hasError('email') && !f.email.hasError('required')">
                 {{ text.iamEspecialAndDevotee.aboutYou.inputEmail.errorInvalidEmail }}
               </mat-error>
-              <mat-error *ngIf="emailFormControl.hasError('required')">
+              <mat-error *ngIf="f.email.hasError('required')">
                 {{ text.iamEspecialAndDevotee.aboutYou.inputEmail.emailIs }} <strong>{{ text.iamEspecialAndDevotee.aboutYou.inputEmail.emailRequired }} </strong>
               </mat-error>
             </mat-form-field>
@@ -130,8 +128,15 @@
               </mat-autocomplete>
             </mat-form-field>
             <mat-form-field class="example-full-width input-text-area">
-              <mat-label>{{ text.iamEspecialAndDevotee.aboutYou.inputMoreAboutYou}}</mat-label>
-              <textarea matInput placeholder="Vamos conversar que te conto"></textarea>
+              <label for="about-you">
+                <mat-label>{{ text.iamEspecialAndDevotee.aboutYou.inputMoreAboutYou}}</mat-label>
+                <textarea matInput placeholder="Vamos conversar que te conto" #aboutYou></textarea>
+              </label>
+              <input
+                [(ngModel)]='userEspecial.aboutYou'
+                formControlName="aboutYou"
+                type="text"
+                id="about-you" name="about-you" value="{{aboutYou.value}}" style="display: none;" >
             </mat-form-field>
           </div>
           <div class="details-person ">
@@ -204,8 +209,8 @@
       </div>
       </form>
     </mat-card>
-    <button [routerLink]="['/create-continue']" mat-stroked-button class="btn-return-background-2" color="primary">{{ text.createAccountContinue.btnReturn }}</button>
-    <button [routerLink]="['/preferences']" mat-raised-button color="primary" class="btn btn-next" (click)="nextPage()" >Proximo</button>
+    <button [routerLink]="['/create-continue']" mat-stroked-button class="btn-return-background-2" color="primary">{{ text.btnRollback }}</button>
+    <button [routerLink]="['/preferences']" mat-raised-button color="primary" class="btn btn-next" (click)="nextPage()" >{{text.iamEspecialAndDevotee.btnNext}}</button>
   </div>
 </div>
 

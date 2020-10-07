@@ -1,5 +1,7 @@
 @import "../../../../app.component.scss";
-
+.cursor-pointer{
+  cursor: pointer;
+}
 .container-cards{
   max-width: 720px;
   margin: 1.5rem 1.5rem 1rem;
@@ -36,9 +38,16 @@
 
   }
   .photo-principal{
+    .user-img{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
     .avatar{
       img{
-        width: 100%;
+        width: auto;
+        border-radius: 8px;
+        max-height: 68px;
       }
       .profile-img::after{
         content:"add_a_photo";
@@ -112,12 +121,18 @@
     .photo-principal{
       .avatar{
         img{
-          width: 100%;
+          width: auto;
+          height: auto;
+          max-width: 100px;
+          max-height: 80px;
+          border-radius: 8px;
+          border-radius: 8px;
         }
         .profile-img{
           max-width: 200px;
           width:100px;
           height: 80px;
+          max-height: 80px;
           font-size: 95px;
         }
         .profile-img::after{
@@ -138,7 +153,11 @@
     .more-photos{
       max-width: 200px;
       img{
-        width: 100%;
+        width: auto;
+        height: auto;
+        max-height: 90px;
+        max-width: 151px;
+        border-radius: 8px;
       }
       .profile-img{
         display: flex;

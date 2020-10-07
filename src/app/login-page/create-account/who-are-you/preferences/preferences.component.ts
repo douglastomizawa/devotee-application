@@ -16,7 +16,6 @@ import { Location } from '@angular/common';
 })
 export class PreferencesComponent implements OnInit {
   text;
-  distanceMatch: number;
   color: ThemePalette = 'primary';
   userPreference: FormGroup;
   filteredUserType: string[] = [];
@@ -34,9 +33,10 @@ export class PreferencesComponent implements OnInit {
   return(): void {
     this.location.back();
   }
-  formatLabel(value: number): string {
+  formatLabel(value: number) {
     if (value ) {
-      return Math.round(value / 100) + 'K';
+      console.log(value);
+      return Math.round(value / 100); //+ 'K';
     }
     // return value;
   }

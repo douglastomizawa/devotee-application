@@ -14,7 +14,7 @@ const loginRoutes = [
 ];
 
 @NgModule({
-  imports:[RouterModule.forChild(loginRoutes)],
-  exports:[RouterModule]
+  imports: [RouterModule.forChild(loginRoutes)],
+  exports: [RouterModule]
 })
 export class LoginRountingModule{}

@@ -11,14 +11,13 @@ export class RedirectLoggedService {
     private router: Router,
     private loadingSpinner: LoadingSpinnerService,
     ) { }
-  loggedRedirect(loggedInvalid): void {
+  loggedRedirect(loggedInvalid, navigate): void {
     if (loggedInvalid) {
       this.loginAutenticated = true;
-      this.router.navigate(['/matches']);
+      this.router.navigate([navigate]);
       this.loadingSpinner.ShowLoading = false;
     }else {
-      console.log(loggedInvalid);
-      this.router.navigate(['/login']);
+      this.router.navigate([navigate]);
       this.loginAutenticated = false;
     }
   }

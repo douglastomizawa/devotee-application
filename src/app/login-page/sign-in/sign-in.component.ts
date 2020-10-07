@@ -48,9 +48,7 @@ export class SignInComponent implements OnInit {
   }
   loginLoad(): void {
     this.loadingSpinnerC.loadingSpinner().then((res: any) => {
-      if (res) {
-        this.redirectLogged.loggedRedirect(res);
-      }
+      res ? this.redirectLogged.loggedRedirect(res, '/matches') : this.resError = true;
     });
   }
   createForm( ): void {
@@ -60,7 +58,6 @@ export class SignInComponent implements OnInit {
       });
   }
   onSubmit(): void {
-    console.log(this.loginUser);
     this.login.post(this.loginUser).toPromise().then((res) => {
       if (!res['status']) {
         this.resError = true;

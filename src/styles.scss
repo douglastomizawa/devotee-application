@@ -3,6 +3,7 @@
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
 // Plus imports for other components in your app.
+@import "./app/app.component.scss";
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
@@ -77,3 +78,23 @@ body {
   }
 }
 
+.mat-typography p, .mat-typography h2{
+  margin: 0!important;
+}
+.mat-menu-content:not(:empty){
+  padding: 10px;
+}
+.menu-likes{
+  color: $blue-2E2;
+  border-radius: 10px!important;
+}
+mat-icon{
+  outline: 0;
+}
+@media only screen and(min-width:700px) {
+  .menu-likes{
+    position: absolute !important;
+    left: 50px!important;
+    top: -40px;
+  }
+}

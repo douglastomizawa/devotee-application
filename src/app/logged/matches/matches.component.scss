@@ -68,6 +68,11 @@ body {
   .container-filter-and-matches {
     display: flex;
     justify-content: center;
+    .cursor-pointer{
+      :hover{
+        cursor: pointer;
+      }
+    }
 
   }
 
@@ -160,6 +165,7 @@ body {
   }
 }
 @media only screen and(min-width:700px) {
+
   .container-matches {
     display: grid;
     grid-template-columns: 1fr 5fr 1fr;

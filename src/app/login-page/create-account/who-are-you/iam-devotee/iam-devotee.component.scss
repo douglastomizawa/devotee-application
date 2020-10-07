@@ -5,6 +5,9 @@
   margin: 1.5rem 1.5rem 1rem;
   display: grid;
   flex-direction: column;
+  .cursor-pointer{
+    cursor: pointer;
+  }
   mat-card {
     .first-card{
       color: $btn-login-primary;
@@ -22,13 +25,52 @@
       background-color: $background-footer-header;
     }
   }
-  .photo-principal{
+  .profile-img{
+    display: flex;
+    margin: 0 auto;
+    position: relative;
+    width:80px;
+    height: 68px;
+    background-color: $background-color-insert-photos;
+    border: 1px solid $border-color-insert-photos;
+    border-radius: 8px;
+    color: #909090;
+    font-size: 80px;
+  }
+ .photo-principal{
+    mat-icon{
+      display: flex;
+      justify-content: center;
+    }
     .avatar{
       img{
-        display: flex;
-        margin: 0 auto;
-        max-width: 100px;
+        width: auto;
         border-radius: 8px;
+        max-height: 68px;
+      }
+      .profile-img::after{
+        content:"add_a_photo";
+        transform: scale(.2);
+        display: block;
+        position: absolute;
+        bottom: -2px;
+        right: -2px;
+        width:20px;
+        height:20px;
+        border-radius: 100%;
+        z-index: 3;
+      }
+      .profile-img::before{
+        content:"";
+        display: block;
+        position: absolute;
+        bottom: -10px;
+        right: -10px;
+        width:25px;
+        height:25px;
+        border-radius: 100%;
+        background: $background-color-insert-photos;
+        z-index: 1;
       }
     }
   }
@@ -40,8 +82,9 @@
     max-width: 150px;
     border-radius: 8px;
     img{
-      width: 100%;
-      max-height: 100px;
+      width: auto;
+      max-height: 66px;
+      border-radius: 8px;
     }
   }
   .more-pictures{
@@ -70,23 +113,63 @@
 @media only screen and(min-width:700px){
   .container-cards{
     margin: 2rem 3rem;
+    .user-img{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
     .btn-next{
       padding: 0 25px;
     }
     .photo-principal{
       .avatar{
         img{
-          display: flex;
-          margin: 0 auto;
-          max-width: 200px;
+          width: auto;
+          height: auto;
+          max-width: 100px;
+          max-height: 80px;
           border-radius: 8px;
+        }
+        .profile-img{
+          max-width: 200px;
+          width:100px;
+          height: 80px;
+          font-size: 95px;
+        }
+        .profile-img::after{
+          transform: scale(.2);
+          bottom: 5px;
+          right: 5px;
+          width:20px;
+          height:20px;
+        }
+        .profile-img::before{
+          bottom: -10px;
+          right: -10px;
+          width:35px;
+          height:35px;
         }
       }
     }
     .more-photos{
       max-width: 200px;
+      img{
+        max-height: 90px;
+        width: auto;
+        height: auto;
+      }
+      .profile-img{
+        display: flex;
+        justify-content: center;
+        align-content: flex-end;
+        width:150px;
+        height: 90px;
+        font-size: 107px;
+      }
     }
-
+    .more-photos{
+      max-width: 200px;
+    }
     .display-grid-data-person{
       display: grid;
       grid-template-columns: 1fr 1fr;

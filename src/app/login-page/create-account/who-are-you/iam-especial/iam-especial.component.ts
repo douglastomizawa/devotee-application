@@ -22,12 +22,10 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class IamEspecialComponent implements OnInit {
   text;
-  url;
-
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+  urlProfile;
+  urlMore1;
+  urlMore2;
+  urlMore3;
   color: ThemePalette = 'primary';
   name: string;
   email: string;
@@ -124,15 +122,30 @@ export class IamEspecialComponent implements OnInit {
     this.userEspecial['name'] =  this.user.newUser['name'];
     this.userEspecial['email'] =  this.user.newUser['email'];
   }
-  onSelectFile(event): void {
-    console.log(event.target.files);
+  get f() { return this.dataUser.controls; }
+  onSelectFile(event, howInput): void {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
       reader.onload = (evt) => {
-        this.url = evt.target.result;
+        switch (howInput) {
+          case 'urlProfile':
+            this.urlProfile = evt.target.result;
+            break;
+          case 'urlMore1':
+            this.urlMore1 = evt.target.result;
+            break;
+          case 'urlMore2':
+            this.urlMore2 = evt.target.result;
+            break;
+          case 'urlMore3':
+            this.urlMore3 = evt.target.result;
+            break;
+          default:
+            break;
+        }
         console.log(evt.target.result);
-      }
+      };
     }
   }
   createForm( ): void {
@@ -143,6 +156,7 @@ export class IamEspecialComponent implements OnInit {
           profession: ['', [Validators.required]],
           gender: ['', [Validators.required]],
           orientation: ['', [Validators.required]],
+          aboutYou: [''],
           cids: [''],
           surgery: [''],
           hosptals: [''],

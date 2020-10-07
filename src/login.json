@@ -3,7 +3,7 @@
     "pt": {
         "title":"Seja bem-vindo!",
         "subTitle":"Agora ficou mais fácil conhecer sua cara metade. Crie uma conta para continuar",
-        "btnLogin":"Entrar.",
+        "btnLogin":"Entrar",
         "btnFb" :"Entrar com o Facebook",
         "btnQr" :"Entrar com QR Code",
         "policyPrivacy":"Política de Privacidade",
@@ -118,9 +118,32 @@
           },
           "btnNext":"Proximo"
         },
+        "prefences":{
+          "title":"Preferências",
+          "localization":"localização",
+          "searchRadius":"Raio de busca",
+          "userPreferences":"Preferências de usuário",
+          "userType":"Tipo de usuário",
+          "genre":"Gênero de preferências",
+          "orientation":"Orientação sexual",
+          "interestType":"Tipo de interesse",
+          "years":"Anos",
+          "age":"Idade",
+          "minimunAge":"Idade Minima:",
+          "maximumAge":"Idade máxima:"
+        },
+        "userSettings":{
+          "title":"Configurações",
+          "myProfile":"Meu perfil",
+          "editProfile":"Editar perfil",
+          "preferences":"Preferências",
+          "changePassword":"Alterar senha",
+          "deleteProfile":"Deletar perfil",
+          "logout":"Sair"
+        },
         "entryPassword":"Entre com sua senha",
         "btnRegister":"Criar conta",
-
+        "btnRollback":"Voltar",
         "tabs":{
           "termsuse":{
               "titleTabs":"Termos de Uso",
@@ -261,9 +284,32 @@
           },
           "btnNext":"Next"
         },
+        "prefences":{
+          "title":"Preferences",
+          "localization":"Localization",
+          "searchRadius":"Search radius:",
+          "userPreferences":"User preferences",
+          "userType":"User type",
+          "genre":"Preferences gender",
+          "orientation":"Sexual orientatin",
+          "interestType":"Type of interest",
+          "years":"years",
+          "age":"Age",
+          "minimunAge":"Minimum age:",
+          "maximumAge":"Maximum Age:"
+        },
+        "userSettings":{
+          "title":"Settings",
+          "myProfile":"My profile",
+          "editProfile":"Edit profile",
+          "preferences":"Preferences",
+          "changePassword":"Change password",
+          "deleteProfile":"Delete profile",
+          "logout":"Sair"
+        },
         "entryPassword":"Enter your password",
         "btnRegister":"Register",
-        "btnRollback":"Voltar",
+        "btnRollback":"Return",
         "tabs":{
           "termsuse":{
             "titleTabs":"Terms of Use",

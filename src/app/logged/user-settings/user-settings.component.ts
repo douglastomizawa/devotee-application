@@ -16,10 +16,11 @@ export class UserSettingsComponent implements OnInit {
     private redirectLoggedService: RedirectLoggedService,
   ) { }
   logout(): void{
-    this.redirectLoggedService.loggedRedirect(false);
+    this.redirectLoggedService.loggedRedirect(false, '/login');
   }
   ngOnInit(): void {
-    this.text = this.translatePage;
+    this.translatePage.veriyLanguage();
+    this.text = this.translatePage.textTranslate;
   }
   return(): void {
     this.location.back();

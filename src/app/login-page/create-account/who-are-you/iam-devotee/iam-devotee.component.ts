@@ -1,3 +1,4 @@
+import { UserDevotee } from './../../../../core/model/user-devotee.model';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from './../../../../shared/translate.service';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder } from '@angular/forms';
@@ -12,7 +13,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
 }
-
 @Component({
   selector: 'app-iam-devotee',
   templateUrl: './iam-devotee.component.html',
@@ -20,6 +20,10 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class IamDevoteeComponent implements OnInit {
   text;
+  urlProfile;
+  urlMore1;
+  urlMore2;
+  urlMore3;
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
@@ -29,6 +33,8 @@ export class IamDevoteeComponent implements OnInit {
   email: string;
   dataUser: FormGroup;
   myControl = new FormControl();
+  userDevotee: UserDevotee = new UserDevotee();
+
   gender: string[] = ['Masculino', 'Feminino', 'outros'];
   orientation: string[] = ['Hetero', 'Homo', 'Muitos outros'];
   filteredOptions: Observable<string[]>;
@@ -45,17 +51,19 @@ export class IamDevoteeComponent implements OnInit {
     this.createForm();
     this.getValuePopulateCreateAccount();
   }
+  onSubmit(){
+
+  }
   filterOption(inputControl: string): void {
     this.filteredOptions = this.dataUser.controls[inputControl].valueChanges.pipe(
       startWith(''),
       map(value => this._filterMedicines(value, inputControl))
     );
-    console.log(this.dataUser.controls.medicines);
   }
   getValuePopulateCreateAccount(): void{
     /* tslint:disable:no-string-literal */
-    this.name =  this.user.newUser[ 'name' ];
-    this.email =  this.user.newUser[ 'email' ];
+    this.userDevotee['name'] =  this.user.newUser['name'];
+    this.userDevotee['email'] =  this.user.newUser['email'];
   }
   private _filterMedicines(value: string, optionsArray: string): string[] {
     const filterValue = value.toLowerCase();
@@ -72,6 +80,32 @@ export class IamDevoteeComponent implements OnInit {
     }
     return inputOptions;
   }
+  onSelectFile(event, howInput): void {
+    console.log(event.target.files);
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (evt) => {
+        switch (howInput) {
+          case 'urlProfile':
+            this.urlProfile = evt.target.result;
+            break;
+          case 'urlMore1':
+            this.urlMore1 = evt.target.result;
+            break;
+          case 'urlMore2':
+            this.urlMore2 = evt.target.result;
+            break;
+          case 'urlMore3':
+            this.urlMore3 = evt.target.result;
+            break;
+          default:
+            break;
+        }
+      };
+    }
+  }
+get f() { return this.dataUser.controls; }
   createForm( ): void {
     this.dataUser = this.formBuilder.group({
           name: ['', [Validators.required]],
@@ -80,10 +114,11 @@ export class IamDevoteeComponent implements OnInit {
           profession: ['', [Validators.required]],
           gender: ['', [Validators.required]],
           orientation: ['', [Validators.required]],
-          checkBirthDeficiency: [''],
-          checkHaveTIIC: [''],
-          checkImpairedFertility: [''],
-          checkOvercomingExample: [''],
+          aboutYou: [''],
+          imgProfile: [''],
+          imgMore1: [''],
+          imgMore2: [''],
+          imgMore3: [''],
         });
   }
 }

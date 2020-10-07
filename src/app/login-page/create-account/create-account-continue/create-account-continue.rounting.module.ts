@@ -1,5 +1,6 @@
+import { LoggedComponent } from './../../../logged/logged.component';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, CanActivate } from '@angular/router';
 import { WhoAreYouModule } from './../who-are-you/who-are-you.module';
 import { IamEspecialModule } from './../who-are-you/iam-especial/iam-especial.module';
 import { IamDevoteeModule } from './../who-are-you/iam-devotee/iam-devotee.module';
@@ -23,11 +24,6 @@ const loginRoutes = [{
     // tslint:disable-next-line:max-line-length
     loadChildren: () => import('src/app/login-page/create-account/who-are-you/iam-especial/iam-especial.module').then(m => m.IamEspecialModule)
   },
-  {
-    path: 'preferences',
-    // tslint:disable-next-line:max-line-length
-    loadChildren: () => import('src/app/login-page/create-account/who-are-you/preferences/preferences.module').then(m => m.PreferencesModule)
-  }
   ]}];
 
 @NgModule({
