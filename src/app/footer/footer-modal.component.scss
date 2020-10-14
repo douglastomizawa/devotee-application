@@ -5,6 +5,7 @@
   color: green;
 }
 #modal-terms{
+  padding: 0 3rem;
   .tabcontent{
     p{
       color: $text-button-color-blue-primary;
@@ -41,7 +42,6 @@
   padding-bottom: 2rem;
   a{
       color: $text-button-color-blue-primary;
-      font-size: 15px;
   }
   .content-terms{
       margin-top: 10px;
@@ -105,7 +105,7 @@
   padding-bottom: 2rem;
   a{
       color: $text-button-color-blue-primary;
-      font-size: 15px;
+      font-size: 18px;
   }
   .content-terms{
       margin-top: 10px;

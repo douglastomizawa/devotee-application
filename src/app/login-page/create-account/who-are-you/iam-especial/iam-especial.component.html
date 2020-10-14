@@ -1,0 +1,216 @@
+<div class="container-cards">
+  <div class="cards who-are-you">
+    <mat-card>
+      <mat-card-title class="first-card">
+      {{ text.iamEspecialAndDevotee.headerYourProfile }}
+      </mat-card-title>
+    </mat-card>
+  </div>
+  <div class="block-cards container-card-info-perfil">
+    <mat-card>
+      <form [formGroup]="dataUser">
+      <div class="container-perfil-photo">
+        <mat-card-title>
+          {{ text.iamEspecialAndDevotee.principalPhotoPerfil }}
+        </mat-card-title>
+        <div class="photo-principal cursor-pointer">
+          <label for="avatar" class="avatar">
+            <mat-icon *ngIf="urlProfile === undefined" class="profile-img">person</mat-icon>
+            <mat-icon *ngIf="urlProfile !== undefined" class="profile-img user-img"><img class="" src={{urlProfile}} alt=""></mat-icon>
+          </label>
+          <input type="file"
+                id="avatar" name="avatar"
+                accept="image/png, image/jpeg" (change)='onSelectFile($event, "urlProfile")'  class="input-file input-photo-principal">
+        </div>
+      </div>
+      <div class="block-cards container-more-photos">
+        <mat-card-title>
+          {{ text.iamEspecialAndDevotee.addMorePhotos }}
+        </mat-card-title>
+        <div class="more-pictures">
+          <div class="more-photos more-photos-1">
+            <label for="more-photos-1" class="more-photos-1 cursor-pointer">
+              <mat-icon *ngIf="urlMore1 === undefined" class="profile-img">person</mat-icon>
+              <mat-icon *ngIf="urlMore1 !== undefined" class="profile-img"><img class="" src={{urlMore1}} alt=""></mat-icon>
+            </label>
+
+            <input
+              type="file"
+              id="more-photos-1" name="more-photos-1"
+              accept="image/png, image/jpeg" (change)='onSelectFile($event, "urlMore1")' class="input-file input-photo-principal">
+          </div>
+          <div class="more-photos more-photos-2">
+            <label for="more-photos-2" class="more-photos-2 cursor-pointer">
+              <mat-icon *ngIf="urlMore2 === undefined" class="profile-img">person</mat-icon>
+              <mat-icon *ngIf="urlMore2 !== undefined" class="profile-img "><img class="" src={{urlMore2}} alt=""></mat-icon>
+            </label>
+
+            <input
+              type="file"
+              id="more-photos-2" name="more-photos-2"
+              accept="image/png, image/jpeg" (change)='onSelectFile($event, "urlMore2")' class="input-file input-photo-principal">
+          </div>
+          <div class="more-photos more-photos-3" >
+            <label for="more-photos-3" class="more-photos-3 cursor-pointer">
+              <mat-icon *ngIf="urlMore3 === undefined" class="profile-img">person</mat-icon>
+              <mat-icon *ngIf="urlMore3 !== undefined" class="profile-img"><img class="" src={{urlMore3}} alt=""></mat-icon>
+            </label>
+            <input
+              type="file"
+              id="more-photos-3" name="more-photos-3"
+              accept="image/png, image/jpeg" (change)='onSelectFile($event, "urlMore3")' class="input-file input-photo-principal">
+          </div>
+        </div>
+      </div>
+
+      <div class="block-cards container-form">
+        <mat-card-title>
+          {{ text.iamEspecialAndDevotee.aboutYou.aboutYouTitle }}
+        </mat-card-title>
+
+          <div class="infos-person display-grid-data-person">
+            <mat-form-field class="input-name">
+              <mat-label>{{ text.iamEspecialAndDevotee.aboutYou.inputName }}</mat-label>
+              <input matInput formControlName="name" autocomplete="off" [value]="name" [(ngModel)]='userEspecial.name'>
+            </mat-form-field>
+            <mat-form-field class="example-full-width input-email">
+              <mat-label>Email</mat-label>
+              <input matInput [(ngModel)]='userEspecial.email' [errorStateMatcher]="matcher"
+                     placeholder="Ex. pat@example.com" formControlName="email" autocomplete="off" >
+              <mat-hint></mat-hint>
+              <mat-error *ngIf="f.email.hasError('email') && !f.email.hasError('required')">
+                {{ text.iamEspecialAndDevotee.aboutYou.inputEmail.errorInvalidEmail }}
+              </mat-error>
+              <mat-error *ngIf="f.email.hasError('required')">
+                {{ text.iamEspecialAndDevotee.aboutYou.inputEmail.emailIs }} <strong>{{ text.iamEspecialAndDevotee.aboutYou.inputEmail.emailRequired }} </strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="input-phone">
+              <mat-label>{{ text.iamEspecialAndDevotee.aboutYou.inputPhone }} </mat-label>
+              <input matInput formControlName="phone" autocomplete="off" [(ngModel)]='userEspecial.phone'>
+            </mat-form-field>
+
+            <mat-form-field class="input-profession">
+              <mat-label>{{ text.iamEspecialAndDevotee.aboutYou.inputProfession}}</mat-label>
+              <input matInput formControlName="profession" autocomplete="off" [(ngModel)]='userEspecial.profession'>
+            </mat-form-field>
+
+
+
+
+
+            <mat-form-field class="example-full-width input-gender" >
+              <input type="text"
+                     placeholder="{{ text.iamEspecialAndDevotee.aboutYou.inputGenre}}"
+                     aria-label="Number"
+                     matInput
+                     formControlName="gender"
+                     [matAutocomplete]="auto" (focus)="filterOptionInput('gender')"  [(ngModel)]='userEspecial.genre'>
+              <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width input-orientation" >
+              <input type="text"
+                     placeholder="{{ text.iamEspecialAndDevotee.aboutYou.inputOrientation}}"
+                     aria-label="Number"
+                     matInput
+                     formControlName="orientation"
+                     [matAutocomplete]="auto" (focus)="filterOptionInput('orientation')"  [(ngModel)]='userEspecial.orientation'>
+              <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field class="example-full-width input-text-area">
+              <label for="about-you">
+                <mat-label>{{ text.iamEspecialAndDevotee.aboutYou.inputMoreAboutYou}}</mat-label>
+                <textarea matInput placeholder="Vamos conversar que te conto" #aboutYou></textarea>
+              </label>
+              <input
+                [(ngModel)]='userEspecial.aboutYou'
+                formControlName="aboutYou"
+                type="text"
+                id="about-you" name="about-you" value="{{aboutYou.value}}" style="display: none;" >
+            </mat-form-field>
+          </div>
+          <div class="details-person ">
+
+
+            <mat-card-title>
+              {{ text.iamEspecialAndDevotee.aboutYourDisability.aboutYourDisabilityTitle}}
+            </mat-card-title>
+            <div class="container-about-disability display-grid-data-person">
+
+
+              <mat-form-field >
+                <mat-select (focus)="filterOption('selectCids')"  [(ngModel)]='userEspecial.cid' formControlName="cids" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputSelectCID}}" [multiple]="true">
+                  <mat-select-search formControlName="selectCids" ></mat-select-search>
+                  <mat-option *ngFor="let selectCids of filteredCids" [value]="selectCids">
+                    {{selectCids}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+
+
+
+              <mat-form-field class="example-full-width input-surgery">
+                <input type="text"
+                       placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputSurgery}}"
+                       aria-label="Number"
+                       matInput
+                       formControlName="surgery"
+                       [matAutocomplete]="auto" >
+                       <!-- (focus)="filterOption('surgery')" -->
+                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                  <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+
+
+
+              <mat-form-field >
+                <mat-select (focus)="filterOption('selectHosptals')" formControlName="hosptals" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputHosptals}}" [multiple]="true"  [(ngModel)]='userEspecial.hospitals'>
+                  <mat-select-search formControlName="selectHosptals" ></mat-select-search>
+                  <mat-option *ngFor="let selectHosptals of filteredHosptals" [value]="selectHosptals">
+                    {{selectHosptals}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+
+
+              <mat-form-field id="medicinesSelect" >
+                <mat-select  (focus)="filterOption('selectMedicines')"  formControlName="medicines" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputMedicines}}" [multiple]="true"  [(ngModel)]='userEspecial.medicines'>
+                  <mat-select-search id="mat-select-true" formControlName="selectMedicines" ></mat-select-search>
+                  <mat-option  *ngFor="let selectMedicines of filteredMedicine | async"  [value]="selectMedicines">
+                    {{selectMedicines.value}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+          </div>
+
+            <div class="container-checks display-grid-data-person">
+              <mat-slide-toggle  formControlName="checkBirthDeficiency" [color]="color" [(ngModel)]='userEspecial.checkBirthDisability'> {{ text.iamEspecialAndDevotee.aboutYouChecks.checkBirthDisability}} </mat-slide-toggle>
+              <mat-slide-toggle  formControlName="checkHaveTIIC" [color]="color" [(ngModel)]='userEspecial.checkHaveTIIc'> {{ text.iamEspecialAndDevotee.aboutYouChecks.checkHaveTIIC}} </mat-slide-toggle>
+              <mat-slide-toggle  formControlName="checkImpairedFertility" [color]="color" [(ngModel)]='userEspecial.checkImpairedFertility'> {{ text.iamEspecialAndDevotee.aboutYouChecks.checkImpairedFertility}} </mat-slide-toggle>
+              <mat-slide-toggle  formControlName="checkOvercomingExample" [color]="color" [(ngModel)]='userEspecial.checkOvercomingExample'> {{ text.iamEspecialAndDevotee.aboutYouChecks.checkOvercomingExample}} </mat-slide-toggle>
+            </div>
+          </div>
+
+      </div>
+      </form>
+    </mat-card>
+    <button [routerLink]="['/create-continue']" mat-stroked-button class="btn-return-background-2" color="primary">{{ text.btnRollback }}</button>
+    <button [routerLink]="['/preferences']" mat-raised-button color="primary" class="btn btn-next" (click)="nextPage()" >{{text.iamEspecialAndDevotee.btnNext}}</button>
+  </div>
+</div>
+

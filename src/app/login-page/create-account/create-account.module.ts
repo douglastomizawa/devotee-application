@@ -1,4 +1,5 @@
-import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
+import { TranslateService } from './../../shared/translate.service';
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatNativeDateModule } from '@angular/material/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CreateAccountComponent } from './create-account.component';
@@ -24,8 +25,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatSlideToggleModule,
     ReactiveFormsModule,
     MatDatepickerModule,
+    MatNativeDateModule,
   ],
-  exports:[
+  exports: [
     CreateAccountComponent,
     MatInputModule,
     MatIconModule,
@@ -34,9 +36,12 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatSlideToggleModule,
     ReactiveFormsModule,
     MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers:[
-    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
+    TranslateService,
+
   ]
 })
 export class CreateAccountModule { }

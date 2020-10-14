@@ -1,0 +1,94 @@
+@import "../app.component.scss";
+.container-logged{
+  background-color: $backgroud-color-after-login;
+  color: $text-button-color-blue-primary;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr 10fr 1fr;
+  overflow: auto;
+}
+router-outlet{
+  display: none;
+}
+
+header {
+  padding: 20px;
+  background-color: $background-footer-header;
+  .container-header{
+    display: grid;
+    max-width: 1700px;
+    margin: 0 auto;
+    grid-template-columns: 2fr 1fr;
+  }
+  .container-logo{
+   display: flex;
+   align-items: center;
+  }
+  img {
+    width: 30px;
+    margin-right: 10px;
+  }
+  span {
+    font-size: 1.8rem;
+    color: $btn-login-primary;
+  }
+  .container-menu-logged{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    // margin: 15px 10px 0;
+    :nth-child(1),:nth-child(2){
+      margin-right: 10px;
+    }
+    div{
+      max-width: 30px;
+      max-height: 30px;
+    }
+    mat-icon{
+      cursor: pointer;
+    }
+  }
+}
+.icon-menu-logged{
+  color: #fff;
+  opacity: 0.7;
+
+}
+.icon-route-is-active{
+  opacity: 1;
+
+}
+@media only screen and(min-width:800px) {
+
+  .icon-menu-logged{
+    color: #fff;
+    opacity: 0.7;
+    font-size: 35px;
+  }
+  .icon-route-is-active{
+    opacity: 1;
+    :hover{
+      cursor: pointer;
+    }
+    :active{
+      outline: 0;
+    }
+  }
+
+  header {
+    padding: 25px 40px;
+    .container-menu-logged{
+      :nth-child(1),:nth-child(2){
+        margin-right: 25px;
+      }
+    }
+    img {
+      width: 40px;
+      margin-right: 10px;
+    }
+    span {
+      font-size: 2rem;
+    }
+  }
+}

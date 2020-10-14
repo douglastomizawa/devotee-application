@@ -20,14 +20,15 @@ import { MatButtonModule } from '@angular/material/button';
     MatTabsModule,
 
   ],
-  exports:[
+  exports: [
     FooterComponent,
+    FooterModalComponent,
     MatButtonModule,
     MatDialogModule,
     MatTabsModule,
 
   ],
-  providers:[
+  providers: [
     TranslateService,
 
   ]

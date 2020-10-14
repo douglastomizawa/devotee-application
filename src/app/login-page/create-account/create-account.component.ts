@@ -1,17 +1,21 @@
+import { UserFactory } from './../../core/factory/user.factory.service';
+import { RedirectCreateContinueService } from './../../core/services-redirect/redirect-create-continue.service';
+import { Router } from '@angular/router';
 import { TabsFooterTermsComponent } from './../../footer/footer-modal.component';
-import { FooterComponent, DialogData } from './../../footer/footer.component';
+import { FooterComponent } from './../../footer/footer.component';
 import { TranslateService } from './../../shared/translate.service';
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
+import {ErrorStateMatcher, ThemePalette } from '@angular/material/core';
 
-import { Client } from './../../shared/client';
-
+import { User } from '../../core/model/client.model';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+    const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
+    const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty);
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted || invalidCtrl || invalidParent));
   }
 }
 @Component({
@@ -23,58 +27,57 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class CreateAccountComponent implements OnInit {
   hide = true;
   text;
+  user: User = new User();
   registerForm: FormGroup;
   submitted = false;
   minDate: Date;
   maxDate: Date;
-  // formatData;
-
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
-  passwordFormControl = new FormControl('',[
-    Validators.required,
-    Validators.minLength(6),
-  ]);
-  repeatPasswordFormControl = new FormControl('',[
-    Validators.required,
-    Validators.minLength(6),
-  ]);
-
-  constructor(private translatePage: TranslateService, private dialog: FooterComponent, private formBuilder: FormBuilder, public footerTabs: TabsFooterTermsComponent ) {
+  color: ThemePalette = 'primary';
+// tslint:disable-next-line:max-line-length
+  constructor(
+    private translatePage: TranslateService,
+    private dialog: FooterComponent,
+    private formBuilder: FormBuilder,
+    public footerTabs: TabsFooterTermsComponent,
+    private redirectCreateContinueService: RedirectCreateContinueService,
+    private userfactory: UserFactory
+    ) {
     const currentYear = new Date().getFullYear();
-    this.minDate = new Date(currentYear - 99, 20, 1);
-    this.maxDate = new Date(currentYear - 18, 1, 31);
+    this.minDate = new Date(currentYear - 100);
+    this.maxDate = new Date(currentYear - 18, new Date().getMonth() , new Date().getDate());
    }
-  //  dataFomatation(data){
-  //  };
   ngOnInit(): void {
+    this.translatePage.veriyLanguage();
     this.text = this.translatePage.textTranslate;
-    // this.dataFomatation(this.translatePage.dataFormatation);
-    this.createForm(new Client());
+    this.createForm();
   }
   execClickTabsShow(name: any): void{
     this.footerTabs.execClickTabs(name);
   }
-  createForm(client: Client ){
+  createForm( ): void {
     this.registerForm = this.formBuilder.group({
-      name: [ client.name],
-      birthdate: [client.birthdate],
-      email: [client.email],
-      password: [client.password],
-      repeatPassword: [client.repeatPassword],
-      check: [client.check]
-    });
+          name: ['', [Validators.required]],
+          birthdate: ['', [Validators.required]],
+          email: ['', [Validators.required, Validators.email]],
+          password: ['', [Validators.required, Validators.minLength(6)]],
+          repeatPassword: ['', [Validators.required, Validators.minLength(6)]],
+          check: ['', [Validators.required]]
+        }, {validator: this.checkPasswords });
   }
-  onSubmit(){
-    console.log(this.registerForm.value);
-    console.log(Client);
-    this.createForm(new Client());
+  checkPasswords(input: FormControl) { // here we have the 'passwords' group
+    const pass: any = input.value.password;
+    const confirmPass: any = input.value.repeatPassword;
+    return pass === confirmPass ? null : { notSame: true };
+  }
+  get f() { return this.registerForm.controls; }
+  onSubmit(): void{
+    if ( !this.registerForm.invalid){
+      this.userfactory.userSessionFirst(this.user);
+      this.redirectCreateContinueService.createAccountContinueRedirect( this.registerForm.invalid);
+    }
   }
   matcher = new MyErrorStateMatcher();
-
-  openDialogRegister(){
+  openDialogRegister(): void{
     this.dialog.openDialog();
   }
 

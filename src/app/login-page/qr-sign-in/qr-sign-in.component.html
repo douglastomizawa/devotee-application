@@ -4,29 +4,31 @@
     </div>
   <div class="container-itens-qr">
     <div class="text-qr">
-      <div class="qr-title">Para fazer o Login com QR Code:</div>
+      <div class="qr-title">{{ textQr.qrSignIn.qrTitle }}</div>
       <div>
-        <div class="qr-subtitle"><span>1.</span> Abra o Devotee no seu celular</div>
-        <div class="qr-subtitle"><span>2.</span> Toque em Perfil <b>Perfil</b> <span><img src="" alt=""></span>e selecione <b> Devotee Web</b></div>
-        <div class="qr-subtitle"><span>3.</span> Toque em <b>Escanear código</b></div>
-        <div class="qr-subtitle"><span>4.</span> Aponte seu celular para essa tela para capturar o código</div>
+        <div class="qr-subtitle"><span>1.</span> {{ textQr.qrSignIn.qrSubTitleFirst }}</div>
+        <div class="qr-subtitle"><span>2.</span> {{ textQr.qrSignIn.qrSubTitleSecond.qrFirstTouch }} <b>{{ textQr.qrSignIn.qrSubTitleSecond.qrSecondPerfil }} </b> <span><img src="/assets/icon-person@2x.png" alt=""></span>{{ textQr.qrSignIn.qrSubTitleSecond.qrThirdSelect }} <b> {{ textQr.qrSignIn.qrSubTitleSecond.qrFourthDevotee }}</b></div>
+        <div class="qr-subtitle"><span>3.</span> {{ textQr.qrSignIn.qrSubTitleThird.qrFirstTouch }} <b> {{ textQr.qrSignIn.qrSubTitleThird.qrSecondBold }}</b></div>
+        <div class="qr-subtitle"><span>4.</span> {{ textQr.qrSignIn.qrSubTitleFouth }}</div>
       </div>
     </div>
     <div class="container-img-qr">
       <img src="../../../assets/QRCode-criar@2x.png" alt="">
     </div>
-    <div class="create-account">
-      Ainda não tem cadastro? <a >Cadastre-se</a>
-    </div>
-    <div class="download-copyright">
-      <div class="download-app">
-          <p>{{textQr.getApp}}</p>
-          <div class="buttons-download">
-              <a href="https://play.google.com/store/apps/details?id=com.phurshell.devotee&hl=pt_BR" target="_blank" rel="noopener noreferrer">
-              <img src={{textQr.btnPlayStore}} alt="Botão play store"  ></a>
-              <a href="https://apps.apple.com/br/app/devotee/id1331331692" target="_blank" rel="noopener noreferrer">
-              <img src={{textQr.btnAppStore}} alt="Botão Apple store" ></a>
-          </div>
+    <div class="container-creat-buttons">
+      <div class="create-account">
+        {{ textQr.qrSignIn.qrCreateAccount.qrNotAccount }} <a >{{ textQr.qrSignIn.qrCreateAccount.qrCreateAccount }}</a>
+      </div>
+      <div class="download-copyright">
+        <div class="download-app">
+            <p>{{textQr.getApp}}</p>
+            <div class="buttons-download">
+                <a href="https://play.google.com/store/apps/details?id=com.phurshell.devotee&hl=pt_BR" target="_blank" rel="noopener noreferrer">
+                <img src={{textQr.btnPlayStore}} alt={{textQr.altPlayStore}}  ></a>
+                <a href="https://apps.apple.com/br/app/devotee/id1331331692" target="_blank" rel="noopener noreferrer">
+                <img src={{textQr.btnAppStore}} alt={{textQr.altAppStore}} ></a>
+            </div>
+        </div>
       </div>
     </div>
   </div>

@@ -1,0 +1,45 @@
+@import "../../../app.component.scss";
+
+.container-create-continue {
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  display: grid;
+  grid-template-rows: 1fr 4fr 2fr;
+  background-color: $backgroud-color-after-login;
+}
+.container-footer {
+  align-self: flex-end;
+}
+router-outlet{
+  display: none;
+}
+
+header {
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+  background-color: $background-footer-header;
+  img {
+    width: 30px;
+    margin-right: 10px;
+  }
+  span {
+    font-size: 1.8rem;
+    color: $btn-login-primary;
+  }
+}
+
+@media only screen and(min-width:800px) {
+
+  header {
+    img {
+      width: 40px;
+      margin-right: 10px;
+    }
+    span {
+      font-size: 2rem;
+    }
+  }
+}

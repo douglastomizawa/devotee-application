@@ -3,7 +3,7 @@
     "pt": {
         "title":"Seja bem-vindo!",
         "subTitle":"Agora ficou mais fácil conhecer sua cara metade. Crie uma conta para continuar",
-        "btnLogin":"Entrar.",
+        "btnLogin":"Entrar",
         "btnFb" :"Entrar com o Facebook",
         "btnQr" :"Entrar com QR Code",
         "policyPrivacy":"Política de Privacidade",
@@ -12,7 +12,39 @@
         "getApp":"Baixe o aplicativo!",
         "btnPlayStore":"/assets/playstore.svg",
         "btnAppStore":"/assets/appstore.svg",
+        "altPlaySotre":"Botão Play Store",
+        "altAppStore":"Botão Apple Store",
+        "forgotPassword":{
+          "alertEmail":"Insira seu e-mail abaixo para enviarmos uma solicitação de senha.",
+          "inputEmail":{
+            "msgErrorEmailInvalid":"Por favor insira um endereço de e-mail válido",
+            "emailIs":"E-mail é ",
+            "required":"obritório"
+          },
+          "btnRecover":"Recuperar",
+          "btnReturn":"Voltar"
+        },
+        "qrSignIn": {
+          "qrTitle":"Para fazer o Login com QR Code:",
+          "qrSubTitleFirst":"Abra o Devotee no seu celular",
+          "qrSubTitleSecond":{
+            "qrFirstTouch":"Toque em",
+            "qrSecondPerfil":"Perfil",
+            "qrThirdSelect":"e selecione",
+            "qrFourthDevotee":"Devotee Web"
+          },
+          "qrSubTitleThird":{
+            "qrFirstTouch":"Toque em",
+            "qrSecondBold":"Escanear código"
+          },
+          "qrSubTitleFouth":"Aponte seu celular para essa tela para capturar o código",
+          "qrCreateAccount":{
+            "qrNotAccount":"Ainda não tem cadastro?",
+            "qrCreateAccount":"Cadastre-se"
+          }
+        },
         "signin":{
+          "errorEmailAndPassword":"E-mail ou senha incorretos",
           "msgErrorEmailInvalid":"Por favor insira um endereço de e-mail válido",
           "emailIs":"E-mail é ",
           "required":"obritório",
@@ -45,9 +77,73 @@
             "msgErrorNotEqual":"Senhas não são iguais"
           }
         },
+        "createAccountContinue":{
+          "whoAreYou":"Quem é você?",
+          "iAmDevoteeTitle":"Sou um Devotee",
+          "iAmDevoteeSubTitle":"Não tenho deficiência. Com interesse em pessoas especiais.",
+          "iAmEspecialTitle":"Sou uma pessoa especial",
+          "iAmEspecialSubTitle":"Tenho deficiência. Com interesse em pessoas especiais ou devotees.",
+          "btnReturn":"Voltar"
+        },
+        "iamEspecialAndDevotee":{
+          "headerYourProfile":"Seu Perfil",
+          "principalPhotoPerfil":"Foto de perfil",
+          "addMorePhotos":"Adicione mais fotos suas",
+          "aboutYou":{
+            "aboutYouTitle":"Sobre você",
+            "inputName":"Name",
+            "inputEmail":{
+              "errorInvalidEmail":"Insira um email valido",
+              "emailIs":"E-mail é",
+              "emailRequired":"Obrigatório"
+            },
+            "inputPhone":"Telefone",
+            "inputProfession":"Profissão",
+            "inputGenre":"Gênero",
+            "inputOrientation":"Orientação sexual",
+            "inputMoreAboutYou":"Conte mais sobre você"
+          },
+          "aboutYourDisability":{
+            "aboutYourDisabilityTitle":"Sobre sua deficiência",
+            "inputSelectCID":"Selecione o CID",
+            "inputSurgery":"Cirurgias",
+            "inputHosptals":"Hosptáis",
+            "inputMedicines":"Procedimentos médicos"
+          },
+          "aboutYouChecks":{
+            "checkBirthDisability":"Deficiência desde nascença",
+            "checkHaveTIIC":"Tenho TIIC",
+            "checkImpairedFertility":"Comprometimento da fertilidade",
+            "checkOvercomingExample":"Sou um exemplo de superação"
+          },
+          "btnNext":"Proximo"
+        },
+        "prefences":{
+          "title":"Preferências",
+          "localization":"localização",
+          "searchRadius":"Raio de busca",
+          "userPreferences":"Preferências de usuário",
+          "userType":"Tipo de usuário",
+          "genre":"Gênero de preferências",
+          "orientation":"Orientação sexual",
+          "interestType":"Tipo de interesse",
+          "years":"Anos",
+          "age":"Idade",
+          "minimunAge":"Idade Minima:",
+          "maximumAge":"Idade máxima:"
+        },
+        "userSettings":{
+          "title":"Configurações",
+          "myProfile":"Meu perfil",
+          "editProfile":"Editar perfil",
+          "preferences":"Preferências",
+          "changePassword":"Alterar senha",
+          "deleteProfile":"Deletar perfil",
+          "logout":"Sair"
+        },
         "entryPassword":"Entre com sua senha",
         "btnRegister":"Criar conta",
-
+        "btnRollback":"Voltar",
         "tabs":{
           "termsuse":{
               "titleTabs":"Termos de Uso",
@@ -78,9 +174,41 @@
         "terms":"Terms of use",
         "copyright":"Devotee. All rights reserved.",
         "getApp":"Get the app",
-        "btnPlayStore":"./assets/playstore-en.svg",
-        "btnAppStore":"./assets/appstore-en.svg",
+        "btnPlayStore":"/assets/playstore-en.svg",
+        "btnAppStore":"/assets/appstore-en.svg",
+        "altPlaySotre":"Button Play Store",
+        "altAppStore":"Button Apple Store",
+        "forgotPassword":{
+          "alertEmail":"Enter your email address below to send us a password request.",
+          "inputEmail":{
+            "msgErrorEmailInvalid":"Please enter a valid email address",
+            "emailIs":"E-mail is ",
+            "required":"required"
+          },
+          "btnRecover":"To Recover",
+          "btnReturn":"Return"
+        },
+        "qrSignIn": {
+          "qrTitle":"To Login with QR Code:",
+          "qrSubTitleFirst":"Open Devotee on your phone",
+          "qrSubTitleSecond":{
+            "qrFirstTouch":"Touch",
+            "qrSecondPerfil":"Profile",
+            "qrThirdSelect":"and select",
+            "qrFourthDevotee":"Devotee Web"
+          },
+          "qrSubTitleThird":{
+            "qrFirstTouch":"Touch",
+            "qrSecondBold":"Scan code"
+          },
+          "qrSubTitleFouth":"Point your phone at this screen to capture the code",
+          "qrCreateAccount":{
+            "qrNotAccount":"Don't have a registration yet?",
+            "qrCreateAccount":"Register"
+          }
+        },
         "signin":{
+          "errorEmailAndPassword":"Incorrect e-mail or password",
           "msgErrorEmailInvalid":"Please enter a valid email address",
           "emailIs":"E-mail is ",
           "required":"required",
@@ -114,9 +242,74 @@
             "msgErrorNotEqual":"Passwords are not the same"
           }
         },
+
+        "createAccountContinue":{
+          "whoAreYou":"Who are you?",
+          "iAmDevoteeTitle":"I'am a Devotee",
+          "iAmDevoteeSubTitle":"I am not disabled. With an interest in special people.",
+          "iAmEspecialTitle":"I'm a special person",
+          "iAmEspecialSubTitle":"I have a disability. With an interest in special people or devotees.",
+          "btnReturn":"Return"
+        },
+        "iamEspecialAndDevotee":{
+          "headerYourProfile":"Your Profile",
+          "principalPhotoPerfil":"Profile Picture",
+          "addMorePhotos":"Add more photos of you",
+          "aboutYou":{
+            "aboutYouTitle":"About You",
+            "inputName":"Name",
+            "inputEmail":{
+              "errorInvalidEmail":"Please enter a valid email adress",
+              "emailIs":"E-mail is",
+              "emailRequired":"required"
+            },
+            "inputPhone":"Phone",
+            "inputProfession":"Profession",
+            "inputGenre":"Genre",
+            "inputOrientation":"Sexual orientation",
+            "inputMoreAboutYou":"Tell more about yourself"
+          },
+          "aboutYourDisability":{
+            "aboutYourDisabilityTitle":"About your disability",
+            "inputSelectCID":"Select the CID",
+            "inputSurgery":"Surgery",
+            "inputHosptals":"Clinics, Hosptals and Dialysis centers",
+            "inputMedicines":"Medical procedure"
+          },
+          "aboutYouChecks":{
+            "checkBirthDisability":"Disability since birth",
+            "checkHaveTIIC":"Have TIIC",
+            "checkImpairedFertility":"Impaired fertility",
+            "checkOvercomingExample":"I'm an example of overcoming"
+          },
+          "btnNext":"Next"
+        },
+        "prefences":{
+          "title":"Preferences",
+          "localization":"Localization",
+          "searchRadius":"Search radius:",
+          "userPreferences":"User preferences",
+          "userType":"User type",
+          "genre":"Preferences gender",
+          "orientation":"Sexual orientatin",
+          "interestType":"Type of interest",
+          "years":"years",
+          "age":"Age",
+          "minimunAge":"Minimum age:",
+          "maximumAge":"Maximum Age:"
+        },
+        "userSettings":{
+          "title":"Settings",
+          "myProfile":"My profile",
+          "editProfile":"Edit profile",
+          "preferences":"Preferences",
+          "changePassword":"Change password",
+          "deleteProfile":"Delete profile",
+          "logout":"Sair"
+        },
         "entryPassword":"Enter your password",
         "btnRegister":"Register",
-        "btnRollback":"Voltar",
+        "btnRollback":"Return",
         "tabs":{
           "termsuse":{
             "titleTabs":"Terms of Use",

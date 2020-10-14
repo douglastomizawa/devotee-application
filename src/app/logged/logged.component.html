@@ -1,0 +1,23 @@
+<div class="container-logged">
+  <header>
+    <div class="container-header">
+      <div class="container-logo">
+        <img src="../../assets/logo-branco.svg" alt="">
+        <span>Devotee</span>
+      </div>
+      <div class="container-menu-logged">
+        <div class="matches">
+          <mat-icon class="icon-menu-logged" [routerLink]="['/matches']" [routerLinkActive]="['icon-route-is-active']">people_alt</mat-icon>
+        </div>
+        <div class="chat">
+          <mat-icon class="icon-menu-logged">forum</mat-icon>
+        </div>
+        <div class="perfil-config">
+          <mat-icon class="icon-menu-logged" [routerLink]="['/settings']" [routerLinkActive]="['icon-route-is-active']">settings</mat-icon>
+        </div>
+      </div>
+    </div>
+  </header>
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
+</div>
