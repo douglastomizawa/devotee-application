@@ -110,7 +110,10 @@ get f() { return this.dataUser.controls; }
     this.dataUser = this.formBuilder.group({
           name: ['', [Validators.required]],
           email: ['', [Validators.required, Validators.email]],
-          phone: ['', [Validators.required]],
+          phoneGroup: this.formBuilder.group({
+            phones: ['', [Validators.required]],
+            phoneVisibility: ['']
+          }),
           profession: ['', [Validators.required]],
           gender: ['', [Validators.required]],
           orientation: ['', [Validators.required]],

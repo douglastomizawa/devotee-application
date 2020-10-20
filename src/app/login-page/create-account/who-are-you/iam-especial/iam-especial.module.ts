@@ -12,7 +12,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatButtonModule} from '@angular/material/button';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {  ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatMenuModule} from '@angular/material/menu';
 
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 
@@ -38,6 +39,7 @@ import { MedicinesService } from 'src/app/core/services/medicines.service';
     IamEspecialRountingModule,
     MatSelectSearchModule,
     MatProgressSpinnerModule,
+    MatMenuModule,
   ],
   exports: [
     MatCardModule,

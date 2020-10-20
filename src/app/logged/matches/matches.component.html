@@ -16,9 +16,9 @@
         <mat-icon class="circle-matches-filter" [routerLink]="['/preferences']">filter_alt</mat-icon>
       </div>
     </div>
-    <div class="container-matches-sugestion"  (dragover)='dragCard($event)'>
+    <div class="container-matches-sugestion"  id="container-drag">
       <!-- *ngFor="let teste of matchUser" cdkDrag(dragover)='dragCard($event)' -->
-      <mat-card *ngFor="let user of matchUser" >
+      <mat-card *ngFor="let user of matchUser" (dragover)='dragCard() '>
         <div class="container-sugestion-perfil">
           <!-- <mat-icon class="circle-matches-person">person</mat-icon> -->
           <mat-icon class="circle-matches-person"><img src="http://34.223.220.245/{{user.photo}}" alt=""></mat-icon>
@@ -27,7 +27,7 @@
           </span>
         </div>
         <div class="container-perfil-picture" >
-          <img src="http://34.223.220.245/{{user.photo}}" alt="">
+          <img class="profile-img" src="http://34.223.220.245/{{user.photo}}" alt="">
         </div>
       </mat-card>
 

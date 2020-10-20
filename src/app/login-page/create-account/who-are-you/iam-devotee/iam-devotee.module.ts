@@ -10,6 +10,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
 import {  ReactiveFormsModule } from '@angular/forms';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
+import {MatMenuModule} from '@angular/material/menu';
 
 import { IamDevoteeComponent } from './iam-devotee.component';
 import { IamDevoteeRountingModule } from './iam-devotee.rounting.module';
@@ -29,7 +30,8 @@ import { IamDevoteeRountingModule } from './iam-devotee.rounting.module';
     MatAutocompleteModule,
     MatSlideToggleModule,
     MatButtonModule,
-    IamDevoteeRountingModule
+    IamDevoteeRountingModule,
+    MatMenuModule,
   ],
   exports: [
     MatCardModule,

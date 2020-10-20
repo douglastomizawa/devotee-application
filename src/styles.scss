@@ -69,6 +69,10 @@ body {
   -ms-user-select: none;
   user-select: none;
 }
+.cursor-pointer{
+  cursor: pointer;
+  outline: 0;
+}
 .mat-m {
   &b-0{
     margin-bottom: 0!important;
@@ -88,6 +92,21 @@ body {
   color: $blue-2E2;
   border-radius: 10px!important;
 }
+.menu-phone {
+  color: $blue-2E2;
+  border-radius: 10px!important;
+}
+.options-phone-visibility {
+  padding: 0 5px;
+
+  input{
+    margin-top: 3px;
+    margin-right: 3px;
+  }
+  label{
+    color: black;
+  }
+}
 mat-icon{
   outline: 0;
 }
@@ -97,4 +116,11 @@ mat-icon{
     left: 50px!important;
     top: -40px;
   }
+  .menu-phone {
+    position: absolute !important;
+    left: 25px !important;
+    top: -20px;
+  }
+
+
 }

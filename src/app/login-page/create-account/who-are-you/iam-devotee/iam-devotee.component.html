@@ -86,10 +86,26 @@
               </mat-error>
             </mat-form-field>
 
-            <mat-form-field class="input-phone">
+            <mat-form-field class="input-phone" formGroupName='phoneGroup'>
               <mat-label>{{ text.iamEspecialAndDevotee.aboutYou.inputPhone }} </mat-label>
-              <input matInput formControlName="phone" autocomplete="off" [(ngModel)]='userDevotee.phone'>
+              <input matInput formControlName="phones" autocomplete="off" [(ngModel)]="userDevotee.phone">
+              <a mat-icon-button matSuffix [matMenuTriggerFor]="menu">
+                <mat-icon aria-hidden="false" aria-label="Example home icon">lock</mat-icon>
+              </a>
+              <!-- <button mat-button >Menu</button> -->
+              <mat-menu #menu="matMenu" class="menu-phone">
+                <h2>Quem pode ver?</h2>
+                <div class="options-phone-visibility">
+                  <input type="radio" id="all" name="phoneVisibility" value="All" formControlName="phoneVisibility" [(ngModel)]="userDevotee.phoneVisibility">
+                  <label for="All">Todos</label><br>
+                  <input type="radio" id="matches" name="phoneVisibility" value="Matches" formControlName="phoneVisibility" [(ngModel)]="userDevotee.phoneVisibility">
+                  <label for="Matches">Mathces</label><br>
+                  <input type="radio" id="nobody" name="phoneVisibility" value="Nobody" formControlName="phoneVisibility" [(ngModel)]="userDevotee.phoneVisibility">
+                  <label for="Nobody">Ninguém</label>
+                </div>
+              </mat-menu>
             </mat-form-field>
+
 
             <mat-form-field class="input-profession">
               <mat-label>{{ text.iamEspecialAndDevotee.aboutYou.inputProfession}}</mat-label>

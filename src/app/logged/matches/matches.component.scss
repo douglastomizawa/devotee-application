@@ -22,12 +22,12 @@ body {
     -ms-user-select: none;
    user-select: none;
     .like-animation {
-      transform: rotate(45deg) translate3d(600px,200px,20px);
-      transition: 1.5s;
+      transform: rotate(45deg) translate3d(600px,200px,20px)!important;
+      transition: 1.5s!important;
     }
     .dislike-animation {
-      transform: rotate(-45deg) translate3d(-600px,200px,20px);
-      transition: 1.5s;
+      transform: rotate(-45deg) translate3d(-600px,200px,20px)!important;
+      transition: 1.5s!important;
     }
     mat-card:nth-child(1) {
       z-index: 5;

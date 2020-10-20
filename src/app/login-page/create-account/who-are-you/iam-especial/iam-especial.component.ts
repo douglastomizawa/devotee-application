@@ -31,6 +31,7 @@ export class IamEspecialComponent implements OnInit {
   email: string;
   language: string;
   dataUser: FormGroup;
+  phone;
   userEspecial: UserEspecial = new UserEspecial();
   orientation: string[] = ['Hetero', 'Homo', 'Muitos outros'];
   surgery: string[] = ['surgery-One', 'surgery-Two', 'surgery-Three'];
@@ -116,6 +117,7 @@ export class IamEspecialComponent implements OnInit {
   );
   }
   nextPage(): void{
+
     console.log(this.dataUser.controls, this.userEspecial);
   }
   getValuePopulateCreateAccount(): void{
@@ -152,7 +154,10 @@ export class IamEspecialComponent implements OnInit {
     this.dataUser = this.formBuilder.group({
           name: ['', [Validators.required]],
           email: ['', [Validators.required, Validators.email]],
-          phone: ['', [Validators.required]],
+          phoneGroup: this.formBuilder.group({
+            phones: ['', [Validators.required]],
+            phoneVisibility: ['']
+          }),
           profession: ['', [Validators.required]],
           gender: ['', [Validators.required]],
           orientation: ['', [Validators.required]],
