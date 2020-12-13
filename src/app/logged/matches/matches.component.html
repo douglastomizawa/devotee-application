@@ -18,7 +18,8 @@
     </div>
     <div class="container-matches-sugestion"  id="container-drag">
       <!-- *ngFor="let teste of matchUser" cdkDrag(dragover)='dragCard($event)' -->
-      <mat-card *ngFor="let user of matchUser" (dragover)='dragCard() '>
+      <mat-card *ngFor="let user of matchUser" draggable="true"
+      (mouseenter)="execDragSplitSugestions()" data-position="0">
         <div class="container-sugestion-perfil">
           <!-- <mat-icon class="circle-matches-person">person</mat-icon> -->
           <mat-icon class="circle-matches-person"><img src="http://34.223.220.245/{{user.photo}}" alt=""></mat-icon>
@@ -34,13 +35,13 @@
     </div>
       <div class="aling-buttons">
         <div class="container-buttons-matches">
-          <button class="matches-buttons" (click)="addMoreMatch('deslike')">
+          <button class="matches-buttons" (click)="execAddMoreMatchAndTransition('deslike')">
           <div class="deslike">
               <mat-icon class="matches-buttons"  >thumb_down</mat-icon>
             </div>
           </button>
 
-          <button class="matches-buttons" (click)="addMoreMatch('like')">
+          <button class="matches-buttons" (click)="execAddMoreMatchAndTransition('like')">
             <div class="like">
               <mat-icon class="matches-buttons">thumb_up</mat-icon>
             </div>

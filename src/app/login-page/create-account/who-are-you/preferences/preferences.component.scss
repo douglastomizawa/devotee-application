@@ -6,10 +6,10 @@
   flex-direction: column;
   mat-card {
     .first-card{
-      color: $btn-login-primary;
+      color: $white;
     }
     mat-card-title{
-      color: $text-button-color-blue-primary;
+      color: $blue-2E2;
       font-size: 1.2rem;
     }
     border-radius: 20px;
@@ -26,8 +26,8 @@
   .preferences {
     mat-card {
       padding: 1rem 1.5rem;
-      color: $btn-login-primary;
-      background-color: $background-footer-header;
+      color: $white;
+      background-color: $blue-3F5;
     }
   }
   .block-cards{

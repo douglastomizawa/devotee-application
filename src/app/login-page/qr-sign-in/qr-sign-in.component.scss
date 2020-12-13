@@ -6,7 +6,7 @@
   width: 30px;
   height: 30px;
   transform: matrix(0, 1, -1, 0, 0, 0);
-  color: $text-button-color-blue-primary;
+  color: $blue-2E2;
   font-size: 28px;
   font-weight: bold;
   :hover,
@@ -26,7 +26,7 @@
   display: grid;
   grid-template-rows: 1fr 8fr;
   height: 100%;
-  color: $text-button-color-blue-primary;
+  color: $blue-2E2;
   .close-terms{
     cursor: pointer;
   }

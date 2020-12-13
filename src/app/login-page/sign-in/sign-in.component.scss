@@ -45,15 +45,15 @@
   .btn-signin{
     width: 100%;
     border-radius: 10px;
-    color: $btn-login-primary;
-    background-color: $background-button-color-blue-primary;
+    color: $white;
+    background-color: $blue-364;
   }
   .container-btn-return{
     margin-top: 10px;
     .btn-return{
       cursor: pointer;
       text-decoration: none;
-      color: $text-button-color-blue-primary;
+      color: $blue-2E2;
     }
   }
   .container-btn-remember{
@@ -62,7 +62,7 @@
       cursor: pointer;
       font-size: 0.9rem;
       text-decoration: none;
-      color: $text-button-color-blue-primary;
+      color: $blue-2E2;
     }
   }
 }

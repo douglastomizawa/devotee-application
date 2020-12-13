@@ -39,6 +39,7 @@ export class IamEspecialComponent implements OnInit {
   filteredMedicine;
   filteredCids: string[] = [];
   filteredHosptals: string[] = [];
+
   constructor(
     private translatePage: TranslateService,
     private formBuilder: FormBuilder,
@@ -47,6 +48,7 @@ export class IamEspecialComponent implements OnInit {
     private getValueApis: GetValuesApisPtUsService,
     ) { }
   matcher = new MyErrorStateMatcher();
+
   ngOnInit(): void {
     this.translatePage.veriyLanguage();
     this.text = this.translatePage.textTranslate;
@@ -70,7 +72,6 @@ export class IamEspecialComponent implements OnInit {
       this.setOptionValues();
     }
   }
-
   private selectIsReady(): Promise<void> {
     return new Promise ((resolve: any, reject: any) => {
       setInterval((): void => {

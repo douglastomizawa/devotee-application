@@ -14,9 +14,10 @@ export class MatchesComponent implements OnInit {
   currentY;
   initialX;
   initialY;
+  likePosition;
+  deslikePosition;
   xOffset: number = 0;
   yOffset: number = 0;
-
   constructor(
     private splitMatches: SplitMatchesService,
     ) {
@@ -27,7 +28,7 @@ export class MatchesComponent implements OnInit {
     this.dragCard();
   }
   dragCard(): void {
-    let container = document.querySelector('#container-drag');
+    const container = document.querySelector('#container-drag');
     container.addEventListener('touchstart', this.dragStart, false);
     container.addEventListener('touchend', this.dragEnd, false);
     container.addEventListener('touchmove', this.drag, false);
@@ -37,15 +38,14 @@ export class MatchesComponent implements OnInit {
     container.addEventListener('mousemove', this.drag, false);
     // elm.style.transform = `translate3d(${pos1}px, ${pos2}px, 20px)`;
   }
-  dragStart(e): any {
-    let dragItem: any = document.querySelectorAll('mat-card')[0];
-    let imgDragItem: any = document.querySelectorAll('.container-sugestion-perfil')[0];
-    let nameProfileDrag: any = document.querySelectorAll('.profile-img')[0];
+  dragStart(e): void {
+    const dragItem: any = document.querySelectorAll('mat-card')[0];
+    const imgDragItem: any = document.querySelectorAll('.container-sugestion-perfil')[0];
+    const nameProfileDrag: any = document.querySelectorAll('.profile-img')[0];
     if (e.type === 'touchstart') {
       this.initialX = e.touches[0].clientX;
       this.initialY = e.touches[0].clientY;
     } else {
-      console.log(e.clientX , this.xOffset);
       this.initialX = e.clientX;
       this.initialY = e.clientY;
     }
@@ -54,16 +54,29 @@ export class MatchesComponent implements OnInit {
     }
   }
   dragEnd(e): any {
-    let dragItem: any = document.querySelectorAll('mat-card')[0];
+    const dragItem: any = document.querySelectorAll('mat-card')[0];
     this.initialX =  this.initialX - this.currentX;
     this.initialY =  this.initialY - this.currentY;
     dragItem.style.transform = `translate3d(0px, 0px, 0)`;
-    // dragItem.style.removeAttribute('transform');
     this.active = false;
+  }
+  addSugestionAndAttribute(): void {
+    const dragItem: any = document.querySelectorAll('mat-card')[0];
+    setTimeout (() => {
+      this.addMoreMatch();
+      dragItem.setAttribute('data-position', 0 );
+    }, 800);
+  }
+  execDragSplitSugestions(): void {
+    const dragItem: any = document.querySelectorAll('mat-card')[0];
+    const dragDataPosition: any = dragItem.getAttribute('data-position');
+    dragDataPosition === '150' ? this.addSugestionAndAttribute() : dragItem.setAttribute('data-position', 0 );
+    dragDataPosition === '-150' ? this.addSugestionAndAttribute() :  dragItem.setAttribute('data-position', 0 );
   }
   drag(e): void {
     if (this.active) {
-      let dragItem: any = document.querySelectorAll('mat-card')[0];
+      const dragItem: any = document.querySelectorAll('mat-card')[0];
+      const buttons = document.querySelectorAll('.matches-buttons');
       e.preventDefault();
       if (e.type === 'touchmove') {
         this.currentX = e.touches[0].clientX - this.initialX;
@@ -72,54 +85,53 @@ export class MatchesComponent implements OnInit {
         this.currentX = e.clientX - this.initialX;
         this.currentY = e.clientY - this.initialY;
       }
-
+      if (this.currentX >= 150){
+        dragItem.setAttribute('data-position', 150 );
+        dragItem.classList.add('like-animation');
+        buttons.forEach((value) => {value.setAttribute('disabled', 'true'); });
+      }
+      if (this.currentX <= -150) {
+        dragItem.setAttribute('data-position', -150 );
+        dragItem.classList.add('dislike-animation');
+        buttons.forEach((value) => {value.removeAttribute('disabled'); });
+      }
       this.xOffset = this.currentX;
       this.yOffset = this.currentY;
-      console.log(dragItem, this.currentX,  this.currentY);
-      if (this.currentX === 150 ){
-        console.log('like');
-        this.addMoreMatch('like');
-      }
-      if (this.currentX === -250) {
-        console.log('dislike');
-        this.addMoreMatch('dislike');
-      }
       dragItem.style.transform = `rotate(${this.currentX / 10}deg) translate3d(${this.currentX}px, ${ this.currentY}px, 0)`;
     }
   }
+  addClassAnimation(likeOrDeslike): void {
+    const addAnimation: any = document.querySelectorAll('mat-card')[0];
+    likeOrDeslike === 'like' ?
+      addAnimation.classList.add('like-animation') :
+      addAnimation.classList.add('dislike-animation');
+  }
   transitionOptionMatch(likeOrDeslike): Promise<boolean>{
     return new Promise((resolve: any, reject: any) => {
-      const buttons = document.querySelectorAll('.matches-buttons');
-
-      if (likeOrDeslike === 'like') {
-        document.querySelectorAll('mat-card')[0].classList.add('like-animation');
-      }else {
-        document.querySelectorAll('mat-card')[0].classList.add('dislike-animation');
-      }
-      buttons.forEach((value) => {
-        value.setAttribute('disabled', 'true');
-      });
+      this.addClassAnimation(likeOrDeslike);
+      this.buttonDisabled('add');
       setInterval(() => {
         resolve(true);
       }, 1500);
     });
   }
-  addMoreMatch(likeOrDeslike): void {
+  buttonDisabled(addOrRemove): void {
+    const buttons = document.querySelectorAll('.matches-buttons');
+    addOrRemove === 'add' ?
+      buttons.forEach((value) => {value.setAttribute('disabled', 'true'); }) :
+      buttons.forEach((value) => {value.removeAttribute('disabled'); });
+  }
+  execAddMoreMatchAndTransition(likeOrDeslike): void {
     this.transitionOptionMatch(likeOrDeslike).then((res: boolean) => {
       if (res) {
-        console.log('eita');
-        const buttons = document.querySelectorAll('.matches-buttons');
-        buttons.forEach((value) => {
-          value.removeAttribute('disabled');
-        });
-        this.splitMatches.addMoreMatch();
-        console.log(this.splitMatches.matchUserSplited);
-        this.matchUser = this.splitMatches.matchUserSplited;
+        this.buttonDisabled('remove');
+        this.addMoreMatch();
       }
     });
-    // this.splitMatches.addMoreMatch();
-    // console.log(this.splitMatches.matchUserSplited);
-    // this.matchUser = this.splitMatches.matchUserSplited;
-    // this.transitionOptionMatch();
+  }
+  addMoreMatch(): void {
+    this.splitMatches.addMoreMatch();
+    console.log(this.splitMatches.matchUserSplited);
+    this.matchUser = this.splitMatches.matchUserSplited;
   }
 }

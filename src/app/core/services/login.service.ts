@@ -8,7 +8,7 @@ import { LoginInterface, ResponseLoginInterface } from './../interfaces/login.in
 })
 export class LoginService {
 
-  private readonly loginURL = 'http://34.223.220.245/api/V1/login'
+  private readonly loginURL = 'http://34.223.220.245/api/V1/login';
 
   constructor(
     private http: HttpClient,

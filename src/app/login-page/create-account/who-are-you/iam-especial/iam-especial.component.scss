@@ -9,10 +9,10 @@
   flex-direction: column;
   mat-card {
     .first-card{
-      color: $btn-login-primary;
+      color: $white;
     }
     mat-card-title{
-      color: $text-button-color-blue-primary;
+      color: $blue-2E2;
       font-size: 1.2rem;
     }
     border-radius: 20px;
@@ -20,8 +20,8 @@
   .who-are-you {
     mat-card {
       padding: 1rem 1.5rem;
-      color: $btn-login-primary;
-      background-color: $background-footer-header;
+      color: $white;
+      background-color: $blue-3F5;
     }
   }
   .profile-img{
@@ -30,8 +30,8 @@
     position: relative;
     width:80px;
     height: 68px;
-    background-color: $background-color-insert-photos;
-    border: 1px solid $border-color-insert-photos;
+    background-color: $grey-D9D;
+    border: 1px solid $grey-C9C;
     border-radius: 8px;
     color: #909090;
     font-size: 80px;
@@ -48,6 +48,7 @@
         width: auto;
         border-radius: 8px;
         max-height: 68px;
+        max-width: 80px;
       }
       .profile-img::after{
         content:"add_a_photo";
@@ -70,9 +71,19 @@
         width:25px;
         height:25px;
         border-radius: 100%;
-        background: $background-color-insert-photos;
+        background: $grey-D9D;
         z-index: 1;
       }
+    }
+  }
+  .how-I-was-born{
+    padding: 0 1rem;
+    margin: 0 0 20px;
+  }
+  .how-I-was-born-radio{
+    display: flex;
+    .option-radio:nth-child(1){
+      margin-right: 10px;
     }
   }
   .container-checks{
@@ -83,8 +94,8 @@
   }
   .more-photos{
     justify-self: center;
-    background-color: $background-color-insert-photos;
-    border: 1px solid $border-color-insert-photos;
+    background-color: $grey-D9D;
+    border: 1px solid $grey-C9C;
     margin: 5px;
     max-width: 150px;
     border-radius: 8px;
@@ -178,8 +189,12 @@
       "input-name input-email"
       "input-phone input-profession"
       "input-gender input-orientation"
+      "was-born  was-born"
       "input-text-area input-text-area"
       ;
+    }
+    .how-I-was-born{
+      grid-area: was-born;
     }
     .input-name{
       grid-area: input-name;

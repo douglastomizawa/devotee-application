@@ -6,7 +6,7 @@
   overflow: auto;
   display: grid;
   grid-template-rows: 1fr 4fr 2fr;
-  background-color: $backgroud-color-after-login;
+  background-color: $grey-F1F;
 }
 .container-footer {
   align-self: flex-end;
@@ -20,14 +20,14 @@ header {
   padding: 20px;
   align-items: center;
   justify-content: center;
-  background-color: $background-footer-header;
+  background-color: $blue-3F5;
   img {
     width: 30px;
     margin-right: 10px;
   }
   span {
     font-size: 1.8rem;
-    color: $btn-login-primary;
+    color: $white;
   }
 }
 

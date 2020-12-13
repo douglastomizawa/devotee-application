@@ -16,18 +16,18 @@
   }
   .create-account{
     grid-area: create-account;
-    background-color: $btn-login-primary;
-    color: $btn-login-secundary;
+    background-color: $white;
+    color: $red-EC1;
   }
   .login{
     grid-area: login;
-    background-color: $btn-login-secundary;
-    color: $btn-login-primary;
+    background-color: $red-EC1;
+    color: $white;
   }
   .login-fb{
     grid-area: login-fb;
     background-color: #1977F5;
-    color: $btn-login-primary;
+    color: $white;
     img{
       max-width: 37px;
     }
@@ -36,12 +36,12 @@
     display: block;
     grid-area: or;
     text-align: center;
-    color: $btn-login-primary;
+    color: $white;
   }
   .login-qr{
     display: block;
       grid-area: login-qr;
-      background-color: $btn-login-primary;
+      background-color: $white;
       color: #505050;
   }
 

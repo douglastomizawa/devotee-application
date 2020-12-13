@@ -21,21 +21,25 @@ export class ButtonsComponent implements OnInit {
   isLarge: Observable<BreakpointState> = this.breakpointObserver.observe(
     Breakpoints.Large
   );
-  constructor(private translatePage: TranslateService, public dialog: MatDialog,private readonly breakpointObserver: BreakpointObserver ) { }
+  constructor(
+    private translatePage: TranslateService,
+    public dialog: MatDialog,
+    private readonly breakpointObserver: BreakpointObserver
+    ){}
   openDialog(): void {
     const d = this.dialog.open(QRSignInModalComponent, {
       width: 'calc(100% - 50px)',
       maxWidth: '100vw'
     });
     const smallDialogSubscription = this.isExtraSmall.subscribe(size => {
-      size.matches ? d.updateSize('100vw', '100vh'): undefined ;
+      size.matches ? d.updateSize('100vw', '100vh') : undefined ;
     });
 
     const mediumDialogSubscription = this.isMedium.subscribe(size => {
        size.matches ? d.updateSize('70%', '50%') : undefined;
     });
     const largeDialogSubscription = this.isLarge.subscribe(size => {
-      size.matches ? d.updateSize('70%', '70%'): undefined ;
+      size.matches ? d.updateSize('70%', '70%') : undefined ;
 
     });
     d.afterClosed().subscribe(() => {

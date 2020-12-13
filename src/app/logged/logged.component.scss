@@ -1,7 +1,7 @@
 @import "../app.component.scss";
 .container-logged{
-  background-color: $backgroud-color-after-login;
-  color: $text-button-color-blue-primary;
+  background-color: $grey-F1F;
+  color: blue-2E2;
   width: 100vw;
   height: 100vh;
   display: grid;
@@ -14,7 +14,7 @@ router-outlet{
 
 header {
   padding: 20px;
-  background-color: $background-footer-header;
+  background-color: $blue-3F5;
   .container-header{
     display: grid;
     max-width: 1700px;
@@ -31,7 +31,7 @@ header {
   }
   span {
     font-size: 1.8rem;
-    color: $btn-login-primary;
+    color: $white;
   }
   .container-menu-logged{
     display: flex;
@@ -51,7 +51,7 @@ header {
   }
 }
 .icon-menu-logged{
-  color: #fff;
+  color: $white;
   opacity: 0.7;
 
 }
@@ -62,7 +62,7 @@ header {
 @media only screen and(min-width:800px) {
 
   .icon-menu-logged{
-    color: #fff;
+    color: $white;
     opacity: 0.7;
     font-size: 35px;
   }

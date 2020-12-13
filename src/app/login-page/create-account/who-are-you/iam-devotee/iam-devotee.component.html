@@ -117,6 +117,8 @@
                      placeholder="{{ text.iamEspecialAndDevotee.aboutYou.inputGenre}}"
                      aria-label="Number"
                      matInput
+                     #optionGenre
+                     (change)="0"
                      formControlName="gender"
                      [matAutocomplete]="auto" (click)="filterOption('gender')" [(ngModel)]='userDevotee.genre'>
               <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
@@ -139,6 +141,20 @@
                 </mat-option>
               </mat-autocomplete>
             </mat-form-field>
+            <div class="how-I-was-born " [style.display]="optionGenre.value === 'Masculino' || optionGenre.value === 'Feminino' || optionGenre.value === '' ? 'none' : 'block' ">
+              <div class="how-I-was-born-txt">Como eu nasci</div>
+              <div class="options-phone-visibility how-I-was-born-radio">
+                <div class="option-radio">
+                  <input type="radio" id="men" name="wasBorn" value="men" >
+                  <label for="men">Homem</label>
+                </div>
+
+                <div class="option-radio">
+                  <input type="radio" id="woman" name="wasBorn" value="woman" >
+                  <label for="woman">Mulher</label>
+                </div>
+              </div>
+            </div>
             <mat-form-field class="example-full-width input-text-area">
               <label for="about-you">
                 <mat-label>{{ text.iamEspecialAndDevotee.aboutYou.inputMoreAboutYou}}</mat-label>

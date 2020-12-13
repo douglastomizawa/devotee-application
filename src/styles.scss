@@ -96,9 +96,41 @@ body {
   color: $blue-2E2;
   border-radius: 10px!important;
 }
+.option-radio{
+  input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+  }
+  input + label {
+    position: relative;
+    cursor: pointer;
+    padding-left: 25px;
+  }
+  input[type=radio] + label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: solid 1px  $blue-2E2;
+    vertical-align: bottom;
+  }
+  input[type=radio]:checked + label::after {
+    content: '';
+    background-color: $blue-2E2;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: absolute;
+    left: 3px;
+    bottom: 3px;
+  }
+}
 .options-phone-visibility {
   padding: 0 5px;
-
   input{
     margin-top: 3px;
     margin-right: 3px;

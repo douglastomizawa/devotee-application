@@ -8,7 +8,7 @@ import { ResponseProfileInterface } from './../interfaces/profile.interface'
 })
 export class ProfileService {
 
-  private readonly profileURL = 'http://34.223.220.245/api/V1/user'
+  private readonly profileURL = 'http://34.223.220.245/api/V1/user';
 
   constructor(
     private http: HttpClient,
