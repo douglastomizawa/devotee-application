@@ -1,3 +1,4 @@
+import { LoggedInUserIdService } from './../../../../core/services/logged-in-user-id.service';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { InjectSelectAndFilterService } from './../../../../core/services/inject-select-and-filter.service';
@@ -25,7 +26,7 @@ export class PreferencesComponent implements OnInit {
     private injectSelect: InjectSelectAndFilterService,
     private formBuilder: FormBuilder,
     private getValueApis: GetValuesApisPtUsService,
-    private splitMatches: SplitMatchesService,
+    private loggedUserId: LoggedInUserIdService,
     private loadingSpinnerC: LoadingSpinnerService,
     private location: Location,
 
@@ -57,7 +58,7 @@ export class PreferencesComponent implements OnInit {
     this.text = this.translatePage.textTranslate;
   }
   loadingSpinner(): void{
-    this.splitMatches.returnIdUser(19);
+    // this.loggedUserId.returnIdUser();
     this.loadingSpinnerC.loadingSpinner();
   }
   createForm( ): void {

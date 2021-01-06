@@ -1,3 +1,4 @@
+import { LoggedInUserIdService } from './../../core/services/logged-in-user-id.service';
 import { RedirectLoggedService } from './../../core/services-redirect/redirect-logged.service';
 import { LoadingSpinnerService } from './../../core/loading-spinner.service';
 import { LoginService } from './../../core/services/login.service';
@@ -37,6 +38,7 @@ export class SignInComponent implements OnInit {
     private formBuilder: FormBuilder,
     private loadingSpinnerC: LoadingSpinnerService,
     private splitMatches: SplitMatchesService,
+    private userId: LoggedInUserIdService,
     private redirectLogged: RedirectLoggedService,
 
     ) {}
@@ -62,7 +64,7 @@ export class SignInComponent implements OnInit {
       if (!res['status']) {
         this.resError = true;
       }else{
-        this.splitMatches.returnIdUser(res['id']);
+        this.userId.returnIdUser(res['id']);
         this.loginLoad();
       }
     })

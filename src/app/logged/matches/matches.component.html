@@ -1,14 +1,15 @@
   <div class="container-matches">
+    <!-- Perfil likes -->
     <div class="container-filter-and-matches">
-      <div class="matches cursor-pointer">
+      <div class="matches cursor-pointer" >
 
         <mat-icon class="circle-matches-filter" [matMenuTriggerFor]="menu" >favorite</mat-icon>
         <!-- <button mat-button >Menu</button> -->
-        <mat-menu #menu="matMenu" class="menu-likes" >
+        <mat-menu #menu="matMenu" class="menu-likes"  >
           <h2>Likes recebidos</h2>
-          <p>Feminino: 0</p>
-          <p>Masculino: 0</p>
-          <p>Outros: 0</p>
+          <p>Feminino: {{femaleLike}}</p>
+          <p>Masculino: {{maleLike}}</p>
+          <p>Outros: {{anotherLike}}</p>
 
         </mat-menu>
       </div>
@@ -16,6 +17,7 @@
         <mat-icon class="circle-matches-filter" [routerLink]="['/preferences']">filter_alt</mat-icon>
       </div>
     </div>
+
     <div class="container-matches-sugestion"  id="container-drag">
       <!-- *ngFor="let teste of matchUser" cdkDrag(dragover)='dragCard($event)' -->
       <mat-card *ngFor="let user of matchUser" draggable="true"

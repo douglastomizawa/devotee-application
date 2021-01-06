@@ -1,3 +1,5 @@
+import { LoggedInUserIdService } from './../../core/services/logged-in-user-id.service';
+import { PerfilLikesService } from './../../core/services/perfil-likes.service';
 import { SplitMatchesService } from './../../core/services/split-matches.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -18,14 +20,20 @@ export class MatchesComponent implements OnInit {
   deslikePosition;
   xOffset: number = 0;
   yOffset: number = 0;
+  femaleLike;
+  maleLike;
+  anotherLike;
   constructor(
     private splitMatches: SplitMatchesService,
+    private perfilLikes: PerfilLikesService,
+    private loggedUserId: LoggedInUserIdService,
     ) {
     }
 
   ngOnInit(): void {
     this.matchUser = this.splitMatches.matchUserSplited;
     this.dragCard();
+    this.exhibitionPerfilLikes();
   }
   dragCard(): void {
     const container = document.querySelector('#container-drag');
@@ -133,5 +141,34 @@ export class MatchesComponent implements OnInit {
     this.splitMatches.addMoreMatch();
     console.log(this.splitMatches.matchUserSplited);
     this.matchUser = this.splitMatches.matchUserSplited;
+  }
+  exhibitionPerfilLikes(): any {
+    const female = new Array();
+    const male = [];
+    const another = [];
+    this.perfilLikes.get(this.loggedUserId.idUser).toPromise().then(res => {
+      res.data.forEach(element => {
+        switch (element.gender) {
+          case 'female':
+            female.push(element.gender);
+
+            // likesProfile.female = female.length;
+            break;
+          case 'male':
+            male.push(element.gender);
+            // likesProfile.female = female.length;
+              break;
+          default:
+            another.push(element.gender);
+            // likesProfile.female = female.length;
+            break;
+        }
+
+      });
+      this.femaleLike = female.length;
+      this.maleLike = male.length;
+      this.anotherLike = another.length;
+    });
+
   }
 }
