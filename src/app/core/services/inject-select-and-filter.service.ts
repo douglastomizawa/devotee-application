@@ -39,6 +39,7 @@ export class InjectSelectAndFilterService {
   /* tslint:disable:no-string-literal */
   version = VERSION;
   emitLoadMoreOptions = new EventEmitter();
+  /*---Arrays das apis de cadastros/perfil----*/
   private gender: string[] = ['Masculino', 'Feminino', 'outros'];
   private orientation: string[] = ['Hetero', 'Homo', 'Muitos outros'];
   private surgery: string[] = ['surgery-One', 'surgery-Two', 'surgery-Three'];
@@ -62,7 +63,7 @@ export class InjectSelectAndFilterService {
   private medicinesPT: ResponseMedicinesInterface[];
   private medicinesUS: ResponseMedicinesInterface[];
   private allMedicines: ResponseMedicinesInterface[];
-  public filteredBanksMulti: ReplaySubject<ResponseMedicinesInterface[]> = new ReplaySubject<ResponseMedicinesInterface[]>(1);
+  public filteredMedicines: ReplaySubject<ResponseMedicinesInterface[]> = new ReplaySubject<ResponseMedicinesInterface[]>(1);
   public filteredHosptals: ReplaySubject<Hosp[]> = new ReplaySubject<Hosp[]>(1);
   public filteredCids: ReplaySubject<Cids[]> = new ReplaySubject<Cids[]>(1);
   public filteredUserType: ReplaySubject<UserType[]> = new ReplaySubject<UserType[]>(1);
@@ -113,7 +114,7 @@ export class InjectSelectAndFilterService {
   howSelectClicked(inputControl: string): void {
     switch (inputControl) {
       case 'selectMedicines':
-        this.filteredBanksMulti.next(this.medicines);
+        this.filteredMedicines.next(this.medicines);
         break;
       case 'selectHosptals':
         this.filteredHosptals.next(this.hosptals);
@@ -210,7 +211,7 @@ export class InjectSelectAndFilterService {
   private filterValueSelectEspecial( control: any, inputControl: string): void {
     switch (inputControl) {
       case 'selectMedicines':
-        this.filteredBanksMulti.next(
+        this.filteredMedicines.next(
           this.allMedicines.filter(medicines => medicines.value.toLowerCase().indexOf(control.value.toLowerCase()) > -1)
         );
         break;

@@ -59,7 +59,7 @@ export class IamEspecialComponent implements OnInit {
     this.filterValueToPushInArrayToOptions();
   }
   setOptionValues(): void {
-    this.filteredMedicine = this.injectSelect.filteredBanksMulti;
+    this.filteredMedicine = this.injectSelect.filteredMedicines;
     this.filteredHosptals = this.getValueApis.filteredHosptals;
     this.filteredCids = this.getValueApis.filteredCids;
   }

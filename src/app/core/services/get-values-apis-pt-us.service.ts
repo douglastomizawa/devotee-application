@@ -13,7 +13,7 @@ export class GetValuesApisPtUsService {
   constructor(private injectSelect: InjectSelectAndFilterService) { }
 
   getApisValuePt(): void {
-    this.injectSelect.filteredBanksMulti.subscribe(data => {
+    this.injectSelect.filteredMedicines.subscribe(data => {
       for (const i of data) {
         if (this.filteredMedicine.indexOf(i.value) === -1){
           this.filteredMedicine.push(i.value);
@@ -43,7 +43,7 @@ export class GetValuesApisPtUsService {
     });
   }
   getApisValueUs(): void{
-    this.injectSelect.filteredBanksMulti.subscribe(data => {
+    this.injectSelect.filteredMedicines.subscribe(data => {
       for (const i of data) {
         if (this.filteredMedicine.indexOf(i.value_en) === -1){
           this.filteredMedicine.push(i.value_en);
