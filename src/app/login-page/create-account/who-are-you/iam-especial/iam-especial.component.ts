@@ -34,8 +34,8 @@ export class IamEspecialComponent implements OnInit {
   phone;
   userEspecial: UserEspecial = new UserEspecial();
   orientation: string[] = ['Hetero', 'Homo', 'Muitos outros'];
-  surgery: string[] = ['surgery-One', 'surgery-Two', 'surgery-Three'];
   filteredOptions: Observable<string[]>;
+  filteredSurgeries;
   filteredMedicine;
   filteredCids: string[] = [];
   filteredHosptals: string[] = [];
@@ -60,6 +60,7 @@ export class IamEspecialComponent implements OnInit {
   }
   setOptionValues(): void {
     this.filteredMedicine = this.injectSelect.filteredMedicines;
+    this.filteredSurgeries= this.injectSelect.filteredSurgeries;
     this.filteredHosptals = this.getValueApis.filteredHosptals;
     this.filteredCids = this.getValueApis.filteredCids;
   }
@@ -91,13 +92,16 @@ export class IamEspecialComponent implements OnInit {
    });
   }
   getFinalScrollSelect(inputControl: string): void  {
+
     this.selectIsReady().then((res: any) => {
+      console.log(inputControl, res)
       if (res['promiseResolve']){
         const selectScroll = res['elementSelect'];
         selectScroll.addEventListener('scroll', e => {
           if (Math.trunc(selectScroll.scrollTop + selectScroll.clientHeight) === selectScroll.scrollHeight) {
             this.injectSelect.loadMoreOptionSelects(inputControl);
             this.loadMore().then(( resload: any) => {
+              console.log(resload)
               if (resload) {
                 this.injectSelect.filterOptionSelect(inputControl, this.dataUser);
               }
@@ -164,7 +168,7 @@ export class IamEspecialComponent implements OnInit {
           orientation: ['', [Validators.required]],
           aboutYou: [''],
           cids: [''],
-          surgery: [''],
+          surgeries: [''],
           hosptals: [''],
           medicines: [''],
           checkBirthDeficiency: [''],
@@ -172,7 +176,7 @@ export class IamEspecialComponent implements OnInit {
           checkImpairedFertility: [''],
           checkOvercomingExample: [''],
           selectCids: [''],
-          selectSurgery: [''],
+          selectSurgeries: [''],
           selectHosptals: [''],
           selectMedicines: [''],
         });

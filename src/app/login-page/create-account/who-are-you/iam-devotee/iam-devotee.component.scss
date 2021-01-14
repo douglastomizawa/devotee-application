@@ -8,16 +8,6 @@
   .cursor-pointer{
     cursor: pointer;
   }
-  mat-card {
-    .first-card{
-      color: $white;
-    }
-    mat-card-title{
-      color: $blue-2E2;
-      font-size: 1.2rem;
-    }
-    border-radius: 20px;
-  }
   .who-are-you {
     mat-card {
       padding: 1rem 1.5rem;

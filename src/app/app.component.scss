@@ -22,3 +22,13 @@ $blue-2E2: #2E2C8A;
 .btn-width {
   width: 100px;
 }
+mat-card {
+  .first-card{
+    color: $white;
+  }
+  mat-card-title{
+    color: $blue-2E2;
+    font-size: 1.2rem;
+  }
+  border-radius: 15px;
+}

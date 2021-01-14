@@ -197,24 +197,17 @@
                 </mat-select>
               </mat-form-field>
 
+              <!-- SURGERYY -->
 
-
-
-              <mat-form-field class="example-full-width input-surgery">
-                <input type="text"
-                       placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputSurgery}}"
-                       aria-label="Number"
-                       matInput
-                       formControlName="surgery"
-                       [matAutocomplete]="auto" >
-                       <!-- (focus)="filterOption('surgery')" -->
-                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                  <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                    {{option}}
+              <mat-form-field id="surgerie-select" >
+                <mat-select  (focus)="filterOption('selectSurgeries')"  formControlName="surgeries" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputSurgery}}" [multiple]="true"  [(ngModel)]='userEspecial.surgeries'>
+                  <mat-select-search id="mat-select-true" formControlName="selectSurgeries" ></mat-select-search>
+                  <mat-option  *ngFor="let selectSurgeries of filteredSurgeries | async"  [value]="selectSurgeries" >
+                    <div *ngIf="language === 'pt'" >{{selectSurgeries.name}}</div>
+                    <div *ngIf="language === 'us'" >{{selectSurgeries.name_en}}</div>
                   </mat-option>
-                </mat-autocomplete>
+                </mat-select>
               </mat-form-field>
-
 
 
               <mat-form-field >

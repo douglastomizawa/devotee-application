@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 })
 export class GetValuesApisPtUsService {
   filteredMedicine: string[] = [];
+  filteredSurgeries: string[] = [];
   filteredHosptals: string[] = [];
   filteredCids: string[] = [];
   filteredUserType: string[] = [];
@@ -17,6 +18,13 @@ export class GetValuesApisPtUsService {
       for (const i of data) {
         if (this.filteredMedicine.indexOf(i.value) === -1){
           this.filteredMedicine.push(i.value);
+        }
+      }
+    });
+    this.injectSelect.filteredSurgeries.subscribe(data => {
+      for (const i of data) {
+        if (this.filteredSurgeries.indexOf(i.name) === -1){
+          this.filteredSurgeries.push(i.name);
         }
       }
     });

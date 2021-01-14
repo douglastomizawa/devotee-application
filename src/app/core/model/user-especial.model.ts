@@ -16,7 +16,7 @@ export class UserEspecial {
   orientation: string;
   aboutYou: string = '';
   cid: string[];
-  surgery: string[];
+  surgeries: string[];
   hospitals: string[];
   medicines: string[];
 }
