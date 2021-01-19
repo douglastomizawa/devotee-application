@@ -44,10 +44,9 @@ footer{
       font-size: 1rem;
       .policy{
           opacity: $opacity-70;
-          margin-right: 10px;
       }
       .policy-privacy{
-          opacity: $opacity-70
+          margin-right: 10px;
       }
       .terms{
           opacity: $opacity-70;
@@ -183,7 +182,6 @@ footer{
           "logo-terms copyright download-copyright";
     }
     #copyright{
-      opacity: $opacity-70;
       margin-top: 1rem;
       padding-bottom: 10px;
     }

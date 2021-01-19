@@ -50,7 +50,7 @@ export class SignInComponent implements OnInit {
   }
   loginLoad(): void {
     this.loadingSpinnerC.loadingSpinner().then((res: any) => {
-      res ? this.redirectLogged.loggedRedirect(res, '/matches') : this.resError = true;
+      res ? this.redirectLogged.loggedRedirect(res, '/sugestion-matches') : this.resError = true;
     });
   }
   createForm( ): void {

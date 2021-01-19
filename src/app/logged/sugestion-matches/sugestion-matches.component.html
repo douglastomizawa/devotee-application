@@ -1,0 +1,54 @@
+  <div class="container-matches">
+    <!-- Perfil likes -->
+    <div class="container-filter-and-matches">
+      <div class="matches cursor-pointer" >
+
+        <mat-icon class="circle-matches-filter" [matMenuTriggerFor]="menu" >favorite</mat-icon>
+        <!-- <button mat-button >Menu</button> -->
+        <mat-menu #menu="matMenu" class="menu-likes"  >
+          <h2>Likes recebidos</h2>
+          <p>Feminino: {{femaleLike}}</p>
+          <p>Masculino: {{maleLike}}</p>
+          <p>Outros: {{anotherLike}}</p>
+
+        </mat-menu>
+      </div>
+      <div class="filter cursor-pointer">
+        <mat-icon class="circle-matches-filter" [routerLink]="['/preferences']">filter_alt</mat-icon>
+      </div>
+    </div>
+
+    <div class="container-matches-sugestion"  id="container-drag">
+      <!-- *ngFor="let teste of matchUser" cdkDrag(dragover)='dragCard($event)' -->
+      <mat-card *ngFor="let user of matchUser" draggable="true"
+      (mouseenter)="execDragSplitSugestions()" data-position="0">
+        <div class="container-sugestion-perfil">
+          <!-- <mat-icon class="circle-matches-person">person</mat-icon> -->
+          <mat-icon class="circle-matches-person"><img src="http://34.223.220.245/{{user.photo}}" alt=""></mat-icon>
+          <span><b>{{user.first_name}}, {{user.usercurrentage}}</b>
+          <p>{{user.user_type}}</p>
+          </span>
+        </div>
+        <div class="container-perfil-picture" >
+          <img class="profile-img" src="http://34.223.220.245/{{user.photo}}" alt="">
+        </div>
+      </mat-card>
+
+    </div>
+      <div class="aling-buttons">
+        <div class="container-buttons-matches">
+          <button class="matches-buttons" (click)="execAddMoreMatchAndTransition('deslike')">
+          <div class="deslike">
+              <mat-icon class="matches-buttons"  >thumb_down</mat-icon>
+            </div>
+          </button>
+
+          <button class="matches-buttons" (click)="execAddMoreMatchAndTransition('like')">
+            <div class="like">
+              <mat-icon class="matches-buttons">thumb_up</mat-icon>
+            </div>
+         </button>
+      </div>
+      </div>
+
+  </div>
