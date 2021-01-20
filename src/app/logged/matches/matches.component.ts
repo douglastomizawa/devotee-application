@@ -1,3 +1,5 @@
+import { ProfileService } from './../../core/services/profile.service';
+import { LoggedInUserIdService } from './../../core/services/logged-in-user-id.service';
 import { MatchesService } from './../../core/services/matches.service';
 import { TranslateService } from './../../shared/translate.service';
 import { Component, OnInit } from '@angular/core';
@@ -8,20 +10,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./matches.component.scss']
 })
 export class MatchesComponent implements OnInit {
-  matches : any;
+  // matches:any = [];
+  matches: any;
   constructor(
     private translatePage: TranslateService,
-    private getMatchesAPI: MatchesService
+    private getMatchesAPI: MatchesService,
+    private getId: LoggedInUserIdService,
   ) { }
 
   ngOnInit(): void {
     this.translatePage.veriyLanguage();
-    this.getMatches()
+    this.getMatches();
   }
-  getMatches(){
-    console.log('teste')
-    this.getMatchesAPI.get('2860').subscribe(res =>{
-      this.matches = res
+  getMatches(): void {
+    this.getMatchesAPI.get(this.getId.idUser).subscribe(res =>{
+      this.matches = res;
     })
   }
 }
