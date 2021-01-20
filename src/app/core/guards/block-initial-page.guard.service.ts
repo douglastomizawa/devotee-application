@@ -15,7 +15,7 @@ export class BlockInitialPageService implements CanActivate {
         return true;
       }
       // this.location.back();
-      this.router.navigate(['/matches']);
+      this.router.navigate(['/sugestion-matches']);
       return false;
     }
 }

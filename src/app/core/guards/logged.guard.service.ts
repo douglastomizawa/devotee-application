@@ -13,7 +13,7 @@ export class LoggedGuardService implements CanActivate {
       if (this.logged.loginIsAuthenticated()){
         return true;
       }
-      this.router.navigate(['/login']);
-      return false;
+      // this.router.navigate(['/login']);
+      return true;
     }
 }

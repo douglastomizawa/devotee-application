@@ -19,12 +19,7 @@ body {
     margin-left: 0;
   }
 }
-.container-first-card{
-  > mat-card {
-    background-color: $blue-3F5;
-    color: $white;
-  }
-}
+
 .container-card-settins{
   display: grid;
   grid-row-gap: 1em;

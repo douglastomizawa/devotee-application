@@ -1,37 +1,40 @@
 <footer>
   <div class="container-footer">
-      <div class="logo-terms">
-          <div class="logo">
-              <a href="#"  rel="noopener noreferrer">
-                  <img src="./assets/logo-branco.svg" alt="Logo Devotee" data-alt="altlogo"id="altfootlogo">
-                  <span><p class="logo-text">Devotee</p> </span>
-              </a>
-          </div>
-          <div class="terms-policy">
-              <div class="content-terms policy-privacy">
-
-                  <p (click)="openDialog()" (click)="execClickTabsShow('click-policy-privacy')" class="tablinks policy my-btn-terms"color="#2E2C8A" >{{ textFooter.policyPrivacy }}</p>
-              </div>
-              <div class="content-terms">
-                <p (click)="openDialog()" (click)='execClickTabsShow("click-terms")' class="tablinks  terms my-btn-terms" color="#2E2C8A" >{{ textFooter.terms }}</p>
-              </div>
-          </div>
+    <div class="logo-terms">
+      <div class="logo">
+        <a href="#" rel="noopener noreferrer">
+          <img src="./assets/logo-branco.svg" alt="Logo Devotee" data-alt="altlogo" id="altfootlogo">
+          <span>
+            <p class="logo-text">Devotee</p>
+          </span>
+        </a>
       </div>
-      <div class="download-copyright">
-          <div class="download-app">
-              <p>{{ textFooter.getApp  }}</p>
-              <div class="buttons-download">
-                  <a href="https://play.google.com/store/apps/details?id=com.phurshell.devotee&hl=pt_BR" target="_blank" rel="noopener noreferrer">
-                  <img src={{textFooter.btnPlayStore}} alt="Botão play store"  ></a>
-                  <a href="https://apps.apple.com/br/app/devotee/id1331331692" target="_blank" rel="noopener noreferrer">
-                  <img src={{textFooter.btnAppStore}} alt="Botão Apple store" ></a>
-              </div>
-          </div>
+      <div class="terms-policy">
+        <div class="content-terms policy-privacy">
 
+          <p (click)="openDialog()" (click)="execClickTabsShow('click-policy-privacy')"
+            class="tablinks policy my-btn-terms" color="#2E2C8A">{{ textFooter.policyPrivacy }}</p>
+        </div>
+        <div class="content-terms">
+          <p (click)="openDialog()" (click)='execClickTabsShow("click-terms")' class="tablinks  terms my-btn-terms"
+            color="#2E2C8A">{{ textFooter.terms }}</p>
+        </div>
       </div>
-      <div id="copyright" class="copyright">{{ copyright }}</div>
+    </div>
+    <div class="download-copyright">
+      <div class="download-app">
+        <p>{{ textFooter.getApp }}</p>
+        <div class="buttons-download">
+          <a href="https://play.google.com/store/apps/details?id=com.phurshell.devotee&hl=pt_BR" target="_blank"
+            rel="noopener noreferrer">
+            <img src={{textFooter.btnPlayStore}} alt="Botão play store"></a>
+          <a href="https://apps.apple.com/br/app/devotee/id1331331692" target="_blank" rel="noopener noreferrer">
+            <img src={{textFooter.btnAppStore}} alt="Botão Apple store"></a>
+        </div>
+      </div>
+
+    </div>
+    <div id="copyright" class="copyright">{{ copyright }}</div>
   </div>
 
 </footer>
-
-

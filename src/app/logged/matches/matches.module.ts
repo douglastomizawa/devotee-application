@@ -1,15 +1,22 @@
 import { NgModule } from '@angular/core';
+import { ChatModule } from './../chat/chat.module';
 import { CommonModule } from '@angular/common';
-import { MatchesComponent } from './matches.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { MatchesRountingModule } from './matches.rounting.module';
 
+
+import { MatchesComponent } from './matches.component';
 
 
 @NgModule({
   declarations: [MatchesComponent],
   imports: [
+    ChatModule,
     CommonModule,
-    MatchesRountingModule
+    MatIconModule,
+    MatCardModule,
+    MatchesRountingModule,
   ]
 })
 export class MatchesModule { }
