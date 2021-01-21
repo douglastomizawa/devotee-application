@@ -19,7 +19,7 @@
           "inputEmail":{
             "msgErrorEmailInvalid":"Por favor insira um endereço de e-mail válido",
             "emailIs":"E-mail é ",
-            "required":"obritório"
+            "required":"obrigatório"
           },
           "btnRecover":"Recuperar",
           "btnReturn":"Voltar"
@@ -132,6 +132,15 @@
           "minimunAge":"Idade Minima:",
           "maximumAge":"Idade máxima:"
         },
+        "sugestionMatches":{
+          "menuLikes":{
+            "title":"Likes recebidos",
+            "male":"Masculino",
+            "female":"Feminino",
+            "others":"Outros"
+          }
+        },
+        "matches":"Meus matches",
         "userSettings":{
           "title":"Configurações",
           "myProfile":"Meu perfil",
@@ -298,6 +307,15 @@
           "minimunAge":"Minimum age:",
           "maximumAge":"Maximum Age:"
         },
+        "sugestionMatches":{
+          "menuLikes":{
+            "title":"Likes received",
+            "male":"Male",
+            "female":"Female",
+            "others":"Others"
+          }
+        },
+        "matches":"My matches",
         "userSettings":{
           "title":"Settings",
           "myProfile":"My profile",

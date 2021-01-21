@@ -6,10 +6,10 @@
         <mat-icon class="circle-matches-filter" [matMenuTriggerFor]="menu" >favorite</mat-icon>
         <!-- <button mat-button >Menu</button> -->
         <mat-menu #menu="matMenu" class="menu-likes"  >
-          <h2>Likes recebidos</h2>
-          <p>Feminino: {{femaleLike}}</p>
-          <p>Masculino: {{maleLike}}</p>
-          <p>Outros: {{anotherLike}}</p>
+          <h2>{{text.sugestionMatches.menuLikes.title}}</h2>
+          <p>{{text.sugestionMatches.menuLikes.female}}: {{femaleLike}}</p>
+          <p>{{text.sugestionMatches.menuLikes.male}}: {{maleLike}}</p>
+          <p>{{text.sugestionMatches.menuLikes.others}}: {{anotherLike}}</p>
 
         </mat-menu>
       </div>

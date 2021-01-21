@@ -1,3 +1,6 @@
+import { ProfileService } from './../../core/services/profile.service';
+import { ChatAndMatchesService } from './../../core/services/chat-and-matches.service';
+import { TranslateService } from 'src/app/shared/translate.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +9,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
+  text;
+  matchId: number
+  matchUser;
+  isHidden;
+  constructor(
+    private translatePage: TranslateService,
+    private getProfileAPI: ProfileService,
+    private emitterMatchId: ChatAndMatchesService,
 
-  constructor() { }
+  ) { }
 
   ngOnInit(): void {
+    this.translatePage.veriyLanguage();
+    this.text = this.translatePage.textTranslate;
+    this.getInfosMatch();
   }
-
+  getInfosMatch(): void{
+    this.emitterMatchId.emitterMatchIdClick.subscribe(clickedInfos => {
+      this.isHidden = clickedInfos.clickedIs;
+      console.log(clickedInfos.clickedIs);
+      this.getProfileAPI.get(clickedInfos.matchId).subscribe(res =>{
+        this.matchUser = res;
+      })
+    })
+  }
 }

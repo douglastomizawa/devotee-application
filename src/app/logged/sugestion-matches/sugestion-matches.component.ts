@@ -1,3 +1,4 @@
+import { TranslateService } from './../../shared/translate.service';
 import { LoggedInUserIdService } from '../../core/services/logged-in-user-id.service';
 import { PerfilLikesService } from '../../core/services/perfil-likes.service';
 import { SplitMatchesService } from '../../core/services/split-matches.service';
@@ -10,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SugestionMatchesComponent implements OnInit {
   /* tslint:disable:no-string-literal */
+  text;
   matchUser;
   active = false;
   currentX;
@@ -27,6 +29,7 @@ export class SugestionMatchesComponent implements OnInit {
     private splitMatches: SplitMatchesService,
     private perfilLikes: PerfilLikesService,
     private loggedUserId: LoggedInUserIdService,
+    private translatePage: TranslateService,
     ) {
     }
 
@@ -34,6 +37,8 @@ export class SugestionMatchesComponent implements OnInit {
     this.matchUser = this.splitMatches.matchUserSplited;
     this.dragCard();
     this.exhibitionPerfilLikes();
+    this.translatePage.veriyLanguage();
+    this.text = this.translatePage.textTranslate;
   }
   dragCard(): void {
     const container = document.querySelector('#container-drag');

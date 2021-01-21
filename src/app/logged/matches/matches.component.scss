@@ -24,13 +24,14 @@ mat-card{
 .container-match{
   padding: 10px 0;
   border-bottom: 1px solid #00000029;
+  cursor: pointer;
 }
 .match{
   width: 100%;
   display: grid;
   padding: 0px 10px;
   justify-content: center;
-  grid-template-columns: 25% 75%;
+  grid-template-columns: 25% 60% 15%;
 }
 .profile-picture{
   border-radius: 100%;
@@ -57,7 +58,17 @@ mat-card{
 .profile-name{
   font-weight: bold;
 }
-
+.remove-chat{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $grey-707;
+}
+.not-matches{
+  color: $blue-2E2;
+  text-align: center;
+  font-weight: bold;
+}
 
 @media  only screen and (min-width: 411px) {
   .match{

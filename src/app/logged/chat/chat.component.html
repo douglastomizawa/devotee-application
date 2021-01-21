@@ -1,1 +1,25 @@
-<p>chat works!</p>
+<div class="container-chat" [style.display]="isHidden? 'none': 'block'">
+  <mat-card class=""*ngIf="matchUser !== undefined">
+    <div class="">
+      <div class="match"  >
+        <div class="profile-picture">
+          <img src="http://34.223.220.245/{{matchUser.user.profile_image}}" alt="">
+        </div>
+        <div class="profile-info">
+          <div class="profile-name"  >
+            {{matchUser.user.first_name}}
+            <span *ngIf="!matchUser.user.first_name.indexOf(' ') === false">
+              {{matchUser.user.last_name}}
+            </span>
+          </div>
+          <div class="profile-type">
+            {{matchUser.user.last_name}}
+          </div>
+        </div>
+        <div class="remove-chat">
+          <mat-icon>delete_sweep</mat-icon>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>
