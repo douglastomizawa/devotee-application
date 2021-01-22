@@ -2,9 +2,12 @@
 
 .matches-and-chat{
   display: grid;
-  padding: 30px;
   justify-content: center;
   grid-template-columns: 100%;
+}
+.matches{
+  padding: 30px;
+
 }
 mat-card{
   border-radius: 10px;
@@ -20,6 +23,7 @@ mat-card{
   padding: 15px 10px;
   max-height: 450px;
   overflow: auto;
+  box-shadow: 0px 3px 6px $box-shadow-grey-029;
 }
 .container-match{
   padding: 10px 0;
@@ -58,20 +62,46 @@ mat-card{
 .profile-name{
   font-weight: bold;
 }
-.remove-chat{
+.remove-chat {
   display: flex;
   align-items: center;
   justify-content: center;
   color: $grey-707;
 }
-.not-matches{
+.not-matches {
   color: $blue-2E2;
   text-align: center;
   font-weight: bold;
 }
 
-@media  only screen and (min-width: 411px) {
-  .match{
-    grid-template-columns: 20% 80%;
+@media  only screen and (min-width: 768px) {
+  .match {
+    grid-template-columns: 30% 60% 20%;
   }
+  .matches-and-chat {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 40% 60%;
+    align-items: center;
+    height: 100%;
+    padding: 0 30px;
+  }
+  .chat {
+    max-height: 450px;
+    height: 450px;
+    margin: 15px 0 0;
+  }
+  .matches {
+    padding: 0 15px 0 0;
+    mat-card{
+      padding: 1.7rem;
+    }
+  }
+
+}
+@media  only screen and (min-width: 900px) {
+  .match {
+    grid-template-columns: 25% 65% 10%;
+  }
+
 }

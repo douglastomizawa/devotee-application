@@ -1,35 +1,37 @@
 <div class="matches-and-chat">
-  <div class="container-first-card">
-    <mat-card class="container-first-card">
-      <mat-card-title class="first-card">{{text.matches}}</mat-card-title>
-    </mat-card>
-  </div>
-  <div class="list-of-matches">
-    <div class="not-matches" *ngIf="matches.length == 0">
-      Voçê ainda não possui nenhum match
+  <div class="matches">
+    <div class="container-first-card">
+      <mat-card class="container-first-card">
+        <mat-card-title class="first-card">{{text.matches}}</mat-card-title>
+      </mat-card>
     </div>
-    <div class="container-match"*ngFor="let person of matches" (click)="clickGetIdMatch(person.id)">
-      <div class="match"  >
-        <div class="profile-picture">
-          <img src="http://34.223.220.245/{{person.photo}}" alt="">
-        </div>
-        <div class="profile-info">
-          <div class="profile-name"  >
-            {{person.first_name}}
-            <span *ngIf="!person.first_name.indexOf(' ') === false">
+    <div class="list-of-matches">
+      <div class="not-matches" *ngIf="matches.length == 0">
+        Voçê ainda não possui nenhum match
+      </div>
+      <div class="container-match"*ngFor="let person of matches" (click)="clickGetIdMatch(person.id)">
+        <div class="match"  >
+          <div class="profile-picture">
+            <img src="http://34.223.220.245/{{person.photo}}" alt="">
+          </div>
+          <div class="profile-info">
+            <div class="profile-name"  >
+              {{person.first_name}}
+              <span *ngIf="!person.first_name.indexOf(' ') === false">
+                {{person.last_name}}
+              </span>
+            </div>
+            <div class="profile-type">
               {{person.last_name}}
-            </span>
+            </div>
           </div>
-          <div class="profile-type">
-            {{person.last_name}}
+          <div class="remove-chat">
+            <mat-icon>person_remove</mat-icon>
           </div>
-        </div>
-        <div class="remove-chat">
-          <mat-icon>person_remove</mat-icon>
         </div>
       </div>
     </div>
   </div>
+  <app-chat></app-chat>
 
 </div>
-<app-chat></app-chat>

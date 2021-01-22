@@ -1,7 +1,13 @@
-<div class="container-chat" [style.display]="isHidden? 'none': 'block'">
-  <mat-card class=""*ngIf="matchUser !== undefined">
+<mat-card *ngIf="matchUser === undefined">
+  Clique em algum match para visualizar sua conversa.
+</mat-card>
+<div class="container-chat" [style.display]="isHidden? 'none': 'flex'">
+  <mat-card class="infos-match" [style.display]="isHidden? 'none': ''" *ngIf="matchUser !== undefined">
     <div class="">
       <div class="match"  >
+        <span class="arrow-back-to-matches" (click)="returnToMatches()" >
+          <mat-icon>arrow_back</mat-icon>
+        </span>
         <div class="profile-picture">
           <img src="http://34.223.220.245/{{matchUser.user.profile_image}}" alt="">
         </div>
@@ -21,5 +27,22 @@
         </div>
       </div>
     </div>
+  </mat-card>
+  <mat-card class="chat" *ngIf="matchUser !== undefined">
+    <div class="mensages">
+      <div class="box-recived">
+        <div class="msg-recived box-msgs">Olá</div>
+      </div>
+      <div class="box-sent">
+        <div class="msg-sent box-msgs">Olá, tudo bemadadada  adadsad aasdasda asd adas dad as</div>
+      </div>
+    </div>
+    <div class="input-sent-msg">
+      <input type="text">
+      <div class="btn-sent">
+        <mat-icon>send</mat-icon>
+      </div>
+    </div>
+
   </mat-card>
 </div>

@@ -27,11 +27,13 @@ export class ChatComponent implements OnInit {
   }
   getInfosMatch(): void{
     this.emitterMatchId.emitterMatchIdClick.subscribe(clickedInfos => {
-      this.isHidden = clickedInfos.clickedIs;
-      console.log(clickedInfos.clickedIs);
-      this.getProfileAPI.get(clickedInfos.matchId).subscribe(res =>{
+      this.getProfileAPI.get(clickedInfos.matchId).subscribe(res => {
         this.matchUser = res;
-      })
-    })
+        this.isHidden = clickedInfos.clickedIs;
+      });
+    });
+  }
+  returnToMatches(): void {
+    this.isHidden = true;
   }
 }
