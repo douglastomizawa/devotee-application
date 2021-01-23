@@ -78,18 +78,16 @@ mat-card{
   .match {
     grid-template-columns: 30% 60% 20%;
   }
+  .container-match{
+    padding: 10px 0 10px 15px;
+  }
   .matches-and-chat {
     display: grid;
     justify-content: center;
     grid-template-columns: 40% 60%;
     align-items: center;
     height: 100%;
-    padding: 0 30px;
-  }
-  .chat {
-    max-height: 450px;
-    height: 450px;
-    margin: 15px 0 0;
+    padding: 10px 30px;
   }
   .matches {
     padding: 0 15px 0 0;
@@ -99,9 +97,54 @@ mat-card{
   }
 
 }
+
 @media  only screen and (min-width: 900px) {
   .match {
     grid-template-columns: 25% 65% 10%;
   }
+  .container-match {
+    padding: 10px 0 10px 5px;
+  }
+  .list-of-matches{
 
+      ::-webkit-scrollbar-track {
+          background-color: $grey-C4C;
+          border-radius: 0 30px 30px 0;
+      }
+      ::-webkit-scrollbar {
+          width: 15px;
+          background: $grey-C4C;
+          border-radius: 0 30px 30px 0;
+      }
+      ::-webkit-scrollbar-thumb {
+          background: $blue-3F5;
+          border-radius: 30px;
+      }
+  }
+}
+@media  only screen and (min-width: 1000px) {
+  .matches-and-chat {
+    padding: 20px 40px;
+  }
+  .match {
+    grid-template-columns: 20% 70% 10%;;
+  }
+}
+@media  only screen and (min-width: 1250px) {
+  .matches-and-chat {
+    padding: 40px 0;
+    margin: auto;
+    max-width: 1300px;
+  }
+}
+@media  only screen and (min-width: 1400px) {
+  .match {
+    grid-template-columns: 15% 80% 5%;
+  }
+}
+
+@media only screen and(min-width: 1024px) and (min-height: 1366px) {
+  .list-of-matches{
+    max-height: 500px;
+  }
 }

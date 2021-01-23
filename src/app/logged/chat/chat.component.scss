@@ -42,7 +42,7 @@ mat-card {
 }
 .box-recived {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   margin-top: 10px;
 }
 .msg-recived {
@@ -101,5 +101,18 @@ mat-card {
   }
   .arrow-back-to-matches{
     display: none;
+  }
+}
+@media only screen and(min-width: 1024px) and (min-height: 1366px) {
+  .chat {
+    max-height: 500px;
+    height: 500px;
+  }
+}
+@media  only screen and (min-width: 1400px) {
+  .container-chat {
+    .match {
+      grid-template-columns: 10% 75% 15%;
+    }
   }
 }
