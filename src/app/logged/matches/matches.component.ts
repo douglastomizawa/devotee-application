@@ -33,7 +33,7 @@ export class MatchesComponent implements OnInit {
   }
   getMatches(): void {
     // this.getMatchesAPI.get(this.getId.idUser).subscribe(res =>{
-    this.getMatchesAPI.get('2520').subscribe(res =>{
+    this.getMatchesAPI.get(this.getId.idUser).subscribe(res =>{
       this.matches = res;
     })
   }
