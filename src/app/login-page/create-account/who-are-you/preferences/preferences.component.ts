@@ -17,10 +17,24 @@ import { Location } from '@angular/common';
 })
 export class PreferencesComponent implements OnInit {
   text;
+  language;
   color: ThemePalette = 'primary';
   userPreference: FormGroup;
   filteredUserType: string[] = [];
   teste = false;
+  orientationOptions: any[] = [
+    {value: 'Bissexual'},
+    {value: 'Heterossexual'},
+    {value: 'Homossexual'}
+  ];
+  userType: any[] = [
+    {value: 'Devotee'},
+    {value: 'Especial'},
+  ];
+  intereseType: any[] = [
+    {valuePt: 'Homem',  valueUs: 'Men'},
+    {valuePt: 'Mulher', valueUs: 'Woman'},
+  ];
   constructor(
     private translatePage: TranslateService,
     private injectSelect: InjectSelectAndFilterService,
@@ -34,7 +48,7 @@ export class PreferencesComponent implements OnInit {
   return(): void {
     this.location.back();
   }
-  formatLabel(value: number) {
+  formatLabel(value: number): number {
     if (value ) {
       console.log(value);
       return Math.round(value / 100); //+ 'K';
@@ -56,6 +70,7 @@ export class PreferencesComponent implements OnInit {
     this.filterValueToPushInArrayToOptions();
     this.translatePage.veriyLanguage();
     this.text = this.translatePage.textTranslate;
+    this.language = this.translatePage.dataFormatation;
   }
   loadingSpinner(): void{
     // this.loggedUserId.returnIdUser();

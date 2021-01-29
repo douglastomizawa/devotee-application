@@ -1,3 +1,4 @@
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { ComponentsModule } from './../../../../components/components.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -29,6 +30,7 @@ import { PreferencesComponent } from './preferences.component';
     MatProgressSpinnerModule,
     PreferencesRountingModule,
     ComponentsModule,
+    MatFormFieldModule,
 
   ]
 })

@@ -1,8 +1,17 @@
+import { GetProfileService } from './../../core/services/get-profile.service';
+import { ProfileService } from './../../core/services/profile.service';
+import { Observable } from 'rxjs';
+import { BreakpointState, BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { DialogData } from './../../footer/footer.component';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DeslikeApiService } from './../../core/services/deslike-api.service';
+import { LoggedInUserIdService } from './../../core/services/logged-in-user-id.service';
+import { LikeDeslikeInterface } from './../../core/interfaces/like.interface';
+import { LikeApiService } from './../../core/services/like-api.service';
 import { TranslateService } from './../../shared/translate.service';
-import { LoggedInUserIdService } from '../../core/services/logged-in-user-id.service';
 import { PerfilLikesService } from '../../core/services/perfil-likes.service';
 import { SplitMatchesService } from '../../core/services/split-matches.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Inject } from '@angular/core';
 
 @Component({
   selector: 'app-matches',
@@ -25,20 +34,32 @@ export class SugestionMatchesComponent implements OnInit {
   femaleLike;
   maleLike;
   anotherLike;
+  likeDeslikeInterface: LikeDeslike = new LikeDeslike();
+  userGetProfile: userGetProfileClick = new userGetProfileClick();
   constructor(
     private splitMatches: SplitMatchesService,
     private perfilLikes: PerfilLikesService,
     private loggedUserId: LoggedInUserIdService,
     private translatePage: TranslateService,
+    private likeApi: LikeApiService,
+    private deslikeApi: DeslikeApiService,
+    private userId: LoggedInUserIdService,
+    public dialog: MatDialog,
+    private profileAPI: GetProfileService,
+
+    private readonly breakpointObserver: BreakpointObserver,
     ) {
     }
-
+    isExtraSmall: Observable<BreakpointState> = this.breakpointObserver.observe(
+      Breakpoints.XSmall
+    );
   ngOnInit(): void {
     this.matchUser = this.splitMatches.matchUserSplited;
     this.dragCard();
     this.exhibitionPerfilLikes();
     this.translatePage.veriyLanguage();
     this.text = this.translatePage.textTranslate;
+    this.execDragSplitSugestions();
   }
   dragCard(): void {
     const container = document.querySelector('#container-drag');
@@ -80,11 +101,25 @@ export class SugestionMatchesComponent implements OnInit {
       dragItem.setAttribute('data-position', 0 );
     }, 800);
   }
+  dragExecLikeAddMore(): any {
+    this.addSugestionAndAttribute();
+    this.dataLikeDislike();
+    this.like();
+    this.buttonDisabled('remove');
+  }
+  dragExecDislikeAddMore(): any {
+    this.addSugestionAndAttribute();
+    this.dataLikeDislike();
+    this.deslike();
+    this.buttonDisabled('remove');
+  }
   execDragSplitSugestions(): void {
-    const dragItem: any = document.querySelectorAll('mat-card')[0];
-    const dragDataPosition: any = dragItem.getAttribute('data-position');
-    dragDataPosition === '150' ? this.addSugestionAndAttribute() : dragItem.setAttribute('data-position', 0 );
-    dragDataPosition === '-150' ? this.addSugestionAndAttribute() :  dragItem.setAttribute('data-position', 0 );
+    setInterval(() => {
+      const dragItem: any = document.querySelectorAll('mat-card')[0];
+      const dragDataPosition: any = dragItem.getAttribute('data-position');
+      dragDataPosition >= 100 ? this.dragExecLikeAddMore() : dragItem.setAttribute('data-position', 0 );
+      dragDataPosition <= -100 ? this.dragExecDislikeAddMore() :  dragItem.setAttribute('data-position', 0 );
+    }, 1000);
   }
   drag(e): void {
     if (this.active) {
@@ -107,10 +142,12 @@ export class SugestionMatchesComponent implements OnInit {
         dragItem.setAttribute('data-position', -150 );
         dragItem.classList.add('dislike-animation');
         buttons.forEach((value) => {value.removeAttribute('disabled'); });
+
       }
       this.xOffset = this.currentX;
       this.yOffset = this.currentY;
       dragItem.style.transform = `rotate(${this.currentX / 10}deg) translate3d(${this.currentX}px, ${ this.currentY}px, 0)`;
+
     }
   }
   addClassAnimation(likeOrDeslike): void {
@@ -125,7 +162,7 @@ export class SugestionMatchesComponent implements OnInit {
       this.buttonDisabled('add');
       setInterval(() => {
         resolve(true);
-      }, 1500);
+      }, 1000);
     });
   }
   buttonDisabled(addOrRemove): void {
@@ -134,9 +171,17 @@ export class SugestionMatchesComponent implements OnInit {
       buttons.forEach((value) => {value.setAttribute('disabled', 'true'); }) :
       buttons.forEach((value) => {value.removeAttribute('disabled'); });
   }
+  dataLikeDislike(): any {
+    this.likeDeslikeInterface.user_id = this.userId.idUser;
+    this.likeDeslikeInterface.receive_id = this.matchUser[0].id;
+    console.log(this.matchUser[0].id);
+  }
   execAddMoreMatchAndTransition(likeOrDeslike): void {
     this.transitionOptionMatch(likeOrDeslike).then((res: boolean) => {
       if (res) {
+        this.dataLikeDislike();
+        likeOrDeslike === 'like' ? this.like() : '';
+        likeOrDeslike === 'deslike' ? this.deslike() : '';
         this.buttonDisabled('remove');
         this.addMoreMatch();
       }
@@ -146,6 +191,7 @@ export class SugestionMatchesComponent implements OnInit {
     this.splitMatches.addMoreMatch();
     console.log(this.splitMatches.matchUserSplited);
     this.matchUser = this.splitMatches.matchUserSplited;
+
   }
   exhibitionPerfilLikes(): any {
     const female = new Array();
@@ -176,4 +222,64 @@ export class SugestionMatchesComponent implements OnInit {
     });
 
   }
+  openProfile(userId): void {
+    this.userGetProfile = userId;
+    this.profileAPI.getProfileInfos(userId);
+    const d = this.dialog.open(DialogProfile, {
+      width: 'calc(100% - 50px)',
+      maxWidth: '100vw',
+      panelClass: 'container-profile'
+    });
+    const smallDialogSubscription = this.isExtraSmall.subscribe(size => {
+      if (size.matches) {
+        d.updateSize('100vw', '100vh');
+      } else {
+        d.updateSize('80%', '80%');
+      }
+    });
+    d.afterClosed().subscribe(() => {
+      smallDialogSubscription.unsubscribe();
+    });
+  }
+  like(): any{
+    this.likeApi.post(this.likeDeslikeInterface).toPromise().then(res => {
+    });
+  }
+  deslike(): any{
+    this.deslikeApi.post(this.likeDeslikeInterface).toPromise().then(res => {
+    });
+  }
+}
+export class userGetProfileClick {
+  userGetProfile: number;
+}
+export class LikeDeslike {
+  user_id: number;
+  receive_id: number;
+}
+@Component({
+  selector: 'profile',
+  templateUrl: 'profile.component.html',
+  styleUrls: ['./profile.component.scss']
+})
+export class DialogProfile implements OnInit {
+  userGetProfile: userGetProfileClick = new userGetProfileClick();
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogProfile>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private profileAPI: GetProfileService,
+  ) {}
+  getProfile(): any {
+    this.profileAPI.profile.subscribe(res => {
+      console.log(res);
+    })
+  }
+  ngOnInit(): any {
+    this.getProfile();
+  }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
 }

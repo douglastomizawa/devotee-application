@@ -18,7 +18,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatAutocompleteModule,
     WhoAreYouRountingModule,
   ],
-  exports:[
+  exports: [
     WhoAreYouComponent,
     MatCardModule,
     MatButtonModule,

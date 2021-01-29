@@ -18,6 +18,14 @@ $blue-2E2:  #2E2C8A;
 $green-00D:#00DB92;
 
 $box-shadow-grey-029:  #00000029;
+body{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 .btn-return-background-2 {
   max-width: 100px;
   margin:20px 20px 10px 20px;

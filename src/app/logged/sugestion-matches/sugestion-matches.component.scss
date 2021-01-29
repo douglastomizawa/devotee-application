@@ -1,9 +1,11 @@
 @import "../../app.component.scss";
 
 body {
-  background-color:#F1F1F1;
+  background-color:$grey-F1F;
 }
-
+::ng-deep.mat-dialog-container {
+  background-color: $grey-F1F;
+}
 .container-matches {
   padding: 20px 10px;
   height: 100%;
@@ -35,16 +37,19 @@ body {
     mat-card:nth-child(1) {
       z-index: 5;
       top: 10px;
+      width: 100%;
     }
     mat-card:nth-child(2) {
       z-index: 4;
       position: absolute;
       top: 22px;
+      width: 100%;
     }
     mat-card:nth-child(3) {
       position: absolute;
       top: 31px;
       z-index: 3;
+      width: 100%;
     }
 
   }

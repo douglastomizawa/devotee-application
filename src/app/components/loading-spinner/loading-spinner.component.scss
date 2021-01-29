@@ -3,7 +3,7 @@
   height: 100vh;
   top: 0;
   right: 0;
-  z-index: 4;
+  z-index: 6;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,6 +12,5 @@
 }
 .spinner{
   position: absolute;
-
-  z-index: 4;
+  z-index: 6;
 }

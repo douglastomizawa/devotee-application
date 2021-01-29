@@ -1,3 +1,4 @@
+import { RedirectMatchesService } from './../../core/services-redirect/click-matches.service';
 import { ChatAndMatchesService } from './../../core/services/chat-and-matches.service';
 // import { ChatModule } from './../chat/chat.module';
 import { ChatComponent } from './../chat/chat.component';
@@ -18,9 +19,8 @@ export class MatchesComponent implements OnInit {
   matches: any;
   constructor(
     private translatePage: TranslateService,
-    private getMatchesAPI: MatchesService,
-    private getId: LoggedInUserIdService,
     private emitterMatchId: ChatAndMatchesService,
+    private matchesServices: RedirectMatchesService,
   ) { }
 
   ngOnInit(): void {
@@ -32,9 +32,6 @@ export class MatchesComponent implements OnInit {
     this.emitterMatchId.clickToEmitterMatchId(matchId, false);
   }
   getMatches(): void {
-    // this.getMatchesAPI.get(this.getId.idUser).subscribe(res =>{
-    this.getMatchesAPI.get(this.getId.idUser).subscribe(res =>{
-      this.matches = res;
-    })
+    this.matches = this.matchesServices.matches;
   }
 }

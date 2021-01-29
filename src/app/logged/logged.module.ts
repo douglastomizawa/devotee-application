@@ -1,3 +1,5 @@
+import { ComponentsModule } from './../components/components.module';
+import { LoadingSpinnerService } from './../core/loading-spinner.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoggedRountingModule } from './logged.rounting.module';
@@ -14,7 +16,8 @@ import { MatIconModule } from '@angular/material/icon';
     CommonModule,
     FooterModule,
     MatIconModule,
-    LoggedRountingModule
+    LoggedRountingModule,
+    ComponentsModule
   ]
 })
 export class LoggedModule { }

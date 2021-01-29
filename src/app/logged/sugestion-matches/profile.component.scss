@@ -1,0 +1,12 @@
+@import "../../app.component.scss";
+.container-close{
+  display: flex;
+  justify-content: flex-end;
+  .close{
+    font-size: 2rem;
+    color: $blue-2E2;
+  }
+  .container-profile{
+    background-color: $blue-0BA;
+  }
+}

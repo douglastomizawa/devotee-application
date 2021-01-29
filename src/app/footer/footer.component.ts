@@ -19,7 +19,11 @@ export interface DialogData {
 export class FooterComponent implements OnInit {
   copyright;
   textFooter;
-  constructor(private translatePage: TranslateService, public dialog: MatDialog, private readonly breakpointObserver: BreakpointObserver, private footerTabs: TabsFooterTermsComponent) { }
+  constructor(
+    private translatePage: TranslateService,
+    public dialog: MatDialog,
+    private readonly breakpointObserver: BreakpointObserver,
+    private footerTabs: TabsFooterTermsComponent) { }
   animal: string;
   name: string;
   isExtraSmall: Observable<BreakpointState> = this.breakpointObserver.observe(

@@ -1,3 +1,4 @@
+<app-loading-spinner></app-loading-spinner>
 <div class="container-logged">
   <header>
     <div class="container-header">
@@ -10,7 +11,8 @@
           <mat-icon class="icon-menu-logged" [routerLink]="['/sugestion-matches']" [routerLinkActive]="['icon-route-is-active']">people_alt</mat-icon>
         </div>
         <div class="chat">
-          <mat-icon class="icon-menu-logged"  [routerLink]="['/matches']" [routerLinkActive]="['icon-route-is-active']">forum</mat-icon>
+          <mat-icon class="icon-menu-logged" [class.icon-route-is-active]="routerUrl" (click)="redirectToMacthes()"
+          >forum</mat-icon>
         </div>
         <div class="perfil-config">
           <mat-icon class="icon-menu-logged" [routerLink]="['/settings']" [routerLinkActive]="['icon-route-is-active']">settings</mat-icon>
