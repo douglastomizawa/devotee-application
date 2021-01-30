@@ -1,17 +1,18 @@
-import { GetProfileService } from './../../core/services/get-profile.service';
-import { ProfileService } from './../../core/services/profile.service';
-import { Observable } from 'rxjs';
+import { RedirectLoggedService } from './../../core/services-redirect/redirect-logged.service';
+import { map } from 'rxjs/operators';
 import { BreakpointState, BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { DialogData } from './../../footer/footer.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit, Inject } from '@angular/core';
+import { Observable } from 'rxjs';
+import { DialogData } from './../../footer/footer.component';
+
+import { GetProfileService } from './../../core/services/get-profile.service';
 import { DeslikeApiService } from './../../core/services/deslike-api.service';
 import { LoggedInUserIdService } from './../../core/services/logged-in-user-id.service';
-import { LikeDeslikeInterface } from './../../core/interfaces/like.interface';
 import { LikeApiService } from './../../core/services/like-api.service';
 import { TranslateService } from './../../shared/translate.service';
 import { PerfilLikesService } from '../../core/services/perfil-likes.service';
 import { SplitMatchesService } from '../../core/services/split-matches.service';
-import { Component, OnInit, EventEmitter, Inject } from '@angular/core';
 
 @Component({
   selector: 'app-matches',
@@ -35,7 +36,7 @@ export class SugestionMatchesComponent implements OnInit {
   maleLike;
   anotherLike;
   likeDeslikeInterface: LikeDeslike = new LikeDeslike();
-  userGetProfile: userGetProfileClick = new userGetProfileClick();
+
   constructor(
     private splitMatches: SplitMatchesService,
     private perfilLikes: PerfilLikesService,
@@ -46,6 +47,7 @@ export class SugestionMatchesComponent implements OnInit {
     private userId: LoggedInUserIdService,
     public dialog: MatDialog,
     private profileAPI: GetProfileService,
+    private redirectLoggedService: RedirectLoggedService,
 
     private readonly breakpointObserver: BreakpointObserver,
     ) {
@@ -114,12 +116,15 @@ export class SugestionMatchesComponent implements OnInit {
     this.buttonDisabled('remove');
   }
   execDragSplitSugestions(): void {
-    setInterval(() => {
+    const dragItemInterval = setInterval(() => {
       const dragItem: any = document.querySelectorAll('mat-card')[0];
       const dragDataPosition: any = dragItem.getAttribute('data-position');
       dragDataPosition >= 100 ? this.dragExecLikeAddMore() : dragItem.setAttribute('data-position', 0 );
       dragDataPosition <= -100 ? this.dragExecDislikeAddMore() :  dragItem.setAttribute('data-position', 0 );
     }, 1000);
+    this.redirectLoggedService.logout.subscribe(res => {
+      res ? '' : clearInterval(dragItemInterval);
+    });
   }
   drag(e): void {
     if (this.active) {
@@ -223,9 +228,13 @@ export class SugestionMatchesComponent implements OnInit {
 
   }
   openProfile(userId): void {
-    this.userGetProfile = userId;
     this.profileAPI.getProfileInfos(userId);
-    const d = this.dialog.open(DialogProfile, {
+    this.profileAPI.profile.subscribe(res => {
+      this.openProfileModal();
+    });
+  }
+  openProfileModal(): void {
+    const d = this.dialog.open(DialogProfileComponent, {
       width: 'calc(100% - 50px)',
       maxWidth: '100vw',
       panelClass: 'container-profile'
@@ -250,32 +259,49 @@ export class SugestionMatchesComponent implements OnInit {
     });
   }
 }
-export class userGetProfileClick {
-  userGetProfile: number;
-}
 export class LikeDeslike {
   user_id: number;
   receive_id: number;
 }
 @Component({
-  selector: 'profile',
+  selector: 'app-profile-component',
   templateUrl: 'profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class DialogProfile implements OnInit {
-  userGetProfile: userGetProfileClick = new userGetProfileClick();
-
+export class DialogProfileComponent implements OnInit {
+  profileInfos;
+  userProfileInfos;
+  userAge: number;
   constructor(
-    public dialogRef: MatDialogRef<DialogProfile>,
+    public dialogRef: MatDialogRef<DialogProfileComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private profileAPI: GetProfileService,
   ) {}
   getProfile(): any {
-    this.profileAPI.profile.subscribe(res => {
-      console.log(res);
-    })
+    this.userProfileInfos = this.profileAPI.profileUser;
+    this.profileInfos = this.userProfileInfos;
+    console.log(this.userProfileInfos);
+    this.transformeAge();
+  }
+  transformeAge(): any {
+    const birthdateSplit = this.userProfileInfos.user.birthdate.split('-');
+    console.log(birthdateSplit);
+    const d = new Date();
+    const currentYear = d.getFullYear();
+    const currentMonth = d.getMonth() + 1;
+    const currentDay = d.getDate();
+    const yearAnniversary = +birthdateSplit[0];
+    const monthAnniversary = +birthdateSplit[1];
+    const dayAnniversary = +birthdateSplit[2];
+    let howOld: number = currentYear - yearAnniversary;
+    if (currentMonth < monthAnniversary || currentMonth == monthAnniversary && currentDay < dayAnniversary) {
+        howOld--;
+    }
+    this.userAge =  howOld < 0 ? 0 : howOld;
+
   }
   ngOnInit(): any {
+    console.log('d')
     this.getProfile();
   }
   onNoClick(): void {

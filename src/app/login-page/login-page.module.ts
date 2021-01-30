@@ -19,7 +19,7 @@ import { LoginPageComponent } from './login-page.component';
     LoginRountingModule,
 
   ],
-  exports:[
+  exports: [
     SignInModule,
   ]
 })

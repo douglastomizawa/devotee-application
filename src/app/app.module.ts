@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RedirectLoggedService } from './core/services-redirect/redirect-logged.service';
 import { LoggedGuardService } from './core/guards/logged.guard.service';
 import { BlockInitialPageService } from './core/guards/block-initial-page.guard.service';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { BlockInitialPageService } from './core/guards/block-initial-page.guard.
     MatNativeDateModule,
     HttpClientModule,
     MatIconModule,
+    CommonModule,
   ],
   exports: [
     MatButtonModule,

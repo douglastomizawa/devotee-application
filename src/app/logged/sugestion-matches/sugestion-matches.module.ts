@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SugestionMatchesComponent } from './sugestion-matches.component';
+import { SugestionMatchesComponent, DialogProfileComponent } from './sugestion-matches.component';
 import { SugestionMatchesRountingModule } from './sugestion-matches.rounting.module';
 import { MatIconModule } from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
@@ -10,7 +10,7 @@ import {MatMenuModule} from '@angular/material/menu';
 
 
 @NgModule({
-  declarations: [SugestionMatchesComponent],
+  declarations: [SugestionMatchesComponent, DialogProfileComponent],
   imports: [
     CommonModule,
     SugestionMatchesRountingModule,

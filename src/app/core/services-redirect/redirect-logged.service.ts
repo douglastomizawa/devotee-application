@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { LoadingSpinnerService } from '../loading-spinner.service';
 
 @Injectable({
@@ -7,6 +7,7 @@ import { LoadingSpinnerService } from '../loading-spinner.service';
 })
 export class RedirectLoggedService {
   private loginAutenticated = false;
+  logout = new EventEmitter();
   constructor(
     private router: Router,
     private loadingSpinner: LoadingSpinnerService,
@@ -16,9 +17,11 @@ export class RedirectLoggedService {
       this.loginAutenticated = true;
       this.router.navigate([navigate]);
       this.loadingSpinner.ShowLoading = false;
+      this.logout.emit(true);
     }else {
       this.router.navigate([navigate]);
       this.loginAutenticated = false;
+      this.logout.emit(false);
     }
   }
   loginIsAuthenticated(): boolean {
