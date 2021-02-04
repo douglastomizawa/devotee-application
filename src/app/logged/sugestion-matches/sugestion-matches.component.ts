@@ -1,3 +1,4 @@
+import { PhoneNumberService } from './../../core/services/profile-infos/phone-number.service';
 import { RedirectLoggedService } from './../../core/services-redirect/redirect-logged.service';
 import { map } from 'rxjs/operators';
 import { BreakpointState, BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -57,6 +58,7 @@ export class SugestionMatchesComponent implements OnInit {
     );
   ngOnInit(): void {
     this.matchUser = this.splitMatches.matchUserSplited;
+    console.log(this.matchUser);
     this.dragCard();
     this.exhibitionPerfilLikes();
     this.translatePage.veriyLanguage();
@@ -119,8 +121,8 @@ export class SugestionMatchesComponent implements OnInit {
     const dragItemInterval = setInterval(() => {
       const dragItem: any = document.querySelectorAll('mat-card')[0];
       const dragDataPosition: any = dragItem.getAttribute('data-position');
-      dragDataPosition >= 100 ? this.dragExecLikeAddMore() : dragItem.setAttribute('data-position', 0 );
-      dragDataPosition <= -100 ? this.dragExecDislikeAddMore() :  dragItem.setAttribute('data-position', 0 );
+      dragDataPosition === '150' ? this.dragExecLikeAddMore() : dragItem.setAttribute('data-position', 0 );
+      dragDataPosition === '-150' ? this.dragExecDislikeAddMore() :  dragItem.setAttribute('data-position', 0 );
     }, 1000);
     this.redirectLoggedService.logout.subscribe(res => {
       res ? '' : clearInterval(dragItemInterval);
@@ -138,12 +140,12 @@ export class SugestionMatchesComponent implements OnInit {
         this.currentX = e.clientX - this.initialX;
         this.currentY = e.clientY - this.initialY;
       }
-      if (this.currentX >= 150){
+      if (this.currentX >= 150 && this.currentX <= 160){
         dragItem.setAttribute('data-position', 150 );
         dragItem.classList.add('like-animation');
         buttons.forEach((value) => {value.setAttribute('disabled', 'true'); });
       }
-      if (this.currentX <= -150) {
+      if (this.currentX <= -150 && this.currentX >= -160) {
         dragItem.setAttribute('data-position', -150 );
         dragItem.classList.add('dislike-animation');
         buttons.forEach((value) => {value.removeAttribute('disabled'); });
@@ -269,19 +271,34 @@ export class LikeDeslike {
   styleUrls: ['./profile.component.scss']
 })
 export class DialogProfileComponent implements OnInit {
+  text;
   profileInfos;
+  profileFirstName;
   userProfileInfos;
   userAge: number;
   constructor(
-    public dialogRef: MatDialogRef<DialogProfileComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    public dialogRef: MatDialogRef<DialogProfileComponent>,
     private profileAPI: GetProfileService,
+    private translatePage: TranslateService,
+    private phoneNumberAPI: PhoneNumberService,
+    private userId: LoggedInUserIdService,
   ) {}
+  ngOnInit(): any {
+    console.log('d')
+    this.getProfile();
+    this.text = this.translatePage.textTranslate;
+  }
+  removeSpacesString(stringText): any {
+    this.profileFirstName =  stringText.trim();
+  }
   getProfile(): any {
     this.userProfileInfos = this.profileAPI.profileUser;
     this.profileInfos = this.userProfileInfos;
     console.log(this.userProfileInfos);
     this.transformeAge();
+    this.removeSpacesString(this.userProfileInfos.user.first_name);
+    // this.getPhoneNumber();
   }
   transformeAge(): any {
     const birthdateSplit = this.userProfileInfos.user.birthdate.split('-');
@@ -298,14 +315,14 @@ export class DialogProfileComponent implements OnInit {
         howOld--;
     }
     this.userAge =  howOld < 0 ? 0 : howOld;
-
-  }
-  ngOnInit(): any {
-    console.log('d')
-    this.getProfile();
   }
   onNoClick(): void {
     this.dialogRef.close();
   }
-
+  getPhoneNumber() {
+    //this.userId.idUser
+    this.phoneNumberAPI.get(this.userId.idUser).toPromise().then(res => {
+      console.log(res);
+    })
+  }
 }

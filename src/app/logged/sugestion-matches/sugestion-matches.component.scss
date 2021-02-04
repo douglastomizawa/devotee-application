@@ -73,15 +73,15 @@ body {
     cursor: -moz-grabbing;
     cursor: -webkit-grabbing;
   }
+
   .container-filter-and-matches {
     display: flex;
     justify-content: center;
-    .cursor-pointer{
-      :hover{
-        cursor: pointer;
-      }
-    }
 
+
+  }
+  .infos-sugestion-matches{
+    text-transform: capitalize;
   }
 
   .circle-matches-filter {
@@ -123,6 +123,7 @@ body {
   .container-sugestion-perfil {
     display: flex;
     align-items: center;
+    text-transform: capitalize;
   }
   .container-perfil-picture {
     width: 100%;

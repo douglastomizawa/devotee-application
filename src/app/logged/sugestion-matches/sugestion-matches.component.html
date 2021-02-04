@@ -24,9 +24,12 @@
   (mouseenter)="execDragSplitSugestions()" data-position="0">
     <div class="container-sugestion-perfil" (click)="openProfile(user.id)" >
       <!-- <mat-icon class="circle-matches-person">person</mat-icon> -->
-      <mat-icon class="circle-matches-person"><img src="http://34.223.220.245/{{user.photo}}" alt=""></mat-icon>
-      <span><b>{{user.first_name}}, {{user.usercurrentage}}</b>
-      <p>{{user.user_type}}</p>
+      <mat-icon class="circle-matches-person cursor-pointer"><img src="http://34.223.220.245/{{user.photo}}" alt=""></mat-icon>
+      <span class="cursor-pointer infos-sugestion-matches">
+        <b>
+          <span>{{user.first_name.trim()}}</span> <span *ngIf="!user.first_name.indexOf(' ') === false" > {{user.last_name}}</span>,<span> {{user.usercurrentage}}</span>
+        </b>
+        <p>{{user.user_type}}</p>
       </span>
     </div>
     <div class="container-perfil-picture" >

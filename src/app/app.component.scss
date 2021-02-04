@@ -36,6 +36,11 @@ body{
 .btn-width {
   width: 100px;
 }
+.cursor-pointer{
+  :hover{
+    cursor: pointer;
+  }
+}
 mat-card {
   .first-card{
     color: $white;
