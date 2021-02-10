@@ -1,0 +1,205 @@
+<div class="container-profile">
+  <div class="container-close">
+    <div class="close cursor-pointer blue-2e2" (click)='onNoClick()' >&times;</div>
+  </div>
+  <div class="container-first-infos">
+    <div class="container-profile-img">
+      <img src="http://34.223.220.245/{{profileInfos.user.profile_image}}" alt="Foto de perfil">
+    </div>
+    <div class="person-name blue-2e2">
+      <span class="first-name">{{profileFirstName}}</span>
+      <span  *ngIf="!profileInfos.user.first_name.indexOf(' ') === false" [style.display]='profileInfos.user.last_name ? "initial": "none"'> {{profileInfos.user.last_name}}</span>,
+      <span>
+        {{userAge}}
+      </span>
+      <span>
+        <mat-icon>report</mat-icon>
+      </span>
+    </div>
+    <div class="user-type blue-2e2">
+      {{profileInfos.user.user_type}}
+    </div>
+  </div>
+  <div class="about blue-2e2">
+    "{{profileInfos.user.about}}"
+  </div>
+  <div class="container-infos-all">
+    <div class="block-images">
+      <div class="container-first-card">
+        <mat-card>
+          <mat-card-title class="first-card">Fotos</mat-card-title>
+        </mat-card>
+        <div class="container-pictures">
+          <mat-card>
+            <div class="image">
+              <img #img1 src="http://34.223.220.245/{{profileInfos.album.img1}}"  onerror="this.onerror = null; this.style.display = 'none'" alt="">
+              <div class="mat-icon-size" *ngIf="img1.onerror === null">
+                <mat-icon >
+                  no_photography
+                </mat-icon>
+              </div>
+
+            </div>
+            <div class="image">
+              <img #img2 src="http://34.223.220.245/{{profileInfos.album.img2}}" onerror="this.onerror = null; this.style.display = 'none'" alt="">
+              <div class="mat-icon-size" *ngIf="img2.onerror === null">
+                <mat-icon >
+                  no_photography
+                </mat-icon>
+              </div>
+
+
+            </div>
+            <div class="image">
+              <img #img3 src="http://34.223.220.245/{{profileInfos.album.img3}}"  onerror="this.onerror = null; this.style.display = 'none'" alt="">
+              <div class="mat-icon-size" *ngIf="img3.onerror === null">
+                <mat-icon >
+                  no_photography
+                </mat-icon>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+    <div class="block-infos">
+      <div class="container-first-card">
+        <mat-card>
+          <mat-card-title class="first-card">Sobre mim</mat-card-title>
+        </mat-card>
+      </div>
+      <div class="container-infos">
+        <mat-card>
+          <div class="container-personal-infos">
+            <h2 class="title blue-2e2"> Informações pessoais</h2>
+            <div class="personal-information padding-l10">
+              <div class="container-phone-number aling-itens-c">
+                <mat-icon class="margin-r5px">call</mat-icon> <span></span>
+              </div>
+              <div class="container-profession aling-itens-c" *ngIf="profileInfos.user.profession !== ''" >
+                <mat-icon class="margin-r5px">work</mat-icon>
+                <span>{{profileInfos.user.profession}}</span>
+              </div>
+              <div class="container-gender aling-itens-c" *ngIf="profileInfos.user.gender !== '' " >
+                <mat-icon class="margin-r5px">person_pin</mat-icon>
+                <span>{{profileInfos.user.gender}}</span>
+              </div>
+              <div class="container-orientation aling-itens-c" *ngIf="(profileInfos.user.sexualorientation !== null && profileInfos.user.sexualorientation !== '' )" >
+                <mat-icon class="margin-r5px">loyalty</mat-icon>
+                <span>{{profileInfos.user.sexualorientation}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="container-my-deficiency">
+            <h2 class="title blue-2e2">Minha deficiência</h2>
+            <div class="my-deficiency padding-l10">
+              <div class="aling-itens-c" *ngIf="profileInfos.user.born_with_disability && profileInfos.user.born_with_disability !== '0'">
+                <mat-icon class="check-circle margin-r5px">check_circle</mat-icon>
+                <span  >
+                  Deficiente de nascença
+                </span>
+              </div>
+
+              <div class="aling-itens-c" *ngIf="profileInfos.user.fertile && profileInfos.user.fertile !== '0'">
+                <mat-icon class="check-circle margin-r5px">check_circle</mat-icon>
+                <span  >
+                  Comprometimento de fertilidade
+                </span>
+              </div>
+
+              <div class="aling-itens-c" *ngIf="profileInfos.user.prejudice && profileInfos.user.prejudice !== '0'">
+                <mat-icon class="check-circle margin-r5px">check_circle</mat-icon>
+                <span>
+                  Exemplo de superação
+                </span>
+              </div>
+
+              <div class="aling-itens-c" *ngIf="profileInfos.user.tiic && profileInfos.user.tiic !== '0'">
+                <mat-icon class="check-circle margin-r5px">check_circle</mat-icon>
+                <span>
+                  Tenho TIIC
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="container-cids padding-l10 margin-t10px" *ngIf="profileInfos.cid.length !== 0" >
+            <div >
+              <div class="aling-itens-c">
+              <mat-icon class="blue-3f5 margin-r5px">healing</mat-icon>
+              <div class="title blue-2e2">CIDs</div>
+            </div>
+              <div *ngIf="language === 'pt'">
+                <div *ngFor="let cids of profileInfos.cid" class="aling-itens-c cids">
+                  <span class="bullet">•</span><span>{{cids.name}}</span>
+                </div>
+              </div>
+              <div *ngIf="language === 'us'">
+                <div *ngFor="let cids of profileInfos.cid" class="aling-itens-c cids">
+                  <span class="bullet">•</span><span>{{cids.name_en}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container-surgeries padding-l10 margin-t10px" *ngIf="profileInfos.surgeries.length !== 0" >
+            <div >
+              <div class="aling-itens-c">
+              <mat-icon class="blue-3f5 margin-r5px">content_cut</mat-icon>
+              <div class="title blue-2e2">Cirurgias</div>
+            </div>
+              <div *ngIf="language === 'pt'">
+                <div *ngFor="let surgerie of profileInfos.surgeries" class="aling-itens-c cids">
+                  <span class="bullet">•</span><span>{{surgerie.name}}</span>
+                </div>
+              </div>
+              <div *ngIf="language === 'us'">
+                <div *ngFor="let surgerie of profileInfos.surgeries" class="aling-itens-c cids">
+                  <span class="bullet">•</span><span>{{surgerie.name_en}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container-surgeries padding-l10 margin-t10px" *ngIf="profileInfos.medication_types.length !== 0" >
+            <div >
+              <div class="aling-itens-c">
+              <mat-icon class="blue-3f5 margin-r5px">local_pharmacy</mat-icon>
+              <div class="title blue-2e2">Remédios</div>
+            </div>
+              <div *ngIf="language === 'pt'">
+                <div *ngFor="let medication of profileInfos.medication_types" class="aling-itens-c cids">
+                  <span class="bullet">•</span><span>{{medication.name}}</span>
+                </div>
+              </div>
+              <div *ngIf="language === 'us'">
+                <div *ngFor="let medication of medication.medication_types" class="aling-itens-c cids">
+                  <span class="bullet">•</span><span>{{medication.name_en}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container-surgeries padding-l10 margin-t10px" *ngIf="profileInfos.hospitals.length !== 0" >
+            <div >
+              <div class="aling-itens-c">
+              <mat-icon class="blue-3f5 margin-r5px">medical_services</mat-icon>
+              <div class="title blue-2e2">Hospitais</div>
+            </div>
+              <div *ngIf="language === 'pt'">
+                <div *ngFor="let hospital of profileInfos.hospitals" class="aling-itens-c cids">
+                  <span class="bullet">•</span><span>{{hospital.name}}</span>
+                </div>
+              </div>
+              <div *ngIf="language === 'us'">
+                <div *ngFor="let hospital of profileInfos.hospitals" class="aling-itens-c cids">
+                  <span class="bullet">•</span><span>{{hospital.name_en}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

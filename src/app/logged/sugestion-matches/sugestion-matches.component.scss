@@ -6,6 +6,25 @@ body {
 ::ng-deep.mat-dialog-container {
   background-color: $grey-F1F;
 }
+.container-no-profile-picture{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: $grey-909;
+  font-size: 50px;
+}
+.mat-icon-size{
+  mat-icon{
+    font-size: 50px;
+    width: auto;
+    height: auto;
+  }
+}
+.profile-bigger-picture{
+  background: #D9D9D9 0% 0% padding-box;
+  border: 1px solid #C9C9C9;
+}
 .container-matches {
   padding: 20px 10px;
   height: 100%;
@@ -174,7 +193,9 @@ body {
   }
 }
 @media only screen and(min-width:700px) {
-
+  .mat-dialog-container {
+    border-radius: 20px;
+}
   .container-matches {
     display: grid;
     grid-template-columns: 1fr 5fr 1fr;

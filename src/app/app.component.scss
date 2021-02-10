@@ -57,3 +57,8 @@ mat-card {
     color: $white;
   }
 }
+.cdk-global-scrollblock{
+  position: initial !important;
+  width: 100% !important;
+  overflow-y: initial !important;
+}

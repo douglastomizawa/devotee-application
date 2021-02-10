@@ -1,6 +1,7 @@
+import { ProfileComponent } from './../../components/profile/profile.component';
 import { PhoneNumberService } from './../../core/services/profile-infos/phone-number.service';
 import { RedirectLoggedService } from './../../core/services-redirect/redirect-logged.service';
-import { map } from 'rxjs/operators';
+import {  take } from 'rxjs/operators';
 import { BreakpointState, BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Component, OnInit, Inject } from '@angular/core';
@@ -53,9 +54,21 @@ export class SugestionMatchesComponent implements OnInit {
     private readonly breakpointObserver: BreakpointObserver,
     ) {
     }
-    isExtraSmall: Observable<BreakpointState> = this.breakpointObserver.observe(
-      Breakpoints.XSmall
-    );
+  isExtraSmall: Observable<BreakpointState> = this.breakpointObserver.observe(
+    Breakpoints.XSmall
+  );
+  isSmall: Observable<BreakpointState> = this.breakpointObserver.observe(
+    Breakpoints.Small
+  );
+  isMedium: Observable<BreakpointState> = this.breakpointObserver.observe(
+    Breakpoints.Medium
+  );
+  isLarge: Observable<BreakpointState> = this.breakpointObserver.observe(
+    Breakpoints.Large
+  );
+  isXLarge: Observable<BreakpointState> = this.breakpointObserver.observe(
+    Breakpoints.XLarge
+  );
   ngOnInit(): void {
     this.matchUser = this.splitMatches.matchUserSplited;
     console.log(this.matchUser);
@@ -140,7 +153,7 @@ export class SugestionMatchesComponent implements OnInit {
         this.currentX = e.clientX - this.initialX;
         this.currentY = e.clientY - this.initialY;
       }
-      if (this.currentX >= 150 && this.currentX <= 160){
+      if (this.currentX >= 140 && this.currentX <= 150){
         dragItem.setAttribute('data-position', 150 );
         dragItem.classList.add('like-animation');
         buttons.forEach((value) => {value.setAttribute('disabled', 'true'); });
@@ -181,7 +194,6 @@ export class SugestionMatchesComponent implements OnInit {
   dataLikeDislike(): any {
     this.likeDeslikeInterface.user_id = this.userId.idUser;
     this.likeDeslikeInterface.receive_id = this.matchUser[0].id;
-    console.log(this.matchUser[0].id);
   }
   execAddMoreMatchAndTransition(likeOrDeslike): void {
     this.transitionOptionMatch(likeOrDeslike).then((res: boolean) => {
@@ -231,26 +243,49 @@ export class SugestionMatchesComponent implements OnInit {
   }
   openProfile(userId): void {
     this.profileAPI.getProfileInfos(userId);
-    this.profileAPI.profile.subscribe(res => {
-      this.openProfileModal();
-    });
+    this.openProfileModal();
   }
   openProfileModal(): void {
-    const d = this.dialog.open(DialogProfileComponent, {
-      width: 'calc(100% - 50px)',
-      maxWidth: '100vw',
-      panelClass: 'container-profile'
-    });
-    const smallDialogSubscription = this.isExtraSmall.subscribe(size => {
-      if (size.matches) {
-        d.updateSize('100vw', '100vh');
-      } else {
-        d.updateSize('80%', '80%');
+    this.profileAPI.profile.pipe(take(1)).subscribe(res => {
+      if (res) {
+        const dialogRef = this.dialog.open(ProfileComponent, {
+          width: 'calc(100% - 50px)',
+          maxWidth: '100vw',
+          panelClass: 'container-profile',
+        });
+        const smallDialogSubscription = this.isExtraSmall.subscribe(size => {
+          size.matches ? dialogRef.updateSize('100vw', '100vh') : dialogRef.updateSize('60%', '80%');
+        });
+        const tabletDialogSubscription = this.isSmall.subscribe(size => {
+          size.matches ? dialogRef.updateSize('80%', '80%') : dialogRef.updateSize('100vw', '100vh');
+        });
+        const tabletPlustDialogSubscription = this.isMedium.subscribe(size => {
+          size.matches ? dialogRef.updateSize('80%', 'auto') : dialogRef.updateSize('100vw', '100vh');
+        });
+        const desktopDialogSubscription = this.isLarge.subscribe(size => {
+          size.matches ? dialogRef.updateSize('60%', 'auto') : dialogRef.updateSize('100vw', '100vh');
+        });
+        const desktopLargeDialogSubscription = this.isXLarge.subscribe(size => {
+          size.matches ? dialogRef.updateSize('60%', 'auto') : dialogRef.updateSize('100vw', '100vh');
+        });
+        dialogRef
+        .afterClosed()
+        .subscribe(() => {
+          smallDialogSubscription.unsubscribe();
+          tabletDialogSubscription.unsubscribe();
+          tabletPlustDialogSubscription.unsubscribe();
+          desktopDialogSubscription.unsubscribe();
+          desktopLargeDialogSubscription.unsubscribe();
+        });
+        dialogRef
+        .afterClosed()
+        .pipe(take(1))
+        .subscribe((result => {
+          console.log('dialog was closed')
+        }));
       }
     });
-    d.afterClosed().subscribe(() => {
-      smallDialogSubscription.unsubscribe();
-    });
+
   }
   like(): any{
     this.likeApi.post(this.likeDeslikeInterface).toPromise().then(res => {
@@ -264,65 +299,4 @@ export class SugestionMatchesComponent implements OnInit {
 export class LikeDeslike {
   user_id: number;
   receive_id: number;
-}
-@Component({
-  selector: 'app-profile-component',
-  templateUrl: 'profile.component.html',
-  styleUrls: ['./profile.component.scss']
-})
-export class DialogProfileComponent implements OnInit {
-  text;
-  profileInfos;
-  profileFirstName;
-  userProfileInfos;
-  userAge: number;
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    public dialogRef: MatDialogRef<DialogProfileComponent>,
-    private profileAPI: GetProfileService,
-    private translatePage: TranslateService,
-    private phoneNumberAPI: PhoneNumberService,
-    private userId: LoggedInUserIdService,
-  ) {}
-  ngOnInit(): any {
-    console.log('d')
-    this.getProfile();
-    this.text = this.translatePage.textTranslate;
-  }
-  removeSpacesString(stringText): any {
-    this.profileFirstName =  stringText.trim();
-  }
-  getProfile(): any {
-    this.userProfileInfos = this.profileAPI.profileUser;
-    this.profileInfos = this.userProfileInfos;
-    console.log(this.userProfileInfos);
-    this.transformeAge();
-    this.removeSpacesString(this.userProfileInfos.user.first_name);
-    // this.getPhoneNumber();
-  }
-  transformeAge(): any {
-    const birthdateSplit = this.userProfileInfos.user.birthdate.split('-');
-    console.log(birthdateSplit);
-    const d = new Date();
-    const currentYear = d.getFullYear();
-    const currentMonth = d.getMonth() + 1;
-    const currentDay = d.getDate();
-    const yearAnniversary = +birthdateSplit[0];
-    const monthAnniversary = +birthdateSplit[1];
-    const dayAnniversary = +birthdateSplit[2];
-    let howOld: number = currentYear - yearAnniversary;
-    if (currentMonth < monthAnniversary || currentMonth == monthAnniversary && currentDay < dayAnniversary) {
-        howOld--;
-    }
-    this.userAge =  howOld < 0 ? 0 : howOld;
-  }
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-  getPhoneNumber() {
-    //this.userId.idUser
-    this.phoneNumberAPI.get(this.userId.idUser).toPromise().then(res => {
-      console.log(res);
-    })
-  }
 }

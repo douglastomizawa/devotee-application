@@ -1,3 +1,4 @@
+import { ComponentsModule } from './../../components/components.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,6 +18,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     MatCardModule,
     MatButtonModule,
+    MatIconModule,
+    MatCardModule,
+    ComponentsModule,
   ]
 })
 export class UserSettingsModule { }

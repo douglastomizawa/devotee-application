@@ -24,7 +24,15 @@
   (mouseenter)="execDragSplitSugestions()" data-position="0">
     <div class="container-sugestion-perfil" (click)="openProfile(user.id)" >
       <!-- <mat-icon class="circle-matches-person">person</mat-icon> -->
-      <mat-icon class="circle-matches-person cursor-pointer"><img src="http://34.223.220.245/{{user.photo}}" alt=""></mat-icon>
+      <mat-icon class="circle-matches-person cursor-pointer">
+        <img #userPhoto src="http://34.223.220.245/{{user.photo}}" onerror="this.onerror = null; this.style.display = 'none'" alt="">
+        <div class="container-no-profile-picture" *ngIf="userPhoto.onerror === null">
+          <mat-icon >
+            no_photography
+          </mat-icon>
+        </div>
+      </mat-icon>
+
       <span class="cursor-pointer infos-sugestion-matches">
         <b>
           <span>{{user.first_name.trim()}}</span> <span *ngIf="!user.first_name.indexOf(' ') === false" > {{user.last_name}}</span>,<span> {{user.usercurrentage}}</span>
@@ -33,7 +41,12 @@
       </span>
     </div>
     <div class="container-perfil-picture" >
-      <img class="profile-img" src="http://34.223.220.245/{{user.photo}}" alt="">
+      <img #userPhotoMAX class="profile-img" src="http://34.223.220.245/{{user.photo}}" onerror="this.onerror = null; this.style.display = 'none'" alt="">
+      <div class="profile-bigger-picture mat-icon-size container-no-profile-picture" *ngIf="userPhotoMAX.onerror === null">
+        <mat-icon >
+          no_photography
+        </mat-icon>
+      </div>
     </div>
   </mat-card>
 

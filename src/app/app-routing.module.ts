@@ -5,7 +5,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardService } from './core/guards/auth.guard.service';
 
-import { CreateAccountContinueModule } from './login-page/create-account/create-account-continue/create-account-continue.module';
 
 const routes: Routes = [
     { path: '',
@@ -25,7 +24,9 @@ const routes: Routes = [
   // tslint:disable-next-line:max-line-length
     loadChildren: () => import('src/app/logged/logged.module').then(m => m.LoggedModule),
     canActivate: [LoggedGuardService]
-  }
+  },
+  {path: '**', loadChildren: () => import('src/app/logged/logged.module').then(m => m.LoggedModule),
+  canActivate: [LoggedGuardService]}
   //= {path: 'signin', component: SignInPageComponent}
 
 ];
