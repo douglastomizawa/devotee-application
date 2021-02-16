@@ -1,4 +1,4 @@
-<mat-card *ngIf="matchUser === undefined">
+<mat-card class="click-chat" *ngIf="matchUser === undefined">
   Clique em algum match para visualizar sua conversa.
 </mat-card>
 <div class="container-chat" [style.display]="isHidden? 'none': 'flex'">
@@ -8,11 +8,11 @@
         <span class="arrow-back-to-matches" (click)="returnToMatches()" >
           <mat-icon>arrow_back</mat-icon>
         </span>
-        <div class="profile-picture">
+        <div class="profile-picture cursor-pointer" (click)="openProfile(matchUser.user.id)">
           <img src="http://34.223.220.245/{{matchUser.user.profile_image}}" alt="">
         </div>
         <div class="profile-info">
-          <div class="profile-name"  >
+          <div class="profile-name  cursor-pointer" (click)="openProfile(matchUser.user.id)" >
             {{matchUser.user.first_name}}
             <span *ngIf="!matchUser.user.first_name.indexOf(' ') === false">
               {{matchUser.user.last_name}}

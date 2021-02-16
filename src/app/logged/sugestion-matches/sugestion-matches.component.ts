@@ -37,6 +37,7 @@ export class SugestionMatchesComponent implements OnInit {
   femaleLike;
   maleLike;
   anotherLike;
+  nameWidth: string;
   likeDeslikeInterface: LikeDeslike = new LikeDeslike();
 
   constructor(
@@ -254,20 +255,49 @@ export class SugestionMatchesComponent implements OnInit {
           panelClass: 'container-profile',
         });
         const smallDialogSubscription = this.isExtraSmall.subscribe(size => {
-          size.matches ? dialogRef.updateSize('100vw', '100vh') : dialogRef.updateSize('60%', '80%');
+          if (size.matches) {
+            this.nameWidth = 'extraSmall';
+          }
         });
         const tabletDialogSubscription = this.isSmall.subscribe(size => {
-          size.matches ? dialogRef.updateSize('80%', '80%') : dialogRef.updateSize('100vw', '100vh');
+          if (size.matches) {
+            this.nameWidth = 'small';
+          }
         });
         const tabletPlustDialogSubscription = this.isMedium.subscribe(size => {
-          size.matches ? dialogRef.updateSize('80%', 'auto') : dialogRef.updateSize('100vw', '100vh');
+          if (size.matches) {
+            this.nameWidth = 'medium';
+          }
         });
         const desktopDialogSubscription = this.isLarge.subscribe(size => {
-          size.matches ? dialogRef.updateSize('60%', 'auto') : dialogRef.updateSize('100vw', '100vh');
+          if (size.matches) {
+            this.nameWidth = 'large';
+          }
         });
         const desktopLargeDialogSubscription = this.isXLarge.subscribe(size => {
-          size.matches ? dialogRef.updateSize('60%', 'auto') : dialogRef.updateSize('100vw', '100vh');
+          if (size.matches) {
+            this.nameWidth = 'extraLarge';
+          }
         });
+        switch (this.nameWidth) {
+          case 'extraSmall':
+            dialogRef.updateSize('100vw', '100vh');
+            break;
+          case 'small':
+            dialogRef.updateSize('80%', '80%');
+            break;
+          case 'medium':
+            dialogRef.updateSize('80%', '80%');
+            break;
+          case 'large':
+            dialogRef.updateSize('60%', '80%');
+            break;
+          case 'extraLarge':
+            dialogRef.updateSize('60%', '80%');
+            break;
+          default:
+            break;
+        }
         dialogRef
         .afterClosed()
         .subscribe(() => {
@@ -285,7 +315,6 @@ export class SugestionMatchesComponent implements OnInit {
         }));
       }
     });
-
   }
   like(): any{
     this.likeApi.post(this.likeDeslikeInterface).toPromise().then(res => {

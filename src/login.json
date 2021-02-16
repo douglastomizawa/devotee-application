@@ -140,6 +140,24 @@
             "others":"Outros"
           }
         },
+        "profileInfos":{
+          "picturesTitle":"Fotos",
+          "personalInformation":"Informações pessoais",
+          "aboutMe":"Sobre mim",
+          "myDeficiency": {
+            "title":"Minha Deficiência",
+            "bornWithDisability":"Deficiente de nascença",
+            "prejudice":"Exemplo de superação",
+            "fertile":"Comprometimento de fertilidade",
+            "tiic":"Tenho TIIC"
+          },
+          "cids":"CIDs",
+          "surgeries":"Cirurgias",
+          "medication":"Remédios",
+          "hosptals":"Hospitais",
+          "female":"Feminino",
+          "male":"Masculino"
+        },
         "matches":"Meus matches",
         "userSettings":{
           "title":"Configurações",
@@ -314,6 +332,24 @@
             "female":"Female",
             "others":"Others"
           }
+        },
+        "profileInfos":{
+          "picturesTitle":"Pictures",
+          "aboutMe":"About me",
+          "personalInformation":"Personal information",
+          "myDeficiency": {
+            "title":"My deficiency",
+            "bornWithDisability":"born with disability",
+            "prejudice":"overcoming example",
+            "fertile":"Impaired fertility",
+            "tiic":"I have TIIC"
+          },
+          "cids":"CIDs",
+          "surgeries":"Surgeries",
+          "medication":"Medications",
+          "hosptals":"Hosptals",
+          "female":"Feminino",
+          "male":"Masculino"
         },
         "matches":"My matches",
         "userSettings":{

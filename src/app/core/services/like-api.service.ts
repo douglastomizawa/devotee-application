@@ -13,7 +13,7 @@ export class LikeApiService {
     private http: HttpClient,
   ) { }
 
-  post(payload: LikeDeslikeInterface) {
+  post(payload: LikeDeslikeInterface): any {
     return this.http.post<ResponseLikeDeslikeInterface>(this.likeURL, payload,
       {
         headers: new HttpHeaders()
