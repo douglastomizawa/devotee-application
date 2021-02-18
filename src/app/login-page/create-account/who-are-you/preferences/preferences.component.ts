@@ -1,14 +1,16 @@
+import { UserEmailService } from './../../../../core/services/profile-infos/user-email.service';
+import { RangeAgeService } from './../../../../core/services/settings-services/range-age.service';
+import { PreferenceDistanceService } from './../../../../core/services/settings-services/preference-distance.service';
 import { LoggedInUserIdService } from './../../../../core/services/logged-in-user-id.service';
-import { Router } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { InjectSelectAndFilterService } from './../../../../core/services/inject-select-and-filter.service';
 import { TranslateService } from './../../../../shared/translate.service';
 import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { GetValuesApisPtUsService } from 'src/app/core/services/get-values-apis-pt-us.service';
-import { SplitMatchesService } from 'src/app/core/services/split-matches.service';
 import { LoadingSpinnerService } from 'src/app/core/loading-spinner.service';
 import { Location } from '@angular/common';
+import { MatSliderChange } from '@angular/material/slider';
 
 @Component({
   selector: 'app-preferences',
@@ -20,8 +22,10 @@ export class PreferencesComponent implements OnInit {
   language;
   color: ThemePalette = 'primary';
   userPreference: FormGroup;
+  userDistance: Distance = new Distance();
+  rangeAgeKeys: RangeAge = new RangeAge();
   filteredUserType: string[] = [];
-  teste = false;
+  teste;
   orientationOptions: any[] = [
     {value: 'Bissexual'},
     {value: 'Heterossexual'},
@@ -35,6 +39,7 @@ export class PreferencesComponent implements OnInit {
     {valuePt: 'Homem',  valueUs: 'Men'},
     {valuePt: 'Mulher', valueUs: 'Woman'},
   ];
+
   constructor(
     private translatePage: TranslateService,
     private injectSelect: InjectSelectAndFilterService,
@@ -43,6 +48,9 @@ export class PreferencesComponent implements OnInit {
     private loggedUserId: LoggedInUserIdService,
     private loadingSpinnerC: LoadingSpinnerService,
     private location: Location,
+    private distanceReplace: PreferenceDistanceService,
+    private rangeAge: RangeAgeService,
+    private userEmail: UserEmailService,
 
     ) { }
   return(): void {
@@ -50,10 +58,37 @@ export class PreferencesComponent implements OnInit {
   }
   formatLabel(value: number): number {
     if (value ) {
-      console.log(value);
-      return Math.round(value / 100); //+ 'K';
+      return Math.round(value / 100);
     }
-    // return value;
+  }
+  onInputChange(sliderName, event: MatSliderChange): any {
+    switch (sliderName) {
+      case 'distance':
+        this.userDistance.distance = event.value;
+        break;
+      case 'ageMin':
+        this.rangeAgeKeys.agemin = event.value;
+        break;
+      case 'ageMax':
+        this.rangeAgeKeys.agemax = event.value;
+        break;
+      default:
+        break;
+    }
+
+
+  }
+  putPreferenceDistance(): any {
+    this.userDistance.user_id = this.loggedUserId.idUser;
+    this.distanceReplace.put(this.userDistance).toPromise().then(res => {
+    });
+  }
+  rangeAgePost(): any {
+    this.rangeAgeKeys.userId = this.loggedUserId.idUser;
+    console.log(this.userEmail.userEmail);
+    this.rangeAgeKeys.email = this.userEmail.userEmail;
+    // this.rangeAge.post(this.rangeAgeKeys).toPromise().then(res => {
+    // });
   }
   setOptionValues(): void {
     this.filteredUserType = this.getValueApis.filteredUserType;
@@ -76,9 +111,13 @@ export class PreferencesComponent implements OnInit {
     // this.loggedUserId.returnIdUser();
     this.loadingSpinnerC.loadingSpinner();
   }
+  onSubmit(): void{
+    this.putPreferenceDistance();
+    this.rangeAgePost();
+  }
   createForm( ): void {
     this.userPreference = this.formBuilder.group({
-          localization: ['', [Validators.required]],
+          distance: ['', [Validators.required]],
           userType: ['', [Validators.required]],
           genre: ['', [Validators.required]],
           orientation: ['', [Validators.required]],
@@ -91,4 +130,15 @@ export class PreferencesComponent implements OnInit {
           selectIntertingType: [''],
         });
   }
+}
+export class Distance {
+  user_id: number;
+  distance: number;
+}
+
+export class RangeAge {
+  userId: number;
+  email: any;
+  agemin: number;
+  agemax: number;
 }

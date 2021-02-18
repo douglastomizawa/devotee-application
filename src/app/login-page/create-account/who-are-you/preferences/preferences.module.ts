@@ -9,7 +9,7 @@ import {MatSliderModule} from '@angular/material/slider';
 import {MatSelectModule} from '@angular/material/select';
 import { PreferencesRountingModule } from './preferences.rounting.module';
 import { MatSelectSearchModule } from './../../../mat-select-search/mat-select-search.module';
-import {  ReactiveFormsModule } from '@angular/forms';
+import {  FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { PreferencesComponent } from './preferences.component';
@@ -31,7 +31,7 @@ import { PreferencesComponent } from './preferences.component';
     PreferencesRountingModule,
     ComponentsModule,
     MatFormFieldModule,
-
+    FormsModule
   ]
 })
 export class PreferencesModule { }

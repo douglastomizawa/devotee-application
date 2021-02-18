@@ -18,13 +18,13 @@
             <mat-card-title>
               {{text.prefences.localization}}
             </mat-card-title>
-            <!-- thumbLabel -->
+            <!-- thumbLabel class="disp-none"  [(value)]="searchRadius.value"-->
 
             <mat-slider
             [displayWith]="formatLabel"
             tickInterval="1000"
             min="1"
-            max="5000" [color]="color" #searchRadius></mat-slider>
+            max="5000" [color]="color" #searchRadius (input)="onInputChange('distance', $event)">  </mat-slider>
             <p>{{text.prefences.searchRadius}} {{searchRadius.value}}km</p>
           </div>
           </div>
@@ -102,7 +102,7 @@
                 [displayWith]="formatLabel"
                 tickInterval="100"
                 min="18"
-                max="100" [color]="color" #minimumAge></mat-slider>
+                max="100" [color]="color" #minimumAge (input)="onInputChange('ageMin', $event)"></mat-slider>
                 <p>{{text.prefences.minimunAge}} {{minimumAge.value}} {{text.prefences.years}}</p>
               </div>
               <div class="max-bith">
@@ -110,7 +110,7 @@
                 [displayWith]="formatLabel"
                 tickInterval="100"
                 min="18"
-                max="100" [color]="color" #maximumAge></mat-slider>
+                max="100" [color]="color" #maximumAge (input)="onInputChange('ageMax', $event)"></mat-slider>
                 <p>{{text.prefences.maximumAge}} {{maximumAge.value}} {{text.prefences.years}}</p>
               </div>
             </div>
@@ -118,7 +118,7 @@
         </mat-card>
     </form>
       <button (click)="return()"  mat-stroked-button class="btn-return-background-2  btn-width" color="primary">{{text.btnRollback}}</button>
-      <button mat-raised-button color="primary" class="btn btn-next btn-width">Proximo</button>
+      <button (click)="onSubmit()" mat-raised-button color="primary" class="btn btn-next btn-width">{{text.btnNext}}</button>
     </div>
   </div>
 </div>

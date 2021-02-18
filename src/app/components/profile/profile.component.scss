@@ -9,6 +9,9 @@
 .margin-t10px{
   margin-top: 10px;
 }
+.margin-b20px{
+  margin-bottom: 20px;
+}
 .container-close{
   display: flex;
   justify-content: flex-end;
@@ -152,7 +155,7 @@
     grid-area: block-images;
   }
   .block-infos{
-    margin: 0;
+    margin-top: 0;
     grid-area: block-infos;
   }
   .mat-icon-size{

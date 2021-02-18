@@ -32,7 +32,7 @@
   </div>
 
   <div class="container-infos-all">
-    <div class="block-images">
+    <div class="block-images margin-b20px">
       <div class="container-first-card">
         <mat-card>
           <mat-card-title class="first-card"> {{text.profileInfos.picturesTitle}}</mat-card-title>
@@ -70,13 +70,13 @@
         </div>
       </div>
     </div>
-    <div class="block-infos">
+    <div class="block-infos margin-b20px">
       <div class="container-first-card">
         <mat-card>
           <mat-card-title class="first-card">{{text.profileInfos.aboutMe}}</mat-card-title>
         </mat-card>
       </div>
-      <div class="container-infos">
+      <div class="container-infos ">
         <mat-card>
           <div class="container-personal-infos">
             <h2 class="title blue-2e2"> {{text.profileInfos.personalInformation}}</h2>
@@ -176,17 +176,11 @@
               <mat-icon class="blue-3f5 margin-r5px">content_cut</mat-icon>
               <div class="title blue-2e2">{{text.profileInfos.surgeries}}</div>
             </div>
-              <!-- <div *ngIf="language === 'pt'"> -->
               <div>
                 <div *ngFor="let surgerie of profileInfos.surgeries" class="aling-itens-c cids">
                   <span class="bullet">•</span><span>{{surgerie.name}}</span>
                 </div>
               </div>
-              <!-- <div *ngIf="language === 'us'">
-                <div *ngFor="let surgerie of profileInfos.surgeries" class="aling-itens-c cids">
-                  <span class="bullet">•</span><span>{{surgerie.name_en}}</span>
-                </div>
-              </div> -->
             </div>
           </div>
 
@@ -196,17 +190,11 @@
               <mat-icon class="blue-3f5 margin-r5px">local_pharmacy</mat-icon>
               <div class="title blue-2e2">{{text.profileInfos.medication}}</div>
             </div>
-              <!-- <div *ngIf="language === 'pt'"> -->
               <div>
                 <div *ngFor="let medication of profileInfos.medication_types" class="aling-itens-c cids">
                   <span class="bullet">•</span><span>{{medication.name}}</span>
                 </div>
               </div>
-              <!-- <div *ngIf="language === 'us'">
-                <div *ngFor="let medication of profileInfos.medication_types" class="aling-itens-c cids">
-                  <span class="bullet">•</span><span>{{medication.name_en}}</span>
-                </div>
-              </div> -->
             </div>
           </div>
 

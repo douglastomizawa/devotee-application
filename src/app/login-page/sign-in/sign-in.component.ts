@@ -1,3 +1,4 @@
+import { UserEmailService } from './../../core/services/profile-infos/user-email.service';
 import { LoggedInUserIdService } from './../../core/services/logged-in-user-id.service';
 import { RedirectLoggedService } from './../../core/services-redirect/redirect-logged.service';
 import { LoadingSpinnerService } from './../../core/loading-spinner.service';
@@ -7,8 +8,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 import { SplitMatchesService } from 'src/app/core/services/split-matches.service';
-import { Router } from '@angular/router';
-
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -37,9 +36,9 @@ export class SignInComponent implements OnInit {
     private login: LoginService,
     private formBuilder: FormBuilder,
     private loadingSpinnerC: LoadingSpinnerService,
-    private splitMatches: SplitMatchesService,
     private userId: LoggedInUserIdService,
     private redirectLogged: RedirectLoggedService,
+    private userEmail: UserEmailService,
 
     ) {}
   matcher = new MyErrorStateMatcher();
@@ -65,6 +64,7 @@ export class SignInComponent implements OnInit {
         this.resError = true;
       }else{
         this.userId.returnIdUser(res['id']);
+        this.userEmail.returnUserEmail(res['email']);
         this.loginLoad();
       }
     })

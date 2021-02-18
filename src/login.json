@@ -14,6 +14,7 @@
         "btnAppStore":"/assets/appstore.svg",
         "altPlaySotre":"Botão Play Store",
         "altAppStore":"Botão Apple Store",
+        "btnNext":"Proximo",
         "forgotPassword":{
           "alertEmail":"Insira seu e-mail abaixo para enviarmos uma solicitação de senha.",
           "inputEmail":{
@@ -205,6 +206,7 @@
         "btnAppStore":"/assets/appstore-en.svg",
         "altPlaySotre":"Button Play Store",
         "altAppStore":"Button Apple Store",
+        "btnNext":"Next",
         "forgotPassword":{
           "alertEmail":"Enter your email address below to send us a password request.",
           "inputEmail":{
