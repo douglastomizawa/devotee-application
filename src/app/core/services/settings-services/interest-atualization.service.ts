@@ -1,19 +1,19 @@
+import { interestInterface, ResponseInterestInterface } from './../../interfaces/interestAutorization.interface';
 import { tap } from 'rxjs/operators';
-import { RangeAgeInterface, ResponseRangeAgeInterface } from './../../interfaces/rangeAge.interface';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RangeAgeService {
+export class InterestAtualizationService {
   private readonly rangeAgeURL = '/api/php-devotee/extension-serviceagerange.php';
   constructor(
     private http: HttpClient,
   ) { }
 
-  post(payload: RangeAgeInterface): any {
-    return this.http.post<ResponseRangeAgeInterface>(this.rangeAgeURL, payload, {
+  post(payload: interestInterface): any {
+    return this.http.post<ResponseInterestInterface>(this.rangeAgeURL, payload, {
       headers: new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('X-API-KEY', 'guEFSkAEITO4ZmFxIN76WmdpOqcnG35BgKRgkvO5')

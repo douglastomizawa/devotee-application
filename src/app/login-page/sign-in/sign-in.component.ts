@@ -48,8 +48,10 @@ export class SignInComponent implements OnInit {
     this.createForm();
   }
   loginLoad(): void {
+    this.loadingSpinnerC.ShowLoading = true;
     this.loadingSpinnerC.loadingSpinner().then((res: any) => {
       res ? this.redirectLogged.loggedRedirect(res, '/sugestion-matches') : this.resError = true;
+      this.loadingSpinnerC.ShowLoading = false;
     });
   }
   createForm( ): void {

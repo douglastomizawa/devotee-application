@@ -1,3 +1,4 @@
+import { InterestAtualizationService } from './../../../../core/services/settings-services/interest-atualization.service';
 import { UserEmailService } from './../../../../core/services/profile-infos/user-email.service';
 import { RangeAgeService } from './../../../../core/services/settings-services/range-age.service';
 import { PreferenceDistanceService } from './../../../../core/services/settings-services/preference-distance.service';
@@ -24,6 +25,7 @@ export class PreferencesComponent implements OnInit {
   userPreference: FormGroup;
   userDistance: Distance = new Distance();
   rangeAgeKeys: RangeAge = new RangeAge();
+  interestAtualization: Interest = new Interest();
   filteredUserType: string[] = [];
   teste;
   orientationOptions: any[] = [
@@ -51,6 +53,7 @@ export class PreferencesComponent implements OnInit {
     private distanceReplace: PreferenceDistanceService,
     private rangeAge: RangeAgeService,
     private userEmail: UserEmailService,
+    private interestAPI: InterestAtualizationService,
 
     ) { }
   return(): void {
@@ -85,10 +88,16 @@ export class PreferencesComponent implements OnInit {
   }
   rangeAgePost(): any {
     this.rangeAgeKeys.userId = this.loggedUserId.idUser;
-    console.log(this.userEmail.userEmail);
     this.rangeAgeKeys.email = this.userEmail.userEmail;
-    // this.rangeAge.post(this.rangeAgeKeys).toPromise().then(res => {
-    // });
+    this.rangeAge.post(this.rangeAgeKeys).toPromise().then(res => {
+    });
+  }
+  interestAtualizationPost(): any {
+    this.interestAtualization.userId = this.loggedUserId.idUser;
+    this.interestAtualization.email = this.userEmail.userEmail;
+    this.interestAPI.post(this.interestAtualization).toPromise().then(res => {
+
+    });
   }
   setOptionValues(): void {
     this.filteredUserType = this.getValueApis.filteredUserType;
@@ -114,6 +123,7 @@ export class PreferencesComponent implements OnInit {
   onSubmit(): void{
     this.putPreferenceDistance();
     this.rangeAgePost();
+    this.interestAtualizationPost();
   }
   createForm( ): void {
     this.userPreference = this.formBuilder.group({
@@ -132,13 +142,20 @@ export class PreferencesComponent implements OnInit {
   }
 }
 export class Distance {
-  user_id: number;
-  distance: number;
+  user_id:              number;
+  distance:             number;
 }
 
 export class RangeAge {
-  userId: number;
-  email: any;
-  agemin: number;
-  agemax: number;
+  userId:               number;
+  email:                any;
+  agemin:               number;
+  agemax:               number;
+}
+export class Interest {
+  userId:               number;
+  email:                any;
+  interestsex:          number;
+  interestfriend:       number;
+  interestfrelation:    number;
 }

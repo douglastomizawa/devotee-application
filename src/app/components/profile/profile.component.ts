@@ -1,3 +1,4 @@
+import { SavePhoneNumberService } from './../../core/services/profile-infos/save-phone-number.service';
 import { PhoneNumberService } from './../../core/services/profile-infos/phone-number.service';
 import { TranslateService } from './../../shared/translate.service';
 import { GetProfileService } from './../../core/services/get-profile.service';
@@ -19,12 +20,13 @@ export class ProfileComponent implements OnInit {
   userProfileInfos;
   userAge: number;
   noImg;
+  phoneInfos;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     public dialogRef: MatDialogRef<ProfileComponent>,
     private profileAPI: GetProfileService,
     private translatePage: TranslateService,
-    private phoneNumberAPI: PhoneNumberService,
+    private phoneNumber: SavePhoneNumberService,
     private userId: LoggedInUserIdService,
   ) {}
   ngOnInit(): any {
@@ -41,7 +43,7 @@ export class ProfileComponent implements OnInit {
     console.log(this.userProfileInfos);
     this.transformeAge();
     this.removeSpacesString(this.userProfileInfos.user.first_name);
-    // this.getPhoneNumber();
+    this.getPhoneNumber();
     this.displayMydeficient();
   }
   transformeAge(): any {
@@ -64,13 +66,15 @@ export class ProfileComponent implements OnInit {
     this.dialogRef.close();
   }
   displayMydeficient(): any{
-    console.log(this.profileInfos);
+    // console.log(this.profileInfos);
   }
   getPhoneNumber(): any {
-    // this.userId.idUser
-    this.phoneNumberAPI.get(this.userId.idUser).toPromise().then(res => {
-      console.log(res);
-    });
+    this.phoneInfos = this.phoneNumber.phoneNumber;
+    console.log(this.phoneNumber.phoneNumber.data[0]);
+    // this.phoneNumberAPI.get( this.profileAPI.profileUser).toPromise().then(res => {
+    //   console.log(res);
+    //   this.phoneInfos = res;
+    // });
   }
 
 }

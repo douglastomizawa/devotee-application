@@ -1,8 +1,9 @@
 {
-    "/api/*": {
-        "target": "http://34.223.220.245/api/V1",
+    "/api": {
+        "target": "http://34.223.220.245/",
         "secure": false,
         "logLevel": "debug",
+        "changeOrigin": true,
         "pathRewrite": {
             "^/api": ""
         }

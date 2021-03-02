@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class LikeApiService {
-  private readonly likeURL = 'http://34.223.220.245/api/V1/like';
+  private readonly likeURL = '/api/api/V1/like';
 
   constructor(
     private http: HttpClient,

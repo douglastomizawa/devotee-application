@@ -81,9 +81,12 @@
           <div class="container-personal-infos">
             <h2 class="title blue-2e2"> {{text.profileInfos.personalInformation}}</h2>
             <div class="personal-information padding-l10">
-              <div class="container-phone-number aling-itens-c">
-                <mat-icon class="margin-r5px">call</mat-icon> <span></span>
+              <div class="container-phone-number aling-itens-c" *ngIf="
+              phoneInfos.data[0] !== undefined &&
+              phoneInfos.data[0].phone !== '' " >
+                <mat-icon class="margin-r5px">call</mat-icon> <span>{{phoneInfos.data[0].phone}}</span>
               </div>
+              <!-- {{phoneInfos.data.phone}} -->
               <div class="container-profession aling-itens-c" *ngIf="profileInfos.user.profession !== ''" >
                 <mat-icon class="margin-r5px">work</mat-icon>
                 <span>{{profileInfos.user.profession}}</span>

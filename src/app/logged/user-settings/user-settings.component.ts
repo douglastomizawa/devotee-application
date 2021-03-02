@@ -1,3 +1,5 @@
+import { SizeModalService } from './../../core/factory/size-modal.service';
+import { LoadingSpinnerService } from './../../core/loading-spinner.service';
 import { BreakpointState, BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { take } from 'rxjs/operators';
 import { LoggedInUserIdService } from './../../core/services/logged-in-user-id.service';
@@ -26,22 +28,10 @@ export class UserSettingsComponent implements OnInit {
     public dialog: MatDialog,
     private userId: LoggedInUserIdService,
     private readonly breakpointObserver: BreakpointObserver,
+    private loadingSpinnerC: LoadingSpinnerService,
+    private sizeModal: SizeModalService,
+
   ) { }
-  isExtraSmall: Observable<BreakpointState> = this.breakpointObserver.observe(
-    Breakpoints.XSmall
-  );
-  isSmall: Observable<BreakpointState> = this.breakpointObserver.observe(
-    Breakpoints.Small
-  );
-  isMedium: Observable<BreakpointState> = this.breakpointObserver.observe(
-    Breakpoints.Medium
-  );
-  isLarge: Observable<BreakpointState> = this.breakpointObserver.observe(
-    Breakpoints.Large
-  );
-  isXLarge: Observable<BreakpointState> = this.breakpointObserver.observe(
-    Breakpoints.XLarge
-  );
   logout(): void{
     this.redirectLoggedService.loggedRedirect(false, '/login');
   }
@@ -57,66 +47,16 @@ export class UserSettingsComponent implements OnInit {
     this.openProfileModal();
   }
   openProfileModal(): void {
+    this.loadingSpinnerC.ShowLoading = true;
     this.profileAPI.profile.pipe(take(1)).subscribe(res => {
       if (res) {
+        this.loadingSpinnerC.ShowLoading = false;
         const dialogRef = this.dialog.open(ProfileComponent, {
           width: 'calc(100% - 50px)',
           maxWidth: '100vw',
           panelClass: 'container-profile',
         });
-        const smallDialogSubscription = this.isExtraSmall.subscribe(size => {
-          if (size.matches) {
-            this.nameWidth = 'extraSmall';
-          }
-        });
-        const tabletDialogSubscription = this.isSmall.subscribe(size => {
-          if (size.matches) {
-            this.nameWidth = 'small';
-          }
-        });
-        const tabletPlustDialogSubscription = this.isMedium.subscribe(size => {
-          if (size.matches) {
-            this.nameWidth = 'medium';
-          }
-        });
-        const desktopDialogSubscription = this.isLarge.subscribe(size => {
-          if (size.matches) {
-            this.nameWidth = 'large';
-          }
-        });
-        const desktopLargeDialogSubscription = this.isXLarge.subscribe(size => {
-          if (size.matches) {
-            this.nameWidth = 'extraLarge';
-          }
-        });
-        switch (this.nameWidth) {
-          case 'extraSmall':
-            dialogRef.updateSize('100vw', '100vh');
-            break;
-          case 'small':
-            dialogRef.updateSize('80%', '80%');
-            break;
-          case 'medium':
-            dialogRef.updateSize('80%', '80%');
-            break;
-          case 'large':
-            dialogRef.updateSize('60%', '80%');
-            break;
-          case 'extraLarge':
-            dialogRef.updateSize('60%', '80%');
-            break;
-          default:
-            break;
-        }
-        dialogRef
-        .afterClosed()
-        .subscribe(() => {
-          smallDialogSubscription.unsubscribe();
-          tabletDialogSubscription.unsubscribe();
-          tabletPlustDialogSubscription.unsubscribe();
-          desktopDialogSubscription.unsubscribe();
-          desktopLargeDialogSubscription.unsubscribe();
-        });
+        this.sizeModal.setSizeModal(dialogRef);
         dialogRef
         .afterClosed()
         .pipe(take(1))
@@ -125,6 +65,5 @@ export class UserSettingsComponent implements OnInit {
         }));
       }
     });
-
   }
 }

@@ -1,8 +1,9 @@
+import { LoadingSpinnerService } from 'src/app/core/loading-spinner.service';
+import { SavePhoneNumberService } from './../../core/services/profile-infos/save-phone-number.service';
+import { SizeModalService } from './../../core/factory/size-modal.service';
 import { MatDialog } from '@angular/material/dialog';
 import { take } from 'rxjs/operators';
 import { GetProfileService } from './../../core/services/get-profile.service';
-import { BreakpointState, Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
 import { ProfileService } from './../../core/services/profile.service';
 import { ChatAndMatchesService } from './../../core/services/chat-and-matches.service';
 import { TranslateService } from 'src/app/shared/translate.service';
@@ -15,7 +16,7 @@ import { ProfileComponent } from './../../components/profile/profile.component';
 })
 export class ChatComponent implements OnInit {
   text;
-  matchId: number
+  matchId: number;
   matchUser;
   isHidden;
   nameWidth: string;
@@ -24,91 +25,31 @@ export class ChatComponent implements OnInit {
     private translatePage: TranslateService,
     private getProfileAPI: ProfileService,
     private emitterMatchId: ChatAndMatchesService,
-    private readonly breakpointObserver: BreakpointObserver,
     private profileAPI: GetProfileService,
     public dialog: MatDialog,
+    private sizeModal: SizeModalService,
+    private phoneNumber: SavePhoneNumberService,
+    private loadingSpinnerC: LoadingSpinnerService,
 
   ) { }
-  isExtraSmall: Observable<BreakpointState> = this.breakpointObserver.observe(
-    Breakpoints.XSmall
-  );
-  isSmall: Observable<BreakpointState> = this.breakpointObserver.observe(
-    Breakpoints.Small
-  );
-  isMedium: Observable<BreakpointState> = this.breakpointObserver.observe(
-    Breakpoints.Medium
-  );
-  isLarge: Observable<BreakpointState> = this.breakpointObserver.observe(
-    Breakpoints.Large
-  );
-  isXLarge: Observable<BreakpointState> = this.breakpointObserver.observe(
-    Breakpoints.XLarge
-  );
   openProfile(userId): void {
-    this.profileAPI.getProfileInfos(userId);
+    this.phoneNumber.getPhoneNumberSave(userId);
+    this.phoneNumber.phoneNumberEvent.pipe(take(1)).subscribe(res => {
+      this.profileAPI.getProfileInfos(userId);
+    });
     this.openProfileModal();
   }
   openProfileModal(): void {
+    this.loadingSpinnerC.ShowLoading = true;
     this.profileAPI.profile.pipe(take(1)).subscribe(res => {
       if (res) {
+        this.loadingSpinnerC.ShowLoading = false;
         const dialogRef = this.dialog.open(ProfileComponent, {
           width: 'calc(100% - 50px)',
           maxWidth: '100vw',
           panelClass: 'container-profile',
         });
-        const smallDialogSubscription = this.isExtraSmall.subscribe(size => {
-          if (size.matches) {
-            this.nameWidth = 'extraSmall';
-          }
-        });
-        const tabletDialogSubscription = this.isSmall.subscribe(size => {
-          if (size.matches) {
-            this.nameWidth = 'small';
-          }
-        });
-        const tabletPlustDialogSubscription = this.isMedium.subscribe(size => {
-          if (size.matches) {
-            this.nameWidth = 'medium';
-          }
-        });
-        const desktopDialogSubscription = this.isLarge.subscribe(size => {
-          if (size.matches) {
-            this.nameWidth = 'large';
-          }
-        });
-        const desktopLargeDialogSubscription = this.isXLarge.subscribe(size => {
-          if (size.matches) {
-            this.nameWidth = 'extraLarge';
-          }
-        });
-        switch (this.nameWidth) {
-          case 'extraSmall':
-            dialogRef.updateSize('100vw', '100vh');
-            break;
-          case 'small':
-            dialogRef.updateSize('80%', '80%');
-            break;
-          case 'medium':
-            dialogRef.updateSize('80%', '80%');
-            break;
-          case 'large':
-            dialogRef.updateSize('60%', '80%');
-            break;
-          case 'extraLarge':
-            dialogRef.updateSize('60%', '80%');
-            break;
-          default:
-            break;
-        }
-        dialogRef
-        .afterClosed()
-        .subscribe(() => {
-          smallDialogSubscription.unsubscribe();
-          tabletDialogSubscription.unsubscribe();
-          tabletPlustDialogSubscription.unsubscribe();
-          desktopDialogSubscription.unsubscribe();
-          desktopLargeDialogSubscription.unsubscribe();
-        });
+        this.sizeModal.setSizeModal(dialogRef);
         dialogRef
         .afterClosed()
         .pipe(take(1))

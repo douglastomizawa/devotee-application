@@ -28,7 +28,7 @@ export class MatchesComponent implements OnInit {
     this.text = this.translatePage.textTranslate;
     this.getMatches();
   }
-  clickGetIdMatch(matchId): void {
+  clickGetIdMatch(matchId): any {
     this.emitterMatchId.clickToEmitterMatchId(matchId, false);
   }
   getMatches(): void {

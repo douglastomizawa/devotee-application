@@ -7,20 +7,20 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class PhoneNumberService {
-  private readonly phoneNumberURL = 'http://devotee.com.br/php-devotee/extension-updatephone.php';
+  private readonly phoneNumberURL = '/api/php-devotee/extension-updatephone.php';
 
   constructor(
     private http: HttpClient,
   ) { }
 
-  get(userId) {
+  get(userId: any): any {
     return this.http.get<ResponsePhoneNumberInterface>(`${this.phoneNumberURL}?userid=${userId}`,
       {
         headers: new HttpHeaders()
           .set('Content-Type', 'application/json')
           .set('X-API-KEY', 'guEFSkAEITO4ZmFxIN76WmdpOqcnG35BgKRgkvO5')
       })
-      .pipe(
-        tap(console.log));
+      .pipe();
+      // .pipe(tap(console.log));
   }
 }

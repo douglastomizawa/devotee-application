@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DeslikeApiService {
-  private readonly deslikeURL = 'http://34.223.220.245/api/V1/undoLike';
+  private readonly deslikeURL = '/api/api/V1/undoLike';
 
   constructor(
     private http: HttpClient,

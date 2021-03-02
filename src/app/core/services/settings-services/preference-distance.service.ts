@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class PreferenceDistanceService {
-  private readonly distanceURL = 'http://34.223.220.245/api/V1/preferenceDistance'
+  private readonly distanceURL = '/api/api/V1/preferenceDistance';
   constructor(
     private http: HttpClient,
   ) { }

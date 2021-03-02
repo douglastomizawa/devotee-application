@@ -1,12 +1,12 @@
+import { LoadingSpinnerService } from './../../core/loading-spinner.service';
+import { SizeModalService } from './../../core/factory/size-modal.service';
+import { SavePhoneNumberService } from './../../core/services/profile-infos/save-phone-number.service';
 import { ProfileComponent } from './../../components/profile/profile.component';
-import { PhoneNumberService } from './../../core/services/profile-infos/phone-number.service';
 import { RedirectLoggedService } from './../../core/services-redirect/redirect-logged.service';
-import {  take } from 'rxjs/operators';
-import { BreakpointState, BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { take } from 'rxjs/operators';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { MatDialog,} from '@angular/material/dialog';
 import { Component, OnInit, Inject } from '@angular/core';
-import { Observable } from 'rxjs';
-import { DialogData } from './../../footer/footer.component';
 
 import { GetProfileService } from './../../core/services/get-profile.service';
 import { DeslikeApiService } from './../../core/services/deslike-api.service';
@@ -51,25 +51,11 @@ export class SugestionMatchesComponent implements OnInit {
     public dialog: MatDialog,
     private profileAPI: GetProfileService,
     private redirectLoggedService: RedirectLoggedService,
-
-    private readonly breakpointObserver: BreakpointObserver,
+    private phoneNumber: SavePhoneNumberService,
+    private sizeModal: SizeModalService,
+    private loadingSpinnerC: LoadingSpinnerService,
     ) {
     }
-  isExtraSmall: Observable<BreakpointState> = this.breakpointObserver.observe(
-    Breakpoints.XSmall
-  );
-  isSmall: Observable<BreakpointState> = this.breakpointObserver.observe(
-    Breakpoints.Small
-  );
-  isMedium: Observable<BreakpointState> = this.breakpointObserver.observe(
-    Breakpoints.Medium
-  );
-  isLarge: Observable<BreakpointState> = this.breakpointObserver.observe(
-    Breakpoints.Large
-  );
-  isXLarge: Observable<BreakpointState> = this.breakpointObserver.observe(
-    Breakpoints.XLarge
-  );
   ngOnInit(): void {
     this.matchUser = this.splitMatches.matchUserSplited;
     console.log(this.matchUser);
@@ -222,16 +208,12 @@ export class SugestionMatchesComponent implements OnInit {
         switch (element.gender) {
           case 'female':
             female.push(element.gender);
-
-            // likesProfile.female = female.length;
             break;
           case 'male':
             male.push(element.gender);
-            // likesProfile.female = female.length;
-              break;
+            break;
           default:
             another.push(element.gender);
-            // likesProfile.female = female.length;
             break;
         }
 
@@ -243,70 +225,24 @@ export class SugestionMatchesComponent implements OnInit {
 
   }
   openProfile(userId): void {
-    this.profileAPI.getProfileInfos(userId);
+    this.phoneNumber.getPhoneNumberSave(userId);
+    this.phoneNumber.phoneNumberEvent.pipe(take(1)).subscribe(res => {
+      this.profileAPI.getProfileInfos(userId);
+    });
     this.openProfileModal();
+
   }
   openProfileModal(): void {
+    this.loadingSpinnerC.ShowLoading = true;
     this.profileAPI.profile.pipe(take(1)).subscribe(res => {
       if (res) {
+        this.loadingSpinnerC.ShowLoading = false;
         const dialogRef = this.dialog.open(ProfileComponent, {
           width: 'calc(100% - 50px)',
           maxWidth: '100vw',
           panelClass: 'container-profile',
         });
-        const smallDialogSubscription = this.isExtraSmall.subscribe(size => {
-          if (size.matches) {
-            this.nameWidth = 'extraSmall';
-          }
-        });
-        const tabletDialogSubscription = this.isSmall.subscribe(size => {
-          if (size.matches) {
-            this.nameWidth = 'small';
-          }
-        });
-        const tabletPlustDialogSubscription = this.isMedium.subscribe(size => {
-          if (size.matches) {
-            this.nameWidth = 'medium';
-          }
-        });
-        const desktopDialogSubscription = this.isLarge.subscribe(size => {
-          if (size.matches) {
-            this.nameWidth = 'large';
-          }
-        });
-        const desktopLargeDialogSubscription = this.isXLarge.subscribe(size => {
-          if (size.matches) {
-            this.nameWidth = 'extraLarge';
-          }
-        });
-        switch (this.nameWidth) {
-          case 'extraSmall':
-            dialogRef.updateSize('100vw', '100vh');
-            break;
-          case 'small':
-            dialogRef.updateSize('80%', '80%');
-            break;
-          case 'medium':
-            dialogRef.updateSize('80%', '80%');
-            break;
-          case 'large':
-            dialogRef.updateSize('60%', '80%');
-            break;
-          case 'extraLarge':
-            dialogRef.updateSize('60%', '80%');
-            break;
-          default:
-            break;
-        }
-        dialogRef
-        .afterClosed()
-        .subscribe(() => {
-          smallDialogSubscription.unsubscribe();
-          tabletDialogSubscription.unsubscribe();
-          tabletPlustDialogSubscription.unsubscribe();
-          desktopDialogSubscription.unsubscribe();
-          desktopLargeDialogSubscription.unsubscribe();
-        });
+        this.sizeModal.setSizeModal(dialogRef);
         dialogRef
         .afterClosed()
         .pipe(take(1))

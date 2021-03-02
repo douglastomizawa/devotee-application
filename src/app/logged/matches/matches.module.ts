@@ -1,3 +1,4 @@
+import { ComponentsModule } from './../../components/components.module';
 import { ChatAndMatchesService } from './../../core/services/chat-and-matches.service';
 import { NgModule } from '@angular/core';
 import { ChatModule } from './../chat/chat.module';
@@ -18,6 +19,7 @@ import { MatchesComponent } from './matches.component';
     MatIconModule,
     MatCardModule,
     MatchesRountingModule,
+    ComponentsModule
   ],
   providers:[
     ChatAndMatchesService
