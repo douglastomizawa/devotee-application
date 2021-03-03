@@ -1,19 +1,19 @@
-import { interestInterface, ResponseInterestInterface } from './../../interfaces/interestAutorization.interface';
+import { ResponseSexualOrientationInterface } from './../../interfaces/sexualOrientation.interface';
 import { tap } from 'rxjs/operators';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class InterestAtualizationService {
+export class SexualOrientationService {
   private readonly rangeAgeURL = '/api/php-devotee/extension-serviceagerange.php';
   constructor(
     private http: HttpClient,
   ) { }
 
-  post(payload: interestInterface): any {
-    return this.http.post<ResponseInterestInterface>(this.rangeAgeURL, payload, {
+  post(payload: SexualOrientationService): any {
+    return this.http.post<ResponseSexualOrientationInterface>(this.rangeAgeURL, payload, {
       headers: new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('X-API-KEY', 'guEFSkAEITO4ZmFxIN76WmdpOqcnG35BgKRgkvO5')

@@ -52,11 +52,11 @@
                   </mat-option>
                 </mat-select>
               </mat-form-field> -->
-
+              <!-- (focus)="filterSexualOrientation(sexualOrientation)" -->
               <mat-form-field>
-                <mat-select (focus)="filterOption('selectUserType')" placeholder="{{ text.prefences.genre}}" [multiple]="true">
+                <mat-select  #sexualOrientationInterest (focus)="filterOption('selectUserType')" placeholder="{{ text.prefences.genre}}" [multiple]="true">
                   <mat-select-search formControlName="selectIntertingType" ></mat-select-search>
-                  <mat-option *ngFor="let sexualOrientation of orientationOptions" [value]="sexualOrientation.value">
+                  <mat-option  *ngFor="let sexualOrientation of orientationOptions" [value]="sexualOrientation.value">
                     {{sexualOrientation.value}}
                   </mat-option>
                 </mat-select>
@@ -72,17 +72,17 @@
               </mat-form-field> -->
 
               <mat-form-field>
-                <mat-select placeholder="{{ text.prefences.orientation}}">
+                <mat-select #preferenceSexualOrientation placeholder="{{ text.prefences.orientation}}">
                   <mat-select-search formControlName="selectIntertingType" ></mat-select-search>
-                  <mat-option *ngFor="let sexualOrientation of orientationOptions" [value]="sexualOrientation.value">
-                    {{sexualOrientation.value}}
+                  <mat-option *ngFor="let preferenceSexualOrientation of orientationOptions" [value]="preferenceSexualOrientation.value">
+                    {{preferenceSexualOrientation.value}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
 
 
               <mat-form-field >
-                <mat-select (focus)="filterOption('selectUserType')" formControlName="interesseType" placeholder="{{ text.prefences.interestType}}" [multiple]="true">
+                <mat-select   (focus)="filterOption('selectUserType')" formControlName="interesseType" placeholder="{{ text.prefences.interestType}}" [multiple]="true">
                   <mat-select-search formControlName="selectIntertingType" ></mat-select-search>
                   <mat-option *ngFor="let optionUserType of intereseType" [value]="optionUserType">
                     {{optionUserType.valuePt}}
@@ -118,7 +118,7 @@
         </mat-card>
     </form>
       <button (click)="return()"  mat-stroked-button class="btn-return-background-2  btn-width" color="primary">{{text.btnRollback}}</button>
-      <button (click)="onSubmit()" mat-raised-button color="primary" class="btn btn-next btn-width">{{text.btnNext}}</button>
+      <button (click)="onSubmit()" (click)="filterSexualOrientation(sexualOrientationInterest, preferenceSexualOrientation)" mat-raised-button color="primary" class="btn btn-next btn-width">{{text.btnNext}}</button>
     </div>
   </div>
 </div>

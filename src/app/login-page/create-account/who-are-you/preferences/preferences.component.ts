@@ -1,4 +1,3 @@
-import { InterestAtualizationService } from './../../../../core/services/settings-services/interest-atualization.service';
 import { UserEmailService } from './../../../../core/services/profile-infos/user-email.service';
 import { RangeAgeService } from './../../../../core/services/settings-services/range-age.service';
 import { PreferenceDistanceService } from './../../../../core/services/settings-services/preference-distance.service';
@@ -25,7 +24,7 @@ export class PreferencesComponent implements OnInit {
   userPreference: FormGroup;
   userDistance: Distance = new Distance();
   rangeAgeKeys: RangeAge = new RangeAge();
-  interestAtualization: Interest = new Interest();
+  sexualOrientation: SexualOrientation = new SexualOrientation();
   filteredUserType: string[] = [];
   teste;
   orientationOptions: any[] = [
@@ -53,7 +52,6 @@ export class PreferencesComponent implements OnInit {
     private distanceReplace: PreferenceDistanceService,
     private rangeAge: RangeAgeService,
     private userEmail: UserEmailService,
-    private interestAPI: InterestAtualizationService,
 
     ) { }
   return(): void {
@@ -92,12 +90,30 @@ export class PreferencesComponent implements OnInit {
     this.rangeAge.post(this.rangeAgeKeys).toPromise().then(res => {
     });
   }
-  interestAtualizationPost(): any {
-    this.interestAtualization.userId = this.loggedUserId.idUser;
-    this.interestAtualization.email = this.userEmail.userEmail;
-    this.interestAPI.post(this.interestAtualization).toPromise().then(res => {
+  sexualOrientationPost(): any {
 
-    });
+
+  }
+  filterSexualOrientation(interest, sexualOrientantion): any {
+    this.sexualOrientation.userId = this.loggedUserId.idUser;
+    this.sexualOrientation.interestbi = false;
+    this.sexualOrientation.interesthomo = false;
+    this.sexualOrientation.interesthetero = false;
+    this.sexualOrientation.sexualorientation = sexualOrientantion.value;
+    for (const val of interest.value) {
+      switch (val) {
+        case 'Bissexual':
+          this.sexualOrientation.interestbi = true;
+          break;
+        case 'Heterossexual':
+          this.sexualOrientation.interesthetero = true;
+          break;
+        case 'Homossexual':
+          this.sexualOrientation.interesthomo = true;
+          break;
+      }
+    }
+    console.log(this.sexualOrientation);
   }
   setOptionValues(): void {
     this.filteredUserType = this.getValueApis.filteredUserType;
@@ -123,7 +139,7 @@ export class PreferencesComponent implements OnInit {
   onSubmit(): void{
     this.putPreferenceDistance();
     this.rangeAgePost();
-    this.interestAtualizationPost();
+    this.sexualOrientationPost();
   }
   createForm( ): void {
     this.userPreference = this.formBuilder.group({
@@ -152,10 +168,10 @@ export class RangeAge {
   agemin:               number;
   agemax:               number;
 }
-export class Interest {
-  userId:               number;
-  email:                any;
-  interestsex:          number;
-  interestfriend:       number;
-  interestfrelation:    number;
+export class SexualOrientation {
+  userId:              number;
+  interesthomo:        boolean;
+  interesthetero:      boolean;
+  interestbi:          boolean;
+  sexualorientation:   string;
 }
