@@ -7,6 +7,9 @@ export interface SexualOrientationInterface {
   sexualorientation:   string;
 }
 
-export interface ResponseSexualOrientationInterface {
+export interface ResponseSexualOrientationInterfacePost {
+  returnMessage:    string;
+}
+export interface ResponseSexualOrientationInterfaceGet {
   returnMessage:    string;
 }

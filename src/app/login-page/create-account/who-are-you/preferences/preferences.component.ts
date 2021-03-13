@@ -1,3 +1,4 @@
+import { SexualOrientationService } from './../../../../core/services/settings-services/sexual-orientation.service';
 import { UserEmailService } from './../../../../core/services/profile-infos/user-email.service';
 import { RangeAgeService } from './../../../../core/services/settings-services/range-age.service';
 import { PreferenceDistanceService } from './../../../../core/services/settings-services/preference-distance.service';
@@ -52,6 +53,7 @@ export class PreferencesComponent implements OnInit {
     private distanceReplace: PreferenceDistanceService,
     private rangeAge: RangeAgeService,
     private userEmail: UserEmailService,
+    private sexualOrientationAPI: SexualOrientationService,
 
     ) { }
   return(): void {
@@ -81,18 +83,27 @@ export class PreferencesComponent implements OnInit {
   }
   putPreferenceDistance(): any {
     this.userDistance.user_id = this.loggedUserId.idUser;
-    this.distanceReplace.put(this.userDistance).toPromise().then(res => {
+    this.distanceReplace
+    .put(this.userDistance)
+    .toPromise()
+    .then(res => {
     });
   }
   rangeAgePost(): any {
     this.rangeAgeKeys.userId = this.loggedUserId.idUser;
     this.rangeAgeKeys.email = this.userEmail.userEmail;
-    this.rangeAge.post(this.rangeAgeKeys).toPromise().then(res => {
+    this.rangeAge
+    .post(this.rangeAgeKeys)
+    .toPromise()
+    .then(res => {
     });
   }
   sexualOrientationPost(): any {
-
-
+    this.sexualOrientationAPI
+    .post(this.sexualOrientation, this.loggedUserId.idUser)
+    .toPromise()
+    .then(res =>{
+    })
   }
   filterSexualOrientation(interest, sexualOrientantion): any {
     this.sexualOrientation.userId = this.loggedUserId.idUser;
