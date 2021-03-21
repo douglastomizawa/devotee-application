@@ -19,8 +19,11 @@
             <mat-icon *ngIf="urlProfile !== undefined" class="profile-img user-img"><img class="" src={{urlProfile}} alt=""></mat-icon>
           </label>
           <input type="file"
-                id="avatar" name="avatar"
-                accept="image/png, image/jpeg" (change)='onSelectFile($event, "urlProfile")'  class="input-file input-photo-principal">
+                id="avatar"
+                name="avatar"
+                accept="image/png, image/jpeg"
+                (change)='onSelectFile($event, "urlProfile")'
+                class="input-file input-photo-principal">
         </div>
       </div>
       <div class="block-cards container-more-photos">

@@ -92,7 +92,6 @@ export class IamEspecialComponent implements OnInit {
    });
   }
   getFinalScrollSelect(inputControl: string): void  {
-
     this.selectIsReady().then((res: any) => {
       if (res['promiseResolve']){
         const selectScroll = res['elementSelect'];
