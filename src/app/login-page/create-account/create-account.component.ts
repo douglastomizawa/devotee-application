@@ -30,8 +30,8 @@ export class CreateAccountComponent implements OnInit {
   user: User = new User();
   registerForm: FormGroup;
   submitted = false;
-  minDate: Date;
-  maxDate: Date;
+  minDate: string;
+  maxDate: string;
   color: ThemePalette = 'primary';
 // tslint:disable-next-line:max-line-length
   constructor(
@@ -43,8 +43,8 @@ export class CreateAccountComponent implements OnInit {
     private userfactory: UserFactory
     ) {
     const currentYear = new Date().getFullYear();
-    this.minDate = new Date(currentYear - 100);
-    this.maxDate = new Date(currentYear - 18, new Date().getMonth() , new Date().getDate());
+    this.minDate = new Date(currentYear - 100).toISOString().split('T')[0];
+    this.maxDate = new Date(currentYear - 18, new Date().getMonth() , new Date().getDate()).toISOString().split('T')[0];
    }
   ngOnInit(): void {
     this.translatePage.veriyLanguage();
