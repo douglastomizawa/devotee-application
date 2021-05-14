@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { LoadingSpinnerService } from 'src/app/core/loading-spinner.service';
+import { ForgotPasswordService } from './../../core/services/profile-infos/forgot-password/forgot-password.service';
 import { Component, OnInit } from '@angular/core';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
@@ -17,16 +20,35 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./forgot-password.component.scss']
 })
 export class ForgotPasswordComponent implements OnInit {
-  text;
-  emailFormControl = new FormControl('', [
+  text: any;
+  emailFormControl: FormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
+  emailForgoted: boolean = false;
+  constructor(
+    private translatePage: TranslateService,
+    private forgotPasswordService: ForgotPasswordService,
+    private loadingSpinner: LoadingSpinnerService,
+    private router: Router,
 
-  constructor(private translatePage: TranslateService) { }
+    ) { }
   matcher = new MyErrorStateMatcher();
   ngOnInit(): void {
     this.text = this.translatePage.textTranslate;
   }
+  recoverPassword() {
+    this.loadingSpinner.ShowLoading = true;
+    this.forgotPasswordService.post(this.emailFormControl.value).toPromise().then(res => {
+      if(res) {
 
+        this.loadingSpinner.ShowLoading = false;
+        this.emailForgoted = true;
+        setTimeout(() => {
+          this.emailForgoted = false;
+          this.router.navigate(['/signin']);
+        }, 3000);
+      }
+    })
+  }
 }

@@ -1,3 +1,4 @@
+import { QRCodeModule } from 'angularx-qrcode';
 import { AuthGuardService } from './core/guards/auth.guard.service';
 import { TranslateService } from './shared/translate.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -32,7 +33,8 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     MatIconModule,
     CommonModule,
-  ],
+    QRCodeModule
+    ],
   exports: [
     MatButtonModule,
   ],

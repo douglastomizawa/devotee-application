@@ -2,10 +2,13 @@
   <div class="example-container" >
     <form [formGroup]='registerForm' (submit)='onSubmit()'>
     <mat-form-field >
-      <mat-label>{{text.createAccount.labelInputName}}</mat-label>
-      <input matInput formControlName="name" [(ngModel)]="user.name" >
+      <mat-label>{{text.createAccount.labelInputName.first_name}}</mat-label>
+      <input matInput formControlName="first_name" [(ngModel)]="user.first_name" >
     </mat-form-field>
-
+    <mat-form-field >
+      <mat-label>{{text.createAccount.labelInputName.last_name}}</mat-label>
+      <input matInput formControlName="last_name" [(ngModel)]="user.last_name" >
+    </mat-form-field>
     <mat-form-field class="example-full-width">
 
       <mat-label>{{text.createAccount.inputDate.labelInputDate}}</mat-label>
@@ -15,7 +18,9 @@
       <mat-datepicker #picker></mat-datepicker> -->
 
     </mat-form-field>
-
+    <mat-error *ngIf="emailUsed">
+      {{ text.createAccount.inputEmail.email_used }}
+    </mat-error>
     <mat-form-field class="example-full-width">
       <mat-label>Email</mat-label>
       <input [(ngModel)]="user.email" matInput
@@ -25,7 +30,6 @@
       <mat-error *ngIf="f.email.hasError('email') && !f.email.hasError('required')">
         {{ text.createAccount.inputEmail.msgErrorEmailInvalid }}
       </mat-error>
-
       <mat-error *ngIf="f.email.hasError('required')">
         {{ text.createAccount.inputEmail.emailIs }} <strong>{{ text.createAccount.inputEmail.required }}</strong>
       </mat-error>

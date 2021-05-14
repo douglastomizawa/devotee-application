@@ -1,3 +1,4 @@
+import { ComponentsModule } from './../../components/components.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ForgotPasswordRountingModule } from './forgot-password.rounting.module';
@@ -21,6 +22,7 @@ import { ForgotPasswordComponent } from './forgot-password.component';
     MatFormFieldModule,
     MatButtonModule,
     ReactiveFormsModule,
+    ComponentsModule
   ],
   exports:[
     ForgotPasswordComponent,

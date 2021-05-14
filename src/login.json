@@ -17,6 +17,7 @@
         "btnNext":"Proximo",
         "forgotPassword":{
           "alertEmail":"Insira seu e-mail abaixo para enviarmos uma solicitação de senha.",
+          "sucessMensage": "Email com a nova senha enviado com sucesso",
           "inputEmail":{
             "msgErrorEmailInvalid":"Por favor insira um endereço de e-mail válido",
             "emailIs":"E-mail é ",
@@ -42,6 +43,7 @@
           "qrCreateAccount":{
             "qrNotAccount":"Ainda não tem cadastro?",
             "qrCreateAccount":"Cadastre-se"
+
           }
         },
         "signin":{
@@ -57,14 +59,19 @@
         "createAccount":{
           "btnCreateAccout":"Criar conta",
           "btnRollback":"Voltar",
-          "labelInputName":"Nome",
+          "labelInputName": {
+            "first_name" :"Primeiro Nome",
+            "last_name" :"Último Nome"
+          },
           "inputDate":{
             "labelInputDate":"Selecione uma data"
           },
           "inputEmail":{
             "msgErrorEmailInvalid":"Por favor insira um endereço de e-mail válido",
             "emailIs":"E-mail é ",
-            "required":"obrigatório"
+            "required":"obrigatório",
+            "email_used": "Esse email ja foi cadastrado"
+
           },
           "inputPassword":{
             "msgErrorMinCharacters":"Senha precisa de do mínimo 6 caracteres",
@@ -209,6 +216,7 @@
         "btnNext":"Next",
         "forgotPassword":{
           "alertEmail":"Enter your email address below to send us a password request.",
+          "sucessMensage": "Email with new password is send",
           "inputEmail":{
             "msgErrorEmailInvalid":"Please enter a valid email address",
             "emailIs":"E-mail is ",
@@ -249,14 +257,19 @@
         "createAccount":{
           "btnCreateAccout":"Create account ",
           "btnRollback":"Return",
-          "labelInputName":"Name",
+          "labelInputName": {
+            "first_name" :"First Name",
+            "last_name" :"Last Name"
+          },
           "inputDate":{
             "labelInputDate":"Choose a date"
           },
           "inputEmail":{
             "msgErrorEmailInvalid":"Please enter a valid email address",
             "emailIs":"E-mail is ",
-            "required":"required"
+            "required":"required",
+            "email_used": "This email has already been registered"
+
           },
           "inputPassword":{
             "msgErrorMinCharacters":"Password needs at least 6 characters",
