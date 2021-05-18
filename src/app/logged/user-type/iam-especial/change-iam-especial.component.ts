@@ -1,8 +1,8 @@
-import { UserEspecial } from './../../../../core/model/user-especial.model';
-import { GetValuesApisPtUsService } from './../../../../core/services/get-values-apis-pt-us.service';
-import { InjectSelectAndFilterService } from './../../../../core/services/inject-select-and-filter.service';
+import { UserEspecial } from '../../../core/model/user-especial.model';
+import { GetValuesApisPtUsService } from '../../../core/services/get-values-apis-pt-us.service';
+import { InjectSelectAndFilterService } from '../../../core/services/inject-select-and-filter.service';
 import { Component, OnInit } from '@angular/core';
-import data, { TranslateService } from './../../../../shared/translate.service';
+import data, { TranslateService } from '../../../shared/translate.service';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import {ErrorStateMatcher, ThemePalette} from '@angular/material/core';
 import {Observable} from 'rxjs';
@@ -17,10 +17,10 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 /* tslint:disable:no-string-literal */
 @Component({
   selector: 'app-iam-especial',
-  templateUrl: './iam-especial.component.html',
-  styleUrls: ['./iam-especial.component.scss']
+  templateUrl: './change-iam-especial.component.html',
+  styleUrls: ['./change-iam-especial.component.scss']
 })
-export class IamEspecialComponent implements OnInit {
+export class ChangeIamEspecialComponent implements OnInit {
   text;
   urlProfile;
   urlMore1;
@@ -50,13 +50,13 @@ export class IamEspecialComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   ngOnInit(): void {
-    this.translatePage.veriyLanguage();
-    this.text = this.translatePage.textTranslate;
-    this.language = this.translatePage.dataFormatation;
-    this.createForm();
-    this.getValuePopulateCreateAccount();
-    this.injectSelect.getAllAPIToSelectDiv();
-    this.filterValueToPushInArrayToOptions();
+    // this.translatePage.veriyLanguage();
+    // this.text = this.translatePage.textTranslate;
+    // this.language = this.translatePage.dataFormatation;
+    // this.createForm();
+    // this.getValuePopulateCreateAccount();
+    // this.injectSelect.getAllAPIToSelectDiv();
+    // this.filterValueToPushInArrayToOptions();
   }
   setOptionValues(): void {
     this.filteredMedicine = this.injectSelect.filteredMedicines;

@@ -99,7 +99,8 @@
           "addMorePhotos":"Adicione mais fotos suas",
           "aboutYou":{
             "aboutYouTitle":"Sobre você",
-            "inputName":"Name",
+            "first_name" :"Primeiro Nome",
+            "last_name" :"Último Nome",
             "inputEmail":{
               "errorInvalidEmail":"Insira um email valido",
               "emailIs":"E-mail é",
@@ -299,7 +300,8 @@
           "addMorePhotos":"Add more photos of you",
           "aboutYou":{
             "aboutYouTitle":"About You",
-            "inputName":"Name",
+            "first_name" :"First Name",
+            "last_name" :"Last Name",
             "inputEmail":{
               "errorInvalidEmail":"Please enter a valid email adress",
               "emailIs":"E-mail is",

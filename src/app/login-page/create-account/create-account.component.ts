@@ -91,22 +91,26 @@ export class CreateAccountComponent implements OnInit {
         password:  this.registerForm.value.password,
         birthdate: this.registerForm.value.birthdate
       }
+
       this.registerUser(userDataTyped);
     }
   }
   registerUser(userDataTyped) {
-    this.registerService.post(this.registerUserDefaultService.returnRegisterUser(userDataTyped)).toPromise().then(res => {
-      if(res.status) {
-        this.userfactory.userSessionFirst(this.user);
-        this.redirectCreateContinueService.createAccountContinueRedirect( this.registerForm.invalid);
-        this.loginUser();
-      }else if (res.status == false){
-        this.emailUsed = true;
-        setTimeout(() => {
-          this.emailUsed = false;
-        }, 3000);
-      }
-    })
+    this.userfactory.userSessionFirst(userDataTyped);
+    this.redirectCreateContinueService.createAccountContinueRedirect(this.registerForm.invalid);
+
+    // this.registerService.post(this.registerUserDefaultService.returnRegisterUser(userDataTyped)).toPromise().then(res => {
+    //   if(res.status) {
+    //     this.userfactory.userSessionFirst(userDataTyped);
+    //     this.redirectCreateContinueService.createAccountContinueRedirect( this.registerForm.invalid);
+    //     this.loginUser();
+    //   }else if (res.status == false){
+    //     this.emailUsed = true;
+    //     setTimeout(() => {
+    //       this.emailUsed = false;
+    //     }, 3000);
+    //   }
+    // })
   }
   loginUser() {
     let userLogin = {
@@ -115,7 +119,7 @@ export class CreateAccountComponent implements OnInit {
     }
     this.loginService.post(userLogin).toPromise().then(res=>{
       if(res.status) {
-        this.redirectLogged.loggedRedirect(res, '/edit-profile')
+        this.redirectLogged.loggedRedirect(res, '/create-account-continue')
       }
     })
   }

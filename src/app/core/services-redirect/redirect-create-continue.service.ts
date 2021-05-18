@@ -10,7 +10,7 @@ export class RedirectCreateContinueService {
   createAccountContinueRedirect(formInvalid): void {
     if (!formInvalid) {
       this.formAuthenticated = true;
-      this.router.navigate(['/edit-profile']);
+      this.router.navigate(['/create-account-continue']);
     }else {
       this.formAuthenticated = false;
     }

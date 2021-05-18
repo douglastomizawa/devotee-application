@@ -10,18 +10,28 @@ import { TranslateService } from './../../../shared/translate.service';
 })
 export class WhoAreYouComponent implements OnInit {
 
-  constructor(private translatePage: TranslateService, private user: UserFactory, private router: Router) { }
+  constructor(
+    private translatePage: TranslateService,
+    private user: UserFactory,
+    private router: Router) { }
   text;
   click(valor: string): void{
     if (valor === 'devotee') {
+      this.incrementDataUser(valor);
       this.router.navigate(['/devotee-person']);
     }else {
+      this.incrementDataUser(valor);
       this.router.navigate(['/especial-person']);
     }
-    console.log(valor);
+    console.log(this.user.newUser);
+  }
+  incrementDataUser(value: string) {
+    let dataUser = this.user.newUser;
+    dataUser['user_type'] = value;
+    this.user.userSessionFirst(dataUser);
   }
   ngOnInit(): void {
-
+    console.log(this.user.newUser)
     this.translatePage.veriyLanguage();
     this.text = this.translatePage.textTranslate;
   }

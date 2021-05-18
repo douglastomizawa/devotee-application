@@ -1,7 +1,7 @@
 
-import { UserDevotee } from './../../../../core/model/user-devotee.model';
+import { UserDevotee } from '../../../core/model/user-devotee.model';
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from './../../../../shared/translate.service';
+import { TranslateService } from '../../../shared/translate.service';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import {ErrorStateMatcher, ThemePalette} from '@angular/material/core';
 import {Observable} from 'rxjs';
@@ -16,10 +16,10 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 }
 @Component({
   selector: 'app-iam-devotee',
-  templateUrl: './iam-devotee.component.html',
-  styleUrls: ['./iam-devotee.component.scss']
+  templateUrl: './change-iam-devotee.component.html',
+  styleUrls: ['./change-iam-devotee.component.scss']
 })
-export class IamDevoteeComponent implements OnInit {
+export class ChangeIamDevoteeComponent implements OnInit {
   text;
   urlProfile;
   urlMore1;
@@ -47,10 +47,10 @@ export class IamDevoteeComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
   ngOnInit(): void {
-    this.translatePage.veriyLanguage();
-    this.text = this.translatePage.textTranslate;
-    this.createForm();
-    this.getValuePopulateCreateAccount();
+    // this.translatePage.veriyLanguage();
+    // this.text = this.translatePage.textTranslate;
+    // this.createForm();
+    // this.getValuePopulateCreateAccount();
   }
   onSubmit(){
 
@@ -63,8 +63,7 @@ export class IamDevoteeComponent implements OnInit {
   }
   getValuePopulateCreateAccount(): void{
     /* tslint:disable:no-string-literal */
-    this.userDevotee['first_name'] =  this.user.newUser['first_name'];
-    this.userDevotee['last_name'] =  this.user.newUser['last_name'];
+    this.userDevotee['name'] =  this.user.newUser['name'];
     this.userDevotee['email'] =  this.user.newUser['email'];
   }
   private _filterMedicines(value: string, optionsArray: string): string[] {

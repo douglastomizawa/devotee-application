@@ -74,11 +74,11 @@
           <div class="infos-person display-grid-data-person">
             <mat-form-field class="input-name">
               <mat-label>{{ text.iamEspecialAndDevotee.aboutYou.first_name }}</mat-label>
-              <input matInput formControlName="first_name" autocomplete="off" [(ngModel)]='userEspecial.first_name'>
+              <input matInput formControlName="first_name" autocomplete="off" [value]="name" [(ngModel)]='userEspecial.first_name'>
             </mat-form-field>
             <mat-form-field class="input-name">
               <mat-label>{{ text.iamEspecialAndDevotee.aboutYou.last_name }}</mat-label>
-              <input matInput formControlName="last_name" autocomplete="off" [(ngModel)]='userEspecial.last_name'>
+              <input matInput formControlName="last_name" autocomplete="off"  [value]="name" [(ngModel)]='userEspecial.last_name'>
             </mat-form-field>
             <!-- <mat-form-field class="input-name">
               <mat-label>{{ text.iamEspecialAndDevotee.aboutYou.inputName }}</mat-label>

@@ -3,7 +3,8 @@ export class UserEspecial {
   othersImg1: string;
   othersImg2: string;
   othersImg3: string;
-  name: string;
+  first_name: string;
+  last_name: string;
   email: string;
   checkImpairedFertility: boolean = false;
   checkBirthDisability: boolean = false;

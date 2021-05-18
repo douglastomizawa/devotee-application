@@ -1,4 +1,5 @@
-import { PreferencesModule } from './../login-page/create-account/who-are-you/preferences/preferences.module';
+import { ChangeIamDevoteeModule } from './user-type/iam-devotee/change-iam-devotee.module';
+import { ChangeIamEspecialModule } from './user-type/iam-especial/change-iam-especial.module';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { LoggedComponent } from './logged.component';
@@ -11,6 +12,16 @@ const loggedRoutes = [{path: '', component: LoggedComponent, children: [
     path: 'preferences',
     // tslint:disable-next-line:max-line-length
     loadChildren: () => import('src/app/login-page/create-account/who-are-you/preferences/preferences.module').then(m => m.PreferencesModule)
+  },
+  {
+    path: 'change-user-especial',
+    // tslint:disable-next-line:max-line-length
+    loadChildren: () => import('src/app/logged/user-type/iam-especial/change-iam-especial.module').then(m => m.ChangeIamEspecialModule)
+  },
+  {
+    path: 'change-user-devotee',
+    // tslint:disable-next-line:max-line-length
+    loadChildren: () => import('src/app/logged/user-type/iam-devotee/change-iam-devotee.module').then(m => m.ChangeIamDevoteeModule)
   }
 ]},
 ];

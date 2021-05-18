@@ -10,7 +10,7 @@ import { CreateAccountContinueComponent } from './create-account-continue.compon
 const loginRoutes = [{
   path: '', component:  CreateAccountContinueComponent,
   children: [{
-    path: 'edit-profile',
+    path: 'create-account-continue',
     // tslint:disable-next-line:max-line-length
     loadChildren: () => import('src/app/login-page/create-account/who-are-you/who-are-you.module').then(m => m.WhoAreYouModule)
   },
