@@ -176,18 +176,22 @@
     }
     .infos-person{
       grid-template-areas:
-      "input-name input-email"
-      "input-phone input-profession"
-      "input-gender input-orientation"
-      "was-born  was-born"
+      "input-first-name input-last-name"
+      "input-email input-phone"
+      "input-profession input-gender"
+      "input-orientation was-born"
+
       "input-text-area input-text-area"
       ;
     }
     .how-I-was-born{
       grid-area: was-born;
     }
-    .input-name{
-      grid-area: input-name;
+    .input-first-name{
+      grid-area: input-first-name;
+    }
+    .input-last-name{
+      grid-area: input-last-name;
     }
     .input-email{
       grid-area: input-email;

@@ -72,11 +72,11 @@
         </mat-card-title>
 
           <div class="infos-person display-grid-data-person">
-            <mat-form-field class="input-name">
+            <mat-form-field class="input-first-name">
               <mat-label>{{ text.iamEspecialAndDevotee.aboutYou.first_name }}</mat-label>
               <input matInput formControlName="first_name" autocomplete="off" [(ngModel)]='userEspecial.first_name'>
             </mat-form-field>
-            <mat-form-field class="input-name">
+            <mat-form-field class="input-last-name">
               <mat-label>{{ text.iamEspecialAndDevotee.aboutYou.last_name }}</mat-label>
               <input matInput formControlName="last_name" autocomplete="off" [(ngModel)]='userEspecial.last_name'>
             </mat-form-field>
@@ -190,7 +190,7 @@
                 id="about-you" name="about-you" value="{{aboutYou.value}}" style="display: none;" >
             </mat-form-field>
           </div>
-          <div class="details-person ">
+          <div class="details-person " *ngIf="userIsEspecialType">
 
 
             <mat-card-title>
@@ -200,7 +200,7 @@
 
 
               <mat-form-field >
-                <mat-select (focus)="filterOption('selectCids')"  [(ngModel)]='userEspecial.cid' formControlName="cids" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputSelectCID}}" [multiple]="true">
+                <mat-select (focus)="filterOption('selectCids')"  [(ngModel)]='userEspecial.cid' formControlName="cid" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputSelectCID}}" [multiple]="true">
                   <mat-select-search formControlName="selectCids" ></mat-select-search>
                   <mat-option *ngFor="let selectCids of filteredCids" [value]="selectCids">
                     {{selectCids}}
@@ -222,7 +222,7 @@
 
 
               <mat-form-field >
-                <mat-select (focus)="filterOption('selectHosptals')" formControlName="hosptals" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputHosptals}}" [multiple]="true"  [(ngModel)]='userEspecial.hospitals'>
+                <mat-select (focus)="filterOption('selectHosptals')" formControlName="hospitals" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputHosptals}}" [multiple]="true"  [(ngModel)]='userEspecial.hospitals'>
                   <mat-select-search formControlName="selectHosptals" ></mat-select-search>
                   <mat-option *ngFor="let selectHosptals of filteredHosptals" [value]="selectHosptals">
                     {{selectHosptals}}
@@ -233,7 +233,7 @@
 
 
               <mat-form-field id="medicinesSelect" >
-                <mat-select  (focus)="filterOption('selectMedicines')"  formControlName="medicines" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputMedicines}}" [multiple]="true"  [(ngModel)]='userEspecial.medicines'>
+                <mat-select  (focus)="filterOption('selectMedicines')"  formControlName="medication_types" placeholder="{{ text.iamEspecialAndDevotee.aboutYourDisability.inputMedicines}}" [multiple]="true"  [(ngModel)]='userEspecial.medicines'>
                   <mat-select-search id="mat-select-true" formControlName="selectMedicines" ></mat-select-search>
                   <mat-option  *ngFor="let selectMedicines of filteredMedicine | async"  [value]="selectMedicines">
                     {{selectMedicines.value}}
@@ -243,10 +243,10 @@
           </div>
 
             <div class="container-checks display-grid-data-person">
-              <mat-slide-toggle  formControlName="checkBirthDeficiency" [color]="color" [(ngModel)]='userEspecial.checkBirthDisability'> {{ text.iamEspecialAndDevotee.aboutYouChecks.checkBirthDisability}} </mat-slide-toggle>
-              <mat-slide-toggle  formControlName="checkHaveTIIC" [color]="color" [(ngModel)]='userEspecial.checkHaveTIIc'> {{ text.iamEspecialAndDevotee.aboutYouChecks.checkHaveTIIC}} </mat-slide-toggle>
-              <mat-slide-toggle  formControlName="checkImpairedFertility" [color]="color" [(ngModel)]='userEspecial.checkImpairedFertility'> {{ text.iamEspecialAndDevotee.aboutYouChecks.checkImpairedFertility}} </mat-slide-toggle>
-              <mat-slide-toggle  formControlName="checkOvercomingExample" [color]="color" [(ngModel)]='userEspecial.checkOvercomingExample'> {{ text.iamEspecialAndDevotee.aboutYouChecks.checkOvercomingExample}} </mat-slide-toggle>
+              <mat-slide-toggle  formControlName="born_with_disability" [color]="color" [(ngModel)]='userEspecial.checkBirthDisability'> {{ text.iamEspecialAndDevotee.aboutYouChecks.checkBirthDisability}} </mat-slide-toggle>
+              <mat-slide-toggle  formControlName="tiic" [color]="color" [(ngModel)]='userEspecial.checkHaveTIIc'> {{ text.iamEspecialAndDevotee.aboutYouChecks.checkHaveTIIC}} </mat-slide-toggle>
+              <mat-slide-toggle  formControlName="fertile" [color]="color" [(ngModel)]='userEspecial.checkImpairedFertility'> {{ text.iamEspecialAndDevotee.aboutYouChecks.checkImpairedFertility}} </mat-slide-toggle>
+              <mat-slide-toggle  formControlName="prejudice" [color]="color" [(ngModel)]='userEspecial.checkOvercomingExample'> {{ text.iamEspecialAndDevotee.aboutYouChecks.checkOvercomingExample}} </mat-slide-toggle>
             </div>
           </div>
 

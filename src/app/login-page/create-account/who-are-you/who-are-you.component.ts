@@ -18,10 +18,10 @@ export class WhoAreYouComponent implements OnInit {
   click(valor: string): void{
     if (valor === 'devotee') {
       this.incrementDataUser(valor);
-      this.router.navigate(['/devotee-person']);
+      this.router.navigate(['/register']);
     }else {
       this.incrementDataUser(valor);
-      this.router.navigate(['/especial-person']);
+      this.router.navigate(['/register']);
     }
     console.log(this.user.newUser);
   }

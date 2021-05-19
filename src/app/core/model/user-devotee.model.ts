@@ -12,4 +12,11 @@ export class UserDevotee {
   genre: string;
   orientation: string;
   aboutYou: string = '';
+  checkImpairedFertility: boolean = false;
+  checkBirthDisability: boolean = false;
+  checkHaveTIIc: boolean = false;
+  checkOvercomingExample: boolean = false;
+  surgeries: string[];
+  hospitals: string[];
+  medicines: string[];
 }

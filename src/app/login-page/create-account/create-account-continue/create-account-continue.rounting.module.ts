@@ -20,7 +20,7 @@ const loginRoutes = [{
     loadChildren: () => import('src/app/login-page/create-account/who-are-you/iam-devotee/iam-devotee.module').then(m => m.IamDevoteeModule)
   },
   {
-    path: 'especial-person',
+    path: 'register',
     // tslint:disable-next-line:max-line-length
     loadChildren: () => import('src/app/login-page/create-account/who-are-you/iam-especial/iam-especial.module').then(m => m.IamEspecialModule)
   },

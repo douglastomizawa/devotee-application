@@ -1,3 +1,5 @@
+import { RegisterUserDefaultService } from './../../../../core/services/register-user-default/register-user-default.service';
+import { RegisterService } from './../../../../core/services/register.service';
 import { UserEspecial } from './../../../../core/model/user-especial.model';
 import { GetValuesApisPtUsService } from './../../../../core/services/get-values-apis-pt-us.service';
 import { InjectSelectAndFilterService } from './../../../../core/services/inject-select-and-filter.service';
@@ -32,6 +34,8 @@ export class IamEspecialComponent implements OnInit {
   language: string;
   dataUser: FormGroup;
   phone;
+  userIsEspecialType: boolean;
+  emailUsed: boolean = false;
   userEspecial: UserEspecial = new UserEspecial();
   orientation: string[] = ['Hetero', 'Homo', 'Muitos outros'];
   filteredOptions: Observable<string[]>;
@@ -46,10 +50,16 @@ export class IamEspecialComponent implements OnInit {
     private user: UserFactory,
     private injectSelect: InjectSelectAndFilterService,
     private getValueApis: GetValuesApisPtUsService,
-    ) { }
+    private registerService: RegisterService,
+    private registerUserDefaultService: RegisterUserDefaultService
+    ) {
+
+      this.user.newUser['user_type'] === 'devotee' ? this.userIsEspecialType = false : this.userIsEspecialType = true;
+    }
   matcher = new MyErrorStateMatcher();
 
   ngOnInit(): void {
+
     this.translatePage.veriyLanguage();
     this.text = this.translatePage.textTranslate;
     this.language = this.translatePage.dataFormatation;
@@ -58,6 +68,7 @@ export class IamEspecialComponent implements OnInit {
     this.injectSelect.getAllAPIToSelectDiv();
     this.filterValueToPushInArrayToOptions();
   }
+
   setOptionValues(): void {
     this.filteredMedicine = this.injectSelect.filteredMedicines;
     this.filteredSurgeries= this.injectSelect.filteredSurgeries;
@@ -120,8 +131,24 @@ export class IamEspecialComponent implements OnInit {
   );
   }
   nextPage(): void{
+    this.user.newUser
+    this.dataUser.value
+    let userRegisterData = Object.assign(this.user.newUser, this.dataUser.value)
+    this.registerService.post(this.registerUserDefaultService.returnRegisterUser(userRegisterData)).toPromise().then(res => {
+      console.log(res)
+      if(res.status) {
+        this.user.userSessionFirst(userRegisterData);
 
-    console.log(this.dataUser.controls, this.userEspecial);
+        // this.redirectCreateContinueService.createAccountContinueRedirect( this.registerForm.invalid);
+        // this.loginUser();
+      }else if (res.status == false){
+        this.emailUsed = true;
+        setTimeout(() => {
+          this.emailUsed = false;
+        }, 3000);
+      }
+    })
+    console.log(userRegisterData);
   }
   getValuePopulateCreateAccount(): void{
     this.userEspecial['first_name'] =  this.user.newUser['first_name'];
@@ -156,7 +183,8 @@ export class IamEspecialComponent implements OnInit {
   }
   createForm( ): void {
     this.dataUser = this.formBuilder.group({
-          name: ['', [Validators.required]],
+          first_name: ['', [Validators.required]],
+          last_name: ['', [Validators.required]],
           email: ['', [Validators.required, Validators.email]],
           phoneGroup: this.formBuilder.group({
             phones: ['', [Validators.required]],
@@ -166,14 +194,14 @@ export class IamEspecialComponent implements OnInit {
           gender: ['', [Validators.required]],
           orientation: ['', [Validators.required]],
           aboutYou: [''],
-          cids: [''],
+          cid: [''],
           surgeries: [''],
-          hosptals: [''],
-          medicines: [''],
-          checkBirthDeficiency: [''],
-          checkHaveTIIC: [''],
-          checkImpairedFertility: [''],
-          checkOvercomingExample: [''],
+          hospitals: [''],
+          medication_types: [''],
+          born_with_disability: [''],
+          tiic: [''],
+          fertile: [''],
+          prejudice: [''],
           selectCids: [''],
           selectSurgeries: [''],
           selectHosptals: [''],
