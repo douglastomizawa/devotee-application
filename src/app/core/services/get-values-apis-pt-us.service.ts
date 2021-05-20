@@ -30,8 +30,8 @@ export class GetValuesApisPtUsService {
     });
     this.injectSelect.filteredHosptals.subscribe(data => {
       for (const i of data) {
-        if (this.filteredHosptals.indexOf(i.value) === -1){
-          this.filteredHosptals.push(i.value);
+        if (this.filteredHosptals.indexOf(i.name) === -1){
+          this.filteredHosptals.push(i.name);
         }
       }
     });
@@ -60,8 +60,8 @@ export class GetValuesApisPtUsService {
     });
     this.injectSelect.filteredHosptals.subscribe(data => {
       for (const i of data) {
-        if (this.filteredHosptals.indexOf(i.value) === -1){
-          this.filteredHosptals.push(i.value);
+        if (this.filteredHosptals.indexOf(i.name) === -1){
+          this.filteredHosptals.push(i.name);
         }
       }
     });

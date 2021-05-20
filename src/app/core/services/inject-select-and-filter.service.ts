@@ -1,3 +1,5 @@
+import { Hospitals } from './../interfaces/profile.interface';
+import { ResponseHospitalsInterface, HospitalsInterface  } from './../interfaces/hospitals';
 import { SurgeriesService } from './surgeries.service';
 import { ResponseSurgeriesInterface } from './../interfaces/surgeries.interface';
 import { ResponseMedicinesInterface } from './../interfaces/medicines.interface';
@@ -30,10 +32,18 @@ export class InjectSelectAndFilterService {
     {value: 'Cid-One'},
     {value: 'Cid-Two'},
     {value: 'Cid-Three'}];
-  private hosptals: Hosp[] = [
-    {value: 'hosp-One'},
-    {value: 'hosp-Two'},
-    {value: 'hosp-Three'}];
+  private hosptals: HospitalsInterface[] = [
+    { country : 'hosp-one',
+      latitude: 15,
+      longitude: 20},
+      { country : 'hosp-2',
+      latitude: 15,
+      longitude: 20},
+      {
+      country : 'hosp-3',
+      latitude: 15,
+      longitude: 20
+    },];
   private preferenceUserType: UserType[] = [
     {value: 'hosp-One'},
     {value: 'hosp-Two'},
@@ -44,13 +54,14 @@ export class InjectSelectAndFilterService {
   //   {value: 'Remedio-Three', id: 'C', value_en: 's', country: 'br', codeiso2: 'sd', codeiso3: 'ds'}];
   private medicines: ResponseMedicinesInterface[];
   private surgeries: ResponseSurgeriesInterface[];
+  private Hospitals: ResponseHospitalsInterface[]
   private medicinesPT: ResponseMedicinesInterface[];
   private medicinesUS: ResponseMedicinesInterface[];
   private allMedicines: ResponseMedicinesInterface[];
   private allSurgeries: ResponseSurgeriesInterface[];
   public filteredSurgeries: ReplaySubject<ResponseSurgeriesInterface[]> = new ReplaySubject<ResponseSurgeriesInterface[]>(1);
   public filteredMedicines: ReplaySubject<ResponseMedicinesInterface[]> = new ReplaySubject<ResponseMedicinesInterface[]>(1);
-  public filteredHosptals: ReplaySubject<Hosp[]> = new ReplaySubject<Hosp[]>(1);
+  public filteredHosptals: ReplaySubject<ResponseHospitalsInterface[]> = new ReplaySubject<ResponseHospitalsInterface[]>(1);
   public filteredCids: ReplaySubject<Cids[]> = new ReplaySubject<Cids[]>(1);
   public filteredUserType: ReplaySubject<UserType[]> = new ReplaySubject<UserType[]>(1);
 
@@ -62,7 +73,9 @@ export class InjectSelectAndFilterService {
     private translatePage: TranslateService,
     private surgeriesApi: SurgeriesService,
   ) {}
+  private getHospitalsApit():void {
 
+  }
   private getMedicinesApi(): void {
     console.log(this.filteredMedicines)
     this.medicineAPI.get().toPromise().then(res => {
@@ -113,7 +126,7 @@ export class InjectSelectAndFilterService {
         this.filteredMedicines.next(this.medicines);
         break;
       case 'selectHosptals':
-        this.filteredHosptals.next(this.hosptals);
+        this.filteredHosptals.next(this.Hospitals);
         break;
       case 'selectCids':
         this.filteredCids.next(this.cids);
@@ -219,7 +232,7 @@ export class InjectSelectAndFilterService {
         break;
       case 'selectHosptals':
         this.filteredHosptals.next(
-          this.hosptals.filter(hosptals => hosptals.value.toLowerCase().indexOf(control.value.toLowerCase()) > -1)
+          this.Hospitals.filter(hosptals => hosptals.name.toLowerCase().indexOf(control.value.toLowerCase()) > -1)
         );
         break;
       case 'cids':
