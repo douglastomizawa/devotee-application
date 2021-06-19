@@ -1,3 +1,4 @@
+import { HospitalsService } from './hospitals/hospitals.service';
 import { Hospitals } from './../interfaces/profile.interface';
 import { ResponseHospitalsInterface, HospitalsInterface  } from './../interfaces/hospitals';
 import { SurgeriesService } from './surgeries.service';
@@ -48,6 +49,7 @@ export class InjectSelectAndFilterService {
     {value: 'hosp-One'},
     {value: 'hosp-Two'},
     {value: 'hosp-Three'}];
+  private localeUser : any;
   // private cids: Cids[] = [
   //   {value: 'Remedio-One', id: 'A', value_en: 's', country: 'br', codeiso2: 'sd', codeiso3: 'ds'},
   //   {value: 'Remedio-Two', id: 'B', value_en: 's', country: 'br', codeiso2: 'sd', codeiso3: 'ds'},
@@ -72,9 +74,15 @@ export class InjectSelectAndFilterService {
     private medicineAPI: MedicinesService,
     private translatePage: TranslateService,
     private surgeriesApi: SurgeriesService,
+    private hospitalsServices: HospitalsService,
   ) {}
-  private getHospitalsApit():void {
 
+  public getHospitalsApi(locale):void {
+    this.localeUser = locale
+    this.hospitalsServices.post(locale).toPromise().then(res => {
+      const hospitals: any[] = res;
+      this.Hospitals = hospitals.slice(0, 50);
+    })
   }
   private getMedicinesApi(): void {
     console.log(this.filteredMedicines)
@@ -161,10 +169,10 @@ export class InjectSelectAndFilterService {
         });
         break;
       case 'selectHosptals':
-        // this.filteredHosptals.next(
-        //   this.hosptals.filter(hosptals => hosptals.value.toLowerCase().indexOf(control.value.toLowerCase()) > -1)
-        // );
-        break;
+        this.hospitalsServices.post(this.localeUser).toPromise().then(res => {
+          this.Hospitals = res.slice(0, this.medicines.length + 50);
+          this.emitLoadMoreOptions.emit(this.Hospitals);
+        })
       case 'selectSurgeries':
         this.surgeriesApi.get().toPromise().then(res => {
           const surgeriesMore: any[] = [];

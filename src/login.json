@@ -50,7 +50,7 @@
           "errorEmailAndPassword":"E-mail ou senha incorretos",
           "msgErrorEmailInvalid":"Por favor insira um endereço de e-mail válido",
           "emailIs":"E-mail é ",
-          "required":"obritório",
+          "required":"obrigatório",
           "btnRollback":"Voltar",
           "btnRemember":"Esqueceu a senha?",
           "checkTermuse":"Concordo com os",
@@ -176,6 +176,14 @@
           "changePassword":"Alterar senha",
           "deleteProfile":"Deletar perfil",
           "logout":"Sair"
+        },
+        "deleteAccount" : {
+          "menssageTitle" : "Apagar sua conta irá",
+          "bullet1" : "Excluir definitivamente sua conta do Devotee.",
+          "bullet2": "Apagar todo seu histórico de interações e conversas",
+          "menssgeConfirm": "Deseja apagar sua conta?",
+          "btnConfirm": "Deletar",
+          "btnCancel": "Cancelar"
         },
         "entryPassword":"Entre com sua senha",
         "btnRegister":"Criar conta",
@@ -377,6 +385,14 @@
           "changePassword":"Change password",
           "deleteProfile":"Delete profile",
           "logout":"Sair"
+        },
+        "deleteAccount" : {
+          "menssageTitle" : "delete your account will",
+          "bullet1" : "Permanently delete your account from Devotee.",
+          "bullet2": "Erase all your interactions and conversations history",
+          "menssgeConfirm": "Do you want to delete your account?",
+          "btnConfirm": "Delete",
+          "btnCancel": "Cancel"
         },
         "entryPassword":"Enter your password",
         "btnRegister":"Register",

@@ -156,4 +156,27 @@ mat-icon{
 
 
 }
-
+.display-flex {
+  display: flex;
+}
+.space-betweenn {
+  justify-content: space-between;
+}
+.btn-primary {
+  background-color: $blue-2E2;
+  color: $white;
+  border-radius: 5px;
+  border: 0;
+  width: 100%;
+  margin: 0 10px;
+  padding: 10px;
+}
+.btn-secondary {
+  background-color: $grey-C4C;
+  color:$black;
+  border-radius: 5px;
+  width: 100%;
+  border: 0;
+  margin: 0 10px;
+  padding: 10px;
+}

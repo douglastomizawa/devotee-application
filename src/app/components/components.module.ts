@@ -9,11 +9,12 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { SugestionMatchesRountingModule } from '../logged/sugestion-matches/sugestion-matches.rounting.module';
 import { ProfileComponent } from './profile/profile.component';
+import { DeleteAccountComponent } from './dialogs/delete-account/delete-account.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, TitleAndSubComponent, LoadingSpinnerComponent, ProfileComponent],
+  declarations: [HeaderComponent, TitleAndSubComponent, LoadingSpinnerComponent, ProfileComponent, DeleteAccountComponent],
   imports: [
     CommonModule,
     MatProgressSpinnerModule,

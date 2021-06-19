@@ -82,6 +82,62 @@ export class SizeModalService {
     this.nameWidth = nameWidth1;
     console.log(this.nameWidth);
   }
-  // unsubscribeModalSize(modalOpen){
-  // }
+  setSizeModalDeleteAccount(modalOpen): any {
+    let nameWidth1: string;
+    const smallDialogSubscription = this.isExtraSmall.subscribe(size => {
+      if (size.matches) {
+        nameWidth1 = 'extraSmall';
+      }
+    });
+    const tabletDialogSubscription = this.isSmall.subscribe(size => {
+      if (size.matches) {
+        nameWidth1 = 'small';
+      }
+    });
+    const tabletPlustDialogSubscription = this.isMedium.subscribe(size => {
+      if (size.matches) {
+        nameWidth1 = 'medium';
+      }
+    });
+    const desktopDialogSubscription = this.isLarge.subscribe(size => {
+      if (size.matches) {
+        nameWidth1 = 'large';
+      }
+    });
+    const desktopLargeDialogSubscription = this.isXLarge.subscribe(size => {
+      if (size.matches) {
+        nameWidth1 = 'extraLarge';
+      }
+    });
+    switch (nameWidth1) {
+        case 'extraSmall':
+          modalOpen.updateSize('100vw', '100vh');
+          break;
+        case 'small':
+          modalOpen.updateSize('40%', '25%');
+          break;
+        case 'medium':
+          modalOpen.updateSize('40%', '25%');
+          break;
+        case 'large':
+          modalOpen.updateSize('30%', '25%');
+          break;
+        case 'extraLarge':
+          modalOpen.updateSize('30%', '25%');
+          break;
+        default:
+          break;
+      }
+    modalOpen
+    .afterClosed()
+    .subscribe(() => {
+      smallDialogSubscription.unsubscribe();
+      tabletDialogSubscription.unsubscribe();
+      tabletPlustDialogSubscription.unsubscribe();
+      desktopDialogSubscription.unsubscribe();
+      desktopLargeDialogSubscription.unsubscribe();
+    });
+    this.nameWidth = nameWidth1;
+    console.log(this.nameWidth);
+  }
 }

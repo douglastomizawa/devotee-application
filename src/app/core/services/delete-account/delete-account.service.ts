@@ -1,27 +1,27 @@
 import { tap } from 'rxjs/operators';
-import { ResponseHospitalsInterface, HospitalsInterface} from './../../interfaces/hospitals';
+import { DeleteAccountInterface } from './../../interfaces/delete-account';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class HospitalsService {
-  private readonly hosptalsURL = 'http://34.223.220.245/api/V1/listHospitalsCountry';
+export class DeleteAccountService {
+  private readonly deleteURL = '/devoteeURL/extension-deleteuser.php';
 
   constructor(
     private http: HttpClient,
   ) { }
-
-  post(payload: HospitalsInterface) {
-    return this.http.post<ResponseHospitalsInterface>(this.hosptalsURL, payload,
+  post(payload: DeleteAccountInterface): any {
+    return this.http.post<any>(this.deleteURL, payload,
       {
         headers: new HttpHeaders()
           .set('Content-Type', 'application/json')
           .set('X-API-KEY', 'guEFSkAEITO4ZmFxIN76WmdpOqcnG35BgKRgkvO5')
       })
       .pipe(
-        tap(console.log)
-      );
+        tap(console.log)).subscribe(res => {
+         console.log(res)
+        });
   }
 }

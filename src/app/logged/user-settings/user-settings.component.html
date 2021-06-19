@@ -10,7 +10,7 @@
         <mat-icon>person</mat-icon>
         <mat-card-title>{{text.userSettings.myProfile}}</mat-card-title>
       </mat-card>
-      <mat-card class="card-settings">
+      <mat-card class="card-settings" [routerLink]="['/edit']">
         <mat-icon>edit</mat-icon>
         <mat-card-title>{{text.userSettings.editProfile}}</mat-card-title>
       </mat-card>
@@ -22,7 +22,7 @@
         <mat-icon>security</mat-icon>
         <mat-card-title>{{text.userSettings.changePassword}}</mat-card-title>
       </mat-card>
-      <mat-card class="card-settings">
+      <mat-card class="card-settings" (click)="confirmDeleteAccount()">
         <mat-icon>delete</mat-icon>
         <mat-card-title>{{text.userSettings.deleteProfile}}</mat-card-title>
       </mat-card>

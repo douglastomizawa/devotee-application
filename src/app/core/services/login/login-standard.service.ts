@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 export class LoginStandardService {
 
   private readonly loginURL = 'http://34.223.220.245/api/V1/login';
-
+  public userData: ResponseLoginInterface;
   constructor(
     private http: HttpClient,
   ) { }
@@ -23,5 +23,8 @@ export class LoginStandardService {
       })
       .pipe(
         tap(console.log));
+  }
+  public setDataUserLogged(data: ResponseLoginInterface) {
+    this.userData = data;
   }
 }

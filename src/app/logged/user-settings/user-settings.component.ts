@@ -11,6 +11,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { TranslateService } from 'src/app/shared/translate.service';
 import { Observable } from 'rxjs';
 import { ProfileComponent } from './../../components/profile/profile.component';
+import { DeleteAccountComponent } from 'src/app/components/dialogs/delete-account/delete-account.component';
 
 @Component({
   selector: 'app-user-settings',
@@ -65,5 +66,20 @@ export class UserSettingsComponent implements OnInit {
         }));
       }
     });
+  }
+
+  public confirmDeleteAccount() {
+    const dialogRef = this.dialog.open(DeleteAccountComponent, {
+      width: 'calc(100% - 50px)',
+      maxWidth: '100vw',
+      panelClass: 'container-delete-account',
+    });
+    this.sizeModal.setSizeModalDeleteAccount(dialogRef);
+    dialogRef
+    .afterClosed()
+    .pipe(take(1))
+    .subscribe((result => {
+      console.log('dialog was closed')
+    }));
   }
 }

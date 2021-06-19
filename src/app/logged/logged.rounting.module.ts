@@ -14,15 +14,11 @@ const loggedRoutes = [{path: '', component: LoggedComponent, children: [
     loadChildren: () => import('src/app/login-page/create-account/who-are-you/preferences/preferences.module').then(m => m.PreferencesModule)
   },
   {
-    path: 'change-user-especial',
+    path: 'edit',
     // tslint:disable-next-line:max-line-length
     loadChildren: () => import('src/app/logged/user-type/iam-especial/change-iam-especial.module').then(m => m.ChangeIamEspecialModule)
   },
-  {
-    path: 'change-user-devotee',
-    // tslint:disable-next-line:max-line-length
-    loadChildren: () => import('src/app/logged/user-type/iam-devotee/change-iam-devotee.module').then(m => m.ChangeIamDevoteeModule)
-  }
+
 ]},
 ];
 

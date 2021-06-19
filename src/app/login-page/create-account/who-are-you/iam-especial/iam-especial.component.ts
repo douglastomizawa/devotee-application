@@ -67,6 +67,7 @@ export class IamEspecialComponent implements OnInit {
     this.getValuePopulateCreateAccount();
     this.injectSelect.getAllAPIToSelectDiv();
     this.filterValueToPushInArrayToOptions();
+    this.getGeoLocalization();
   }
 
   setOptionValues(): void {
@@ -74,6 +75,19 @@ export class IamEspecialComponent implements OnInit {
     this.filteredSurgeries= this.injectSelect.filteredSurgeries;
     this.filteredHosptals = this.getValueApis.filteredHosptals;
     this.filteredCids = this.getValueApis.filteredCids;
+  }
+  getGeoLocalization () {
+    navigator.geolocation.getCurrentPosition(position => {
+      let positionLATLONG = {
+        country: '',
+        latitude: position.coords.latitude,
+        longitude : position.coords.longitude
+      }
+      this.translatePage.dataFormatation === 'pt'? positionLATLONG.country = 'BR': positionLATLONG.country = 'US'
+      this.injectSelect.getHospitalsApi(positionLATLONG)
+    }, err => {
+    });
+
   }
   filterValueToPushInArrayToOptions(): void {
     if (this.translatePage.dataFormatation === 'pt') {
@@ -107,7 +121,9 @@ export class IamEspecialComponent implements OnInit {
       if (res['promiseResolve']){
         const selectScroll = res['elementSelect'];
         selectScroll.addEventListener('scroll', e => {
+          console.log(inputControl)
           if (Math.trunc(selectScroll.scrollTop + selectScroll.clientHeight) === selectScroll.scrollHeight) {
+            console.log(inputControl)
             this.injectSelect.loadMoreOptionSelects(inputControl);
             this.loadMore().then(( resload: any) => {
               console.log(resload)

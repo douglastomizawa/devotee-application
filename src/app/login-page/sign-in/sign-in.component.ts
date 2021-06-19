@@ -1,3 +1,5 @@
+import { UserDataService } from './../../core/services/profile-infos/user-data.service';
+import { LoginStandardService } from './../../core/services/login/login-standard.service';
 import { UserEmailService } from './../../core/services/profile-infos/user-email.service';
 import { LoggedInUserIdService } from './../../core/services/logged-in-user-id.service';
 import { RedirectLoggedService } from './../../core/services-redirect/redirect-logged.service';
@@ -33,12 +35,14 @@ export class SignInComponent implements OnInit {
   resError = false;
   constructor(
     private translatePage: TranslateService,
-    private login: LoginService,
+    private login: LoginStandardService,
     private formBuilder: FormBuilder,
     private loadingSpinnerC: LoadingSpinnerService,
     private userId: LoggedInUserIdService,
     private redirectLogged: RedirectLoggedService,
     private userEmail: UserEmailService,
+    private userData: UserDataService,
+
 
     ) {}
   matcher = new MyErrorStateMatcher();
@@ -65,8 +69,10 @@ export class SignInComponent implements OnInit {
       if (!res['status']) {
         this.resError = true;
       }else{
+        this.login.setDataUserLogged(res);
         this.userId.returnIdUser(res['id']);
         this.userEmail.returnUserEmail(res['email']);
+        this.userData.returnUserData(res);
         this.loginLoad();
       }
     })

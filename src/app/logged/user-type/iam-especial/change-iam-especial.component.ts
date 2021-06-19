@@ -1,3 +1,4 @@
+import { LoginStandardService } from './../../../core/services/login/login-standard.service';
 import { UserEspecial } from '../../../core/model/user-especial.model';
 import { GetValuesApisPtUsService } from '../../../core/services/get-values-apis-pt-us.service';
 import { InjectSelectAndFilterService } from '../../../core/services/inject-select-and-filter.service';
@@ -32,6 +33,8 @@ export class ChangeIamEspecialComponent implements OnInit {
   language: string;
   dataUser: FormGroup;
   phone;
+  userIsEspecialType: boolean;
+  emailUsed: boolean = false;
   userEspecial: UserEspecial = new UserEspecial();
   orientation: string[] = ['Hetero', 'Homo', 'Muitos outros'];
   filteredOptions: Observable<string[]>;
@@ -46,23 +49,45 @@ export class ChangeIamEspecialComponent implements OnInit {
     private user: UserFactory,
     private injectSelect: InjectSelectAndFilterService,
     private getValueApis: GetValuesApisPtUsService,
-    ) { }
+    private login: LoginStandardService,
+    ) {
+
+      this.user.newUser['user_type'] === 'devotee' ? this.userIsEspecialType = false : this.userIsEspecialType = true;
+    }
   matcher = new MyErrorStateMatcher();
 
   ngOnInit(): void {
-    // this.translatePage.veriyLanguage();
-    // this.text = this.translatePage.textTranslate;
-    // this.language = this.translatePage.dataFormatation;
-    // this.createForm();
-    // this.getValuePopulateCreateAccount();
-    // this.injectSelect.getAllAPIToSelectDiv();
-    // this.filterValueToPushInArrayToOptions();
+    this.translatePage.veriyLanguage();
+    this.text = this.translatePage.textTranslate;
+    this.language = this.translatePage.dataFormatation;
+
+    this.createForm();
+    //setValues em inputs
+
+    this.getValuePopulateCreateAccount();
+    this.injectSelect.getAllAPIToSelectDiv();
+    this.filterValueToPushInArrayToOptions();
+    this.getGeoLocalization();
   }
+
   setOptionValues(): void {
     this.filteredMedicine = this.injectSelect.filteredMedicines;
     this.filteredSurgeries= this.injectSelect.filteredSurgeries;
     this.filteredHosptals = this.getValueApis.filteredHosptals;
     this.filteredCids = this.getValueApis.filteredCids;
+  }
+  getGeoLocalization () {
+    navigator.geolocation.getCurrentPosition(position => {
+      let positionLATLONG = {
+        country: '',
+        latitude: position.coords.latitude,
+        longitude : position.coords.longitude
+      }
+      this.translatePage.dataFormatation === 'pt'? positionLATLONG.country = 'BR': positionLATLONG.country = 'US'
+      this.injectSelect.getHospitalsApi(positionLATLONG)
+    }, err => {
+    });
+
   }
   filterValueToPushInArrayToOptions(): void {
     if (this.translatePage.dataFormatation === 'pt') {
@@ -96,7 +121,9 @@ export class ChangeIamEspecialComponent implements OnInit {
       if (res['promiseResolve']){
         const selectScroll = res['elementSelect'];
         selectScroll.addEventListener('scroll', e => {
+          console.log(inputControl)
           if (Math.trunc(selectScroll.scrollTop + selectScroll.clientHeight) === selectScroll.scrollHeight) {
+            console.log(inputControl)
             this.injectSelect.loadMoreOptionSelects(inputControl);
             this.loadMore().then(( resload: any) => {
               console.log(resload)
@@ -120,8 +147,10 @@ export class ChangeIamEspecialComponent implements OnInit {
   );
   }
   nextPage(): void{
-
-    console.log(this.dataUser.controls, this.userEspecial);
+    this.user.newUser
+    this.dataUser.value
+    let userRegisterData = Object.assign(this.user.newUser, this.dataUser.value)
+    console.log(userRegisterData);
   }
   getValuePopulateCreateAccount(): void{
     this.userEspecial['first_name'] =  this.user.newUser['first_name'];
@@ -156,7 +185,8 @@ export class ChangeIamEspecialComponent implements OnInit {
   }
   createForm( ): void {
     this.dataUser = this.formBuilder.group({
-          name: ['', [Validators.required]],
+          first_name: ['', [Validators.required]],
+          last_name: ['', [Validators.required]],
           email: ['', [Validators.required, Validators.email]],
           phoneGroup: this.formBuilder.group({
             phones: ['', [Validators.required]],
@@ -166,14 +196,14 @@ export class ChangeIamEspecialComponent implements OnInit {
           gender: ['', [Validators.required]],
           orientation: ['', [Validators.required]],
           aboutYou: [''],
-          cids: [''],
+          cid: [''],
           surgeries: [''],
-          hosptals: [''],
-          medicines: [''],
-          checkBirthDeficiency: [''],
-          checkHaveTIIC: [''],
-          checkImpairedFertility: [''],
-          checkOvercomingExample: [''],
+          hospitals: [''],
+          medication_types: [''],
+          born_with_disability: [''],
+          tiic: [''],
+          fertile: [''],
+          prejudice: [''],
           selectCids: [''],
           selectSurgeries: [''],
           selectHosptals: [''],
