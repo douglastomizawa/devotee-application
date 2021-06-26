@@ -1,3 +1,5 @@
+import { ResponseCidsInterface } from './../interfaces/cids';
+import { CidsService } from './cids/cids.service';
 import { HospitalsService } from './hospitals/hospitals.service';
 import { Hospitals } from './../interfaces/profile.interface';
 import { ResponseHospitalsInterface, HospitalsInterface  } from './../interfaces/hospitals';
@@ -56,15 +58,18 @@ export class InjectSelectAndFilterService {
   //   {value: 'Remedio-Three', id: 'C', value_en: 's', country: 'br', codeiso2: 'sd', codeiso3: 'ds'}];
   private medicines: ResponseMedicinesInterface[];
   private surgeries: ResponseSurgeriesInterface[];
-  private Hospitals: ResponseHospitalsInterface[]
+  private Hospitals: ResponseHospitalsInterface[];
+  private Cids: ResponseCidsInterface[];
   private medicinesPT: ResponseMedicinesInterface[];
   private medicinesUS: ResponseMedicinesInterface[];
   private allMedicines: ResponseMedicinesInterface[];
   private allSurgeries: ResponseSurgeriesInterface[];
+  private allCids: ResponseCidsInterface[];
+
   public filteredSurgeries: ReplaySubject<ResponseSurgeriesInterface[]> = new ReplaySubject<ResponseSurgeriesInterface[]>(1);
   public filteredMedicines: ReplaySubject<ResponseMedicinesInterface[]> = new ReplaySubject<ResponseMedicinesInterface[]>(1);
   public filteredHosptals: ReplaySubject<ResponseHospitalsInterface[]> = new ReplaySubject<ResponseHospitalsInterface[]>(1);
-  public filteredCids: ReplaySubject<Cids[]> = new ReplaySubject<Cids[]>(1);
+  public filteredCids: ReplaySubject<ResponseCidsInterface[]> = new ReplaySubject<ResponseCidsInterface[]>(1);
   public filteredUserType: ReplaySubject<UserType[]> = new ReplaySubject<UserType[]>(1);
 
 
@@ -75,6 +80,7 @@ export class InjectSelectAndFilterService {
     private translatePage: TranslateService,
     private surgeriesApi: SurgeriesService,
     private hospitalsServices: HospitalsService,
+    private cidsService: CidsService,
   ) {}
 
   public getHospitalsApi(locale):void {
@@ -123,10 +129,17 @@ export class InjectSelectAndFilterService {
       this.allSurgeries = surgeries
     })
   }
+  getCidsApi() {
+    this.cidsService.get().toPromise().then(cids => {
+      this.Cids = cids.slice(0, 50);
+      this.allCids = cids;
+    })
+  }
   getAllAPIToSelectDiv(): void {
     this.translatePage.veriyLanguage();
     this.getMedicinesApi();
     this.getSurgeriesApi();
+    this.getCidsApi();
   }
   howSelectClicked(inputControl: string): void {
     switch (inputControl) {
@@ -137,7 +150,7 @@ export class InjectSelectAndFilterService {
         this.filteredHosptals.next(this.Hospitals);
         break;
       case 'selectCids':
-        this.filteredCids.next(this.cids);
+        this.filteredCids.next(this.Cids);
         break;
       case 'selectUserType':
         this.filteredUserType.next(this.preferenceUserType);
@@ -179,6 +192,16 @@ export class InjectSelectAndFilterService {
           for (let i of  res.slice(0, this.surgeries.length + 50)) {
             surgeriesMore.push(i);
             this.surgeries = surgeriesMore
+          }
+          this.emitLoadMoreOptions.emit(this.surgeries);
+        });
+        break;
+      case 'selectCids':
+        this.cidsService.get().toPromise().then(res => {
+          const cidsMore: any[] = [];
+          for (let i of  res.slice(0, this.surgeries.length + 50)) {
+            cidsMore.push(i);
+            this.surgeries = cidsMore
           }
           this.emitLoadMoreOptions.emit(this.surgeries);
         });
@@ -245,7 +268,7 @@ export class InjectSelectAndFilterService {
         break;
       case 'cids':
         this.filteredCids.next(
-          this.cids.filter(cids => cids.value.toLowerCase().indexOf(control.value.toLowerCase()) > -1)
+          this.Cids.filter(cids => cids.description.toLowerCase().indexOf(control.value.toLowerCase()) > -1)
         );
         break;
       case 'selectUserType':

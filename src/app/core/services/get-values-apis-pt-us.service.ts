@@ -37,8 +37,10 @@ export class GetValuesApisPtUsService {
     });
     this.injectSelect.filteredCids.subscribe(data => {
       for (const i of data) {
-        if (this.filteredCids.indexOf(i.value) === -1){
-          this.filteredCids.push(i.value);
+        if (this.filteredCids.indexOf(i.description) === -1){
+          this.filteredCids.push(i.description);
+
+
         }
       }
     });
@@ -67,8 +69,8 @@ export class GetValuesApisPtUsService {
     });
     this.injectSelect.filteredCids.subscribe(data => {
       for (const i of data) {
-        if (this.filteredCids.indexOf(i.value) === -1){
-          this.filteredCids.push(i.value);
+        if (this.filteredCids.indexOf(i.description_en) === -1){
+          this.filteredCids.push(i.description_en);
         }
       }
     });

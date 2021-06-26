@@ -204,6 +204,8 @@
                   <mat-select-search formControlName="selectCids" ></mat-select-search>
                   <mat-option *ngFor="let selectCids of filteredCids" [value]="selectCids">
                     {{selectCids}}
+                    <!-- <div *ngIf="language === 'pt'" >{{selectCids}}</div>
+                    <div *ngIf="language === 'us'" >{{selectCids}}</div> -->
                   </mat-option>
                 </mat-select>
               </mat-form-field>
