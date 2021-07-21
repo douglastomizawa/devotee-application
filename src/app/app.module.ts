@@ -18,6 +18,7 @@ import { RedirectLoggedService } from './core/services-redirect/redirect-logged.
 import { LoggedGuardService } from './core/guards/logged.guard.service';
 import { BlockInitialPageService } from './core/guards/block-initial-page.guard.service';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,9 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     MatIconModule,
     CommonModule,
-    QRCodeModule
+    QRCodeModule,
+    SharedModule,
+
     ],
   exports: [
     MatButtonModule,

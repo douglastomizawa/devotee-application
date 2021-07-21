@@ -5,6 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DialogData } from './../../footer/footer.component';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Observable, from } from 'rxjs';
+import { QRSignInComponent } from '../../shared/qr-sign-in/qr-sign-in.component';
 @Component({
   selector: 'app-buttons',
   templateUrl: './buttons.component.html',
@@ -27,7 +28,7 @@ export class ButtonsComponent implements OnInit {
     private readonly breakpointObserver: BreakpointObserver
     ){}
   openDialog(): void {
-    const d = this.dialog.open(QRSignInModalComponent, {
+    const d = this.dialog.open(QRSignInComponent, {
       width: 'calc(100% - 50px)',
       maxWidth: '100vw'
     });
@@ -54,22 +55,23 @@ export class ButtonsComponent implements OnInit {
   }
 
 }
-@Component({
-  selector: 'app-qr-sign-modal',
-  templateUrl: '../qr-sign-in/qr-sign-in.component.html',
-  styleUrls: ['../qr-sign-in/qr-sign-in.component.scss']
-})
-export class QRSignInModalComponent implements OnInit {
-  textQr;
-  constructor(
-    public dialogRef: MatDialogRef<QRSignInModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData, private translatePage: TranslateService) {}
-    ngOnInit(): void {
-      this.textQr = this.translatePage.textTranslate;
-    }
+// @Component({
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
+//   selector: 'app-qr-sign-modal',
+//   templateUrl: '../../shared/qr-sign-in/',
+//   styleUrls: ['../qr-sign-in/qr-sign-in.component.scss']
+// })
+// export class QRSignInModalComponent implements OnInit {
+//   textQr;
+//   constructor(
+//     public dialogRef: MatDialogRef<QRSignInModalComponent>,
+//     @Inject(MAT_DIALOG_DATA) public data: DialogData, private translatePage: TranslateService) {}
+//     ngOnInit(): void {
+//       this.textQr = this.translatePage.textTranslate;
+//     }
 
-}
+//   onNoClick(): void {
+//     this.dialogRef.close();
+//   }
+
+// }

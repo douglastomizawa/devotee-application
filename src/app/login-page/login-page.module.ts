@@ -1,5 +1,4 @@
-import { QRCodeModule } from 'angularx-qrcode';
-import { QRSignInModule } from './qr-sign-in/qr-sign-in.module';
+import { SharedModule } from './../shared/shared.module';
 import { SignInModule } from './sign-in/sign-in.module';
 import { LoginRountingModule } from './login-page.rounting.module';
 import { FooterModule } from './../footer/footer.module';
@@ -19,8 +18,7 @@ import { LoginPageComponent } from './login-page.component';
     ComponentsModule,
     FooterModule,
     LoginRountingModule,
-    QRSignInModule,
-    QRCodeModule
+    SharedModule
   ],
   exports: [
     SignInModule,

@@ -1,3 +1,4 @@
+import { SharedModule } from './../../shared/shared.module';
 import { ButtonsRountingModule } from './buttons.rounting.module';
 import { RouterModule } from '@angular/router';
 import { ButtonsComponent } from './buttons.component';
@@ -16,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule,
     // RouterModule,
     ButtonsRountingModule,
+    SharedModule,
   ],
   exports: [
     ButtonsComponent,
