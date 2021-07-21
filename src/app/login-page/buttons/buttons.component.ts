@@ -55,23 +55,3 @@ export class ButtonsComponent implements OnInit {
   }
 
 }
-// @Component({
-
-//   selector: 'app-qr-sign-modal',
-//   templateUrl: '../../shared/qr-sign-in/',
-//   styleUrls: ['../qr-sign-in/qr-sign-in.component.scss']
-// })
-// export class QRSignInModalComponent implements OnInit {
-//   textQr;
-//   constructor(
-//     public dialogRef: MatDialogRef<QRSignInModalComponent>,
-//     @Inject(MAT_DIALOG_DATA) public data: DialogData, private translatePage: TranslateService) {}
-//     ngOnInit(): void {
-//       this.textQr = this.translatePage.textTranslate;
-//     }
-
-//   onNoClick(): void {
-//     this.dialogRef.close();
-//   }
-
-// }
