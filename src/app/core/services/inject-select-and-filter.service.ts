@@ -65,6 +65,7 @@ export class InjectSelectAndFilterService {
   private allMedicines: ResponseMedicinesInterface[];
   private allSurgeries: ResponseSurgeriesInterface[];
   private allCids: ResponseCidsInterface[];
+  private allHospitals: ResponseHospitalsInterface[]
 
   public filteredSurgeries: ReplaySubject<ResponseSurgeriesInterface[]> = new ReplaySubject<ResponseSurgeriesInterface[]>(1);
   public filteredMedicines: ReplaySubject<ResponseMedicinesInterface[]> = new ReplaySubject<ResponseMedicinesInterface[]>(1);
@@ -88,10 +89,10 @@ export class InjectSelectAndFilterService {
     this.hospitalsServices.post(locale).toPromise().then(res => {
       const hospitals: any[] = res;
       this.Hospitals = hospitals.slice(0, 50);
+      this.allHospitals = hospitals;
     })
   }
   private getMedicinesApi(): void {
-    console.log(this.filteredMedicines)
     this.medicineAPI.get().toPromise().then(res => {
       const medicinePT: any[] = [];
       const medicineUS: any[] = [];
@@ -177,13 +178,21 @@ export class InjectSelectAndFilterService {
     switch (inputControl) {
       case 'selectMedicines':
         this.medicineAPI.get().toPromise().then(res => {
-          this.medicines = res.slice(0, this.medicines.length + 50);
+          const medicnesMore: any[] = [];
+          for (let i of  res.slice(0, this.medicines.length + 50)) {
+            medicnesMore.push(i);
+            this.medicines = medicnesMore
+          }
           this.emitLoadMoreOptions.emit(this.medicines);
         });
         break;
       case 'selectHosptals':
         this.hospitalsServices.post(this.localeUser).toPromise().then(res => {
-          this.Hospitals = res.slice(0, this.medicines.length + 50);
+          const hospitalsMore: any[] = [];
+          for (let i of  res.slice(0, this.Hospitals.length + 50)) {
+            hospitalsMore.push(i);
+            this.Hospitals = hospitalsMore
+          }
           this.emitLoadMoreOptions.emit(this.Hospitals);
         })
       case 'selectSurgeries':
@@ -199,11 +208,11 @@ export class InjectSelectAndFilterService {
       case 'selectCids':
         this.cidsService.get().toPromise().then(res => {
           const cidsMore: any[] = [];
-          for (let i of  res.slice(0, this.surgeries.length + 50)) {
+          for (let i of  res.slice(0, this.Cids.length + 50)) {
             cidsMore.push(i);
-            this.surgeries = cidsMore
+            this.Cids = cidsMore
           }
-          this.emitLoadMoreOptions.emit(this.surgeries);
+          this.emitLoadMoreOptions.emit(this.Cids);
         });
         break;
       // case 'cids':
@@ -227,11 +236,10 @@ export class InjectSelectAndFilterService {
     const userControl = dataUser.controls[inputControl];
     this.howSelectClicked(inputControl);
     userControl.valueChanges
-      .pipe(takeUntil(this._onDestroy))
-      .subscribe(() => {
-        this.filterValueSelectEspecial(userControl, inputControl);
-      });
-
+      .pipe()
+      .subscribe((res) => {
+        this.filterValueSelectEspecial(userControl, inputControl, res);
+    });
   }
 
   filterGenderAndOrientation(value: any, optionsArray: string): string[] {
@@ -253,32 +261,85 @@ export class InjectSelectAndFilterService {
     this._onDestroy.next();
     this._onDestroy.complete();
   }
+  filterTeste() {
 
-  private filterValueSelectEspecial( control: any, inputControl: string): void {
+  }
+  private filterValueSelectEspecial( control: any, inputControl: string, data: string): void {
+    switch (this.translatePage.dataFormatation) {
+      case 'pt':
+        this.filterValuePt(inputControl, data);
+        break
+      case 'us':
+        this.filterValueUs(inputControl, data);
+        break
+      default:
+        break;
+    }
+
+  }
+  filterValuePt(inputControl, data) {
     switch (inputControl) {
       case 'selectMedicines':
         this.filteredMedicines.next(
-          this.allMedicines.filter(medicines => medicines.value.toLowerCase().indexOf(control.value.toLowerCase()) > -1)
+          this.allMedicines.filter(medicines => medicines.value.toLowerCase().indexOf(data.toLowerCase()) > -1)
         );
         break;
       case 'selectHosptals':
         this.filteredHosptals.next(
-          this.Hospitals.filter(hosptals => hosptals.name.toLowerCase().indexOf(control.value.toLowerCase()) > -1)
+          this.allHospitals.filter(hosptals => hosptals.name.toLowerCase().indexOf(data.toLowerCase()) > -1)
         );
         break;
-      case 'cids':
+      case 'selectCids':
         this.filteredCids.next(
-          this.Cids.filter(cids => cids.description.toLowerCase().indexOf(control.value.toLowerCase()) > -1)
+          this.Cids.filter(cids => cids.description.toLowerCase().indexOf(data.toLowerCase()) > -1)
         );
         break;
       case 'selectUserType':
         this.filteredUserType.next(
-          this.preferenceUserType.filter(userType => userType.value.toLowerCase().indexOf(control.value.toLowerCase()) > -1)
+          this.preferenceUserType.filter(userType => userType.value.toLowerCase().indexOf(data.toLowerCase()) > -1)
         );
         break;
-      case 'surgery':
+      case 'selectSurgeries':
         this.filteredSurgeries.next(
-          this.allSurgeries.filter(surgeries => surgeries.name.toLowerCase().indexOf(control.value.toLowerCase()) > -1)
+          this.allSurgeries.filter(surgeries => surgeries.name.toLowerCase().indexOf(data.toLowerCase()) > -1)
+        );
+        break;
+
+      // case 'gender':
+      //   inputOptions =  this.gender.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+      //   break;
+      // case 'orientation':
+      //     inputOptions =  this.orientation.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+      //     break;
+      default:
+        break;
+    }
+  }
+  filterValueUs(inputControl, data) {
+    switch (inputControl) {
+      case 'selectMedicines':
+        this.filteredMedicines.next(
+          this.allMedicines.filter(medicines => medicines.value_en.toLowerCase().indexOf(data.toLowerCase()) > -1)
+        );
+        break;
+      case 'selectHosptals':
+        this.filteredHosptals.next(
+          this.allHospitals.filter(hosptals => hosptals.name.toLowerCase().indexOf(data.toLowerCase()) > -1)
+        );
+        break;
+      case 'selectCids':
+        this.filteredCids.next(
+          this.Cids.filter(cids => cids.description_en.toLowerCase().indexOf(data.toLowerCase()) > -1)
+        );
+        break;
+      case 'selectUserType':
+        this.filteredUserType.next(
+          this.preferenceUserType.filter(userType => userType.value.toLowerCase().indexOf(data.toLowerCase()) > -1)
+        );
+        break;
+      case 'selectSurgeries':
+        this.filteredSurgeries.next(
+          this.allSurgeries.filter(surgeries => surgeries.name_en.toLowerCase().indexOf(data.toLowerCase()) > -1)
         );
         break;
 

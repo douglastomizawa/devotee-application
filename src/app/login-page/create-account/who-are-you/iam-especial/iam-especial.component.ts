@@ -41,8 +41,8 @@ export class IamEspecialComponent implements OnInit {
   filteredOptions: Observable<string[]>;
   filteredSurgeries;
   filteredMedicine;
-  filteredCids: string[] = [];
-  filteredHosptals: string[] = [];
+  filteredCids;
+  filteredHosptals;
 
   constructor(
     private translatePage: TranslateService,
@@ -73,8 +73,8 @@ export class IamEspecialComponent implements OnInit {
   setOptionValues(): void {
     this.filteredMedicine = this.injectSelect.filteredMedicines;
     this.filteredSurgeries= this.injectSelect.filteredSurgeries;
-    this.filteredHosptals = this.getValueApis.filteredHosptals;
-    this.filteredCids = this.getValueApis.filteredCids;
+    this.filteredHosptals = this.injectSelect.filteredHosptals;
+    this.filteredCids = this.injectSelect.filteredCids;
   }
   getGeoLocalization () {
     navigator.geolocation.getCurrentPosition(position => {
@@ -100,9 +100,9 @@ export class IamEspecialComponent implements OnInit {
   }
   private selectIsReady(): Promise<void> {
     return new Promise ((resolve: any, reject: any) => {
-      setInterval((): void => {
+      setTimeout((): void => {
         const selectDivElement: any = document.querySelectorAll('div[id^="mat-select-"]');
-        const resolvePromise: object = {promiseResolve: true, elementSelect: selectDivElement[0]};
+        const resolvePromise: object = {promiseResolve: true, elementSelect: selectDivElement[selectDivElement.length -1]};
         selectDivElement[0] !== undefined ? resolve(resolvePromise) : reject(false);
      }, 2000);
     });
@@ -121,12 +121,10 @@ export class IamEspecialComponent implements OnInit {
       if (res['promiseResolve']){
         const selectScroll = res['elementSelect'];
         selectScroll.addEventListener('scroll', e => {
-          console.log(inputControl)
           if (Math.trunc(selectScroll.scrollTop + selectScroll.clientHeight) === selectScroll.scrollHeight) {
             console.log(inputControl)
             this.injectSelect.loadMoreOptionSelects(inputControl);
             this.loadMore().then(( resload: any) => {
-              console.log(resload)
               if (resload) {
                 this.injectSelect.filterOptionSelect(inputControl, this.dataUser);
               }
@@ -135,6 +133,9 @@ export class IamEspecialComponent implements OnInit {
         });
       }
     });
+  }
+  filterOptionKeyup(value: string) {
+    this.injectSelect.filterOptionSelect(value, this.dataUser);
   }
   filterOption(inputControl: string): void {
     this.injectSelect.filterOptionSelect(inputControl, this.dataUser);
@@ -151,12 +152,8 @@ export class IamEspecialComponent implements OnInit {
     this.dataUser.value
     let userRegisterData = Object.assign(this.user.newUser, this.dataUser.value)
     this.registerService.post(this.registerUserDefaultService.returnRegisterUser(userRegisterData)).toPromise().then(res => {
-      console.log(res)
       if(res.status) {
         this.user.userSessionFirst(userRegisterData);
-
-        // this.redirectCreateContinueService.createAccountContinueRedirect( this.registerForm.invalid);
-        // this.loginUser();
       }else if (res.status == false){
         this.emailUsed = true;
         setTimeout(() => {
@@ -164,7 +161,6 @@ export class IamEspecialComponent implements OnInit {
         }, 3000);
       }
     })
-    console.log(userRegisterData);
   }
   getValuePopulateCreateAccount(): void{
     this.userEspecial['first_name'] =  this.user.newUser['first_name'];
