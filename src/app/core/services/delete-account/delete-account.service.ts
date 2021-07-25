@@ -2,18 +2,17 @@ import { tap } from 'rxjs/operators';
 import { DeleteAccountInterface } from './../../interfaces/delete-account';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DeleteAccountService {
-  private readonly deleteURL = '/devoteeURL/extension-deleteuser.php';
-
   constructor(
     private http: HttpClient,
   ) { }
   post(payload: DeleteAccountInterface): any {
-    return this.http.post<any>(this.deleteURL, payload,
+    return this.http.post<any>(environment.api.proxy.deleteUser, payload,
       {
         headers: new HttpHeaders()
           .set('Content-Type', 'application/json')

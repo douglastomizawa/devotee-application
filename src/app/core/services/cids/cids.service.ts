@@ -2,16 +2,15 @@ import { ResponseCidsInterface } from './../../interfaces/cids';
 import { tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CidsService {
-private readonly cidsURL = 'http://34.223.220.245/api/V1/listCid';
-
 constructor( private http: HttpClient,) { }
 get() {
-  return this.http.get<ResponseCidsInterface>(this.cidsURL,
+  return this.http.get<ResponseCidsInterface>(environment.api.cids,
     {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/json')

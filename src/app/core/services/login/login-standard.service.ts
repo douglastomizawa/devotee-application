@@ -2,20 +2,19 @@ import { tap } from 'rxjs/operators';
 import { LoginInterface, ResponseLoginInterface } from './../../interfaces/login.interface';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginStandardService {
-
-  private readonly loginURL = 'http://34.223.220.245/api/V1/login';
   public userData: ResponseLoginInterface;
   constructor(
     private http: HttpClient,
   ) { }
 
   post(payload: LoginInterface) {
-    return this.http.post<ResponseLoginInterface>(this.loginURL, payload,
+    return this.http.post<ResponseLoginInterface>(environment.api.login, payload,
       {
         headers: new HttpHeaders()
           .set('Content-Type', 'application/json')
