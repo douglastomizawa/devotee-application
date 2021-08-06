@@ -2,19 +2,19 @@ import { ForgotPasswordInterface, ResponseForgotPasswordInterface } from './../.
 import { tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ForgotPasswordService {
-  private readonly loginURL = 'http://34.223.220.245/api/V1/login';
 
   constructor(
     private http: HttpClient,
   ) { }
 
   post(payload: ForgotPasswordInterface) {
-    return this.http.post<ResponseForgotPasswordInterface>(this.loginURL, payload,
+    return this.http.post<ResponseForgotPasswordInterface>(environment.api.forgotPassword, payload,
       {
         headers: new HttpHeaders()
           .set('Content-Type', 'application/json')

@@ -6,6 +6,8 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 
 import { TranslateService } from './../../shared/translate.service';
+import { takeUntil } from 'rxjs/operators';
+import { ReplaySubject } from 'rxjs';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -26,6 +28,8 @@ export class ForgotPasswordComponent implements OnInit {
     Validators.email,
   ]);
   emailForgoted: boolean = false;
+  private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
+
   constructor(
     private translatePage: TranslateService,
     private forgotPasswordService: ForgotPasswordService,
@@ -37,11 +41,17 @@ export class ForgotPasswordComponent implements OnInit {
   ngOnInit(): void {
     this.text = this.translatePage.textTranslate;
   }
+  ngOnDestroy() {
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
+  }
   recoverPassword() {
     this.loadingSpinner.ShowLoading = true;
-    this.forgotPasswordService.post(this.emailFormControl.value).toPromise().then(res => {
+    const payloadRecover = {email: this.emailFormControl.value};
+    this.forgotPasswordService.post(payloadRecover)
+    .pipe(takeUntil(this.destroyed$))
+    .toPromise().then(res => {
       if(res) {
-
         this.loadingSpinner.ShowLoading = false;
         this.emailForgoted = true;
         setTimeout(() => {

@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 import data, { TranslateService } from './../../../../shared/translate.service';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import {ErrorStateMatcher, ThemePalette} from '@angular/material/core';
-import {Observable} from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import {Observable, ReplaySubject} from 'rxjs';
+import { map, startWith, takeUntil } from 'rxjs/operators';
 import { UserFactory } from 'src/app/core/factory/user.factory.service';
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -43,6 +43,7 @@ export class IamEspecialComponent implements OnInit {
   filteredMedicine;
   filteredCids;
   filteredHosptals;
+  private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
 
   constructor(
     private translatePage: TranslateService,
@@ -69,7 +70,10 @@ export class IamEspecialComponent implements OnInit {
     this.filterValueToPushInArrayToOptions();
     this.getGeoLocalization();
   }
-
+  ngOnDestroy() {
+    this.destroyed$.next(true);
+    this.destroyed$.unsubscribe();
+  }
   setOptionValues(): void {
     this.filteredMedicine = this.injectSelect.filteredMedicines;
     this.filteredSurgeries= this.injectSelect.filteredSurgeries;
@@ -109,11 +113,13 @@ export class IamEspecialComponent implements OnInit {
   }
   loadMore(): Promise<void> {
    return new Promise((resolve: any, reject: any) => {
-    this.injectSelect.emitLoadMoreOptions.subscribe(
-      loadMore => {
-        loadMore ? resolve(true) : reject(false);
-      }
-    );
+    this.injectSelect.emitLoadMoreOptions
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe(
+        loadMore => {
+          loadMore ? resolve(true) : reject(false);
+        }
+      );
    });
   }
   getFinalScrollSelect(inputControl: string): void  {
@@ -121,13 +127,13 @@ export class IamEspecialComponent implements OnInit {
       if (res['promiseResolve']){
         const selectScroll = res['elementSelect'];
         selectScroll.addEventListener('scroll', e => {
-          if (Math.trunc(selectScroll.scrollTop + selectScroll.clientHeight) === selectScroll.scrollHeight) {
-            console.log(inputControl)
+          if (Math.trunc(selectScroll.scrollTop + selectScroll.clientHeight) === selectScroll.scrollHeight - 1) {
             this.injectSelect.loadMoreOptionSelects(inputControl);
             this.loadMore().then(( resload: any) => {
               if (resload) {
                 this.injectSelect.filterOptionSelect(inputControl, this.dataUser);
               }
+
             });
           }
         });
@@ -151,16 +157,18 @@ export class IamEspecialComponent implements OnInit {
     this.user.newUser
     this.dataUser.value
     let userRegisterData = Object.assign(this.user.newUser, this.dataUser.value)
-    this.registerService.post(this.registerUserDefaultService.returnRegisterUser(userRegisterData)).toPromise().then(res => {
-      if(res.status) {
-        this.user.userSessionFirst(userRegisterData);
-      }else if (res.status == false){
-        this.emailUsed = true;
-        setTimeout(() => {
-          this.emailUsed = false;
-        }, 3000);
-      }
-    })
+    this.registerService.post(this.registerUserDefaultService.returnRegisterUser(userRegisterData))
+      .pipe(takeUntil(this.destroyed$))
+      .toPromise().then(res => {
+        if(res.status) {
+          this.user.userSessionFirst(userRegisterData);
+        }else if (res.status == false){
+          this.emailUsed = true;
+          setTimeout(() => {
+            this.emailUsed = false;
+          }, 3000);
+        }
+      })
   }
   getValuePopulateCreateAccount(): void{
     this.userEspecial['first_name'] =  this.user.newUser['first_name'];

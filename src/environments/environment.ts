@@ -10,6 +10,7 @@ export const environment = {
     hospitals: 'http://34.223.220.245/api/V1/listHospitalsCountry',
     login:'http://34.223.220.245/api/V1/login',
     qrCode: 'http://34.223.220.245/api/V1/qrCode',
+    forgotPassword: 'http://34.223.220.245/api/V1/forgotPassword',
     proxy: {
       deleteUser: '/devoteeURL/extension-deleteuser.php',
     }

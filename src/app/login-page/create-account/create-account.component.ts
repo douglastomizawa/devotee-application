@@ -14,6 +14,8 @@ import {FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuil
 import {ErrorStateMatcher, ThemePalette } from '@angular/material/core';
 
 import { User } from '../../core/model/client.model';
+import { ReplaySubject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -39,6 +41,8 @@ export class CreateAccountComponent implements OnInit {
   maxDate: string;
   color: ThemePalette = 'primary';
   emailUsed: boolean;
+  private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
+
 // tslint:disable-next-line:max-line-length
   constructor(
     private translatePage: TranslateService,
@@ -113,15 +117,17 @@ export class CreateAccountComponent implements OnInit {
     // })
   }
   loginUser() {
-    let userLogin = {
-      email:this.registerForm.value.email,
-      password:this.registerForm.value.password
-    }
-    this.loginService.post(userLogin).toPromise().then(res=>{
-      if(res.status) {
-        this.redirectLogged.loggedRedirect(res, '/create-account-continue')
-      }
-    })
+    const userLogin = {
+      email: this.registerForm.value.email,
+      password: this.registerForm.value.password
+    };
+    this.loginService.post(userLogin)
+      .pipe(takeUntil(this.destroyed$))
+      .toPromise().then(res=>{
+        if(res.status) {
+          this.redirectLogged.loggedRedirect(res, '/create-account-continue')
+        }
+      })
   }
   matcher = new MyErrorStateMatcher();
   openDialogRegister(): void{

@@ -1,3 +1,4 @@
+import { rootReducer } from './store/root.reducer';
 import { QRCodeModule } from 'angularx-qrcode';
 import { AuthGuardService } from './core/guards/auth.guard.service';
 import { TranslateService } from './shared/translate.service';
@@ -19,6 +20,16 @@ import { LoggedGuardService } from './core/guards/logged.guard.service';
 import { BlockInitialPageService } from './core/guards/block-initial-page.guard.service';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from './shared/shared.module';
+import { ActionReducer, MetaReducer, StoreModule } from '@ngrx/store';
+export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
+  return function(state, action) {
+    console.log('state', state);
+    console.log('action', action);
+
+    return reducer(state, action);
+  };
+}
+export const metaReducers: MetaReducer<any, any> [] = [debug];
 
 @NgModule({
   declarations: [
@@ -36,8 +47,8 @@ import { SharedModule } from './shared/shared.module';
     CommonModule,
     QRCodeModule,
     SharedModule,
-
-    ],
+    StoreModule.forRoot(rootReducer, {metaReducers})
+  ],
   exports: [
     MatButtonModule,
   ],
