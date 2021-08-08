@@ -1,4 +1,4 @@
-export interface ILoginDataUser {
+export interface ILoginDataUserState {
   id:                   string;
   email:                string;
   first_name:           string;
@@ -35,7 +35,7 @@ export interface ILoginDataUser {
   status:               boolean;
   profile_image:        string;
 }
-export const LOGIN_USER_DATA_INITIAL_STATE:  ILoginDataUser = {
+export const LOGIN_USER_DATA_INITIAL_STATE:  ILoginDataUserState = {
   id:                   "",
   email:                "",
   first_name:           "",
