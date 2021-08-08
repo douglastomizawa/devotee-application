@@ -65,7 +65,7 @@ export class ChatComponent implements OnInit {
     this.getInfosMatch();
   }
   getInfosMatch(): void{
-    this.emitterMatchId.emitterMatchIdClick.subscribe(clickedInfos => {
+    this.emitterMatchId.emitterMatchIdClick.subscribe((clickedInfos: any) => {
       this.getProfileAPI.get(clickedInfos.matchId).subscribe(res => {
         this.matchUser = res;
         this.isHidden = clickedInfos.clickedIs;

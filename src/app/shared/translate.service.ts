@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import   * as data  from  '../../login.json';
+
 export default data;
 @Injectable({
   providedIn: 'root'
@@ -18,19 +19,17 @@ export class TranslateService {
   selectLanguage(language){
     let data = this.getDataTranslate();
     switch (language) {
-
       case 'pt-BR':
-
-        this.traductionLanguage(data[0][1][0].pt);
+        this.traductionLanguage(data[0][1].pt);
         this.dataFormatation = 'pt';
         break;
       case 'en-US':
-        this.traductionLanguage(data[0][1][0].us);
+        this.traductionLanguage(data[0][1].us);
         this.dataFormatation = 'us';
         break;
 
       default:
-        this.traductionLanguage(data[0][1][0].us);
+        this.traductionLanguage(data[0][1].us);
         this.dataFormatation = 'us';
         break;
     }

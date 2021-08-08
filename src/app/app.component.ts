@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { TranslateService } from 'src/app/shared/translate.service';
+import { Component, OnInit } from '@angular/core';
 import { RedirectCreateContinueService } from './core/services-redirect/redirect-create-continue.service';
 
 @Component({
@@ -6,6 +7,12 @@ import { RedirectCreateContinueService } from './core/services-redirect/redirect
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Devotee';
+  constructor(private translatePage:TranslateService) {
+
+  }
+  ngOnInit() {
+    this.translatePage.veriyLanguage();
+  }
 }

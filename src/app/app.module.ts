@@ -47,7 +47,7 @@ export const metaReducers: MetaReducer<any, any> [] = [debug];
     CommonModule,
     QRCodeModule,
     SharedModule,
-    StoreModule.forRoot(rootReducer, {metaReducers})
+    StoreModule.forRoot(rootReducer, {metaReducers}),
   ],
   exports: [
     MatButtonModule,
