@@ -35,6 +35,8 @@ export class TranslateService {
     }
   }
   traductionLanguage(dataLanguage){
+
+
     this.textTranslate = dataLanguage
 }
 
