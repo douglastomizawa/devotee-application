@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { QRSignInComponent } from './qr-sign-in.component';
 
@@ -6,7 +6,7 @@ describe('QRSignInComponent', () => {
   let component: QRSignInComponent;
   let fixture: ComponentFixture<QRSignInComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ QRSignInComponent ]
     })
