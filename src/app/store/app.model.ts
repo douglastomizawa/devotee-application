@@ -1,3 +1,3 @@
 export interface IAppState {
-  createUserData: any
+  loginUserData: any,
 }
