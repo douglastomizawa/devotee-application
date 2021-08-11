@@ -52,8 +52,6 @@ export class ButtonsComponent implements OnInit {
   }
   ngOnInit(): void {
     this.text = this.translatePage.textTranslate;
-
-    console.log(this.text)
   }
 
 }

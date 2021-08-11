@@ -6,7 +6,7 @@ import { createReducer, on } from "@ngrx/store";
 
 export const profileDataReducer = createReducer(
   PROFILE_DATA_INITIAL_STATE,
-  on(userDataActions.userDataLogged, (state, {profileData}) => (Object.assign({},profileData))),
+  on(userDataActions.setUserDataLogged, (state, {profileData}) => (Object.assign({},profileData))),
 );
 
 export function reducer(state: IProfileDataState, action: Action) {

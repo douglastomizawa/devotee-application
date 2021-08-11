@@ -1,3 +1,5 @@
+import { IAppState } from 'src/app/store/app.model';
+import { State, Store } from '@ngrx/store';
 import { LoginStandardService } from './../../../core/services/login/login-standard.service';
 import { UserEspecial } from '../../../core/model/user-especial.model';
 import { GetValuesApisPtUsService } from '../../../core/services/get-values-apis-pt-us.service';
@@ -6,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 import data, { TranslateService } from '../../../shared/translate.service';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import {ErrorStateMatcher, ThemePalette} from '@angular/material/core';
-import {Observable} from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import {Observable, ReplaySubject} from 'rxjs';
+import { map, startWith, takeUntil } from 'rxjs/operators';
 import { UserFactory } from 'src/app/core/factory/user.factory.service';
+import { IProfileDataState } from 'src/app/store/user-data/user-data.model';
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
@@ -42,6 +45,9 @@ export class ChangeIamEspecialComponent implements OnInit {
   filteredMedicine;
   filteredCids: string[] = [];
   filteredHosptals: string[] = [];
+  private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
+
+  profileData$: Observable<IProfileDataState>;
 
   constructor(
     private translatePage: TranslateService,
@@ -50,26 +56,35 @@ export class ChangeIamEspecialComponent implements OnInit {
     private injectSelect: InjectSelectAndFilterService,
     private getValueApis: GetValuesApisPtUsService,
     private login: LoginStandardService,
+    private store: Store,
+    private state: State<IAppState>,
     ) {
-
+      this.profileData$ = this.store.select((state: IAppState)=> state.profileData)
+      this.profileData$
+        .pipe(takeUntil(this.destroyed$))
+        .subscribe((profileData:IProfileDataState) => {
+          console.log(profileData)
+         })
       this.user.newUser['user_type'] === 'devotee' ? this.userIsEspecialType = false : this.userIsEspecialType = true;
     }
   matcher = new MyErrorStateMatcher();
 
   ngOnInit(): void {
+
     this.translatePage.veriyLanguage();
     this.text = this.translatePage.textTranslate;
     this.language = this.translatePage.dataFormatation;
-
     this.createForm();
     //setValues em inputs
-
     this.getValuePopulateCreateAccount();
     this.injectSelect.getAllAPIToSelectDiv();
     this.filterValueToPushInArrayToOptions();
     this.getGeoLocalization();
   }
-
+  ngOnDestroy() {
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
+  }
   setOptionValues(): void {
     this.filteredMedicine = this.injectSelect.filteredMedicines;
     this.filteredSurgeries= this.injectSelect.filteredSurgeries;
@@ -109,12 +124,14 @@ export class ChangeIamEspecialComponent implements OnInit {
   }
   loadMore(): Promise<void> {
    return new Promise((resolve: any, reject: any) => {
-    this.injectSelect.emitLoadMoreOptions.subscribe(
-      loadMore => {
-        loadMore ? resolve(true) : reject(false);
-      }
-    );
-   });
+    this.injectSelect.emitLoadMoreOptions
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe(
+        loadMore => {
+          loadMore ? resolve(true) : reject(false);
+        }
+      );
+    });
   }
   getFinalScrollSelect(inputControl: string): void  {
     this.selectIsReady().then((res: any) => {
@@ -179,7 +196,7 @@ export class ChangeIamEspecialComponent implements OnInit {
           default:
             break;
         }
-        console.log(evt.target.result);
+        // console.log(evt.target.result);
       };
     }
   }

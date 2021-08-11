@@ -1,5 +1,5 @@
 import { ChangeIamEspecialRountingModule } from './change-iam-especial.rounting.module';
-import { UserSettingsRountingModule } from './../../user-settings/user-settings.rounting.module';
+import { UserSettingsRountingModule } from '../../user-settings/user-settings.rounting.module';
 import { MatSelectSearchModule } from '../../../login-page/mat-select-search/mat-select-search.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';

@@ -1,7 +1,7 @@
 import { IProfileDataState, UserData } from './user-data.model';
 import { createAction, props } from '@ngrx/store';
 
-export const userDataLogged = createAction(
+export const setUserDataLogged = createAction(
   '[Change value] change Value',
   props<{profileData: IProfileDataState}>()
 );
