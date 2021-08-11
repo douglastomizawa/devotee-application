@@ -1,5 +1,4 @@
-import { ChangeIamDevoteeModule } from './user-type/iam-devotee/change-iam-devotee.module';
-import { ChangeIamEspecialModule } from './user-type/iam-especial/change-iam-especial.module';
+import { ChangeIamEspecialModule } from './matches/iam-especial/change-iam-especial.module';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { LoggedComponent } from './logged.component';
@@ -16,7 +15,7 @@ const loggedRoutes = [{path: '', component: LoggedComponent, children: [
   {
     path: 'edit',
     // tslint:disable-next-line:max-line-length
-    loadChildren: () => import('src/app/logged/user-type/iam-especial/change-iam-especial.module').then(m => m.ChangeIamEspecialModule)
+    loadChildren: () => import('src/app/logged/matches/iam-especial/change-iam-especial.module').then(m => m.ChangeIamEspecialModule)
   },
 
 ]},
