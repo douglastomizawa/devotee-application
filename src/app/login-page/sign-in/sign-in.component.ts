@@ -1,15 +1,16 @@
+import { userDataLogged } from './../../store/login-user-data/login-user-data.actions';
 import { UserDataService } from './../../core/services/profile-infos/user-data.service';
 import { LoginStandardService } from './../../core/services/login/login-standard.service';
 import { UserEmailService } from './../../core/services/profile-infos/user-email.service';
 import { LoggedInUserIdService } from './../../core/services/logged-in-user-id.service';
 import { RedirectLoggedService } from './../../core/services-redirect/redirect-logged.service';
 import { LoadingSpinnerService } from './../../core/loading-spinner.service';
-import { LoginService } from './../../core/services/login.service';
 import { TranslateService } from './../../shared/translate.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
-import { SplitMatchesService } from 'src/app/core/services/split-matches.service';
+import { State, Store } from '@ngrx/store';
+import { IAppState } from 'src/app/store/app.model';
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -42,7 +43,8 @@ export class SignInComponent implements OnInit {
     private redirectLogged: RedirectLoggedService,
     private userEmail: UserEmailService,
     private userData: UserDataService,
-
+    private store: Store,
+    private state: State<IAppState>,
 
     ) {}
   matcher = new MyErrorStateMatcher();
@@ -69,6 +71,7 @@ export class SignInComponent implements OnInit {
       if (!res['status']) {
         this.resError = true;
       }else{
+        this.store.dispatch(userDataLogged({loginUserData: res}))
         this.login.setDataUserLogged(res);
         this.userId.returnIdUser(res['id']);
         this.userEmail.returnUserEmail(res['email']);

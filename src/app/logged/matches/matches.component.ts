@@ -1,10 +1,7 @@
+import { IAppState } from 'src/app/store/app.model';
+import { State, Store } from '@ngrx/store';
 import { RedirectMatchesService } from './../../core/services-redirect/click-matches.service';
 import { ChatAndMatchesService } from './../../core/services/chat-and-matches.service';
-// import { ChatModule } from './../chat/chat.module';
-import { ChatComponent } from './../chat/chat.component';
-import { ProfileService } from './../../core/services/profile.service';
-import { LoggedInUserIdService } from './../../core/services/logged-in-user-id.service';
-import { MatchesService } from './../../core/services/matches.service';
 import { TranslateService } from './../../shared/translate.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -14,13 +11,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./matches.component.scss']
 })
 export class MatchesComponent implements OnInit {
-  // matches:any = [];
   text;
   matches: any;
   constructor(
     private translatePage: TranslateService,
     private emitterMatchId: ChatAndMatchesService,
     private matchesServices: RedirectMatchesService,
+    private store: Store,
+    private state: State<IAppState>,
   ) { }
 
   ngOnInit(): void {
